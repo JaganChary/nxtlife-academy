@@ -1,0 +1,51 @@
+p {
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: black;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+  }
+
+#sidebar {
+    background: darkcyan;
+    color: #fff;
+    margin-top: 3.5em;
+    margin-right: 5em;
+    margin-left: -15px;
+}
+
+#sidebar .sidebar-header {
+    text-align: center;
+    padding: 20px;
+    background: darkslategray;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.3em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color:black;
+    background: #fff;
+}
+
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+}
