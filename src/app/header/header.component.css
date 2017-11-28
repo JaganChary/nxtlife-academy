@@ -1,0 +1,15 @@
+.navbar-nav {
+  width: 100%;
+  text-align: center;
+}
+
+.navbar-nav>li {
+  float: initial;
+}
+
+.nav>li {
+  display: inline-block;
+}
+.change-text {
+  font-weight: bold;
+}
