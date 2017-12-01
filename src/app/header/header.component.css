@@ -3,3 +3,25 @@
   color: darkcyan;
 }
 
+.item-hover:hover {
+  background-color: darkcyan;
+  color: white;
+}
+
+.style-btn {
+  text-align: right;
+  padding: 0.15em 1.7em;
+  background-color: darkslategray;
+  border-radius: 5px;
+  margin-left: 25px;
+}
+
+.style-btn:hover {
+  background-color: gray;
+}
+
+.nav {
+  margin-top: 0.4em;
+}
+
+

@@ -1,0 +1,33 @@
+hr {
+  height: 2px;
+  background-color: gray;
+  border: none;
+  width: 40%;
+}
+
+.shift {
+  margin-top: 5em;
+}
+
+.change {
+  font-weight: 40;
+}
+
+.btn-self {
+  padding: 0.8em 1.8em;
+  background-color: darkslategray;
+  border-radius: 5px;
+   
+}
+
+.btn-self a {
+  color: white;
+  text-decoration: none;
+}
+
+.btn-self:hover {
+  background-color: grey;
+}
+.fat {
+  font-weight: bold;;
+}

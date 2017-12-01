@@ -13,9 +13,11 @@ a, a:hover, a:focus {
 #sidebar {
     background: darkcyan;
     color: #fff;
-    margin-top: 3.5em;
+    margin-top: 2em;
     margin-right: 5em;
     margin-left: -15px;
+    position: fixed;
+    width: 17%;
 }
 
 #sidebar .sidebar-header {
