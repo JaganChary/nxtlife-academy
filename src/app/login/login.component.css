@@ -1,0 +1,44 @@
+.row {
+    margin-top: 4.5em;
+}
+
+.center {
+    text-align: center;
+    font-size: 3.5em;
+}
+
+hr { 
+    border: none;
+    height: 2px;
+    background-color: gray;
+    width: 30%;
+
+}
+.btn-self {
+    padding: 0.6em 1.8em;
+    background-color: darkslategray;
+    border-radius: 5px;
+     
+}
+  
+.btn-self {
+    color: white;
+    text-decoration: none;
+}
+  
+  .btn-self:hover {
+    background-color: grey;
+}
+.move {
+    padding: 2em;
+}
+.move a {
+    text-decoration: none;
+    color: darkslategray;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+}
+.move a:hover {
+    text-decoration: underline;
+    color: darkslategray; 
+} 

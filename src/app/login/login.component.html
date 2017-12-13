@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="center">Login Form</h2>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="login-form"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <form [formGroup]="loginForm" (ngSubmit)="btnClick()">
+
+        <!-- Username --> 
+
+        <div class="form-group">
+          <label for="username">Email</label>
+          <input type="email" formControlName="username" class="form-control" placeholder="Enter email" />
+          <div *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched" class="alert alert-danger"><small><i> Please enter your registered Email Id</i></small></div>
+          <div *ngIf="loginForm.controls['username'].hasError('email') && loginForm.controls['username'].touched" class="alert alert-danger"><small><i>Email is invalid</i></small></div>
+        </div>
+
+        <!-- Password -->
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="text" formControlName="password" class="form-control" placeholder="Enter password" />
+          <div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class="alert alert-danger"><small><i> Please enter your password</i></small></div>
+          <div *ngIf="loginForm.controls['password'].hasError('minlength') && loginForm.controls['password'].touched" class="alert alert-danger"><small><i>Your password must be at least 4 characters long.</i></small></div>
+          <div *ngIf="loginForm.controls['password'].hasError('maxlength') && loginForm.controls['password'].touched" class="alert alert-danger"><small><i>Your password cannot exceed 20 characters.</i></small></div>
+        </div>
+        <button type="submit" name="login" class="btn-self" [disabled]="loginForm.invalid">Login</button>
+        <span class="move"><a [routerLink]="['/register']">Register Here!</a></span>
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
