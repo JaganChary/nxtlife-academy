@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/observable';
+
 
 @Component({
   selector: 'app-header',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private httpClient: HttpClient
+  ) { }
 
   ngOnInit() {
   }
-
+  onLogOut() {
+    let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
+    this.httpClient.get('https://nxtlife-academy.ind-cloud.everdata.com/api/admin/logout', {headers: header})
+    .subscribe((res: any) => {
+     
+      // Clearing Access Token
+      localStorage.clear();
+      console.log('Access Token cleared and logged Out');
+      this.router.navigate(['login']);
+    
+    }, (error: any) => {
+      console.log(error);
+    });   
+  }
 }
