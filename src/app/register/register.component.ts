@@ -1,13 +1,19 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import {
+  NgForm,
+  ReactiveFormsModule,
+  FormsModule,
   FormBuilder,
   FormGroup,
+  ValidatorFn,
   Validators,
-  FormControl,
-  EmailValidator,
+  NG_VALIDATORS,
+  FormControl
 } from '@angular/forms';
+import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { EmailValidator } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -16,52 +22,65 @@ import {
 })
 
 export class RegisterComponent implements OnInit {
-
-  addForm: FormGroup
+  addForm: FormGroup;
+  // passwordRegex: string = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/';
 
   constructor(
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private httpClient: HttpClient
   ) { }
-
+  
   ngOnInit() {
     this.initForm();
-    this.initValidate();
   }
-
+ 
   initForm() {
     this.addForm = this.formBuilder.group({
       organization: ['', Validators.required],
+
       type: ['', Validators.required],
-      fullname: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      contact: ['', Validators.required],
+
+      fullname: ['', [Validators.required, Validators.minLength(4)]],
+
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+
+      contact: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
     });
   }
-
-  initValidate(): void {
-    this.addForm = new FormGroup({
-      'fullname': new FormControl(this.addForm.fullname, [
-        Validators.required,
-        Validators.minLength(4),
-        forbiddenNameValidator(/bob/i)
-      ]),
-      'email': new FormControl(this.addForm.email,[
-        Validators.required,
-        Validators.email
-      ]),
-      
-
-    });
-  }
+  
 
   // The function here fetches form data and routes to the home page
 
   btnClick = () => {
-    if (this.addForm.valid) {
-      console.log(this.addForm.value);
-      this.router.navigate(['home']);
-    }
+    var user = this.addForm.value;  
+      if (this.addForm.invalid) {
+        return;
+      }
+      console.log(user);
+      this.httpClient.post(`https://nxtlife-academy.ind-cloud.everdata.com/api/organization`,
+  {
+    organization: user.organization,
+    type: user.type,
+    fullName: user.fullname,
+    email: user.email,
+    password: user.password,
+    contactNo: user.contact
+
+  }).subscribe(
+        (res:any) => {
+          console.log(res.id);
+          if(res) {
+            this.router.navigate(['login']);
+          }
+        },
+        (error: any) => { 
+          console.log(error);
+        } 
+      ) 
+
+      
   }
 }

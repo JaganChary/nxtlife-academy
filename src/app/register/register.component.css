@@ -20,7 +20,7 @@ hr {
    
 }
 
-.btn-self a {
+.btn-self {
   color: white;
   text-decoration: none;
 }
@@ -31,3 +31,20 @@ hr {
 .fat {
   font-weight: bold;;
 }
+.move {
+  padding: 2em;
+  text-decoration: none;
+  color: darkslategray;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+}
+.move a {
+  text-decoration: none;
+  color: darkslategray;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+}
+.move a:hover {
+  text-decoration: underline;
+  color: darkslategray; 
+} 
