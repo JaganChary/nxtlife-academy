@@ -9,5 +9,5 @@ export interface employee {
 
 export interface EmployeeRole {
     departmentId: string;
-    roleId: string;
+    id: string;
 }
