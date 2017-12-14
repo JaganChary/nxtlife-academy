@@ -16,6 +16,7 @@ import {
 } from '@angular/forms';
 
 import { LoginComponent } from '../login/login.component';
+import { BASEURL } from '../shared/app.constant';
 
 @Component({
   selector: 'app-department',
@@ -40,6 +41,8 @@ export class DepartmentComponent implements OnInit {
       department: ['', Validators.required]
     });
   }
+  
+  // Button to Add Department 
 
   btnClick() {
     console.log('Button Clicked');
@@ -48,18 +51,41 @@ export class DepartmentComponent implements OnInit {
       return; 
     }
     console.log(departments);
-    
+    // Access Token  Authorization
     let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
     
-    this.httpClient.post('https://nxtlife-academy.ind-cloud.everdata.com/api/admin/departments', [{
+    // Retrieving organization Id
+
+    let organizationId = localStorage.getItem('organizationId');
+    
+    // Posting Department Details
+    
+    this.httpClient.post(BASEURL + '/admin/departments', [{
     department: departments.department,
-    organizationId:1074563616
+    organizationId
   }], {headers: header}).
     subscribe((res: any) => {
+
+      // Route to home Page
+      
       this.router.navigate(['home']);
-      console.log(res);
-    }, (error: any) => {
-      console.log(error);
+      
+      // Printing Response 
+
+      console.log('Response: ' + res);
+      console.log('Stringified response: ' + JSON.stringify(res));
+
+      // Saving department Details to localStorage
+
+      localStorage.setItem('departmentDetails', JSON.stringify(res));
+
+      // Getting the Array-Object Department Details and printing the departmentId which we obtain from it 
+
+      let departmentDetails = JSON.parse(localStorage.getItem('departmentDetails'));
+      console.log('DepartmentId: ' + departmentDetails[0].departmentId);
+    },
+    (error: any) => {
+      console.log(error); 
     });
   }
 }
