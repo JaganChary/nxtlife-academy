@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
+import { BASEURL } from '../shared/app.constant';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit {
   }
   onLogOut() {
     let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
-    this.httpClient.get('https://nxtlife-academy.ind-cloud.everdata.com/api/admin/logout', {headers: header})
+    this.httpClient.get(BASEURL + '/admin/logout', {headers: header})
     .subscribe((res: any) => {
      
       // Clearing Access Token
