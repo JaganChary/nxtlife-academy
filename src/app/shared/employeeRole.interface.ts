@@ -1,13 +1,13 @@
 export interface employee {
-    name: string;
+    fullName: string;
     gender: string;
     email: string;
-    contact: string;
-    jdate: string;
+    contactNo: string;
+    joiningDate: string;
     employeeRoles: EmployeeRole[];
 }
 
 export interface EmployeeRole {
-    department: string;
-    role: string;
+    departmentId: string;
+    roleId: string;
 }
