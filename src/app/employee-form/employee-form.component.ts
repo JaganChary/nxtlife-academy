@@ -19,6 +19,7 @@ import {
 
 import { employee, EmployeeRole } from '../shared/employeeRole.interface';
 import { BASEURL } from '../shared/app.constant';
+import { log } from 'util';
 
 @Component({
   selector: 'app-employee-form',
@@ -29,6 +30,9 @@ import { BASEURL } from '../shared/app.constant';
 export class EmployeeFormComponent implements OnInit {
   registerForm: FormGroup;
   departments: Array<any>;
+  departmentId: any;
+  roleIds: Array<any>;
+  roleId: any;
 
   constructor(
     private router: Router,
@@ -44,16 +48,25 @@ export class EmployeeFormComponent implements OnInit {
     let organizationId = localStorage.getItem('organizationId');
     let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
     
+    // Get request to retrieve all roles
+    this.httpClient.get(BASEURL + '/admin/role', {
+      headers: header
+    }).
+    subscribe((res: any) => {
+      this.roleIds = res;
+          }, (error) => {
+      console.log(error);
+    })
+    
+    // Get request to retrieve all departments
     this.httpClient.get(BASEURL + `/admin/organization/${organizationId}/departments`, {
       headers: header
-    }
-    )
+    })
     .subscribe((res: any) => {  
       this.departments = res.data;
-      console.log('Response: ',res);
-    }),(error: any) => {
+    },(error: any) => {
       console.log(error);
-    }
+    })
     
     this.registerForm = this.formBuilder.group({
       fullName: ['', [Validators.required, Validators.minLength(4)]],
@@ -73,15 +86,30 @@ export class EmployeeFormComponent implements OnInit {
 
     console.log(this.registerForm.controls.employeeRole);
     let a = <FormArray>this.registerForm.controls.employeeRoles;
-    console.log(a.controls);
+    
     
   }
 
+  
   initEmployeeRole() {
     return this.formBuilder.group({
       roleId: ['', [Validators.required]],
       departmentId: ['', [Validators.required]]
     })
+  }
+
+  
+
+  // DepartmentId Selection
+  onChange(e: any) {
+    console.log('Department Selected: '+ e.department);
+    console.log('DepartmentId: '+ e.departmentId);
+  }
+  
+  // RoleId Selection
+  onChanged(e: any) {
+    console.log('Role: ', e.role);
+    console.log('RoleId: ', e.id);
   }
 
   // Button to Add Employee Role
@@ -99,25 +127,31 @@ export class EmployeeFormComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    console.log(employee);
-    
+    employee.employeeRoles.forEach((e: any) => {
+      e.roleId = e.roleId.id;
+    });
+
+    employee.employeeRoles.forEach((e:any)=>{
+      e.departmentId = e.departmentId.departmentId; 
+    });
+      
     // Access Token Authorization
     let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
 
     // Retrieving organizationId
     let organizationId = localStorage.getItem('organizationId');
-
+    console.log('OrganizationId: ',organizationId);
     // Posting Employee Details
     
-    this.httpClient.post(BASEURL + '/admin/employee', [{
+    this.httpClient.post(BASEURL + '/admin/employee',  {
       fullName: employee.fullName,
       gender: employee.gender,
       email: employee.email,
-      contactNo: employee.contact,
+      contactNo: employee.contactNo,
       joiningDate: employee.joiningDate,
       employeeRoles: employee.employeeRoles,
       organizationId
-    }], {headers: header}).
+    }, {headers: header}).
       subscribe((res: any) => {
 
         // Routing to HomePage
