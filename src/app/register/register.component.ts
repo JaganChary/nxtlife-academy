@@ -14,6 +14,7 @@ import {
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { EmailValidator } from '@angular/forms';
+import { BASEURL } from '../shared/app.constant';
 
 @Component({
   selector: 'app-register',
@@ -60,7 +61,7 @@ export class RegisterComponent implements OnInit {
         return;
       }
       console.log(user);
-      this.httpClient.post(`https://nxtlife-academy.ind-cloud.everdata.com/api/organization`,
+      this.httpClient.post(BASEURL + '/organization',
   {
     organization: user.organization,
     type: user.type,
