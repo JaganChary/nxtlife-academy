@@ -9,20 +9,20 @@
         <br>
         <form [formGroup]="registerForm" (ngSubmit)="btnClick()">
 
-          <!-- Name -->
+          <!-- Full Name -->
 
           <div class="form-group">
-            <label for="name">
+            <label for="fullName">
               <span class="change">
                 <span class="fat">|</span>Name</span>
             </label>
-            <input type="text" class="form-control" formControlName="name" placeholder="Enter Name">
-            <div *ngIf="registerForm.controls['name'].hasError('required') && registerForm.controls['name'].touched" class="alert alert-danger">
+            <input type="text" class="form-control" formControlName="fullName" placeholder="Enter Name">
+            <div *ngIf="registerForm.controls['fullName'].hasError('required') && registerForm.controls['fullName'].touched" class="alert alert-danger">
               <small>
                 <i>You must include a Full name.</i>
               </small>
             </div>
-            <div *ngIf="registerForm.controls['name'].hasError('minlength') && registerForm.controls['name'].touched" class="alert alert-danger">
+            <div *ngIf="registerForm.controls['fullName'].hasError('minlength') && registerForm.controls['fullName'].touched" class="alert alert-danger">
               <small>
                 <i>Your name must be at least 4 characters long.</i>
               </small>
@@ -63,57 +63,58 @@
             </div>
           </div>
 
+          <!-- Contact -->
+
+          <div class="form-group">
+            <label for="contactNo">
+              <span class="change">
+                <span class="fat">|</span> Contact</span>
+            </label>
+            <input type="number" class="form-control" formControlName="contactNo" placeholder="Contact" required minlength="10" maxlength="10"
+            />
+            <div *ngIf="registerForm.controls['contactNo'].hasError('required') && registerForm.controls['contactNo'].touched" class="alert alert-danger">
+              <small>
+                <i>Please enter your contactNo details</i>
+              </small>
+            </div>
+            <div *ngIf="registerForm.controls['contactNo'].hasError('minlength') && registerForm.controls['contactNo'].touched" class="alert alert-danger">
+              <small>
+                <i>The mobile number should be of 10 digits only</i>
+              </small>
+            </div>
+            <div *ngIf="registerForm.controls['contactNo'].hasError('minlength') && registerForm.controls['contactNo'].touched" class="alert alert-danger">
+              <small>
+                <i>The mobile number should be of 10 digits only</i>
+              </small>
+            </div>
+          </div>
+          
           <!-- Joining Date -->
 
           <div class="form-group">
-            <label for="jdate">
+            <label for="joiningDate">
               <span class="change">
                 <span class="fat">|</span> Joining Date</span>
             </label>
-            <input type="date" class="form-control" formControlName="jdate" required />
-            <div *ngIf="registerForm.controls['jdate'].hasError('required') && registerForm.controls['jdate'].touched" class="alert alert-danger">
+            <input type="date" class="form-control" formControlName="joiningDate" required />
+            <div *ngIf="registerForm.controls['joiningDate'].hasError('required') && registerForm.controls['joiningDate'].touched" class="alert alert-danger">
               <small>
                 <i> Please enter your Joining date</i>
               </small>
             </div>
           </div>
 
-          <!-- Contact -->
-
-          <div class="form-group">
-            <label for="contact">
-              <span class="change">
-                <span class="fat">|</span> Contact</span>
-            </label>
-            <input type="number" class="form-control" formControlName="contact" placeholder="Contact" required minlength="10" maxlength="10"
-            />
-            <div *ngIf="registerForm.controls['contact'].hasError('required') && registerForm.controls['contact'].touched" class="alert alert-danger">
-              <small>
-                <i>Please enter your contact details</i>
-              </small>
-            </div>
-            <div *ngIf="registerForm.controls['contact'].hasError('minlength') && registerForm.controls['contact'].touched" class="alert alert-danger">
-              <small>
-                <i>The mobile number should be of 10 digits only</i>
-              </small>
-            </div>
-            <div *ngIf="registerForm.controls['contact'].hasError('minlength') && registerForm.controls['contact'].touched" class="alert alert-danger">
-              <small>
-                <i>The mobile number should be of 10 digits only</i>
-              </small>
-            </div>
-          </div>
-
+          
           <!-- Employee Role -->
-          <label for="contact">
-              <span class="change">
-                <span class="fat">|</span> Employee Roles</span>
+          <label for="employeeRoles">
+            <span class="change">
+              <span class="fat">|</span> Employee Roles</span>
           </label>
 
-          <div formArrayName="employeeRole">
-            <div *ngFor="let employeeRole of registerForm.controls.employeeRole.controls; let i=index" class="panel panel-default">
+          <div formArrayName="employeeRoles">
+            <div *ngFor="let employeeRoles of registerForm.controls.employeeRoles.controls; let i=index" class="panel panel-default">
               <br>
-              <label for="employeeRole">
+              <label for="employeeRoles">
                 <span class="change text-muted">Employee Role {{i + 1}}</span>
               </label>
 
@@ -121,18 +122,20 @@
                 <div class="row">
                   <div class="col-md-6 form-group">
                     <label for="departmentId" class="text-muted">Department</label>
-                    <input formControlName="departmentId" class="form-control">
-                    <div *ngIf="registerForm.controls.employeeRole.controls[i].controls.departmentId.hasError('required') && registerForm.controls.employeeRole.controls[i].controls.departmentId.touched"
-                      class="alert alert-danger">
-                      <small>
-                        <i>Please select Department Id</i>
-                      </small>
-                    </div>
+                    <select formControlName="departmentId" class="form-control">
+                      <option *ngFor="let department of departments">{{department.department}}</option>
+                      <div *ngIf="registerForm.controls.employeeRoles.controls[i].controls.departmentId.hasError('required') && registerForm.controls.employeeRoles.controls[i].controls.departmentId.touched"
+                        class="alert alert-danger">
+                        <small>
+                          <i>Please select Department Id</i>
+                        </small>
+                      </div>
+                    </select>
                   </div>
                   <div class="col-md-6 form-group">
                     <label for="roleId" class="text-muted">Role</label>
                     <input formControlName="roleId" class="form-control">
-                    <div *ngIf="registerForm.controls.employeeRole.controls[i].controls.roleId.hasError('required') && registerForm.controls.employeeRole.controls[i].controls.roleId.touched"
+                    <div *ngIf="registerForm.controls.employeeRoles.controls[i].controls.roleId.hasError('required') && registerForm.controls.employeeRoles.controls[i].controls.roleId.touched"
                       class="alert alert-danger">
                       <small>
                         <i>Please select Role Id</i>
@@ -144,9 +147,10 @@
             </div>
           </div>
           <div class="container">
-            <button type="button" (click)="addEmployeeRole()" class="btn btn-primary makeChange">Add Role <span class="fat">+</span></button>
+            <button type="button" (click)="addEmployeeRole()" class="btn btn-default makeChange">Add Role
+              <span class="fat">+</span>
+            </button>
           </div>
-
 
           <br>
           <!-- Employee Register Button -->

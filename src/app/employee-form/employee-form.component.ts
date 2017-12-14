@@ -18,7 +18,7 @@ import {
 } from '@angular/forms';
 
 import { employee, EmployeeRole } from '../shared/employeeRole.interface';
-import { log } from 'util';
+import { BASEURL } from '../shared/app.constant';
 
 @Component({
   selector: 'app-employee-form',
@@ -28,6 +28,7 @@ import { log } from 'util';
 
 export class EmployeeFormComponent implements OnInit {
   registerForm: FormGroup;
+  departments: Array<any>;
 
   constructor(
     private router: Router,
@@ -40,57 +41,89 @@ export class EmployeeFormComponent implements OnInit {
   }
      
   initForm() {
+    let organizationId = localStorage.getItem('organizationId');
+    let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
+    
+    this.httpClient.get(BASEURL + `/admin/organization/${organizationId}/departments`, {
+      headers: header
+    }
+    )
+    .subscribe((res: any) => {  
+      this.departments = res.data;
+      console.log('Response: ',res);
+    }),(error: any) => {
+      console.log(error);
+    }
+    
     this.registerForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(4)]],
+      fullName: ['', [Validators.required, Validators.minLength(4)]],
 
       gender: ['', [Validators.required]],
 
       email: ['', Validators.compose([Validators.required, Validators.email])],
 
-      jdate: ['', [Validators.required]],
-
-      contact: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
-
-      employeeRole: this.formBuilder.array([
+      contactNo: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+      
+      joiningDate: ['', [Validators.required]],
+      
+      employeeRoles: this.formBuilder.array([
         this.initEmployeeRole(),
       ])
     });
 
     console.log(this.registerForm.controls.employeeRole);
-    let a = <FormArray>this.registerForm.controls.employeeRole;
+    let a = <FormArray>this.registerForm.controls.employeeRoles;
     console.log(a.controls);
+    
   }
 
   initEmployeeRole() {
     return this.formBuilder.group({
-      departmentId: ['', [Validators.required]],
-      roleId: ['', [Validators.required]]
+      roleId: ['', [Validators.required]],
+      departmentId: ['', [Validators.required]]
     })
   }
 
+  // Button to Add Employee Role
+
   addEmployeeRole() {
-    const control = <FormArray>this.registerForm.controls['employeeRole'];
+    const control = <FormArray>this.registerForm.controls['employeeRoles'];
     control.push(this.initEmployeeRole());
   }
+  
+  // Button to Add Employee 
 
   btnClick() {
     console.log('Button Clicked');
     var employee = this.registerForm.value;
-    console.log(employee);
     if (this.registerForm.invalid) {
       return;
     }
+    console.log(employee);
     
-    this.httpClient.post('https://nxtlife-academy.ind-cloud.everdata.com/api/academy/admin/employees', {
-      name: employee.name,
+    // Access Token Authorization
+    let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
+
+    // Retrieving organizationId
+    let organizationId = localStorage.getItem('organizationId');
+
+    // Posting Employee Details
+    
+    this.httpClient.post(BASEURL + '/admin/employee', [{
+      fullName: employee.fullName,
       gender: employee.gender,
       email: employee.email,
-      jdate: employee.jdate,
-      contact: employee.contact,
-      employeeRole: employee.employeeRole
-    }).
+      contactNo: employee.contact,
+      joiningDate: employee.joiningDate,
+      employeeRoles: employee.employeeRoles,
+      organizationId
+    }], {headers: header}).
       subscribe((res: any) => {
-        console.log(`RESPONSE: <br> ${res}`);
+
+        // Routing to HomePage
+
+        this.router.navigate(['home']);
+        console.log('Response: ' + res);
       }, (error: any) => {
         console.log(error);
       });
