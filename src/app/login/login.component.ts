@@ -13,6 +13,7 @@ import {
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
 import { EmailValidator } from '@angular/forms';
+import { BASEURL } from '../shared/app.constant';
 
 
 @Component({
@@ -55,7 +56,7 @@ export class LoginComponent implements OnInit {
     }
     console.log(loginDetails);
 
-    this.httpClient.post('https://nxtlife-academy.ind-cloud.everdata.com/api/login', {
+    this.httpClient.post(BASEURL + '/login', {
       username: loginDetails.username,
       password: loginDetails.password
     }).subscribe(
@@ -63,7 +64,9 @@ export class LoginComponent implements OnInit {
         // Saving Access_Token in Local Storage 
         console.log(res);
         var organizationId = res.data.userDetails.organizationId;
-        console.log(organizationId);
+        console.log('OrganizationId:' + organizationId);
+        
+        localStorage.setItem('organizationId',res.data.userDetails.organizationId);
         localStorage.setItem('access_token', res.data.access_token);
         var Storage = res.data.access_token;
         console.log(Storage);
