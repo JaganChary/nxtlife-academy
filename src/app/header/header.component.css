@@ -8,9 +8,17 @@
   color: white;
 }
 
+.nav-item {
+  padding: 0 0.5em 0 0.5em;
+}
+
+.dropdown-toggle {
+  margin-top: 0.3em;
+}
+
 .style-btn {
   text-align: right;
-  padding: 0.1em 1.7em;
+  padding: 0.08em 2em;
   background-color: darkslategray;
   border-radius: 5px;
   margin-left: 25px;
@@ -24,7 +32,7 @@
 }
 
 .nav {
-  margin-top: 0.4em;
+  margin-top: 0.5em;
 }
 
 
