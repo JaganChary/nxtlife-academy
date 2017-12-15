@@ -33,7 +33,7 @@ import { DepartmentComponent } from './department/department.component';
     RegisterComponent,
     LoginComponent,
     EmployeeFormComponent,
-    DepartmentComponent
+    DepartmentComponent,
   ],
   imports: [
     BrowserModule,
