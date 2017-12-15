@@ -68,6 +68,8 @@ export class EmployeeFormComponent implements OnInit {
       console.log(error);
     })
     
+    // Error validation
+
     this.registerForm = this.formBuilder.group({
       fullName: ['', [Validators.required, Validators.minLength(4)]],
 
@@ -90,15 +92,14 @@ export class EmployeeFormComponent implements OnInit {
     
   }
 
-  
+  // validations for employeeRole array Object 
+
   initEmployeeRole() {
     return this.formBuilder.group({
       roleId: ['', [Validators.required]],
       departmentId: ['', [Validators.required]]
     })
   }
-
-  
 
   // DepartmentId Selection
   onChange(e: any) {
@@ -127,10 +128,13 @@ export class EmployeeFormComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
+
+    // Accessing the roleId
     employee.employeeRoles.forEach((e: any) => {
       e.roleId = e.roleId.id;
     });
-
+    
+    // Accessing the departmentId
     employee.employeeRoles.forEach((e:any)=>{
       e.departmentId = e.departmentId.departmentId; 
     });
