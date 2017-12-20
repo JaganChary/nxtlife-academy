@@ -11,16 +11,16 @@ a:hover {
 }
 
 .bold {
-    font-weight: bold;
+    color: lightgray
 }
 
 .bg-color {
     background-color: lightgray;
-    padding-bottom: 2em;
+    padding-bottom: 1.5em;
 }
 .card {
-    margin-top: 2.5em;
-    padding: 0.8em;
+    margin-top: 1.5em;
+    padding: 0.4em;
     box-shadow: 2px 2px 2px slategrey;
     border: none;
     width: 100%; 
@@ -49,7 +49,7 @@ hr {
     height: 2px;
     background-color: lightslategrey;
     border: none;
-    width: 30%;
+    width: 16em;
 }
 
 
@@ -75,7 +75,7 @@ hr {
 }
 
 p {
-    margin-top: 1em;
+    font-size: 1.2em;
 }
 
 .card-block {

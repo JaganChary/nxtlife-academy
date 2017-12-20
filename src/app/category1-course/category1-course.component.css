@@ -1,7 +1,7 @@
 * {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
 }
+
 a {
     text-decoration: none;
 }
@@ -18,8 +18,7 @@ a {
 }
 
 .card:hover {
-    box-shadow: 4px 4px 4px lightgray;
-    
+    box-shadow: 4px 4px 4px lightslategrey;
 } 
 
 .row {

@@ -29,14 +29,6 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent, 
   },
-  {
-    path: 'category/:id',
-    component: Category1CourseComponent
-  },
-  {
-    path: 'chapters',
-    component: ChaptersComponent
-  },
   { 
     path: 'home', 
     component: HomeComponent,
@@ -50,6 +42,10 @@ const routes: Routes = [
   {
     path: 'employee-form',
     component: EmployeeFormComponent
+  },
+  {
+    path: 'category/:id/courses',
+    component: Category1CourseComponent,
   },
   {
     path: 'department',
