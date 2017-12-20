@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule, V
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
  
 import { AppRoutingModule } from './app-routing.module';
 
@@ -49,7 +50,8 @@ import { ChaptersComponent } from './chapters/chapters.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFontAwesomeModule
   ],
   providers: [HttpClientModule, AuthGuard, TraverseService, CommonHttpService],
   bootstrap: [AppComponent]

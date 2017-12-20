@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-import { BASEURL } from '../shared/app.constant';
 import { Observable } from 'rxjs/observable';
 import { TraverseService } from '../shared/traverse.service';
 import { CommonHttpService } from '../shared/commonHttp.service';
@@ -20,7 +18,6 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private httpClient: HttpClient,
     private traverseService: TraverseService,
     private commonHttpService: CommonHttpService
   ) { }
@@ -36,6 +33,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   btnClick(courseCategoryId) {
-    this.router.navigate(['/category', courseCategoryId]);
+    this.router.navigate([`/category/${courseCategoryId}/courses`]);
   }
 }
