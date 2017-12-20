@@ -1,0 +1,90 @@
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+a {
+    text-decoration: none;
+}
+
+.card {
+    margin-top: 1.5em;
+    padding: 0.8em;
+    box-shadow: 2px 2px 2px lightgray;
+    background-color: whitesmoke;
+    border: none;
+    width: 16rem; 
+    height: 95%;
+   
+}
+
+.card:hover {
+    box-shadow: 4px 4px 4px lightgray;
+    
+} 
+
+.row {
+    border-color: lightgray;
+}
+
+h2 {
+    margin-top: 1.5em;
+    font-size: 3em;
+    color: darkgray;
+    text-align: center;
+}
+
+hr {
+    height: 2px;
+    background-color: gray;
+    border: none;
+    width: 12em;
+}
+
+
+.card-header {
+    background-color: lightgrey;
+    box-shadow: 2px 2px 2px darkgray;
+    border-radius: 5px;
+    font-size: 1.5em;
+    color: darkslategray;
+    text-align: center;
+}
+
+.card-title {
+    text-align: center;
+    font-size: 1.2em;
+    text-decoration: underline !important;
+    color: black !important;
+}
+
+.card-text {
+    font-size: 0.9em;
+}
+
+p {
+    margin-top: 1em;
+}
+
+.card-block {
+    margin-top: 0.4em;
+    padding: 1.2em;
+}
+
+.style-btn {
+    padding: 0.5em 1.9em;
+    background-color: darkslategray;
+    border-radius: 5px;
+    color: gray;
+    border: none;
+    border-color: none;
+
+  }
+.style-btn:hover {
+    background-color: darkcyan;
+    color: white;
+}  
+
+.card-img-top {
+    height: 160px;
+    width: 233px;
+}  
