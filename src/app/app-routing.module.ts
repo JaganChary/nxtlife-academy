@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';  
 import { Router } from '@angular/router';
 
 import { ContactComponent } from './contact/contact.component';
@@ -10,6 +11,9 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth-guard.service';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { DepartmentComponent } from './department/department.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { Category1CourseComponent } from './category1-course/category1-course.component';
+import { ChaptersComponent } from './chapters/chapters.component';
  
 const routes: Routes = [
   { 
@@ -24,6 +28,14 @@ const routes: Routes = [
   { 
     path: 'login',
     component: LoginComponent, 
+  },
+  {
+    path: 'category/:id',
+    component: Category1CourseComponent
+  },
+  {
+    path: 'chapters',
+    component: ChaptersComponent
   },
   { 
     path: 'home', 
@@ -44,9 +56,13 @@ const routes: Routes = [
     component: DepartmentComponent
   },
   {
+    path: 'category',
+    component: CategoriesComponent
+  },
+  {
     path: '**',
     component: LoginComponent
-  } 
+  }
   
 ]
 
