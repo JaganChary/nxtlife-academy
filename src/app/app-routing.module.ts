@@ -13,7 +13,7 @@ import { MainModule } from './main/main.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { Test3 } from './Test3/test3.component';
  
 export const routes: Routes = [
   {
@@ -32,6 +32,10 @@ export const routes: Routes = [
   {
     path: 'main',
     loadChildren: 'app/main/main.module#MainModule',
+  },
+  {
+    path: '**',
+    component: Test3
   }
 ]
 
@@ -41,7 +45,9 @@ export const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   // exports: [ RouterModule ],
-  declarations: []
+  declarations: [
+    Test3
+  ]
 })
 
 export class AppRoutingModule { }

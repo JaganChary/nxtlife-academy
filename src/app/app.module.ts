@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared/auth-guard.service';
 import { CommonHttpService } from './shared/commonHttp.service';
 import { TraverseService } from './shared/traverse.service';
+import { Test3 } from './Test3/test3.component';
 
 @NgModule({
   declarations: [

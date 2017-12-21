@@ -7,9 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CategoriesComponent } from './categories.component';
 import { NgModule } from '@angular/core';
+import { Test1 } from './test1/test.component';
 
 @NgModule({
     declarations: [
+        Test1,
         CategoriesComponent,
         Category1CourseComponent,
         ChaptersComponent
@@ -33,7 +35,7 @@ import { NgModule } from '@angular/core';
                     {
                         path: 'category/:id/courses/chapters',
                         component: ChaptersComponent,
-                    },
+                    }
                 ]
             }
         ])
