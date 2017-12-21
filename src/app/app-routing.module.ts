@@ -44,6 +44,11 @@ const routes: Routes = [
     component: EmployeeFormComponent
   },
   {
+    path: 'category/:id/courses/chapters',
+    component: ChaptersComponent,
+    pathMatch:'full'
+  },
+  {
     path: 'category/:id/courses',
     component: Category1CourseComponent,
   },
