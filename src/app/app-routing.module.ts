@@ -1,25 +1,21 @@
+// Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';  
 import { Router } from '@angular/router';
-
-import { ContactComponent } from './contact/contact.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth-guard.service';
-import { EmployeeFormComponent } from './employee-form/employee-form.component';
-import { DepartmentComponent } from './department/department.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { Category1CourseComponent } from './category1-course/category1-course.component';
-import { ChaptersComponent } from './chapters/chapters.component';
+import { BrowserModule } from '@angular/platform-browser/src/browser';
+
+import { LoginModule } from './login/login.module';
+import { RegisterModule } from './register/register.module';
+import { MainModule } from './main/main.module';
+
+// Components
+import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
  
-const routes: Routes = [
-  { 
-    path: 'register', 
-    component: RegisterComponent,
-  },
+export const routes: Routes = [
   {
     path: '',
     redirectTo: '/login', 
@@ -27,44 +23,16 @@ const routes: Routes = [
   },
   { 
     path: 'login',
-    component: LoginComponent, 
+    loadChildren: 'app/login/login.module#LoginModule', 
   },
   { 
-    path: 'home', 
-    component: HomeComponent,
-    canActivate: [AuthGuard] 
-  },
-  { 
-    path: 'contact', 
-    component: ContactComponent,
-    canActivate: [AuthGuard]
+    path: 'register', 
+    loadChildren: 'app/register/register.module#RegisterModule',
   },
   {
-    path: 'employee-form',
-    component: EmployeeFormComponent
-  },
-  {
-    path: 'category/:id/courses/chapters',
-    component: ChaptersComponent,
-    pathMatch:'full'
-  },
-  {
-    path: 'category/:id/courses',
-    component: Category1CourseComponent,
-  },
-  {
-    path: 'department',
-    component: DepartmentComponent
-  },
-  {
-    path: 'category',
-    component: CategoriesComponent
-  },
-  {
-    path: '**',
-    component: LoginComponent
+    path: 'main',
+    loadChildren: 'app/main/main.module#MainModule',
   }
-  
 ]
 
 @NgModule({
@@ -72,7 +40,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [ RouterModule ],
+  // exports: [ RouterModule ],
   declarations: []
 })
 

@@ -30,7 +30,7 @@
           <div *ngIf="loginForm.controls['password'].hasError('maxlength') && loginForm.controls['password'].touched" class="alert alert-danger"><small><i>Your password cannot exceed 20 characters.</i></small></div>
         </div>
         <button type="submit" name="login" class="btn-self" [disabled]="loginForm.invalid">Login</button>
-        <span class="move"><a [routerLink]="['/register']">Register Here!</a></span>
+        <span class="move"><a routerLink="/register">Register Here!</a></span>
       </form>
     </div>
     <div class="col-md-4"></div>

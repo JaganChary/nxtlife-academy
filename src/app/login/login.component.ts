@@ -70,7 +70,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('access_token', res.data.access_token);
         var Storage = res.data.access_token;
         console.log(Storage);
-        this.router.navigate(['home']);
+
+        this.router.navigate(['/main']);
       }, (error: any) => {
         console.log(error);
       }

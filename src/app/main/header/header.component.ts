@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
-import { BASEURL } from '../shared/app.constant';
+import { BASEURL } from '../../shared/app.constant';
 
 
 @Component({

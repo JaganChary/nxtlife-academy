@@ -15,8 +15,8 @@ import {
 
 } from '@angular/forms';
 
-import { LoginComponent } from '../login/login.component';
-import { BASEURL } from '../shared/app.constant';
+import { LoginComponent } from '../../login/login.component';
+import { BASEURL } from '../../shared/app.constant';
 
 @Component({
   selector: 'app-department',
