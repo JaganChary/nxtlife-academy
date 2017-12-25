@@ -20,8 +20,6 @@ export class TraverseService {
   getCategoryDataById(id: number) {
     return this.categoriesData[id];
   }
-
-  
 }
 
 
