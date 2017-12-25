@@ -46,10 +46,10 @@ h2 {
 }
 
 hr {
-    height: 2px;
+    height: 1px;
     background-color: lightslategrey;
     border: none;
-    width: 16em;
+    width: 100%;
 }
 
 
@@ -82,6 +82,10 @@ p {
     margin-top: 0.4em;
     padding: 1.2em;
     color: darkslategray;
+}
+
+.card-block-link:hover {
+    background-color: lightgray;
 }
 
 .style-btn {
