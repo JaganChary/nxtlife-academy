@@ -31,8 +31,5 @@ export class CategoriesComponent implements OnInit {
  
       }); 
   }
-
-  btnClick(courseCategoryId) {
-    this.router.navigate(['category/',courseCategoryId,'/courses']);
-  }
+  
 }

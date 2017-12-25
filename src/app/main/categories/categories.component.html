@@ -19,7 +19,7 @@
             <p class="card-text" *ngIf="!category.description">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, ipsam tenetur eligendi neque nam cum aliquid at nesciunt ab incidunt! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum sit expedita tempore veritatis, debitis eveniet magni, possimus exercitationem repellat, omnis eligendi optio aperiam illo accusantium?
             </p>
-            <button type="button" class="style-btn pull-right" (click)="btnClick(category.courseCategoryId)">Go to Courses</button> 
+            <button type="button" class="style-btn pull-right" routerLink="{{category.courseCategoryId}}">Go to Courses</button> 
           </div>
         </div>
       </div>

@@ -19,7 +19,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { Test2 } from './test2/test2.component';
  
 @NgModule({
     declarations: [
@@ -30,8 +29,7 @@ import { Test2 } from './test2/test2.component';
         SidebarComponent,
         FooterComponent,
         EmployeeFormComponent,
-        DepartmentComponent,
-        Test2
+        DepartmentComponent
 
     ],
     imports: [
@@ -70,11 +68,7 @@ import { Test2 } from './test2/test2.component';
                     {
                         path: 'category',
                         loadChildren: 'app/main/categories/categories.module#CategoriesModule',
-                    },
-                    {
-                        path: '**',
-                        component: Test2
-                    }
+                    }, 
                 ]
             }
         ])
