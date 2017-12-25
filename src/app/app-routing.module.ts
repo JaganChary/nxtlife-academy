@@ -13,7 +13,6 @@ import { MainModule } from './main/main.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { Test3 } from './Test3/test3.component';
  
 export const routes: Routes = [
   {
@@ -32,10 +31,6 @@ export const routes: Routes = [
   {
     path: 'main',
     loadChildren: 'app/main/main.module#MainModule',
-  },
-  {
-    path: '**',
-    component: Test3
   }
 ]
 
@@ -46,7 +41,7 @@ export const routes: Routes = [
   ],
   // exports: [ RouterModule ],
   declarations: [
-    Test3
+    
   ]
 })
 

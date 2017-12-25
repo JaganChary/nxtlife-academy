@@ -67,12 +67,11 @@ export class DepartmentComponent implements OnInit {
     subscribe((res: any) => {
 
       // Route to home Page
-      
-      this.router.navigate(['home']);
+      this.router.navigate(['main/home']);
       
       // Printing Response 
 
-      console.log('Response: ' + res);
+      console.log('Department Detail: ' + res);
       console.log('Stringified response: ' + JSON.stringify(res));
 
       // Saving department Details to localStorage
