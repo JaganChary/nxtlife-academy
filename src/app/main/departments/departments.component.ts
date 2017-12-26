@@ -7,6 +7,7 @@ import { CommonHttpService } from '../../shared/commonHttp.service';
   styleUrls: ['./departments.component.css']
 })
 export class DepartmentsComponent implements OnInit {
+  departments: any;
 
   constructor(
       private commonHttpService: CommonHttpService
@@ -14,6 +15,12 @@ export class DepartmentsComponent implements OnInit {
 
   ngOnInit() {  
       this.commonHttpService.getDepartments()
+      .subscribe((res: any) => {
+        this.departments = res.data;
+        console.log('All Department: ',res);
+      }, (error: any) => {
+        console.log('Errrrorrrrr: ', error);
+      })
   }
 
 }

@@ -1,9 +1,21 @@
-<div class="container">
+<div class="container" style="margin-top: 6em;">
     <div class="row">
-        <div class="col-md-3" *ngFor="let department of departments">
-            <div class="card">
-                {{department.}}
+
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-7">
+            
+            <h2 class="text-muted">Departments</h2>
+            <hr>
+            <div class="card" *ngFor="let department of departments" style=" padding: 0.5em 2em; margin-bottom: 1em;">
+                <span style="color: darkslategray; font-size: 1.5em;">{{department.department}}
+                    <span style="float: right;">{{department.departmentId}}</span>
+                </span>
             </div>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-secondary style-btn" type="button" routerLink="department">Add +</button>
         </div>
     </div>
 </div>
