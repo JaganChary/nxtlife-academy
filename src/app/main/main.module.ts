@@ -1,10 +1,5 @@
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
-import { EmployeeFormComponent } from './employee-form/employee-form.component';
-import { DepartmentComponent } from './department/department.component';
 import { MainComponent } from './main.component';
 
 import { NgModule } from '@angular/core';
@@ -24,12 +19,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     declarations: [
         MainComponent,
         HomeComponent,
-        HeaderComponent,
         ContactComponent,
-        SidebarComponent,
-        FooterComponent,
-        EmployeeFormComponent,
-        DepartmentComponent
 
     ],
     imports: [
@@ -58,17 +48,21 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
                         component: ContactComponent,
                     },
                     {
-                        path: 'department',
-                        component: DepartmentComponent
-                    },
-                    {
-                        path: 'employee-form',
-                        component: EmployeeFormComponent
-                    },
-                    {
                         path: 'category',
-                        loadChildren: 'app/main/categories/categories.module#CategoriesModule',
-                    }, 
+                        loadChildren: 'app/main/categories/categories.module#CategoriesModule'
+                    },
+                    {
+                        path: 'departments',
+                        loadChildren: 'app/main/departments/departments.module#DepartmentsModule'
+                    },
+                    {
+                        path: 'employees',
+                        loadChildren: 'app/main/employees/employees.module#EmployeesModule'
+                    },
+                    {
+                        path: 'subscriptions',
+                        loadChildren: 'app/main/subscriptions/subscriptions.module#SubscriptionsModule'
+                    } 
                 ]
             }
         ])
