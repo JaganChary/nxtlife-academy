@@ -17,7 +17,8 @@ export class CommonHttpService {
 
   getDepartments():any {
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
-    return this.httpClient.get(BASEURL + '/departments', {
+    let organizationId = localStorage.getItem('organizationId');
+    return this.httpClient.get(BASEURL + `/admin/departments`, {
       headers: header
     });
   }  
@@ -25,6 +26,13 @@ export class CommonHttpService {
   getCategories():any {
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
     return this.httpClient.get(BASEURL + '/categories', {
+      headers: header
+    });
+  }
+  
+  getEmployees():any {
+    let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
+    return this.httpClient.get(BASEURL + '/admin/employees', {
       headers: header
     });
   } 
