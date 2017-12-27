@@ -30,8 +30,9 @@ export class ChaptersComponent implements OnInit {
         this.traverseService.storeCategoriesData(res);
         const id = +this.route.snapshot.paramMap.get('id');
         this.categoryData = this.traverseService.getCategoryDataById(id);
-        console.log('Request sent');
         this.courses = this.categoryData.courses;
+        console.log(this.courses);
+        
         // Chapters
 
         this.courses.forEach((elements: any) => {
@@ -40,13 +41,8 @@ export class ChaptersComponent implements OnInit {
           this.chapters.forEach((elements: any) => {
             this.topics = elements.topics;
           });
-          console.log(this.topics[0].topic);
         });
-        console.log(this.chapters);
-
-
         
-
       }, (error: any) => {
         console.log(error);
 
@@ -64,13 +60,8 @@ export class ChaptersComponent implements OnInit {
           
           this.chapters.forEach((elements: any) => {
             this.topics = elements.topics;
-          });
-          console.log(this.topics);
-  
+          });  
         });
-        console.log(this.chapters);
-
-       
     }
   }
 }

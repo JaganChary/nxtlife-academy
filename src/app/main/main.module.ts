@@ -14,12 +14,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { BuyComponent } from './buy/buy.component';
  
 @NgModule({
     declarations: [
         MainComponent,
         HomeComponent,
         ContactComponent,
+        BuyComponent
 
     ],
     imports: [
@@ -47,6 +49,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
                         path: 'contact',
                         component: ContactComponent,
                     },
+                    
                     {
                         path: 'category',
                         loadChildren: 'app/main/categories/categories.module#CategoriesModule'
@@ -62,7 +65,11 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
                     {
                         path: 'subscriptions',
                         loadChildren: 'app/main/subscriptions/subscriptions.module#SubscriptionsModule'
-                    } 
+                    },
+                    {
+                        path: 'buy',
+                        component: BuyComponent,
+                    }
                 ]
             }
         ])

@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgModule } from '@angular/core';
 
-
 @NgModule({
     declarations: [
         CategoriesComponent,
@@ -44,7 +43,7 @@ import { NgModule } from '@angular/core';
                                 component: ChaptersComponent,
                             }
                         ]
-                    },
+                    }
                     
                 ]
             }

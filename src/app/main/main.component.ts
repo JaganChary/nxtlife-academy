@@ -22,28 +22,15 @@ export class MainComponent implements OnInit {
   }
 
   // Getting all Subscriptions List
-  btnSubscriptions() {
-    this.commonHttpService.getSubscriptions()
-    .subscribe((res: any) => {
-      console.log(res);
-    }, (error: any) => {
-
-    });
-  }
-
-  
-
-  // // Getting all  Departments List
-  // btnDepartments() {
-  //   this.commonHttpService.getDepartments()
+  // btnSubscriptions() {
+  //   this.commonHttpService.getSubscriptions()
   //   .subscribe((res: any) => {
   //     console.log(res);
   //   }, (error: any) => {
-  //     console.log(error);  
-  //   })
+
+  //   });
   // }
-
-
+  
   // Logout
   onLogOut() {
     let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));

@@ -6,7 +6,8 @@ import { Router, RouterModule } from  '@angular/router';
 
 @NgModule({
   declarations: [
-    SubscriptionsComponent
+    SubscriptionsComponent,
+    
   ],
 
   imports: [
@@ -15,14 +16,10 @@ import { Router, RouterModule } from  '@angular/router';
     RouterModule.forChild([
       {
         path: '',
-        children: [
-          {
-            path: '',
-            component: SubscriptionsComponent,
-            pathMatch: 'full'
-          }
-        ]
-      }
+        component: SubscriptionsComponent,
+        
+      },
+      
     ])
   ]
   
