@@ -17,14 +17,14 @@ export class SubscriptionsComponent {
   constructor(
       private commonHttpService: CommonHttpService
   ) { }
-
+  
   ngOnInit() {
     this.commonHttpService.getSubscriptions()
     .subscribe((res: any) => {
      this.subscriptions = res;
      console.log(this.subscriptions);
 
-     // Converting End Date into string 
+     // Converting Date into string 
      this.subscriptions.forEach((element: any) => {
        let endDate = element.endDate;
        let startDate = element.startDate;
@@ -33,8 +33,6 @@ export class SubscriptionsComponent {
       this.stringStartDate = `${startDate[2]}/${startDate[1]}/${startDate[0]}`;
       
     });
- 
-     console.log('SubscribedCourses: ',this.subscriptions[0].subscribedCourses);
      
     }, (error: any) => {
       console.log(error);  

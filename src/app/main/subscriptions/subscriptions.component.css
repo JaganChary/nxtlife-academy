@@ -12,8 +12,7 @@ a {
     background-color: whitesmoke;
     border: none;
     width: 16rem; 
-    height: 90%;
-   
+    height: 83%;
 }
 
 .card:hover {
@@ -35,7 +34,7 @@ hr {
     height: 2px;
     background-color: gray;
     border: none;
-    width: 12em;
+    width: 18em;
 }
 
 
@@ -63,14 +62,35 @@ p {
     margin-top: 1em;
 }
 
-.card-block {
-    padding: 1.2em;
-}
-
 .card .card-img-top {
-    height: 165px;
+    height: 160px;
     width: 100%;
 }  
 .content {
-    padding: 0.5em;
+    padding: 0.8em;
 }
+
+.style-btn {
+    text-align: right;
+    padding: 0.9em 2em;
+    background-color: darkslategray;
+    border-radius: 5px;
+    border: none;
+    color: gray;
+  }
+  
+  .style-btn:hover {
+    background-color: gray;
+    color: white;
+  }
+
+  .style-btn1 {
+    padding: 0.9em 2.5em;
+    background-color: gray;
+    color: white;
+  }
+
+  .style-btn1:hover {
+    background-color: darkslategray;
+    color: white;
+  }
