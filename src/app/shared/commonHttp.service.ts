@@ -45,10 +45,9 @@ export class CommonHttpService {
   // All subscriptions
 
   getSubscriptions(): any {
-    let organizationId = localStorage.getItem('organizationId');
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
     
-    return this.httpClient.get(BASEURL + `/admin/organization/${organizationId}/subscriptions`, {
+    return this.httpClient.get(BASEURL + `/admin/subscriptions`, {
       headers: header
     })
   }
@@ -56,10 +55,9 @@ export class CommonHttpService {
   // Posting Subscription
   
   postSubscription(): any {
-    let organizationId = localStorage.getItem('organizationId');
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
 
-    return this.httpClient.post(BASEURL + `/admin/organization/${organizationId}/subscriptions`, {
+    return this.httpClient.post(BASEURL + `/admin/subscriptions`, {
       headers: header
     })
   }
