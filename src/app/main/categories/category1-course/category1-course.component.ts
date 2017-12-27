@@ -41,12 +41,4 @@ export class Category1CourseComponent implements OnInit {
     }
   }
   
-  btnClick() {
-    this.commonHttpService.postSubscription()
-    .subscribe((res: any) => {
-      console.log('New subscription: ', res);
-    },(error: any) => {
-      console.log(error);
-    })
-  }
 }
