@@ -1,25 +1,34 @@
-.style-btn {
-    text-align: right;
-    padding: 0.9em 2em;
-    background-color: darkslategray;
-    border-radius: 5px;
-    margin-left: 25px;
-    border: none;
-    color: gray;
-  }
-  
-  .style-btn:hover {
-    background-color: gray;
-    color: white;
-  }
-
-  hr {
-    height: 2px;
-    background-color: gray;
-    border: none;
-    width: 18em;
+hr {
+  height: 2px;
+  background-color: gray;
+  border: none;
+  width: 18em;
 }
 
 h2 {
-    text-align: center;
+  text-align: center;
+}
+
+a {
+  color: black;
+}
+
+h5 {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.style-btn {
+  text-align: right;
+  padding: 0.9em 2em;
+  background-color: darkslategray;
+  border-radius: 5px;
+  margin-left: 25px;
+  border: none;
+  color: gray;
+}
+
+.style-btn:hover {
+  background-color: gray;
+  color: white;
 }

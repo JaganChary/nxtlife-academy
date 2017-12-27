@@ -3,32 +3,77 @@
         <div class="col-md-2">
 
         </div>
-        
+
         <div class="col-md-8">
             <h2>Employees Detail</h2>
             <hr>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Sno.</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Role</th>
-                    </tr>
-                </thead>
-                <tbody *ngFor="let employee of employees; let i = index">
-                    <tr *ngFor="let roleInfo of employee.roleInfo">
-                        <td>{{i + 1}}</td>
-                        <td>{{employee.fullName}}</td>
-                        <td>{{employee.email}}</td>
-                        <td>{{employee.gender}}</td>
-                        <td>{{roleInfo.department}}</td>
-                        <td>{{roleInfo.role}}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="card" *ngFor="let employee of employees; let i = index" style="margin-bottom: 2em;">
+                <!-- Section 1 -->
+
+                <div class="card-section1 card-title list-group list-group-flush">
+                    <div class="list-group-item">
+                        <span class="card-text" style="padding: 1.2em 0 0 1.1em;">NAME:
+                            <span class="card-text text-muted">{{employee.fullName}}</span>
+                        </span>
+                        <span class="card-text" style="float:right; padding: 0 1.1em 0 0;">EMPLOYEE ID:
+                            <span class="card-text text-muted">{{employee.id}}</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+
+                <div class="card-section-2 card-body">
+                    <div class="card-text">
+                        EMAIL ID:
+                        <span class="card-text text-muted">{{employee.email}}</span>
+                    </div>
+                    <div class="card-text">
+                        CONTACT NO:
+                        <span class="card-text text-muted">{{employee.contactNo}}</span>
+                    </div>
+                    <div class="card-text">
+                        GENDER:
+                        <span class="card-text text-muted">{{employee.gender}}</span>
+                    </div>
+                </div>
+
+                <!-- Section 3 -->
+
+                <div class="card-section-3">
+                    <div id="accordion" role="tablist">
+                        <div class="card">
+
+                            <!-- RoleInfo -->
+
+                            <div class="card-header" role="tab" id="headingOne">
+                                <h5 class="card-text">
+                                    <a data-toggle="collapse" href="#collapse{{i}}" aria-expanded="true" aria-controls="collapseOne">
+                                        RoleInfo
+                                    </a>
+                                </h5>
+                            </div>
+
+                            <!-- RoleInfo Details -->
+
+                            <div id="collapse{{i}}" class="collapse hide" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body" *ngFor="let roleInfo of employee.roleInfo" >
+                                    <div class="card-section1 card-title list-group list-group-flush">
+                                        <div class="list-group-item">
+                                            <span class="card-text" style="padding: 1.2em 0 0 0.6em;">DEPARTMENT:
+                                                <span class="card-text text-muted">{{roleInfo.department}}</span>
+                                            </span>
+                                            <span class="card-text" style="float:right; padding: 0 0.6em 0 0;">ROLE:
+                                                <span class="card-text text-muted">{{roleInfo.role}}</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-2">
             <button class="btn btn-default style-btn" type="button" routerLink="employee-form">Register Employee</button>
