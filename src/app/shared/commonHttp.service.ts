@@ -15,13 +15,16 @@ export class CommonHttpService {
     private httpClient: HttpClient
   ) { }
 
+  // All departments
+
   getDepartments():any {
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
-    let organizationId = localStorage.getItem('organizationId');
     return this.httpClient.get(BASEURL + `/admin/departments`, {
       headers: header
     });
   }  
+
+  // All categories 
 
   getCategories():any {
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
@@ -30,6 +33,8 @@ export class CommonHttpService {
     });
   }
   
+  // All Employees
+
   getEmployees():any {
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
     return this.httpClient.get(BASEURL + '/admin/employees', {
@@ -37,21 +42,23 @@ export class CommonHttpService {
     });
   } 
 
+  // All subscriptions
+
   getSubscriptions(): any {
     let organizationId = localStorage.getItem('organizationId');
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
-
-    // Getting Subscriptions
+    
     return this.httpClient.get(BASEURL + `/admin/organization/${organizationId}/subscriptions`, {
       headers: header
     })
   }
-
+  
+  // Posting Subscription
+  
   postSubscription(): any {
     let organizationId = localStorage.getItem('organizationId');
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
 
-    // Posting Subscription
     return this.httpClient.post(BASEURL + `/admin/organization/${organizationId}/subscriptions`, {
       headers: header
     })
