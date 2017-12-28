@@ -24,21 +24,24 @@ export class Category1CourseComponent implements OnInit {
   ngOnInit() {
 
     if(this.traverseService.categoriesData == null || undefined) {
+
       this.commonHttpService.getCategories()
       .subscribe((res: any) => {
         this.traverseService.storeCategoriesData(res);
         const id = +this.route.snapshot.paramMap.get('id');
         this.categoryData = this.traverseService.getCategoryDataById(id);
         this.courses = this.categoryData.courses;
+        console.log(this.courses);
       }, (error: any) => {
         console.log(error);
       
       })
     } else {
+
         const id = +this.route.snapshot.paramMap.get('id');
         this.categoryData = this.traverseService.getCategoryDataById(id);
         this.courses = this.categoryData.courses;
+        console.log(this.courses);
     }
   }
-  
 }
