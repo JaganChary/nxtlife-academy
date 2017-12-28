@@ -3,24 +3,38 @@
     <div class="col-md-3">
 
     </div>
-    <div class="col-md-7">
+    <div class="col-md-7" *ngIf="coursesData">
       <h3 class="text-muted">BUY COURSE/SUBSCRIPTION</h3>
       <hr>
+      <!-- Card 1 -->
+
       <div class="card">
         <div class="card-text">Course Name:
-          <span class="card-text text-muted">Pyschology</span>
+          <span class="card-text text-muted">{{coursesData.course}}</span>
         </div>
         <div class="card-text">Course Id:
-          <span class="card-text text-muted"></span>
+          <span class="card-text text-muted">{{coursesData.courseId}}</span>
+        </div>
+        <div class="card-text">Cost of License:
+          <span class="card-text text-muted">{{coursesData.cost}}</span>
         </div>
       </div>
+
+      <!-- Card 2 -->
       <div class="card">
-        <div class="card-text">License
-          <span> <button class="big">-</button> 
-            <input type="text" class="form-control text-muted"> <button class="big">+</button></span>
-        </div>
+        <span class="card-text">Total Price:
+          <span class="cost text-muted">{{inputNumber}} * 100 = {{inputNumber * 100}}</span>
+        </span>
+
+        <span class="card-text">License
+          <span>
+            <button class="big" (click)="btnSubstract()">-</button>
+            <input type="number" class="text-muted" [(ngModel)]="inputNumber" (ngModelChange)="modelChanged()">
+            <button class="big" (click)="btnAdd()">+</button>
+          </span>
+        </span>
       </div>
-      <button type="button" class="style-btn" (click)="btnClick()">Buy Now</button>
+      <button type="button" class="style-btn">Buy Now</button>
     </div>
   </div>
 
