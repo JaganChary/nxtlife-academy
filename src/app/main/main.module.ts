@@ -49,7 +49,6 @@ import { BuyComponent } from './buy/buy.component';
                         path: 'contact',
                         component: ContactComponent,
                     },
-                    
                     {
                         path: 'category',
                         loadChildren: 'app/main/categories/categories.module#CategoriesModule'
@@ -67,8 +66,9 @@ import { BuyComponent } from './buy/buy.component';
                         loadChildren: 'app/main/subscriptions/subscriptions.module#SubscriptionsModule'
                     },
                     {
-                        path: 'buy',
+                        path: 'buy/:id',
                         component: BuyComponent,
+                       
                     }
                 ]
             }
