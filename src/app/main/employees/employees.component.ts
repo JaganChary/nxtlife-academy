@@ -20,7 +20,7 @@ export class EmployeesComponent implements OnInit {
   
     this.commonHttpService.getEmployees()
     .subscribe((res: any) => {
-     this.employees = res;
+     this.employees = res.data;
      console.log(this.employees);
     }, (error: any) => {
       console.log(error);  
