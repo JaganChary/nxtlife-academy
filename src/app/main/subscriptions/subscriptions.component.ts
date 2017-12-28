@@ -19,6 +19,8 @@ export class SubscriptionsComponent {
   ) { }
   
   ngOnInit() {
+
+    // *********** Making call to subscription api  to get data *********** //
     this.commonHttpService.getSubscriptions()
     .subscribe((res: any) => {
      this.subscriptions = res;
