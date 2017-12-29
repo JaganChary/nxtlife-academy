@@ -77,8 +77,8 @@ export class BuyComponent implements OnInit {
     }
   }
 
-  btnRemove() {
-    this.traverseService.removeCartData();
+  btnRemove(course: any) {
+    this.traverseService.removeCartData(course);
   }
 
   // ******** Post Request sent on Button Click ******** //

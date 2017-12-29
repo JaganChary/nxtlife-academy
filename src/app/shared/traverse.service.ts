@@ -4,7 +4,7 @@ import { log } from 'util';
 @Injectable()
 export class TraverseService {
   cartItems: number;
-  cartData: any[];
+  cartData: any[] = [];
   response: Array<any>;
   categoriesData: object;
   coursesData: Object;
@@ -23,7 +23,7 @@ export class TraverseService {
         this.categoriesData[catg.courseCategoryId] = catg;
 
         // *********** Storing course Data *********** //
-        
+
         catg.courses.forEach((course: any) => {
           this.coursesData[course.courseId] = course;
           console.log(this.coursesData);
@@ -44,8 +44,9 @@ export class TraverseService {
   }
 
   // *******  Adding CartData ******* //
-  addCartData() {
-    this.cartData.push(this.coursesData);
+  addCartData(course: any) {
+
+    this.cartData.push(course);
     console.log(this.cartData);
     this.cartItems = this.cartData.length;
     console.log(this.cartItems);
@@ -58,8 +59,8 @@ export class TraverseService {
   }
 
   // *******  Removing CartData ******* //
-  removeCartData() {
-    this.cartData.splice(this.cartData.indexOf(this.coursesData), 1);
+  removeCartData(course) {
+    this.cartData.splice(this.cartData.indexOf(course), 1);
     console.log(this.cartData);
   }
 

@@ -43,4 +43,8 @@ export class Category1CourseComponent implements OnInit {
         console.log(this.courses);
     }
   }
+
+  btnAddCart(course: any) {
+    this.traverseService.addCartData(course);
+  }
 }
