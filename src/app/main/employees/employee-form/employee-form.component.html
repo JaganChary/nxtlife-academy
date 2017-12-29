@@ -95,7 +95,7 @@
               <span class="change">
                 <span class="fat">|</span> Joining Date</span>
             </label>
-            <input type="date" class="form-control" formControlName="joiningDate" required />
+            <input type="date" class="form-control" formControlName="joiningDate" />
             <div *ngIf="registerForm.controls['joiningDate'].hasError('required') && registerForm.controls['joiningDate'].touched" class="alert alert-danger">
               <small>
                 <i> Please enter your Joining date</i>
