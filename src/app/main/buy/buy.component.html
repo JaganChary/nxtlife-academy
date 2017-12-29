@@ -21,20 +21,23 @@
       </div>
 
       <!-- Card 2 -->
-      <div class="card">
-        <span class="card-text">Total Price:
-          <span class="cost text-muted">{{inputNumber}} * 100 = {{inputNumber * 100}}</span>
-        </span>
-
-        <span class="card-text">License
-          <span>
-            <button class="big" (click)="btnSubstract()">-</button>
-            <input type="number" class="text-muted" [(ngModel)]="inputNumber" (ngModelChange)="modelChanged()">
-            <button class="big" (click)="btnAdd()">+</button>
+      <div class="form" [formGroup]="myGroup">
+        <div class="card">
+          <span class="card-text">Total Price:
+            <span class="cost text-muted">{{inputNumber}} * 100 = {{inputNumber * 100}}</span>
           </span>
-        </span>
+
+          <span class="card-text">License
+            <span>
+              <button class="big" (ngValue)="inputNumber" (click)="btnSubstract()">-</button>
+              <input type="number" formControlName="license" class="text-muted" [(ngModel)]="inputNumber" (ngModelChange)="modelChanged()">
+              <button class="big" (ngValue)="inputNumber" (click)="btnAdd()">+</button>
+            </span>
+          </span>
+        </div>
+        <button type="button" class="style-btn">Buy Now</button>
       </div>
-      <button type="button" class="style-btn">Buy Now</button>
+
     </div>
   </div>
 
