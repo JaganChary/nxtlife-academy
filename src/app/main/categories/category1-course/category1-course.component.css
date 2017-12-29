@@ -12,8 +12,8 @@ a {
     box-shadow: 2px 2px 2px lightgray;
     background-color: whitesmoke;
     border: none;
-    width: 16rem; 
-    height: 95%;
+    width: 16rem;
+    height: 430px;
    
 }
 
@@ -70,7 +70,7 @@ p {
 }
 
 .style-btn {
-    padding: 0.5em 1.9em;
+    padding: 0.5em 1.6em;
     background-color: darkslategray;
     border-radius: 5px;
     color: gray;

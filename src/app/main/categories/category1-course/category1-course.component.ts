@@ -34,7 +34,6 @@ export class Category1CourseComponent implements OnInit {
         console.log(this.courses);
       }, (error: any) => {
         console.log(error);
-      
       })
     } else {
 
