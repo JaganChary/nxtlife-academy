@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BASEURL } from './app.constant';
 import { TraverseService } from './traverse.service';
+import { BuyComponent } from '../main/buy/buy.component';
  
 @Injectable()
 export class CommonHttpService {
@@ -56,7 +57,7 @@ export class CommonHttpService {
   
   postSubscription(): any {
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
-
+   
     return this.httpClient.post(BASEURL + `/admin/subscriptions`, {
       headers: header
     })
