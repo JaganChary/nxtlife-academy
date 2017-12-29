@@ -15,13 +15,15 @@ import { Observable } from 'rxjs/observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BuyComponent } from './buy/buy.component';
+import { CartComponent } from './cart/cart.component';
  
 @NgModule({
     declarations: [
         MainComponent,
         HomeComponent,
         ContactComponent,
-        BuyComponent
+        BuyComponent,
+        CartComponent
 
     ],
     imports: [
@@ -69,6 +71,10 @@ import { BuyComponent } from './buy/buy.component';
                         path: 'buy/:id',
                         component: BuyComponent,
                        
+                    },
+                    {
+                        path: 'cart',
+                        component: CartComponent
                     }
                 ]
             }
