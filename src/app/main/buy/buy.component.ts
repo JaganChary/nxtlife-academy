@@ -33,6 +33,7 @@ export class BuyComponent implements OnInit {
       this.commonHttpService.getCategories()
       .subscribe((res: any) => {
         this.traverseService.storeCategoriesData(res);
+        console.log(res);
         const id = +this.route.snapshot.paramMap.get('id');
         this.coursesData = this.traverseService.getCourseDataById(id);
         console.log(this.coursesData);
@@ -74,6 +75,10 @@ export class BuyComponent implements OnInit {
     if(this.inputNumber < 1) {
       this.inputNumber = 1; 
     }
+  }
+
+  btnRemove() {
+    this.traverseService.removeCartData();
   }
 
   // ******** Post Request sent on Button Click ******** //

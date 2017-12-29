@@ -3,42 +3,49 @@
     <div class="col-md-3">
 
     </div>
-    <div class="col-md-7" *ngIf="coursesData">
+    <div class="col-md-7">
       <h3 class="text-muted">BUY COURSE/SUBSCRIPTION</h3>
       <hr>
       <!-- Card 1 -->
+      <div *ngIf="coursesData">
+        <div class="card" style="margin-bottom: 2em;">
+          <div class="card-text">Course Name:
+            <span class="card-text text-muted">{{coursesData.course}}</span>
+          </div>
+          <div class="card-text">Course Id:
+            <span class="card-text text-muted">{{coursesData.courseId}}</span>
+          </div>
+          <div class="card-text">Cost of License:
+            <span class="card-text text-muted">{{coursesData.cost}}</span>
+          </div>
+          <div>
+            <div class="card-text">Total Price:
+              <span class="text-muted">{{inputNumber}} * 100 = {{inputNumber * 100}}</span>
+            </div>
 
-      <div class="card">
-        <div class="card-text">Course Name:
-          <span class="card-text text-muted">{{coursesData.course}}</span>
-        </div>
-        <div class="card-text">Course Id:
-          <span class="card-text text-muted">{{coursesData.courseId}}</span>
-        </div>
-        <div class="card-text">Cost of License:
-          <span class="card-text text-muted">{{coursesData.cost}}</span>
-        </div>
-      </div>
+            <div class="card-text">License
+              <span>
+                <button class="big" (ngValue)="inputNumber" (click)="btnSubstract()">-</button>
+                <input type="number" class="text-muted" [(ngModel)]="inputNumber" (ngModelChange)="modelChanged()">
+                <button class="big" (ngValue)="inputNumber" (click)="btnAdd()">+</button>
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-3">
+              <button type="button" class="" (click)="btnRemove()">Remove</button>
+            </div>
+          </div>
 
-      <!-- Card 2 -->
-      <div class="form" [formGroup]="myGroup">
-        <div class="card">
-          <span class="card-text">Total Price:
-            <span class="cost text-muted">{{inputNumber}} * 100 = {{inputNumber * 100}}</span>
-          </span>
-
-          <span class="card-text">License
-            <span>
-              <button class="big" (ngValue)="inputNumber" (click)="btnSubstract()">-</button>
-              <input type="number" formControlName="license" class="text-muted" [(ngModel)]="inputNumber" (ngModelChange)="modelChanged()">
-              <button class="big" (ngValue)="inputNumber" (click)="btnAdd()">+</button>
-            </span>
-          </span>
         </div>
         <button type="button" class="style-btn">Buy Now</button>
       </div>
-
+      <div class="card" *ngIf="coursesData && coursesData.length == 0">
+        <h2 class="card-text">Your Shopping cart is empty</h2>
+      </div>
     </div>
+
   </div>
 
 
