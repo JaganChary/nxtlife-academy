@@ -3,10 +3,8 @@ import { log } from 'util';
 
 @Injectable()
 export class TraverseService {
-  cartItems: number;
-  cartData: any[] = [];
   response: Array<any>;
-  categoriesData: object;
+  categoriesData: object; 
   coursesData: Object;
 
   constructor() { }
@@ -26,7 +24,6 @@ export class TraverseService {
 
         catg.courses.forEach((course: any) => {
           this.coursesData[course.courseId] = course;
-          console.log(this.coursesData);
         });
         
     });
@@ -43,27 +40,8 @@ export class TraverseService {
     return this.coursesData[id];
   }
 
-  // *******  Adding CartData ******* //
-  addCartData(course: any) {
-
-    this.cartData.push(course);
-    console.log(this.cartData);
-    this.cartItems = this.cartData.length;
-    console.log(this.cartItems);
-  }
-
-  // *******  Retrieving CartData ******* //
-  getCartData() {
-    console.log(this.cartData);
-    return this.cartData;
-  }
-
-  // *******  Removing CartData ******* //
-  removeCartData(course) {
-    this.cartData.splice(this.cartData.indexOf(course), 1);
-    console.log(this.cartData);
-  }
-
+  
+  
   
 
 }
