@@ -68,6 +68,10 @@ import { CartComponent } from './cart/cart.component';
                         loadChildren: 'app/main/subscriptions/subscriptions.module#SubscriptionsModule'
                     },
                     {
+                        path: 'my-courses',
+                        loadChildren: 'app/main/my-courses/my-courses.module#MyCoursesModule'
+                    },
+                    {
                         path: 'buy/:id',
                         component: BuyComponent,
                        

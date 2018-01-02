@@ -33,16 +33,6 @@ export class MainComponent implements OnInit {
     
   }
 
-  // Getting all Subscriptions List
-  // btnSubscriptions() {
-  //   this.commonHttpService.getSubscriptions()
-  //   .subscribe((res: any) => {
-  //     console.log(res);
-  //   }, (error: any) => {
-
-  //   });
-  // }
-  
   // Logout
   onLogOut() {
     let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));

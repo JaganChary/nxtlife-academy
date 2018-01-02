@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from '../../shared/commonHttp.service';
 import { TraverseService } from '../../shared/traverse.service';  
-import { Router, ParamMap, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule,  FormControl } from '@angular/forms';
-import { ActionSequence } from 'selenium-webdriver';
-import { CartValueService } from '../../shared/cart-value.service';
+import { Router, ParamMap, ActivatedRoute } from '@angular/router';import { CartValueService } from '../../shared/cart-value.service';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BASEURL } from '../../shared/app.constant';
 
@@ -15,7 +12,6 @@ import { BASEURL } from '../../shared/app.constant';
 })
 export class BuyComponent implements OnInit {
   courseId: number;
-  myGroup: FormGroup;
   categoryData: any;
   categoriesData: any;
   coursesData: any;

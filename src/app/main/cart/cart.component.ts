@@ -3,18 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { TraverseService } from '../../shared/traverse.service';
 import { CommonHttpService } from '../../shared/commonHttp.service';
 import { CartValueService } from '../../shared/cart-value.service';
-import {
-  NgForm,
-  ReactiveFormsModule,
-  Validators,
-  ValidatorFn,
-  FormsModule,
-  FormGroup,
-  FormArray,
-  FormArrayName,
-  FormBuilder,
-  FormControl,
-} from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BASEURL } from '../../shared/app.constant';
 
