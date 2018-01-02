@@ -21,7 +21,7 @@
                 <a class="nav-link" routerLink="category">Categories</a>
             </li>
             <button type="button" class="style-btn text-right" (click)="onLogOut()">Logout</button>
-            <button type="button" class="style-btn style-btn1">Cart</button>
+            <button type="button" class="style-btn style-btn1" routerLink="cart" (ngValue)="cartValue">Cart({{cartValue}})</button>
         </ul>
     </div>
 </nav>

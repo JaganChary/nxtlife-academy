@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import { TraverseService } from '../../../shared/traverse.service';
 import { CommonHttpService } from '../../../shared/commonHttp.service';
+import { CartValueService } from '../../../shared/cart-value.service';
 
 @Component({
   selector: 'app-category1-course',
@@ -18,7 +19,8 @@ export class Category1CourseComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private traverseService: TraverseService,
-    private commonHttpService: CommonHttpService
+    private commonHttpService: CommonHttpService,
+    private cartValueService: CartValueService
   ) { }
 
   ngOnInit() {
@@ -45,6 +47,6 @@ export class Category1CourseComponent implements OnInit {
   }
 
   btnAddCart(course: any) {
-    this.traverseService.addCartData(course);
+    this.cartValueService.addCartData(course);
   }
 }

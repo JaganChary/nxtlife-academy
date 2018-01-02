@@ -4,6 +4,7 @@ import { TraverseService } from '../../shared/traverse.service';
 import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule,  FormControl } from '@angular/forms';
 import { ActionSequence } from 'selenium-webdriver';
+import { CartValueService } from '../../shared/cart-value.service';
 
 @Component({
   selector: 'app-buy',
@@ -21,7 +22,8 @@ export class BuyComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private commonHttpService: CommonHttpService,
-    private traverseService: TraverseService
+    private traverseService: TraverseService,
+    private cartValueService: CartValueService
   ) { }
 
   ngOnInit() {
@@ -53,9 +55,6 @@ export class BuyComponent implements OnInit {
   }
 
   initForm() {
-    this.myGroup = new FormGroup({
-      license: new FormControl()
-   });
   }
 
   modelChanged() {
@@ -78,7 +77,7 @@ export class BuyComponent implements OnInit {
   }
 
   btnRemove(course: any) {
-    this.traverseService.removeCartData(course);
+    this.cartValueService.removeCartData(course);
   }
 
   // ******** Post Request sent on Button Click ******** //
