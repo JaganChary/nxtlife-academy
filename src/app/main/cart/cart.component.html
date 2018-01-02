@@ -3,11 +3,11 @@
     <div class="col-md-3">
 
     </div>
-    <div class="col-md-7">
+    <div class="col-md-7" *ngIf="cartData">
       <h3 class="text-muted">BUY COURSE/SUBSCRIPTION</h3>
       <hr>
       <div>
-        <div class="card" style="margin-bottom: 2em;" *ngFor="let cartDat of cartData; let index as i">
+        <div class="card" style="margin-bottom: 2em;" *ngFor="let cartDat of cartData; let i = index">
           <div class="card-text">Course Name:
             <span class="card-text text-muted">{{cartDat.course}}</span>
           </div>
@@ -24,9 +24,9 @@
 
             <div class="card-text">License
               <span>
-                <button class="big" (ngValue)="inputNumber" (click)="btnSubstract()">-</button>
-                <input type="number" class="text-muted" [(ngModel)]="inputNumbers[i]" (ngModelChange)="modelChanged()">
-                <button class="big" (ngValue)="inputNumber" (click)="btnAdd()">+</button>
+                <button class="big" (ngValue)="inputNumber" (click)="btnSubstract(i)">-</button>
+                <input type="number" class="text-muted" [(ngModel)]="inputNumbers[i]" (ngModelChange)="modelChanged(i)">
+                <button class="big" (ngValue)="inputNumber[i]" (click)="btnAdd(i)">+</button>
               </span>
             </div>
           </div>
@@ -37,13 +37,13 @@
             </div>
           </div>
         </div>
-        <button type="button" class="style-btn" *ngIf="cartData.length !== 0">Buy Now</button>
+        <button type="button" class="style-btn" *ngIf="cartData.length !== 0" (click)="btnClick()" routerLink="../category">Buy Now</button>
       </div>
       <div class="card" *ngIf="cartData && cartData.length == 0">
         <h2 class="card-text">Your Shopping cart is empty</h2>
       </div>
 
-      <button type="button" class="style-btn" *ngIf="cartData.length == 0">Go to Categories</button>
+      <button type="button" class="style-btn" *ngIf="cartData.length == 0" routerLink="../category">Go to Categories</button>
     </div>
 
   </div>

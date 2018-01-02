@@ -15,6 +15,8 @@ import {
   FormBuilder,
   FormControl,
 } from '@angular/forms';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { BASEURL } from '../../shared/app.constant';
 
 @Component({
   selector: 'app-cart',
@@ -25,14 +27,13 @@ export class CartComponent implements OnInit {
   i: number;
   cartValue: number;
   cartData: any;
-  inputNumber: Array<any> = [1];
+  inputNumbers: Array<any> = [];
   courseId: any;
-  coursesData: any;
-  coursesSubscribed: object = {};
-
+  
   constructor(
     private route: ActivatedRoute,
     private traverseService: TraverseService,
+    private httpClient: HttpClient,
     private commonHttpService: CommonHttpService,
     private cartValueService: CartValueService
   ) { }
@@ -40,37 +41,66 @@ export class CartComponent implements OnInit {
   ngOnInit() {
 
     this.cartData = this.cartValueService.getCartData();
+    
+    for(let i = 0; i < this.cartData.length; i++) {
+      
+    let initialCartItems = this.inputNumbers.push(1);
+    
+    }
+      
+    console.log(this.inputNumbers);
   }
 
-  modelChanged() {
+  // Check used to keep the value 1 when initializing
+  modelChanged(i) {
 
-    if((this.inputNumber[0] < 1) || (this.inputNumber == null || undefined)) {
-      console.log(this.inputNumber);
-      this.inputNumber[0] = 1;
+    if((this.inputNumbers[i] < 1) || (this.inputNumbers == null || undefined)) {
+      this.inputNumbers[i] = 1;
     } 
+    console.log(this.inputNumbers); 
   }
 
-  btnAdd() {
-    this.inputNumber = this.inputNumber[this.i] + 1;
+  // Add button to increase license number
+  btnAdd(i) {
+    this.inputNumbers[i] = this.inputNumbers[i] + 1;
   }
   
-  btnSubstract() {
-    this.inputNumber[this.i] = this.inputNumber[this.i] - 1;
-    if(this.inputNumber[this.i] < 1) {
-      this.inputNumber[this.i] = 1; 
+  // Add button to decrease license number
+  btnSubstract(i) {
+    this.inputNumbers[i] = this.inputNumbers[i] - 1;
+    if(this.inputNumbers[i] < 1) {
+      this.inputNumbers[i] = 1; 
     }
   }
 
   // ********** Removig Cart Items ********** // 
   btnRemove(course: any) {
     this.cartValueService.removeCartData(course);
-    console.log(this.cartValueService.cartData.length);
   }
-
   
-  // Post Request Sent on BtnClick
-  // btnClick() {
+  btnClick() {
+    var arr = [];
 
-  // }
+    for (let i = 0; i < this.cartData.length; i++) {
+      arr.push({
+        courseId: this.cartData[i].courseId,
+        license: this.inputNumbers[i]
+      });      
+    }
+    console.log(arr);
+
+    let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
+  
+    // Post Request Sent on BtnClick
+  
+    this.httpClient.post(BASEURL + '/admin/subscription', {
+      courseSubscribed: arr
+    }, { headers: header })
+    .subscribe((res: any) => {
+      console.log(res);
+    }, (err: any) => {
+      console.log(err);
+    })
+  }
 
 }
