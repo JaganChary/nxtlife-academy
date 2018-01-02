@@ -10,8 +10,7 @@ export class CommonHttpService {
   storeData: any;
   categories: any;
   organizationId: any
-    
-
+  
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -53,12 +52,12 @@ export class CommonHttpService {
     })
   }
   
-  // Posting Subscription
+  // My Courses
   
-  postSubscription(): any {
+  getMyCourses(): any {
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
-   
-    return this.httpClient.post(BASEURL + `/admin/subscriptions`, {
+    
+    return this.httpClient.get(BASEURL + `/admin/my-courses`, {
       headers: header
     })
   }
