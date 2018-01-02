@@ -1,0 +1,94 @@
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+
+.card {
+    margin-top: 2em;
+    padding: 0.8em;
+    box-shadow: 2px 2px 2px lightgray;
+    background-color: whitesmoke;
+    border: none;
+}
+
+.card1 {
+    box-shadow: 1px 1px 1px 1px lightgray;
+    padding: 0.8em;
+    
+}
+
+.card1:hover {
+    box-shadow: 2px 2px 2px 2px lightgray;
+    
+}
+
+.card:hover {
+    box-shadow: 4px 4px 4px lightgray;
+    
+} 
+.bg-color {
+    margin-top: 1em;
+    height: 140px;
+    width: 200px;
+}
+
+a {
+    color: black;
+}
+  
+
+.row {
+    border-color: lightgray;
+}
+
+h2 {
+    margin-top: 3em;
+    color: darkgray;
+    text-align: center;
+}
+
+hr {
+    height: 2px;
+    background-color: gray;
+    border: none;
+    width: 25%;
+}
+
+.card-header {
+    background-color: lightgrey;
+    box-shadow: 2px 2px 2px darkgray;
+    border-radius: 5px;
+    font-size: 1.5em;
+    color: darkslategray;
+    text-align: center;
+}
+
+p {
+    margin-top: 1em;
+}
+
+.card-block {
+    margin-top: 0.4em;
+}
+
+.style-btn {
+    padding: 1em 5em;
+    background-color: darkslategray;
+    border-radius: 5px;
+    color: gray;
+    border: none;
+    border-color: none;
+
+  }
+.style-btn:hover {
+    background-color: darkcyan;
+    color: white;
+}  
+
+@media screen and (max-width: 768px) {
+    .style-btn {
+        display: block;
+        margin: auto;
+        float: none;
+    }
+}
