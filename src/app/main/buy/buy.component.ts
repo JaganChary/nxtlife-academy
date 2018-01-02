@@ -5,6 +5,8 @@ import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule,  FormControl } from '@angular/forms';
 import { ActionSequence } from 'selenium-webdriver';
 import { CartValueService } from '../../shared/cart-value.service';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { BASEURL } from '../../shared/app.constant';
 
 @Component({
   selector: 'app-buy',
@@ -22,6 +24,7 @@ export class BuyComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private commonHttpService: CommonHttpService,
+    private httpClient: HttpClient,
     private traverseService: TraverseService,
     private cartValueService: CartValueService
   ) { }
@@ -81,12 +84,22 @@ export class BuyComponent implements OnInit {
   }
 
   // ******** Post Request sent on Button Click ******** //
-  // btnClick() {
-  //   this.commonHttpService.postSubscription()
-  //   .subscribe((res: any) => {
-  //     console.log('New subscription: ', res);
-  //   },(error: any) => {
-  //     console.log(error);
-  //   })
-  // }
+  btnClick() {
+    var arr = [];
+    arr.push({
+      courseId: this.courseId,
+      license: this.inputNumber
+    });
+
+    let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
+
+    this.httpClient.post(BASEURL + '/admin/subscription', {
+      courseSubscribed: arr
+    }, { headers: header })
+    .subscribe((res: any) => {
+      console.log(res);
+    }, (err: any) => {
+      console.log(err);
+    })
+  }
 }
