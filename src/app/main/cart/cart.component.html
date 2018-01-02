@@ -6,26 +6,26 @@
     <div class="col-md-7">
       <h3 class="text-muted">BUY COURSE/SUBSCRIPTION</h3>
       <hr>
-      <div *ngIf="coursesData">
-        <div class="card" style="margin-bottom: 2em;">
+      <div>
+        <div class="card" style="margin-bottom: 2em;" *ngFor="let cartDat of cartData; let index as i">
           <div class="card-text">Course Name:
-            <span class="card-text text-muted">{{coursesData.course}}</span>
+            <span class="card-text text-muted">{{cartDat.course}}</span>
           </div>
           <div class="card-text">Course Id:
-            <span class="card-text text-muted">{{coursesData.courseId}}</span>
+            <span class="card-text text-muted">{{cartDat.courseId}}</span>
           </div>
           <div class="card-text">Cost of License:
-            <span class="card-text text-muted">{{coursesData.cost}}</span>
+            <span class="card-text text-muted">{{cartDat.cost}}</span>
           </div>
           <div>
             <div class="card-text">Total Price:
-              <span class="text-muted">{{inputNumber}} * 100 = {{inputNumber * 100}}</span>
+              <span class="text-muted">{{inputNumbers[i]}} * 100 = {{inputNumbers[i] * 100}}</span>
             </div>
 
             <div class="card-text">License
               <span>
                 <button class="big" (ngValue)="inputNumber" (click)="btnSubstract()">-</button>
-                <input type="number" class="text-muted" [(ngModel)]="inputNumber" (ngModelChange)="modelChanged()">
+                <input type="number" class="text-muted" [(ngModel)]="inputNumbers[i]" (ngModelChange)="modelChanged()">
                 <button class="big" (ngValue)="inputNumber" (click)="btnAdd()">+</button>
               </span>
             </div>
@@ -33,21 +33,20 @@
           <div class="row">
             <div class="col-md-9"></div>
             <div class="col-md-3">
-              <button type="button" class="" (click)="btnRemove()">Remove</button>
+              <button type="button" class="" (click)="btnRemove(course)">Remove</button>
             </div>
           </div>
-
         </div>
-        <button type="button" class="style-btn">Buy Now</button>
+        <button type="button" class="style-btn" *ngIf="cartData.length !== 0">Buy Now</button>
       </div>
-      <div class="card" *ngIf="coursesData && coursesData.length == 0">
+      <div class="card" *ngIf="cartData && cartData.length == 0">
         <h2 class="card-text">Your Shopping cart is empty</h2>
       </div>
+
+      <button type="button" class="style-btn" *ngIf="cartData.length == 0">Go to Categories</button>
     </div>
 
   </div>
 
 
 </div>
-
-
