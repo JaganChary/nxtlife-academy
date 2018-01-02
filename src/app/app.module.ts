@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared/auth-guard.service';
 import { CommonHttpService } from './shared/commonHttp.service';
 import { TraverseService } from './shared/traverse.service';
+import { CartValueService } from './shared/cart-value.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { TraverseService } from './shared/traverse.service';
     HttpClientModule,
     AngularFontAwesomeModule
   ],
-  providers: [HttpClientModule, AuthGuard, TraverseService, CommonHttpService],
+  providers: [HttpClientModule, AuthGuard, TraverseService, CommonHttpService, CartValueService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
