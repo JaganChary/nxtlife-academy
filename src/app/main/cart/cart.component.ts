@@ -66,6 +66,8 @@ export class CartComponent implements OnInit {
     this.cartValueService.removeCartData(course);
   }
   
+  // Button Click
+
   btnClick() {
     var arr = [];
 

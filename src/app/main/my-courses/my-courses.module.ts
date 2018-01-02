@@ -4,10 +4,12 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { MyCoursesComponent } from './my-courses.component';
+import { AssignCourseComponent } from './assign-course/assign-course.component';
 
 @NgModule({
   declarations: [
-    MyCoursesComponent
+    MyCoursesComponent,
+    AssignCourseComponent
   ],
   imports: [
     RouterModule,
@@ -22,6 +24,15 @@ import { MyCoursesComponent } from './my-courses.component';
             path: '',
             component: MyCoursesComponent,
             pathMatch: 'full'
+          },
+          {
+            path: 'assign',
+            children: [
+              {
+              path: '',
+              component: AssignCourseComponent
+              }
+            ]
           }
         ]
       }

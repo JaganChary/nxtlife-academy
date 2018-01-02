@@ -79,7 +79,8 @@ export class BuyComponent implements OnInit {
     this.cartValueService.removeCartData(course);
   }
 
-  // ******** Post Request sent on Button Click ******** //
+  // Post Request sent on Button Click
+
   btnClick() {
     var arr = [];
     arr.push({

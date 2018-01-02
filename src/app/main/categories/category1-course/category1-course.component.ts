@@ -46,6 +46,8 @@ export class Category1CourseComponent implements OnInit {
     }
   }
 
+  // Adding Course
+
   btnAddCart(course: any) {
     this.cartValueService.addCartData(course);
   }
