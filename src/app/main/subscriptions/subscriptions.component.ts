@@ -9,9 +9,7 @@ import { log } from 'util';
 })
 
 export class SubscriptionsComponent {
-  stringStartDate: string;
-  stringEndDate: string;
-  endDate: any;
+  stringSUbscriptionDate: string;
   subscriptions: any
   
   constructor(
@@ -26,16 +24,6 @@ export class SubscriptionsComponent {
      this.subscriptions = res;
      console.log(this.subscriptions);
 
-     // Converting Date into string 
-     this.subscriptions.forEach((element: any) => {
-       let endDate = element.endDate;
-       let startDate = element.startDate;
-      
-      this.stringEndDate = `${endDate[2]}/${endDate[1]}/${endDate[0]}`;
-      this.stringStartDate = `${startDate[2]}/${startDate[1]}/${startDate[0]}`;
-      
-    });
-     
     }, (error: any) => {
       console.log(error);  
     })
