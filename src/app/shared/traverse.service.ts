@@ -28,7 +28,6 @@ export class TraverseService {
         
     });
   }
-
   
   // *******  Retrieving CategoryDataById ******* //
   getCategoryDataById(id: number) {
