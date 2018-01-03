@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { MyCoursesComponent } from './my-courses.component';
 import { AssignCourseComponent } from './assign-course/assign-course.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { AssignCourseComponent } from './assign-course/assign-course.component';
   imports: [
     RouterModule,
     CommonModule,
+    FormsModule,
     HttpClientModule,
     AngularFontAwesomeModule,
     RouterModule.forChild([
@@ -26,7 +28,7 @@ import { AssignCourseComponent } from './assign-course/assign-course.component';
             pathMatch: 'full'
           },
           {
-            path: 'assign',
+            path: 'assign/:id',
             children: [
               {
               path: '',

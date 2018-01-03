@@ -9,24 +9,33 @@
       <hr>
       <div class="card" style="margin-top: 3em;">
         <div class="card-header header-style">
-          <span style="padding: 16px 7em;;text-align: center;" type="button">Employees</span>
-          <span style="padding: 16px 7.4em;text-align: center; float: right" type="button">Managers</span>
+          <span style="padding: 16px 7em;;text-align: center;" type="button" (click)="btnClickEmployee()">Employees</span>
+          <span style="padding: 16px 7.4em;text-align: center; float: right" type="button" (click)="btnClickManager()">Managers</span>
         </div>
-        <div class="card" style="padding: 1.4em;">
+        <div *ngFor="let staff of allStaff; let i = index">
+          <div class="card" style="padding: 1.4em;">
+            <label>
+              <input type="checkbox" [(ngModel)]="employeeId[i]" style="height: 30px; width: 30px; float:right">
+            </label>
             <div class="card-text">
-              Employee Name:
-              <span class="card-text text-muted">Joseph Bartomeu</span>
+              Name:
+              <span class="card-text text-muted">{{staff.fullName}}</span>
             </div>
-            <div class="card-text">
-              Department:
-              <span class="card-text text-muted">Pyschiatry</span>
+            <div *ngFor="let roleInfo of staff.roleInfo">
+              <div class="card-text">
+                Department:
+                <span class="card-text text-muted">{{roleInfo.department}}</span>
+              </div>
+              <div class="card-text">
+                Role:
+                <span class="card-text text-muted">{{roleInfo.role}}</span>
+              </div>
             </div>
-            <div class="card-text">
-              Role:
-              <span class="card-text text-muted">Manager</span>
-            </div>
+          </div>
         </div>
       </div>
+      <br>
+      <button class="style-btn" (click)="btnClick()">Assign</button>
     </div>
   </div>
 

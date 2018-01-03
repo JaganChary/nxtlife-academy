@@ -19,3 +19,26 @@ hr {
 .card-header {
     padding: 0.7em;
 }
+
+.style-btn {
+    padding: 0.8em 4em;
+    background-color: darkslategray;
+    border-radius: 5px;
+    color: gray;
+    border: none;
+    border-color: none;
+    float: right;
+}
+
+.style-btn:hover {
+    background-color: darkcyan;
+    color: white;
+}  
+
+@media screen and (max-width: 768px) {
+    .style-btn {
+        display: block;
+        margin: auto;
+        float: none;
+    }
+}
