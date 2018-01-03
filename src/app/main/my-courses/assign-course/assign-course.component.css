@@ -1,0 +1,21 @@
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+
+h2 {
+    margin-top: 1.5em;
+    color: darkgray;
+    text-align: center;
+}
+
+hr {
+    height: 2px;
+    background-color: gray;
+    border: none;
+    width: 16em;
+}
+
+.card-header {
+    padding: 0.7em;
+}

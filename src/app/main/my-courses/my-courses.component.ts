@@ -10,6 +10,8 @@ import { TraverseService } from '../../shared/traverse.service';
     styleUrls: ['./my-courses.component.css']
 })
 export class MyCoursesComponent implements OnInit {
+    employees: any;
+    managers: any;
     stringSubscriptionDate: string;
     courses: any;
     courseId: any;
@@ -22,19 +24,13 @@ export class MyCoursesComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+
         // All Courses
+
         this.commonHttpService.getMyCourses()
             .subscribe((res: any) => {
                 this.courses = res.data;
                 console.log(res.data);
-
-                // Converting Date into string 
-                // this.courses.forEach((element: any) => {
-                //     let subscriptionDate = element.subscriptionDate;
-
-                //     this.stringSubscriptionDate = `${subscriptionDate[2]}/${subscriptionDate[1]}/${subscriptionDate[0]}`;
-
-                // });
 
             }, (err: any) => {
                 console.log(err);
@@ -42,8 +38,4 @@ export class MyCoursesComponent implements OnInit {
 
     }
 
-    //show data on buy now component
-
-    // btnClick() {
-    // }
 }

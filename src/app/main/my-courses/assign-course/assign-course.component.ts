@@ -9,14 +9,37 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./assign-course.component.css']
 })
 export class AssignCourseComponent implements OnInit {
-  categoryData: any;
-  courses: any;
+  managers: any;
+  employees: any
 
   constructor(
-    
+    private commonHttpService: CommonHttpService
   ) { }
 
   ngOnInit() {
     
+    // Employees List
+
+    this.commonHttpService.getEmployeesList()
+      .subscribe((res: any) => {
+        this.employees = res.data;
+        console.log(res.data);
+
+      }, (err: any) => {
+
+        console.log(err);
+      })
+
+    // Managers List
+
+    this.commonHttpService.getManagersList()
+      .subscribe((res: any) => {
+        this.managers = res.data;
+        console.log(res.data);
+
+      }, (err: any) => {
+        console.log(err);
+      })
+
   }
 }

@@ -3,7 +3,7 @@
         <div class="col-md-3">
 
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9" *ngIf="courses">
             <h2 class="text-muted">My Courses</h2>
             <hr>
             <!-- Section 1 -->
@@ -29,25 +29,33 @@
                                 </span>
                             </div>
                             <div class="card-text">Duration:
-                                <span class="card-text text-muted" *ngIf="course.description">
+                                <span class="card-text text-muted" *ngIf="course.duration">
                                     {{course.duration}}
                                 </span>
-                                <span class="card-text text-muted" *ngIf="!course.description">
+                                <span class="card-text text-muted" *ngIf="!course.duration">
                                     N/A
                                 </span>
                             </div>
-                            <div class="card-text">Current Licenses:
-                                <span class="card-text text-muted" *ngIf="course.description">
-                                    {{course.license}}
+                            <div class="card-text">Total Licenses:
+                                <span class="card-text text-muted" *ngIf="course.totalLicense">
+                                    {{course.totalLicense}}
                                 </span>
-                                <span class="card-text text-muted" *ngIf="!course.description">
+                                <span class="card-text text-muted" *ngIf="!course.totalLicense">
+                                    N/A
+                                </span>
+                            </div>
+                            <div class="card-text">Unassigned Licenses:
+                                <span class="card-text text-muted" *ngIf="course.unassigned">
+                                    {{course.unassigned}}
+                                </span>
+                                <span class="card-text text-muted" *ngIf="!course.unassigned">
                                     N/A
                                 </span>
                             </div>
                             <div>
-                                <div class="button" style="float: right" >
+                                <div class="button" style="float: right;">
                                     <span class="style-btn" type="button" routerLink="../assign">Assign Course</span>
-                                    <span class="style-btn" type="button" (click)="btnClick()">Buy Now</span>
+                                    <span class="style-btn" type="button" routerLink="../../buy/{{course.courseId}}">Buy Now</span>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +64,7 @@
                 <h3 style="text-align:center;margin-top: 1em;">Subscriptions</h3>
                 <hr>
                 <div class="card" *ngFor="let subscriptions of course.subscriptions; let i = index" style="margin-bottom: 1.2em">
-                    
+
                     <div class="card1">
                         <h4>Subscription {{i + 1}}</h4>
                         <div class="card-text">
@@ -65,16 +73,13 @@
                         </div>
                         <div class="card-text">
                             Subscription Date:
-                            <span class="card-text text-muted"></span>
+                            <span class="card-text text-muted">{{subscriptions.subscriptionDate}}</span>
                         </div>
                     </div>
                 </div>
                 <br>
                 <hr style="width: 100%">
             </div>
-
         </div>
-
     </div>
-
 </div>

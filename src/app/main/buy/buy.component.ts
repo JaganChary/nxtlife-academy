@@ -26,7 +26,6 @@ export class BuyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.initForm();
     this.inputNumber = 1; 
 
     if(this.traverseService.categoriesData == null || undefined) {
@@ -52,10 +51,7 @@ export class BuyComponent implements OnInit {
         this.courseId = this.coursesData.courseId;
       }
   }
-
-  initForm() {
-  }
-
+  
   modelChanged() {
 
     if((this.inputNumber < 1) || (this.inputNumber == null || undefined)) {
