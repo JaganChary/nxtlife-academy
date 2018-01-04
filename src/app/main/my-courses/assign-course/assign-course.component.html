@@ -12,6 +12,7 @@
           <span style="padding: 16px 7em;;text-align: center;" type="button" (click)="btnClickEmployee()">Employees</span>
           <span style="padding: 16px 7.4em;text-align: center; float: right" type="button" (click)="btnClickManager()">Managers</span>
         </div>
+        
         <div *ngFor="let staff of allStaff; let i = index">
           <div class="card" style="padding: 1.4em;">
             <label>

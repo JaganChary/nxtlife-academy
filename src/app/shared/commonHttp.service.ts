@@ -67,7 +67,7 @@ export class CommonHttpService {
   getEmployeesList(): any {
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
     
-    return this.httpClient.get(BASEURL + '/admin/employees?/role=employee', {
+    return this.httpClient.get(BASEURL + '/admin/employees?role=employee', {
       headers: header
     })
   }
@@ -77,7 +77,7 @@ export class CommonHttpService {
   getManagersList(): any {
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
     
-    return this.httpClient.get(BASEURL + '/admin/employees?/role=manager', {
+    return this.httpClient.get(BASEURL + '/admin/employees?role=manager', {
       headers: header
     })
   }   

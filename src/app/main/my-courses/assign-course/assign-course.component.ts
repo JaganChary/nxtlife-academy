@@ -68,7 +68,7 @@ export class AssignCourseComponent implements OnInit {
   // Click to get saveEmployeeList
 
   btnClickEmployee(): any {
-    this.employeeId = [];
+    this.employeeId = []; 
     this.allStaff = this.employees;
     console.log('Employees: ', this.allStaff);
   }
