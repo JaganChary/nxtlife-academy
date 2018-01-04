@@ -3,7 +3,6 @@ import { log } from 'util';
 
 @Injectable()
 export class TraverseService {
-  response: Array<any>;
   categoriesData: object; 
   coursesData: Object;
 

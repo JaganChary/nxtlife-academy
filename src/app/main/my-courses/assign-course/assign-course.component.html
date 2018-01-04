@@ -12,17 +12,51 @@
           <span style="padding: 16px 7em;;text-align: center;" type="button" (click)="btnClickEmployee()">Employees</span>
           <span style="padding: 16px 7.4em;text-align: center; float: right" type="button" (click)="btnClickManager()">Managers</span>
         </div>
+        <br>
+
+        <!-- Assigned  -->
+
+        <div>
+          <h5 style="text-align:center">Assigned Employees</h5>
+          <hr>
+          <div class="card" style="padding: 1.4em;" *ngFor="let assignedStaff of Assigned">
+            <div>
+              <div class="card-text">
+                Name:
+                <span class="card-text text-muted">{{assignedStaff.fullName}}</span>
+              </div>
+              <div *ngFor="let roleInfo of assignedStaff.roleInfo">
+                <div class="card-text">
+                  Department:
+                  <span class="card-text text-muted">{{roleInfo.department}}</span>
+                </div>
+                <div class="card-text">
+                  Role:
+                  <span class="card-text text-muted">{{roleInfo.role}}</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Unassigned -->
         
-        <div *ngFor="let staff of allStaff; let i = index">
+        <div>
+          <br>
+          <h5 style="text-align:center">Unassigned Employees</h5>
+          <hr>
+        </div>
+        <div *ngFor="let unassignedStaff of Unassigned; let i = index">
           <div class="card" style="padding: 1.4em;">
             <label>
               <input type="checkbox" [(ngModel)]="employeeId[i]" style="height: 30px; width: 30px; float:right">
             </label>
             <div class="card-text">
               Name:
-              <span class="card-text text-muted">{{staff.fullName}}</span>
+              <span class="card-text text-muted">{{unassignedStaff.fullName}}</span>
             </div>
-            <div *ngFor="let roleInfo of staff.roleInfo">
+            <div *ngFor="let roleInfo of unassignedStaff.roleInfo">
               <div class="card-text">
                 Department:
                 <span class="card-text text-muted">{{roleInfo.department}}</span>

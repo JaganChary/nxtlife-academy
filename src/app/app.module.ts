@@ -20,6 +20,7 @@ import { AuthGuard } from './shared/auth-guard.service';
 import { CommonHttpService } from './shared/commonHttp.service';
 import { TraverseService } from './shared/traverse.service';
 import { CartValueService } from './shared/cart-value.service';
+import { CoursesDataService } from './shared/courses-data.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { CartValueService } from './shared/cart-value.service';
     HttpClientModule,
     AngularFontAwesomeModule
   ],
-  providers: [HttpClientModule, AuthGuard, TraverseService, CommonHttpService, CartValueService],
+  providers: [HttpClientModule, AuthGuard, TraverseService, CommonHttpService, CartValueService, CoursesDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
