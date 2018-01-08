@@ -81,5 +81,15 @@ export class CommonHttpService {
       headers: header
     })
   }   
+
+  // Manager Task
+
+  getManagerTaskList(): any {
+    let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
+
+    return this.httpClient.get(BASEURL + '/admin/assign/tasks', {
+      headers: header
+    })
+  }
   
 }

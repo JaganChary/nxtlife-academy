@@ -12,8 +12,6 @@ export class CoursesDataService {
     courses.data.forEach((element: any) => {
       this.coursesData[element.courseId] = element;
     })
-
-
   }
 
   getCoursesDataById(id: number) {
