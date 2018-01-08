@@ -24,7 +24,7 @@
 
             <div class="card-text">License
               <span>
-                <button class="big" (ngValue)="inputNumber" (click)="btnSubstract(i)">-</button>
+                <button class="big" (ngValue)="inputNumber[i]" (click)="btnSubstract(i)">-</button>
                 <input type="number" class="text-muted" [(ngModel)]="inputNumbers[i]" (ngModelChange)="modelChanged(i)">
                 <button class="big" (ngValue)="inputNumber[i]" (click)="btnAdd(i)">+</button>
               </span>

@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 5em;">
+<div class="container" style="margin-top: 2em;">
   <div class="row">
     <div class="col-md-2">
 
@@ -17,9 +17,27 @@
         <!-- Assigned  -->
 
         <div>
-          <h5 style="text-align:center">Assigned Employees</h5>
+          <h5 style="text-align:center">Assigned {{empORmanager}}</h5>
           <hr>
-          <div class="card" style="padding: 1.4em;" *ngFor="let assignedStaff of Assigned">
+          <div class="card" style="padding: 1em;" *ngFor="let assignedStaff of Assigned; let i = index" >
+            <div class="card" style="padding: 10px;" *ngIf="empORmanager == 'Managers'">
+              <span class="card-text">Add License
+                <span>
+                  <button (ngValue)="inputNumber" (click)="btnSubstract(i)">-</button>
+                  <input type="number" class="text-muted" [(ngModel)]="assignedStaff.license" (ngModelChange)="modelChanged(i)">
+                  <button (ngValue)="inputNumber" (click)="btnAdd(i)">+</button>
+                </span>
+              </span>
+              <br>
+              <span class="card-text">Expiry Date:
+                <input type="date" [(ngModel)]="assignedStaff.expiredOn" (change)="newDate(i)">
+              </span>
+            </div>
+            <div>
+              <span>
+                <input type="checkbox" [(ngModel)]="checkValue[i]" style="height: 30px; width: 30px; float:right">
+              </span>
+            </div>
             <div>
               <div class="card-text">
                 Name:
@@ -35,23 +53,42 @@
                   <span class="card-text text-muted">{{roleInfo.role}}</span>
                 </div>
               </div>
+              <!-- <div class="card-text" *ngIf="empORmanager == 'Managers'">
+                Total Licenses:
+                <span class="card-text text-muted">{{managersTask.totalManagerLicence}}</span>
+              </div> -->
             </div>
 
           </div>
         </div>
 
         <!-- Unassigned -->
-        
+
         <div>
           <br>
-          <h5 style="text-align:center">Unassigned Employees</h5>
+          <h5 style="text-align:center">Unassigned {{empORmanager}}</h5>
           <hr>
         </div>
         <div *ngFor="let unassignedStaff of Unassigned; let i = index">
-          <div class="card" style="padding: 1.4em;">
-            <label>
-              <input type="checkbox" [(ngModel)]="employeeId[i]" style="height: 30px; width: 30px; float:right">
-            </label>
+          <div class="card" style="padding: 1em;">
+            <div class="card" style="padding: 10px;" *ngIf="empORmanager == 'Managers'">
+              <span class="card-text">Add License
+                <span>
+                  <button (ngValue)="inputNumber" (click)="btnSubstract(i)">-</button>
+                  <input type="number" class="text-muted" [(ngModel)]="unassignedStaff.license" (ngModelChange)="modelChanged(i)">
+                  <button (ngValue)="inputNumber" (click)="btnAdd(i)">+</button>
+                </span>
+              </span>
+              <br>
+              <span class="card-text">Expiry Date:
+                <input type="date" [(ngModel)]="unassignedStaff.expiredOn" (change)="newDate(i)">
+              </span>
+            </div>
+            <div>
+              <span>
+                <input type="checkbox" [(ngModel)]="checkValue[i]" style="height: 30px; width: 30px; float:right">
+              </span>
+            </div>
             <div class="card-text">
               Name:
               <span class="card-text text-muted">{{unassignedStaff.fullName}}</span>
