@@ -12,8 +12,6 @@ import { BASEURL } from '../../shared/app.constant';
 })
 export class BuyComponent implements OnInit {
   courseId: number;
-  categoryData: any;
-  categoriesData: any;
   coursesData: any;
   inputNumber: number;
 

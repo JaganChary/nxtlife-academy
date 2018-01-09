@@ -13,7 +13,6 @@ import { CartValueService } from '../../../shared/cart-value.service';
 export class Category1CourseComponent implements OnInit {
   courses: any;
   categoryData: any;
-  x:string;
   
   constructor(
     private router: Router,

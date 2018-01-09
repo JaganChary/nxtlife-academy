@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
-import { Observable } from 'rxjs/observable';
 import { TraverseService } from '../../shared/traverse.service';
 import { CommonHttpService } from '../../shared/commonHttp.service';
 

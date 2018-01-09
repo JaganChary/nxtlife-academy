@@ -12,17 +12,12 @@ import { BASEURL } from '../../shared/app.constant';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  i: number;
-  cartValue: number;
   cartData: any;
   inputNumbers: Array<any> = [];
-  courseId: any;
   
   constructor(
     private route: ActivatedRoute,
-    private traverseService: TraverseService,
     private httpClient: HttpClient,
-    private commonHttpService: CommonHttpService,
     private cartValueService: CartValueService
   ) { }
 

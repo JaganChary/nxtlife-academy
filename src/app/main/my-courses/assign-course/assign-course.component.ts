@@ -118,7 +118,7 @@ export class AssignCourseComponent implements OnInit {
       })
   }
 
-  // allStaff array divided in 2 parts with property assignedEmployee == true and no such property
+  // allStaff array divided in 2 parts(Assigned and Unassigned)
 
   // Employee Array
 
@@ -182,12 +182,12 @@ export class AssignCourseComponent implements OnInit {
         this.Unassigned.push(this.allStaff[i]);
       }
     }
-    console.log(this.Assigned);
-    console.log(this.Unassigned);
+    // console.log(this.Assigned);
+    // console.log(this.Unassigned);
 
   }
 
-  // Click to get saveEmployeeList
+  // Click to show EmployeeList
 
   btnClickEmployee(): any {
     this.allStaff = this.employees;
@@ -195,7 +195,7 @@ export class AssignCourseComponent implements OnInit {
     console.log('Employees: ', this.allStaff);
   }
 
-  // Click to get managerList
+  // Click to show managerList
 
   btnClickManager(): any {
     
@@ -218,6 +218,8 @@ export class AssignCourseComponent implements OnInit {
 
   btnClick(): any {
     var arr = [];
+    let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
+
     if (this.empORmanager === 'Employees') {
 
       for (let i = 0; i < this.allStaff.length; i++) {
@@ -232,9 +234,7 @@ export class AssignCourseComponent implements OnInit {
       }
 
       // Sending Post request with Employee Details 
-
-      let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
-
+      
       this.httpClient.post(BASEURL + '/admin/assign/course', arr, {
         headers: header
       })
@@ -259,7 +259,8 @@ export class AssignCourseComponent implements OnInit {
           )
         }
       }
-      let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
+      
+      // Sending Post request with Manager Details
 
       this.httpClient.post(BASEURL + '/admin/assign/task', arr, {
         headers: header

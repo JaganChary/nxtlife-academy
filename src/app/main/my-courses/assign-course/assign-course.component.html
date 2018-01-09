@@ -45,7 +45,8 @@
                   <input type="checkbox" [(ngModel)]="assignedStaff.checkValue" style="height: 30px; width: 30px; float:right; margin-top: 2em;">
                 </span>
               </div>
-              <!-- Name and Deapartment -->
+
+              <!-- Name and Department -->
               <div class="card-text">
                 Name:
                 <span class="card-text text-muted">{{assignedStaff.fullName}}</span>
@@ -77,7 +78,7 @@
           <div class="card" style="padding: 1em;">
             <div class="card" style="padding: 10px;" *ngIf="empORmanager == 'Managers'">
               
-              <!-- Adding License -->
+              <!-- Add License -->
               <span class="card-text">Add License
                 <span>
                   <button (click)="btnSubstract(unassignedStaff)">-</button>
@@ -94,6 +95,7 @@
             </div>
 
             <div>
+
               <!-- CheckBox -->
               <div>
                 <span>
@@ -117,6 +119,7 @@
         </div>
       </div>
       <br>
+      <!-- Buuton To Assign Course -->
       <button class="style-btn" (click)="btnClick()">Assign</button>
     </div>
   </div>
