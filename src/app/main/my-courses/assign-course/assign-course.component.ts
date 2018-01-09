@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TraverseService } from '../../../shared/traverse.service';
 import { CommonHttpService } from '../../../shared/commonHttp.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASEURL } from '../../../shared/app.constant';
 import { CoursesDataService } from '../../../shared/courses-data.service';
 
@@ -13,22 +12,19 @@ import { CoursesDataService } from '../../../shared/courses-data.service';
 })
 export class AssignCourseComponent implements OnInit {
   employeeAssigned: any;                // Array of assigned employees coming from server
-  managersTask: any;
+  managersTask: any;                    // 
   courseId: any;                        // CourseId of course being assigned  
   coursesData: any;                     // The complete data of the course being assigned
   managers: any;                        // List of all managers coming from server
   employees: any;                       // List of all employees coming from server   
   allStaff: Array<any> = [];            // Array of all staff that comes from server of employees and managers
-  checkValue: Array<any> = [];                  //     
   Assigned: Array<any> = [];            // Array of assigned staff
   Unassigned: Array<any> = [];          // Array of unassigned staff
-  inputNumbers: Array<any> = [];
-  empORmanager: String;
-  date: String;
+  empORmanager: String;                 // Variable that checks if it's a manager or Employee
+  date: String;                         // 
   
   constructor(
     private commonHttpService: CommonHttpService,
-    private traverseService: TraverseService,
     private coursesDataService: CoursesDataService,
     private route: ActivatedRoute,
     private httpClient: HttpClient
@@ -53,23 +49,21 @@ export class AssignCourseComponent implements OnInit {
      
     }
     
-    var d = new Date();
-    console.log(d);
-    var n = d.toLocaleTimeString();
-    console.log(n);
-
-    // Get Manager Task LIst
-
-    // this.commonHttpService.getManagerTaskList()
-    // .subscribe((res: any) => {
-    //   console.log(res);
-    // }, (err: any) => {
-    //   console.log(err);
-    // })
+    
   }
 
   // ENd of ngOnInit()
+ 
+  btnAdd(a) {
+    a.license = a.license + 1;
+  }
 
+  btnSubstract(a) {
+    a.license = a.license - 1;
+    if(a.license < 1) {
+      a.license = 1;
+    }
+  }
   
   // Getting CourseID and respective courseData
 
@@ -83,7 +77,8 @@ export class AssignCourseComponent implements OnInit {
         this.employeeAssigned = this.coursesData.employeeAssigned;
         // console.log(this.employeeAssigned);
         this.managersTask = this.coursesData.managersTask;
-        console.log(this.managersTask);
+        console.log('Manager Task1: ',this.managersTask);
+
         this.courseId = this.coursesData.courseId;
 
         // Employees List
@@ -103,6 +98,7 @@ export class AssignCourseComponent implements OnInit {
     // console.log(this.coursesData);
     this.employeeAssigned = this.coursesData.employeeAssigned;
     // console.log(this.employeeAssigned);
+    this.managersTask = this.coursesData.managersTask;
     this.courseId = this.coursesData.courseId;
   }
 
@@ -113,7 +109,7 @@ export class AssignCourseComponent implements OnInit {
       .subscribe((res: any) => {
         this.employees = res.data;
         this.allStaff = this.employees;
-        console.log('Employees: ', this.allStaff);
+        // console.log('Employees: ', this.allStaff);
         this.empORmanager = 'Employees';
         this.employeeArray();
         
@@ -122,7 +118,7 @@ export class AssignCourseComponent implements OnInit {
       })
   }
 
-  // allStaff array divided in 2 parts with property assignedEmployee = true and no such property
+  // allStaff array divided in 2 parts with property assignedEmployee == true and no such property
 
   // Employee Array
 
@@ -150,8 +146,8 @@ export class AssignCourseComponent implements OnInit {
         this.Unassigned.push(this.allStaff[i]);
       }
     }
-    console.log(this.Assigned);
-    console.log(this.Unassigned);
+    // console.log(this.Assigned);
+    // console.log(this.Unassigned);
 
   }
 
@@ -160,7 +156,6 @@ export class AssignCourseComponent implements OnInit {
   managerArray(): any {
     this.Assigned = [];
     this.Unassigned = [];
-    console.log(this.date);
     this.empORmanager = 'Managers';
     this.allStaff.forEach((element1: any) => {
       element1.id
@@ -168,11 +163,13 @@ export class AssignCourseComponent implements OnInit {
         elem1.managerId
         if(element1.id == elem1.managerId) {
           element1['assignedManager'] = true;
-          element1['license'] = undefined;
+          element1['license'] = 1;
           element1['expiredOn'] = "";
+          element1['checkValue'] = false;
         } else {
-          element1['license'] = undefined;
+          element1['license'] = 1;
           element1['expiredOn'] = "";
+          element1['checkValue'] = false;
         }
       })
     })
@@ -193,7 +190,6 @@ export class AssignCourseComponent implements OnInit {
   // Click to get saveEmployeeList
 
   btnClickEmployee(): any {
-    // this.checkValue = [];
     this.allStaff = this.employees;
     this.employeeArray();
     console.log('Employees: ', this.allStaff);
@@ -202,7 +198,6 @@ export class AssignCourseComponent implements OnInit {
   // Click to get managerList
 
   btnClickManager(): any {
-    // this.checkValue = [];
     
     // All Managers List
 
@@ -210,7 +205,7 @@ export class AssignCourseComponent implements OnInit {
       .subscribe((res: any) => {
         this.managers = res.data;
         this.allStaff = this.managers;
-        console.log('Managers: ', this.allStaff);
+        // console.log('Managers: ', this.allStaff);
         this.empORmanager = 'Managers';
         this.managerArray();
         
@@ -226,7 +221,7 @@ export class AssignCourseComponent implements OnInit {
     if (this.empORmanager === 'Employees') {
 
       for (let i = 0; i < this.allStaff.length; i++) {
-        if (this.checkValue[i] == true) {
+        if (this.allStaff[i].checkValue == true) {
           arr.push(
             {
               courseId: this.courseId,
@@ -250,25 +245,27 @@ export class AssignCourseComponent implements OnInit {
         });
 
     } else if (this.empORmanager === 'Managers') {
-
+      
       for (let i = 0; i < this.allStaff.length; i++) {
-        if (this.checkValue[i] == true) {
+        if (this.allStaff[i].checkValue == true) {
+          var d = this.allStaff[i].expiredOn + 'T' + new Date().toLocaleTimeString().slice(0, -3);
           arr.push(
             {
-              courseId: this.courseId,
               managerId: this.allStaff[i].id,
+              courseId: this.courseId,
+              expiredOn: d,
+              license: this.allStaff[i].license
             }
           )
         }
       }
-
       let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
 
       this.httpClient.post(BASEURL + '/admin/assign/task', arr, {
         headers: header
       })
         .subscribe((res: any) => {
-          console.log(res);
+          console.log('Response: ',res);
         }, (err: any) => {
           console.log
         });
