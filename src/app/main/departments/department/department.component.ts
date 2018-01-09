@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/observable';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import {
@@ -70,8 +69,8 @@ export class DepartmentComponent implements OnInit {
       
       // Printing Response 
 
-      console.log('Department Detail: ' + res);
-      console.log('Stringified response: ' + JSON.stringify(res));
+      // console.log('Department Detail: ' + res);
+      // console.log('Stringified response: ' + JSON.stringify(res));
 
       // Saving department Details to localStorage
 

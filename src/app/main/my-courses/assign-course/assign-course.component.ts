@@ -248,7 +248,11 @@ export class AssignCourseComponent implements OnInit {
       
       for (let i = 0; i < this.allStaff.length; i++) {
         if (this.allStaff[i].checkValue == true) {
-          var d = this.allStaff[i].expiredOn + 'T' + new Date().toLocaleTimeString().slice(0, -3);
+          var c = new Date().getHours();
+          console.log(c);
+          var d = this.allStaff[i].expiredOn + 'T' + new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
+          
+          console.log(d);
           arr.push(
             {
               managerId: this.allStaff[i].id,
