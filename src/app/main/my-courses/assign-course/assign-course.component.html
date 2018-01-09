@@ -14,12 +14,13 @@
         </div>
         <br>
 
-        <!-- Assigned  -->
+        <!-- ********************************* Assigned ********************************* -->
 
         <div>
           <h5 style="text-align:center">Assigned {{empORmanager}}</h5>
           <hr>
           <div class="card" style="padding: 1em;" *ngFor="let assignedStaff of Assigned; let i = index">
+            <!-- Add License -->
             <div class="card" style="padding: 10px;" *ngIf="empORmanager == 'Managers'">
               <span class="card-text">Add License
                 <span>
@@ -29,6 +30,8 @@
                 </span>
               </span>
               <br>
+
+              <!-- Expiry Date -->
               <span class="card-text">Expiry Date:
                 <input type="date" [(ngModel)]="assignedStaff.expiredOn">
               </span>
@@ -36,10 +39,13 @@
 
             <div>
               <div *ngIf="empORmanager == 'Managers'">
+                
+                <!-- CheckBox -->
                 <span>
                   <input type="checkbox" [(ngModel)]="assignedStaff.checkValue" style="height: 30px; width: 30px; float:right; margin-top: 2em;">
                 </span>
               </div>
+              <!-- Name and Deapartment -->
               <div class="card-text">
                 Name:
                 <span class="card-text text-muted">{{assignedStaff.fullName}}</span>
@@ -49,10 +55,6 @@
                   Department:
                   <span class="card-text text-muted">{{roleInfo.department}}</span>
                 </div>
-                <!-- <div class="card-text">
-                  Role:
-                  <span class="card-text text-muted">{{roleInfo.role}}</span>
-                </div> -->
               </div>
               <div class="card-text" *ngFor="let managerTask of managersTask">
                 <div *ngIf="assignedStaff.id == managerTask.managerId">
@@ -64,7 +66,7 @@
           </div>
         </div>
 
-        <!-- Unassigned -->
+        <!-- ********************************* Unassigned ********************************* -->
 
         <div>
           <br>
@@ -74,6 +76,8 @@
         <div *ngFor="let unassignedStaff of Unassigned; let i = index">
           <div class="card" style="padding: 1em;">
             <div class="card" style="padding: 10px;" *ngIf="empORmanager == 'Managers'">
+              
+              <!-- Adding License -->
               <span class="card-text">Add License
                 <span>
                   <button (click)="btnSubstract(unassignedStaff)">-</button>
@@ -82,17 +86,22 @@
                 </span>
               </span>
               <br>
+
+              <!-- Expiry Date -->
               <span class="card-text">Expiry Date:
                 <input type="date" [(ngModel)]="unassignedStaff.expiredOn">
               </span>
             </div>
 
             <div>
+              <!-- CheckBox -->
               <div>
                 <span>
                   <input type="checkbox" [(ngModel)]="unassignedStaff.checkValue" style="height: 30px; width: 30px; float:right; margin-top: 1em;">
                 </span>
               </div>
+
+              <!-- Name and Deapartment -->
               <div class="card-text">
                 Name:
                 <span class="card-text text-muted">{{unassignedStaff.fullName}}</span>
@@ -102,13 +111,8 @@
                   Department:
                   <span class="card-text text-muted">{{roleInfo.department}}</span>
                 </div>
-                <!-- <div class="card-text">
-                  Role:
-                  <span class="card-text text-muted">{{roleInfo.role}}</span>
-                </div> -->
               </div>
             </div>
-
           </div>
         </div>
       </div>
