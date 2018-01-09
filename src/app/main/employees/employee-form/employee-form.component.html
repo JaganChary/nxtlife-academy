@@ -69,25 +69,25 @@
               <span class="change">
                 <span class="fat">|</span> Contact</span>
             </label>
-            <input type="number" class="form-control" formControlName="contactNo" placeholder="Contact" required minlength="10" maxlength="10"
-            />
+            <input type="number" class="form-control" formControlName="contactNo" placeholder="Contact" />
             <div *ngIf="registerForm.controls['contactNo'].hasError('required') && registerForm.controls['contactNo'].touched" class="alert alert-danger">
               <small>
                 <i>Please enter your contactNo details</i>
               </small>
             </div>
+            {{registerForm.controls['contactNo'].error}}
             <div *ngIf="registerForm.controls['contactNo'].hasError('minlength') && registerForm.controls['contactNo'].touched" class="alert alert-danger">
               <small>
                 <i>The mobile number should be of 10 digits only</i>
               </small>
             </div>
-            <div *ngIf="registerForm.controls['contactNo'].hasError('minlength') && registerForm.controls['contactNo'].touched" class="alert alert-danger">
+            <div *ngIf="registerForm.controls['contactNo'].hasError('maxlength') && registerForm.controls['contactNo'].touched" class="alert alert-danger">
               <small>
                 <i>The mobile number should be of 10 digits only</i>
               </small>
             </div>
           </div>
-          
+
           <!-- Joining Date -->
 
           <div class="form-group">
@@ -103,7 +103,7 @@
             </div>
           </div>
 
-          
+
           <!-- Employee Role -->
           <label for="employeeRoles">
             <span class="change">
@@ -135,12 +135,12 @@
                     <label for="roleId" class="text-muted">Role</label>
                     <select formControlName="roleId" class="form-control" (ngModelChange)="onChanged($event)">
                       <option *ngFor="let roleId of roleIds" [ngValue]="roleId">{{roleId.role}}</option>
-                    <div *ngIf="registerForm.controls.employeeRoles.controls[i].controls.roleId.hasError('required') && registerForm.controls.employeeRoles.controls[i].controls.roleId.touched"
-                      class="alert alert-danger">
-                      <small>
-                        <i>Please select Role Id</i>
-                      </small>
-                    </div>
+                      <div *ngIf="registerForm.controls.employeeRoles.controls[i].controls.roleId.hasError('required') && registerForm.controls.employeeRoles.controls[i].controls.roleId.touched"
+                        class="alert alert-danger">
+                        <small>
+                          <i>Please select Role Id</i>
+                        </small>
+                      </div>
                     </select>
                   </div>
                 </div>

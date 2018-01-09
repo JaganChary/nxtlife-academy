@@ -12,7 +12,7 @@ import { CoursesDataService } from '../../../shared/courses-data.service';
 })
 export class AssignCourseComponent implements OnInit {
   employeeAssigned: any;                // Array of assigned employees coming from server
-  managersTask: any;                    // 
+  managersTask: any;                    // Array which gives the managerTask, the one through which we check the Id of assigned employee 
   courseId: any;                        // CourseId of course being assigned  
   coursesData: any;                     // The complete data of the course being assigned
   managers: any;                        // List of all managers coming from server
@@ -21,7 +21,6 @@ export class AssignCourseComponent implements OnInit {
   Assigned: Array<any> = [];            // Array of assigned staff
   Unassigned: Array<any> = [];          // Array of unassigned staff
   empORmanager: String;                 // Variable that checks if it's a manager or Employee
-  date: String;                         // 
   
   constructor(
     private commonHttpService: CommonHttpService,
@@ -45,11 +44,7 @@ export class AssignCourseComponent implements OnInit {
       // All Employees List
 
       this.getAllEmployeesList();
-
-     
     }
-    
-    
   }
 
   // ENd of ngOnInit()
@@ -248,16 +243,12 @@ export class AssignCourseComponent implements OnInit {
       
       for (let i = 0; i < this.allStaff.length; i++) {
         if (this.allStaff[i].checkValue == true) {
-          var c = new Date().getHours();
-          console.log(c);
-          var d = this.allStaff[i].expiredOn + 'T' + new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
-          
-          console.log(d);
+          var date = this.allStaff[i].expiredOn + 'T' + new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
           arr.push(
             {
               managerId: this.allStaff[i].id,
               courseId: this.courseId,
-              expiredOn: d,
+              expiredOn: date,
               license: this.allStaff[i].license
             }
           )
