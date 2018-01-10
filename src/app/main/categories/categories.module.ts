@@ -1,6 +1,6 @@
 import { CategoriesComponent } from './categories.component';
 
-import { Category1CourseComponent } from './category1-course/category1-course.component';
+import { CoursesComponent } from './courses/courses.component';
 import { ChaptersComponent } from './chapters/chapters.component';
 
 import { RouterModule } from '@angular/router';
@@ -12,7 +12,7 @@ import { NgModule } from '@angular/core';
 @NgModule({
     declarations: [
         CategoriesComponent,
-        Category1CourseComponent,
+        CoursesComponent,
         ChaptersComponent
 
     ],
@@ -35,7 +35,7 @@ import { NgModule } from '@angular/core';
                         children: [
                             {
                                 path: '',
-                                component: Category1CourseComponent,
+                                component: CoursesComponent,
                                 pathMatch: 'full'
                             },
                             {

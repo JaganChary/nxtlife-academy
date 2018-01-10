@@ -5,12 +5,12 @@ import { CommonHttpService } from '../../../shared/commonHttp.service';
 import { CartValueService } from '../../../shared/cart-value.service';
 
 @Component({
-  selector: 'app-category1-course',
-  templateUrl: './category1-course.component.html',
-  styleUrls: ['./category1-course.component.css']
+  selector: 'app-courses',
+  templateUrl: './courses.component.html',
+  styleUrls: ['./courses.component.css']
 })
 
-export class Category1CourseComponent implements OnInit {
+export class CoursesComponent implements OnInit {
   courses: any;
   categoryData: any;
   
