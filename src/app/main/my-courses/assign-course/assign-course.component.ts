@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASEURL } from '../../shared/app.constant';
-import { CoursesDataService } from '../courses-data.service';
 import { MyCoursesService } from '../my-courses.service';
 
 @Component({
@@ -24,7 +23,6 @@ export class AssignCourseComponent implements OnInit {
   
   constructor(
     private myCoursesService: MyCoursesService,
-    private coursesDataService: CoursesDataService,
     private route: ActivatedRoute,
     private httpClient: HttpClient
 
@@ -33,7 +31,7 @@ export class AssignCourseComponent implements OnInit {
   ngOnInit() {
     // Getting CourseID and respective courseData
 
-    if (!this.coursesDataService.coursesData) {
+    if (!this.myCoursesService.coursesData) {
 
       this.getMyCoursesFromServer();
 
@@ -65,9 +63,9 @@ export class AssignCourseComponent implements OnInit {
   getMyCoursesFromServer(): any {
     this.myCoursesService.getMyCourses()
       .subscribe((res: any) => {
-        this.coursesDataService.storeCoursesData(res);
+        this.myCoursesService.storeCoursesData(res);
         const id = +this.route.snapshot.paramMap.get('id');
-        this.coursesData = this.coursesDataService.getCoursesDataById(id);
+        this.coursesData = this.myCoursesService.getCoursesDataById(id);
         // console.log(this.coursesData);
         this.employeeAssigned = this.coursesData.employeeAssigned;
         // console.log(this.employeeAssigned);
@@ -89,7 +87,7 @@ export class AssignCourseComponent implements OnInit {
 
   getMyCoursesDirectly(): any {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.coursesData = this.coursesDataService.getCoursesDataById(id);
+    this.coursesData = this.myCoursesService.getCoursesDataById(id);
     // console.log(this.coursesData);
     this.employeeAssigned = this.coursesData.employeeAssigned;
     // console.log(this.employeeAssigned);

@@ -126,46 +126,7 @@ export class CommonHttpService {
     });
   }
 
-  // All Employees
-
-  // getEmployees(): any {
-  //   return this.httpClient.get(BASEURL + '/admin/employees', {
-  //     headers: this.header
-  //   });
-  // }
-
-  // All subscriptions
-
-  // getSubscriptions(): any {
-  //   return this.httpClient.get(BASEURL + `/admin/subscriptions`, {
-  //     headers: this.header
-  //   })
-  // }
-
-  // My Courses
-
-  // getMyCourses(): any {
-  //   return this.httpClient.get(BASEURL + `/admin/my-courses`, {
-  //     headers: this.header
-  //   })
-  // }
-
-  // Employees List
-
-  // getEmployeesList(): any {
-  //   return this.httpClient.get(BASEURL + '/admin/employees?role=employee', {
-  //     headers: this.header
-  //   })
-  // }
-
-  // Managers List
-
-  // getManagersList(): any {
-  //   return this.httpClient.get(BASEURL + '/admin/employees?role=manager', {
-  //     headers: this.header
-  //   })
-  // }
-
+  
   // Manager Task
 
   getManagerTaskList(): any {
