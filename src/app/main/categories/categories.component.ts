@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TraverseService } from '../shared/traverse.service';
-import { CommonHttpService } from '../shared/commonHttp.service';
+import { CategoriesService } from './categories.service';
 
 @Component({
   selector: 'app-categories',
@@ -14,11 +14,11 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private traverseService: TraverseService,
-    private commonHttpService: CommonHttpService
+    private categoriesService: CategoriesService
   ) { }
   
     ngOnInit() {
-      this.commonHttpService.getCategories()
+      this.categoriesService.getCategories()
       .subscribe((res: any) => {
          this.categories = res;
          this.storeData = this.traverseService.storeCategoriesData(res);

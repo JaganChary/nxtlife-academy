@@ -48,7 +48,8 @@ import { NgModule } from '@angular/core';
                 ]
             }
         ])
-    ]
+    ],
+    providers: [CategoriesComponent]
 })
 
 export class CategoriesModule {
