@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ParamMap, ActivatedRoute } from '@angular/router';
-import { TraverseService } from '../../shared/traverse.service';
 import { CommonHttpService } from '../../shared/commonHttp.service';
 import { CartValueService } from '../../shared/cart-value.service';
+import { CategoriesService } from '../categories.service';
 
 @Component({
   selector: 'app-courses',
@@ -16,20 +16,19 @@ export class CoursesComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private traverseService: TraverseService,
-    private commonHttpService: CommonHttpService,
+    private categoriesService: CategoriesService,
     private cartValueService: CartValueService
   ) { }
 
   ngOnInit() {
 
-    if(this.traverseService.categoriesData == null || undefined) {
+    if(this.categoriesService.categoriesData == null || undefined) {
 
-      this.commonHttpService.getCategories()
+      this.categoriesService.getCategories()
       .subscribe((res: any) => {
-        this.traverseService.storeCategoriesData(res);
+        this.categoriesService.storeCategoriesData(res);
         const id = +this.route.snapshot.paramMap.get('id');
-        this.categoryData = this.traverseService.getCategoryDataById(id);
+        this.categoryData = this.categoriesService.getCategoryDataById(id);
         this.courses = this.categoryData.courses;
         console.log(this.courses);
       }, (error: any) => {
@@ -38,7 +37,7 @@ export class CoursesComponent implements OnInit {
     } else {
 
         const id = +this.route.snapshot.paramMap.get('id');
-        this.categoryData = this.traverseService.getCategoryDataById(id);
+        this.categoryData = this.categoriesService.getCategoryDataById(id);
         this.courses = this.categoryData.courses;
         console.log(this.courses);
     }

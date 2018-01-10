@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { BASEURL } from './app.constant';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -9,13 +8,7 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class CommonHttpService {
-  traverseService: any;
-  storeData: any;
-  categories: any;
-  organizationId: any
-  header: any = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
-
-
+  
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -94,45 +87,12 @@ export class CommonHttpService {
 
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // All departments
-
-  // getDepartments(): any {
-
-  //   return this.httpClient.get(BASEURL + `/admin/departments`, {
-  //     headers: this.header
-  //   });
-  // }
-
-  // All categories 
-
-  getCategories(): any {
-    return this.httpClient.get(BASEURL + '/categories', {
-      headers: this.header
-    });
-  }
-
-  
   // Manager Task
 
-  getManagerTaskList(): any {
-    return this.httpClient.get(BASEURL + '/admin/assign/tasks', {
-      headers: this.header
-    })
-  }
+  // getManagerTaskList(): any {
+  //   return this.httpClient.get(BASEURL + '/admin/assign/tasks', {
+  //     headers: this.header
+  //   })
+  // }
 
 }

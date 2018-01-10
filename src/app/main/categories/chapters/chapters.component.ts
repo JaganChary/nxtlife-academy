@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BASEURL } from '../../shared/app.constant';
 import { ParamMap, ActivatedRoute } from '@angular/router';
-import { TraverseService } from '../../shared/traverse.service';
 import { CommonHttpService } from '../../shared/commonHttp.service';
+import { CategoriesService } from '../categories.service';
 
 @Component({
   selector: 'app-chapters',
@@ -15,18 +15,17 @@ export class ChaptersComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private traverseService: TraverseService,
-    private commonHttpService: CommonHttpService
+    private categoriesService: CategoriesService
   ) { }
 
   ngOnInit() {
 
-    if(this.traverseService.categoriesData == null || undefined) {
-      this.commonHttpService.getCategories()
+    if(this.categoriesService.categoriesData == null || undefined) {
+      this.categoriesService.getCategories()
       .subscribe((res: any) => {
-        this.traverseService.storeCategoriesData(res);
+        this.categoriesService.storeCategoriesData(res);
         const id = +this.route.snapshot.paramMap.get('id');
-        this.courseData = this.traverseService.getCourseDataById(id);
+        this.courseData = this.categoriesService.getCourseDataById(id);
         this.chapters = this.courseData.chapters;
 
       }, (error: any) => {
@@ -35,7 +34,7 @@ export class ChaptersComponent implements OnInit {
       })
     } else {
         const id = +this.route.snapshot.paramMap.get('id');
-        this.courseData = this.traverseService.getCourseDataById(id);
+        this.courseData = this.categoriesService.getCourseDataById(id);
         this.chapters = this.courseData.chapters;
     }
   }

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from '../shared/commonHttp.service';
-import { TraverseService } from '../shared/traverse.service';  
 import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import { CartValueService } from '../shared/cart-value.service';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BASEURL } from '../shared/app.constant';
+import { CategoriesService } from '../categories/categories.service';
 
 @Component({
   selector: 'app-buy',
@@ -18,23 +17,22 @@ export class BuyComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private commonHttpService: CommonHttpService,
+    private categoriesService: CategoriesService,
     private httpClient: HttpClient,
-    private traverseService: TraverseService,
     private cartValueService: CartValueService
   ) { }
 
   ngOnInit() {
     this.inputNumber = 1; 
 
-    if(this.traverseService.categoriesData == null || undefined) {
+    if(this.categoriesService.categoriesData == null || undefined) {
 
-      this.commonHttpService.getCategories()
+      this.categoriesService.getCategories()
       .subscribe((res: any) => {
-        this.traverseService.storeCategoriesData(res);
+        this.categoriesService.storeCategoriesData(res);
         console.log(res);
         const id = +this.route.snapshot.paramMap.get('id');
-        this.coursesData = this.traverseService.getCourseDataById(id);
+        this.coursesData = this.categoriesService.getCourseDataById(id);
         console.log(this.coursesData);
         this.courseId = this.coursesData.courseId;
        
@@ -45,7 +43,7 @@ export class BuyComponent implements OnInit {
     } else {
 
         const id = +this.route.snapshot.paramMap.get('id');
-        this.coursesData = this.traverseService.getCourseDataById(id);
+        this.coursesData = this.categoriesService.getCourseDataById(id);
         console.log(this.coursesData);
         this.courseId = this.coursesData.courseId;
       }

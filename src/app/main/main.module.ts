@@ -19,7 +19,6 @@ import { CartComponent } from './cart/cart.component';
 
 // Services
 import { CommonHttpService } from './shared/commonHttp.service';
-import { TraverseService } from './shared/traverse.service';
 import { CartValueService } from './shared/cart-value.service';
 
  
@@ -90,7 +89,7 @@ import { CartValueService } from './shared/cart-value.service';
             }
         ])
     ],
-     providers: [ CartValueService, TraverseService, CommonHttpService ]
+     providers: [ CartValueService, CommonHttpService ]
 })
 
 export class MainModule {

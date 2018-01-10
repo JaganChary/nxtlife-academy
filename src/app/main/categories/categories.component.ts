@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TraverseService } from '../shared/traverse.service';
 import { CategoriesService } from './categories.service';
 
 @Component({
@@ -13,7 +12,6 @@ export class CategoriesComponent implements OnInit {
   storeData: any;
 
   constructor(
-    private traverseService: TraverseService,
     private categoriesService: CategoriesService
   ) { }
   
@@ -21,7 +19,7 @@ export class CategoriesComponent implements OnInit {
       this.categoriesService.getCategories()
       .subscribe((res: any) => {
          this.categories = res;
-         this.storeData = this.traverseService.storeCategoriesData(res);
+         this.storeData = this.categoriesService.storeCategoriesData(res);
       }, (error: any) => {
  
       }); 

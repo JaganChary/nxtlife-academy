@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TraverseService } from '../shared/traverse.service';
 import { MyCoursesService } from './my-courses.service';
 
 
