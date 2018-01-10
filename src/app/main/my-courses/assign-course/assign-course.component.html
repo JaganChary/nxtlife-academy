@@ -20,6 +20,7 @@
           <h5 style="text-align:center">Assigned {{empORmanager}}</h5>
           <hr>
           <div class="card" style="padding: 1em;" *ngFor="let assignedStaff of Assigned; let i = index">
+            
             <!-- Add License -->
             <div class="card" style="padding: 10px;" *ngIf="empORmanager == 'Managers'">
               <span class="card-text">Add License
@@ -103,7 +104,7 @@
                 </span>
               </div>
 
-              <!-- Name and Deapartment -->
+              <!-- Name and Department -->
               <div class="card-text">
                 Name:
                 <span class="card-text text-muted">{{unassignedStaff.fullName}}</span>
