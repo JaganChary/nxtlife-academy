@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from '../../shared/commonHttp.service';
-import { TraverseService } from '../../shared/traverse.service';  
-import { Router, ParamMap, ActivatedRoute } from '@angular/router';import { CartValueService } from '../../shared/cart-value.service';
+import { CommonHttpService } from '../shared/commonHttp.service';
+import { TraverseService } from '../shared/traverse.service';  
+import { Router, ParamMap, ActivatedRoute } from '@angular/router';
+import { CartValueService } from '../shared/cart-value.service';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { BASEURL } from '../../shared/app.constant';
+import { BASEURL } from '../shared/app.constant';
 
 @Component({
   selector: 'app-buy',

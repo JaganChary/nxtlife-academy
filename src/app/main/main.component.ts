@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
-import { BASEURL } from '../shared/app.constant';
-import { CommonHttpService } from '../shared/commonHttp.service';
-import { TraverseService } from '../shared/traverse.service';
-import { CartValueService } from '../shared/cart-value.service';
+import { CartValueService } from './shared/cart-value.service';
+import { BASEURL } from './shared/app.constant';
 
 
 @Component({
@@ -19,8 +17,6 @@ export class MainComponent implements OnInit {
   constructor(
     private router: Router,
     private httpClient: HttpClient,
-    private commonHttpService: CommonHttpService,
-    private traverseService: TraverseService,
     private cartValueService: CartValueService
   ) { }
 

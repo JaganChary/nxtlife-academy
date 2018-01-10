@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { MyCoursesComponent } from './my-courses.component';
 import { AssignCourseComponent } from './assign-course/assign-course.component';
+import { CoursesDataService } from './courses-data.service';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -39,7 +40,8 @@ import { FormsModule } from '@angular/forms';
         ]
       }
     ])
-  ]
+  ],
+  providers: [CoursesDataService]
 
 })
 export class MyCoursesModule { }

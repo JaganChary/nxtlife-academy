@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BASEURL } from '../../../shared/app.constant';
+import { BASEURL } from '../../shared/app.constant';
 import { ParamMap, ActivatedRoute } from '@angular/router';
-import { TraverseService } from '../../../shared/traverse.service';
-import { CommonHttpService } from '../../../shared/commonHttp.service';
+import { TraverseService } from '../../shared/traverse.service';
+import { CommonHttpService } from '../../shared/commonHttp.service';
 
 @Component({
   selector: 'app-chapters',

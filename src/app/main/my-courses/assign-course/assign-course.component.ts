@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from '../../../shared/commonHttp.service';
+import { CommonHttpService } from '../../shared/commonHttp.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BASEURL } from '../../../shared/app.constant';
-import { CoursesDataService } from '../../../shared/courses-data.service';
+import { BASEURL } from '../../shared/app.constant';
+import { CoursesDataService } from '../courses-data.service';
 
 @Component({
   selector: 'app-assign-course',

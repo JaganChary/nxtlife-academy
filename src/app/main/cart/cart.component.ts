@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TraverseService } from '../../shared/traverse.service';
-import { CommonHttpService } from '../../shared/commonHttp.service';
-import { CartValueService } from '../../shared/cart-value.service';
+import { CommonHttpService } from '../shared/commonHttp.service';
+import { CartValueService } from '../shared/cart-value.service';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { BASEURL } from '../../shared/app.constant';
+import { BASEURL } from '../shared/app.constant';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +14,6 @@ export class CartComponent implements OnInit {
   inputNumbers: Array<any> = [];
   
   constructor(
-    private route: ActivatedRoute,
     private httpClient: HttpClient,
     private cartValueService: CartValueService
   ) { }

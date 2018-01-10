@@ -14,7 +14,7 @@ import {
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { EmailValidator } from '@angular/forms';
-import { BASEURL } from '../shared/app.constant';
+import { BASEURL } from '../main/shared/app.constant';
 
 @Component({
   selector: 'app-register',

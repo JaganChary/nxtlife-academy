@@ -16,6 +16,12 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BuyComponent } from './buy/buy.component';
 import { CartComponent } from './cart/cart.component';
+
+// Services
+import { CommonHttpService } from './shared/commonHttp.service';
+import { TraverseService } from './shared/traverse.service';
+import { CartValueService } from './shared/cart-value.service';
+
  
 @NgModule({
     declarations: [
@@ -83,7 +89,8 @@ import { CartComponent } from './cart/cart.component';
                 ]
             }
         ])
-    ]
+    ],
+     providers: [ CartValueService, TraverseService, CommonHttpService ]
 })
 
 export class MainModule {

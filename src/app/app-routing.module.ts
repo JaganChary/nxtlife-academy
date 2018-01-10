@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';  
 import { Router } from '@angular/router';
-import { AuthGuard } from './shared/auth-guard.service';
+import { AuthGuard } from './auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser/src/browser';
 
 import { LoginModule } from './login/login.module';

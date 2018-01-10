@@ -13,7 +13,7 @@ import {
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
 import { EmailValidator } from '@angular/forms';
-import { BASEURL } from '../shared/app.constant';
+import { BASEURL } from '../main/shared/app.constant';
 
 
 @Component({

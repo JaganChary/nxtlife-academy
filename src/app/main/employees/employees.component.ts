@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from '../../shared/commonHttp.service';
+import { CommonHttpService } from '../shared/commonHttp.service';
 import { log } from 'util';
 
 @Component({

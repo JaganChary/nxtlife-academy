@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ParamMap, ActivatedRoute } from '@angular/router';
-import { TraverseService } from '../../../shared/traverse.service';
-import { CommonHttpService } from '../../../shared/commonHttp.service';
-import { CartValueService } from '../../../shared/cart-value.service';
+import { TraverseService } from '../../shared/traverse.service';
+import { CommonHttpService } from '../../shared/commonHttp.service';
+import { CartValueService } from '../../shared/cart-value.service';
 
 @Component({
   selector: 'app-courses',

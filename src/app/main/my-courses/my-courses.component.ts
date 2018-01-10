@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from '../../shared/commonHttp.service';
+import { CommonHttpService } from '../shared/commonHttp.service';
 import { ActivatedRoute } from '@angular/router';
-import { TraverseService } from '../../shared/traverse.service';
+import { TraverseService } from '../shared/traverse.service';
 
 
 @Component({

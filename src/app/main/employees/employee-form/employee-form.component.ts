@@ -18,7 +18,7 @@ import {
 } from '@angular/forms';
 
 import { employee, EmployeeRole } from '../employeeRole.interface';
-import { BASEURL } from '../../../shared/app.constant';
+import { BASEURL } from '../../shared/app.constant';
 import { log } from 'util';
 
 @Component({
