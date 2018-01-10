@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { TraverseService } from '../../shared/traverse.service';
 import { CommonHttpService } from '../../shared/commonHttp.service';
 
@@ -14,8 +13,6 @@ export class CategoriesComponent implements OnInit {
   storeData: any;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     private traverseService: TraverseService,
     private commonHttpService: CommonHttpService
   ) { }

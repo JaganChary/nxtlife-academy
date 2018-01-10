@@ -10,17 +10,10 @@ import { TraverseService } from '../../shared/traverse.service';
     styleUrls: ['./my-courses.component.css']
 })
 export class MyCoursesComponent implements OnInit {
-    employees: any;
-    managers: any;
-    stringSubscriptionDate: string;
     courses: any;
-    courseId: any;
-    coursesData: any;
-
+    
     constructor(
         private commonHttpService: CommonHttpService,
-        private traverseService: TraverseService,
-        private route: ActivatedRoute
     ) { }
 
     ngOnInit() {

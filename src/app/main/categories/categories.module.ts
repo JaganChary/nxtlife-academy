@@ -39,7 +39,7 @@ import { NgModule } from '@angular/core';
                                 pathMatch: 'full'
                             },
                             {
-                                path: 'chapters',
+                                path: 'chapters/:id',
                                 component: ChaptersComponent,
                             }
                         ]

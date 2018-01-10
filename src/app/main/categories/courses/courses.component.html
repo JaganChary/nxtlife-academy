@@ -14,7 +14,7 @@
                   <img class="card-img-top" *ngIf="course.image" src="{{course.image}}">
                   <img class="card-img-top" *ngIf="!course.image" src="" alt="No Image Found">
                   <div class="card-block">
-                    <a routerLink="chapters"><h4 class="card-title">{{course.course}}</h4></a>
+                    <a routerLink="chapters/{{course.courseId}}"><h4 class="card-title">{{course.course}}</h4></a>
                     <p class="card-text text-muted" style="font-size: 0.8em;" *ngIf="course.description">{{course.description}}</p>
                     <p class="card-text text-muted" style="font-size: 0.8em;" *ngIf="!course.description">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <div class="card-text" style="color: black">Duration:
@@ -32,4 +32,4 @@
     </div>
   </div>
 </div>
-<router-outlet>zx</router-outlet>
+<router-outlet></router-outlet>

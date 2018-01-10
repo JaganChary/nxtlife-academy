@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ParamMap, ActivatedRoute } from '@angular/router';
+import { ParamMap, ActivatedRoute } from '@angular/router';
 import { TraverseService } from '../../../shared/traverse.service';
 import { CommonHttpService } from '../../../shared/commonHttp.service';
 import { CartValueService } from '../../../shared/cart-value.service';
@@ -15,7 +15,6 @@ export class CoursesComponent implements OnInit {
   categoryData: any;
   
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private traverseService: TraverseService,
     private commonHttpService: CommonHttpService,

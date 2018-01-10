@@ -17,7 +17,7 @@ import {
   EmailValidator
 } from '@angular/forms';
 
-import { employee, EmployeeRole } from '../../../shared/employeeRole.interface';
+import { employee, EmployeeRole } from '../employeeRole.interface';
 import { BASEURL } from '../../../shared/app.constant';
 import { log } from 'util';
 
