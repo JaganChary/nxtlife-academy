@@ -111,12 +111,12 @@ export class CommonHttpService {
 
   // All departments
 
-  getDepartments(): any {
+  // getDepartments(): any {
 
-    return this.httpClient.get(BASEURL + `/admin/departments`, {
-      headers: this.header
-    });
-  }
+  //   return this.httpClient.get(BASEURL + `/admin/departments`, {
+  //     headers: this.header
+  //   });
+  // }
 
   // All categories 
 

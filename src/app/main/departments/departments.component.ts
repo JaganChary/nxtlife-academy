@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from '../shared/commonHttp.service';
+import { DepartmentsService } from './departments.service';
 
 @Component({
   selector: 'app-departments',
@@ -10,11 +10,11 @@ export class DepartmentsComponent implements OnInit {
   departments: any;
 
   constructor(
-      private commonHttpService: CommonHttpService
+      private departmentsService: DepartmentsService
   ) { }
 
   ngOnInit() {  
-      this.commonHttpService.getDepartments()
+      this.departmentsService.getDepartments()
       .subscribe((res: any) => {
         this.departments = res.data;
         console.log('All Department: ',res);

@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { DepartmentComponent } from './department/department.component';
 import { CommonHttpService } from '../shared/commonHttp.service';
 import { Router, RouterModule } from '@angular/router';
-// import { HttpClientModule } from '@angular/common/http';
 import { DepartmentsComponent } from './departments.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DepartmentsService } from './departments.service';
 
 
 @NgModule({
@@ -42,6 +42,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       }
     ])
   ],
-  
+  providers: [DepartmentsService]
 })
 export class DepartmentsModule { }
