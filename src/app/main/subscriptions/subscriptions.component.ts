@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from '../shared/commonHttp.service';
+import { SubscriptionsService } from './subscriptions.service';
 
 @Component({
   selector: 'app-subscriptions',
@@ -11,13 +11,13 @@ export class SubscriptionsComponent {
   subscriptions: any
   
   constructor(
-      private commonHttpService: CommonHttpService
+      private subscriptionsService: SubscriptionsService
   ) { }
   
   ngOnInit() {
 
     // *********** Making call to subscription api  to get data *********** //
-    this.commonHttpService.getSubscriptions()
+    this.subscriptionsService.getSubscriptions()
     .subscribe((res: any) => {
      this.subscriptions = res;
      console.log(this.subscriptions);

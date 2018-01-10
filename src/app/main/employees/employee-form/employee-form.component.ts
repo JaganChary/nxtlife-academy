@@ -19,7 +19,7 @@ import {
 
 import { employee, EmployeeRole } from '../employeeRole.interface';
 import { BASEURL } from '../../shared/app.constant';
-import { log } from 'util';
+import { EmployeesService } from '../employees.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -37,7 +37,8 @@ export class EmployeeFormComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private employeesService: EmployeesService
   ) { }
 
   ngOnInit() {
@@ -45,23 +46,19 @@ export class EmployeeFormComponent implements OnInit {
   }
      
   initForm() {
-    let organizationId = localStorage.getItem('organizationId');
-    let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
+    // let organizationId = localStorage.getItem('organizationId');
+    // let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
     
     // Get request to retrieve all roles
-    this.httpClient.get(BASEURL + '/admin/role', {
-      headers: header
-    }).
-    subscribe((res: any) => {
+    this.employeesService.getRoles()
+    .subscribe((res: any) => {
       this.roleIds = res;
           }, (error) => {
       console.log(error);
     })
     
     // Get request to retrieve all departments
-    this.httpClient.get(BASEURL + `/admin/departments`, {
-      headers: header
-    })
+    this.employeesService.getDepartments()
     .subscribe((res: any) => {  
       this.departments = res.data;
     },(error: any) => {

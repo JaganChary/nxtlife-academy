@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { EmployeesService } from './employees.service';
 
 
 @NgModule({
@@ -42,6 +43,6 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
       }
     ])
   ],
-  
+  providers: [EmployeesService]
 })
 export class EmployeesModule { }

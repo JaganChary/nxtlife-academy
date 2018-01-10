@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from '../shared/commonHttp.service';
 import { ActivatedRoute } from '@angular/router';
 import { TraverseService } from '../shared/traverse.service';
+import { MyCoursesService } from './my-courses.service';
 
 
 @Component({
@@ -13,14 +13,14 @@ export class MyCoursesComponent implements OnInit {
     courses: any;
     
     constructor(
-        private commonHttpService: CommonHttpService,
+        private myCoursesService: MyCoursesService,
     ) { }
 
     ngOnInit() {
 
         // All Courses
 
-        this.commonHttpService.getMyCourses()
+        this.myCoursesService.getMyCourses()
             .subscribe((res: any) => {
                 this.courses = res.data;
                 console.log(res.data);

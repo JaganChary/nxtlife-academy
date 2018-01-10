@@ -7,6 +7,7 @@ import { MyCoursesComponent } from './my-courses.component';
 import { AssignCourseComponent } from './assign-course/assign-course.component';
 import { CoursesDataService } from './courses-data.service';
 import { FormsModule } from '@angular/forms';
+import { MyCoursesService } from './my-courses.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { FormsModule } from '@angular/forms';
       }
     ])
   ],
-  providers: [CoursesDataService]
+  providers: [CoursesDataService, MyCoursesService]
 
 })
 export class MyCoursesModule { }

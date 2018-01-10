@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from '../../shared/commonHttp.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASEURL } from '../../shared/app.constant';
 import { CoursesDataService } from '../courses-data.service';
+import { MyCoursesService } from '../my-courses.service';
 
 @Component({
   selector: 'app-assign-course',
@@ -23,7 +23,7 @@ export class AssignCourseComponent implements OnInit {
   empORmanager: String;                 // Variable that checks if it's a manager or Employee
   
   constructor(
-    private commonHttpService: CommonHttpService,
+    private myCoursesService: MyCoursesService,
     private coursesDataService: CoursesDataService,
     private route: ActivatedRoute,
     private httpClient: HttpClient
@@ -63,7 +63,7 @@ export class AssignCourseComponent implements OnInit {
   // Getting CourseID and respective courseData
 
   getMyCoursesFromServer(): any {
-    this.commonHttpService.getMyCourses()
+    this.myCoursesService.getMyCourses()
       .subscribe((res: any) => {
         this.coursesDataService.storeCoursesData(res);
         const id = +this.route.snapshot.paramMap.get('id');
@@ -100,7 +100,7 @@ export class AssignCourseComponent implements OnInit {
   // All Employees List
 
   getAllEmployeesList(): any {
-    this.commonHttpService.getEmployeesList()
+    this.myCoursesService.getEmployeesList()
       .subscribe((res: any) => {
         this.employees = res.data;
         this.allStaff = this.employees;
@@ -196,7 +196,7 @@ export class AssignCourseComponent implements OnInit {
     
     // All Managers List
 
-    this.commonHttpService.getManagersList()
+    this.myCoursesService.getManagersList()
       .subscribe((res: any) => {
         this.managers = res.data;
         this.allStaff = this.managers;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonHttpService } from '../shared/commonHttp.service';
-import { log } from 'util';
+import { EmployeesService } from './employees.service';
 
 @Component({
   selector: 'app-employees',
@@ -12,13 +12,13 @@ export class EmployeesComponent implements OnInit {
   employees: any;
     
   constructor(
-      private commonHttpService: CommonHttpService
+      private employeesService: EmployeesService
   ) { }
 
   ngOnInit() { 
   // Getting all Employees List
   
-    this.commonHttpService.getEmployees()
+    this.employeesService.getEmployees()
     .subscribe((res: any) => {
      this.employees = res.data;
      console.log(this.employees);

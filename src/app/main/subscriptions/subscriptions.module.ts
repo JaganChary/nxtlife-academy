@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SubscriptionsComponent } from './subscriptions.component'
 import { Router, RouterModule } from  '@angular/router';
+import { SubscriptionsService } from './subscriptions.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { Router, RouterModule } from  '@angular/router';
       },
       
     ])
-  ]
+  ],
+  providers: [SubscriptionsService]
   
 })
 export class SubscriptionsModule { }
