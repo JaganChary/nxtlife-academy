@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { CartValueService } from './shared/cart-value.service';
-import { BASEURL } from './shared/app.constant';
-
+import { MainService } from './main.service';
 
 @Component({
   selector: 'app-main',
@@ -16,7 +14,7 @@ export class MainComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private httpClient: HttpClient,
+    private mainService: MainService,
     private cartValueService: CartValueService
   ) { }
 
@@ -31,8 +29,7 @@ export class MainComponent implements OnInit {
 
   // Logout
   onLogOut() {
-    let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
-    this.httpClient.get(BASEURL + '/admin/logout', {headers: header})
+    this.mainService.onLogout()
     .subscribe((res: any) => {
      
       // Clearing Access Token
