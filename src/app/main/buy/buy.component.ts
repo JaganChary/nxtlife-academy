@@ -87,6 +87,7 @@ export class BuyComponent implements OnInit {
       courseSubscribed: arr
     }, { headers: header })
     .subscribe((res: any) => {
+      
       console.log(res);
     }, (err: any) => {
       console.log(err);

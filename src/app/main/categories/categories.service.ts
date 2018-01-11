@@ -45,7 +45,8 @@ export class CategoriesService {
   // All Catgeories
 
   getCategories(): any {
-    this.commonHttpService.get('/categories');
+    return this.commonHttpService.get('/categories');
+    
   }
 
 

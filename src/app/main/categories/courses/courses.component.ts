@@ -31,6 +31,7 @@ export class CoursesComponent implements OnInit {
         this.categoryData = this.categoriesService.getCategoryDataById(id);
         this.courses = this.categoryData.courses;
         console.log(this.courses);
+        
       }, (error: any) => {
         console.log(error);
       })

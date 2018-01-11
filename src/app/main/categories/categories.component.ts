@@ -8,7 +8,6 @@ import { CategoriesService } from './categories.service';
 })
 export class CategoriesComponent implements OnInit {
   categories: Array<any>;
-  id: number;
   storeData: any;
 
   constructor(
@@ -16,13 +15,15 @@ export class CategoriesComponent implements OnInit {
   ) { }
   
     ngOnInit() {
+
       this.categoriesService.getCategories()
       .subscribe((res: any) => {
+
          this.categories = res;
          this.storeData = this.categoriesService.storeCategoriesData(res);
-      }, (error: any) => {
- 
+      
+        }, (error: any) => {
+          console.log(error);
       }); 
   }
-  
 }

@@ -10,7 +10,6 @@ import { BrowserModule } from '@angular/platform-browser/src/browser';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
 import { MainModule } from './main/main.module';
-import { ManagerModule } from './manager/manager.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -32,11 +31,7 @@ export const routes: Routes = [
   {
     path: 'main',
     loadChildren: 'app/main/main.module#MainModule',
-  },
-  {
-    path: 'manager',
-    loadChildren: 'app/manager/manager.module#ManagerModule',
-  },
+  }
 ]
 
 @NgModule({

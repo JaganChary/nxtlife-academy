@@ -20,6 +20,7 @@ import { CartComponent } from './cart/cart.component';
 // Services
 import { CommonHttpService } from './shared/commonHttp.service';
 import { CartValueService } from './shared/cart-value.service';
+import { CategoriesService } from './categories/categories.service';
 
  
 @NgModule({
@@ -89,7 +90,7 @@ import { CartValueService } from './shared/cart-value.service';
             }
         ])
     ],
-     providers: [ CartValueService, CommonHttpService ]
+     providers: [ CartValueService, CommonHttpService, CategoriesService ]
 })
 
 export class MainModule {

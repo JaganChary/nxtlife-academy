@@ -1,5 +1,4 @@
 import { CategoriesComponent } from './categories.component';
-
 import { CoursesComponent } from './courses/courses.component';
 import { ChaptersComponent } from './chapters/chapters.component';
 
@@ -8,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgModule } from '@angular/core';
+
+import { CategoriesService } from './categories.service';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,7 @@ import { NgModule } from '@angular/core';
             }
         ])
     ],
-    providers: [CategoriesComponent]
+    providers: [CategoriesService]
 })
 
 export class CategoriesModule {
