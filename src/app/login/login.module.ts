@@ -4,6 +4,8 @@ import { LoginComponent } from "./login.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { HttpModule } from "@angular/http";
+import { LoginService } from './login.service';
+import { CommonHttpService } from '../main/shared/commonHttp.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { HttpModule } from "@angular/http";
       }
     ])
   ],
+  providers: [ LoginService, CommonHttpService ]
 })
 export class LoginModule{
   constructor(){

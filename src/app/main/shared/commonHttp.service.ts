@@ -8,7 +8,7 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class CommonHttpService {
-  
+
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -53,6 +53,15 @@ export class CommonHttpService {
     let headers = this.addHeaders(options);
 
     return this.httpClient.get(BASEURL + url, { headers: headers, observe: 'response' })
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  // Post for Login
+
+  postForLogin(url: string, body: any) {
+
+    return this.httpClient.post(BASEURL + url, body, { observe: 'response' })
       .map(this.extractData)
       .catch(this.handleError);
   }

@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Services
 import { AuthGuard } from './auth-guard.service';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { AuthGuard } from './auth-guard.service';
     HttpClientModule,
     AngularFontAwesomeModule
   ],
-  providers: [HttpClientModule, AuthGuard],
+  providers: [HttpClientModule, AuthGuard, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

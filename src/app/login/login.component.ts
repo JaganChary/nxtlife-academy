@@ -14,6 +14,7 @@ import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/htt
 import { Observable } from 'rxjs/observable';
 import { EmailValidator } from '@angular/forms';
 import { BASEURL } from '../main/shared/app.constant';
+import { LoginService } from './login.service';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private loginService: LoginService
   ) {
     if(!Storage) {
       this.router.navigate(['login']);
@@ -56,21 +58,12 @@ export class LoginComponent implements OnInit {
     }
     console.log(loginDetails);
 
-    this.httpClient.post(BASEURL + '/login', {
-      username: loginDetails.username,
-      password: loginDetails.password
-    }).subscribe(
-      (res: any) => {
-        // Saving Access_Token in Local Storage 
-        console.log(res);
-        var organizationId = res.data.userDetails.organizationId;
-        console.log('OrganizationId:' + organizationId);
+    this.loginService.onLogin(this.loginForm.value)
+    .subscribe((res: any) => {
         
-        localStorage.setItem('organizationId',res.data.userDetails.organizationId);
-        localStorage.setItem('access_token', res.data.access_token);
-        var Storage = res.data.access_token;
-        console.log(Storage);
-
+        this.loginService.loginStorage(res);
+        console.log(res);
+        
         this.router.navigate(['/main']);
       }, (error: any) => {
         console.log(error);
