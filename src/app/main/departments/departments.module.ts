@@ -26,7 +26,7 @@ import { DepartmentsService } from './departments.service';
           {
             path: '',
             component: DepartmentsComponent,
-            pathMatch: 'full'
+            pathMatch: 'full',
           },
           {
             path: 'department',
@@ -35,11 +35,11 @@ import { DepartmentsService } from './departments.service';
                 path: '',
                 component: DepartmentComponent
               }
-            ] 
+            ]
           }
-
         ]
-      }
+      },
+      
     ])
   ],
   providers: [DepartmentsService]
