@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
 import { BrowserModule } from '@angular/platform-browser';
 
 // Services
@@ -14,11 +13,14 @@ import { CategoriesService } from './categories/categories.service';
 import { MainService } from './main.service';
 import { LoginService } from '../login/login.service';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from '../auth-guard.service';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
     declarations: [
-        MainComponent
+        MainComponent,
+        CartComponent
     ],
     imports: [
         RouterModule,
@@ -31,18 +33,28 @@ import { FormsModule } from '@angular/forms';
                 children: [
                     {
                         path: 'admin',
-                        loadChildren: 'app/main/admin/admin.module#AdminModule'
+                        loadChildren: 'app/main/admin/admin.module#AdminModule',
+                        canLoad: [AuthGuard]
                     },
-                    // {
-                    //     path: '',
-                    //     redirectTo:'admin',
-                    //     loadChildren: 'app/main/admin/admin.module#AdminModule'
-                    // },
+                    {
+                        path: '',
+                        redirectTo: 'admin',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'manager',
+                        loadChildren: 'app/main/manager/manager.module#ManagerModule',
+
+                    },
+                    {
+                        path: 'cart',
+                        component: CartComponent
+                    }
                 ]
             }
         ])
     ],
-    providers: [CartValueService, CommonHttpService, CategoriesService, MainService, LoginService]
+    providers: [CartValueService, CommonHttpService, CategoriesService, MainService, LoginService, AuthGuard]
 })
 
 export class MainModule {

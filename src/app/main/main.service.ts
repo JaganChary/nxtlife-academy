@@ -7,8 +7,14 @@ export class MainService {
   constructor(
     private commonHttpService: CommonHttpService
   ) { }
-
-  onLogout(): any {
-    return this.commonHttpService.get('/admin/logout');
+  
+  logoutUser():any {
+    var user = localStorage.getItem('role');
+    if(user == 'admin') {
+      return this.commonHttpService.get('/admin/logout');
+      
+    } else if(user == 'manager') {
+      return this.commonHttpService.get('/manager/logout');
+    }
   }
 }

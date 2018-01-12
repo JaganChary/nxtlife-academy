@@ -16,19 +16,13 @@ export class MainComponent implements OnInit {
   constructor(
     private router: Router,
     private mainService: MainService,
-    private cartValueService: CartValueService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private cartValueService: CartValueService
   ) { 
 
-    var role = localStorage.getItem('role');
-    if (role == 'admin') {
-      this.router.navigate(['/main/admin']);
-      console.log('yaaaaaaaaaaaaaaaaaaaaaaaaaaaaay');
-    }
   }
 
   ngOnInit() {
-    
     this.cartData = this.cartValueService.cartObservable
       .subscribe((cartValue: number) => {
         
@@ -38,12 +32,11 @@ export class MainComponent implements OnInit {
 
         console.log(err);
       })
-
   }
 
   // Logout
   onLogOut() {
-    this.mainService.onLogout()
+    this.mainService.logoutUser()
       .subscribe((res: any) => {
 
         // Clearing Access Token
