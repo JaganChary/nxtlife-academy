@@ -26,7 +26,7 @@ export class LoginService {
     localStorage.setItem('id', res.data.userDetails.id);
     
     var roleInfo = res.data.userDetails.roleInfo[0];
-    console.log(roleInfo);  
+    // console.log(roleInfo);  
     // UserDetails --> RoleInfo
 
     localStorage.setItem('department', roleInfo.department);

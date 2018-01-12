@@ -56,13 +56,13 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    console.log(loginDetails);
+    // console.log(loginDetails);
 
     this.loginService.onLogin(this.loginForm.value)
     .subscribe((res: any) => {
         
         this.loginService.loginStorage(res);
-        console.log(res);
+        // console.log(res);
         
         this.router.navigate(['/main']);
       }, (error: any) => {
