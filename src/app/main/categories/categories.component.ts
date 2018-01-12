@@ -21,6 +21,7 @@ export class CategoriesComponent implements OnInit {
 
          this.categories = res;
          this.storeData = this.categoriesService.storeCategoriesData(res);
+         console.log(res);
       
         }, (error: any) => {
           console.log(error);
