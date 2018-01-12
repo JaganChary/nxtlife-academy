@@ -32,6 +32,10 @@ export class MainComponent implements OnInit {
 
         console.log(err);
       })
+
+      // Getting the role of the User 
+
+      var role = localStorage.getItem('role');
   }
 
   // Logout

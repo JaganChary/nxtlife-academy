@@ -17,24 +17,14 @@
             <li class="nav-item nav item-hover">
                 <a class="nav-link" routerLink="main/admin/contact">Contact Us</a>
             </li>
-            <li class="nav-item nav item-hover">
+            <li *ngIf="role == 'admin'" class="nav-item nav item-hover">
                 <a class="nav-link" routerLink="category">Categories</a>
             </li>
             <button type="button" class="style-btn text-right" (click)="onLogOut()">Logout</button>
-            <button type="button" class="style-btn style-btn1" routerLink="cart" (ngValue)="cartValue">Cart({{cartValue}})</button>
+            <button *ngIf="role == 'admin'" type="button" class="style-btn style-btn1" routerLink="cart" (ngValue)="cartValue">Cart({{cartValue}})</button>
         </ul>
     </div>
 </nav>
-
-<!-- Sidebar -->
-<!-- <div class="sidenav" style="margin-top: 3.2em;">
-    <a class="sidenav-items" routerLink="/main/admin/departments" style="font-size: 20px;">Departments</a>
-    <a class="sidenav-items" routerLink="employees" style="font-size: 20px;">Employees</a>
-    <a class="sidenav-items" routerLink="subscriptions" style="font-size: 20px;">Subscriptions</a>
-    <a class="sidenav-items" routerLink="category" style="font-size: 20px;">Categories</a>
-    <a class="sidenav-items" routerLink="my-courses" style="font-size: 20px;">My Courses</a>
-</div> -->
-
 
 <!-- Router Outlet -->
 <router-outlet></router-outlet>

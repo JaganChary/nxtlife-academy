@@ -82,7 +82,7 @@ import { CartValueService } from '../shared/cart-value.service';
       }
     ])
   ],
-  providers: [AdminService, CartValueService, CommonHttpService, CategoriesService]
+  providers: [AdminService, CommonHttpService, CategoriesService]
 
 })
 export class AdminModule { }
