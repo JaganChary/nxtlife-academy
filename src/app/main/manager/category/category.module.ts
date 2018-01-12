@@ -4,10 +4,12 @@ import { CategoryComponent } from './category.component';
 import { CategoryService } from './category.service';
 import { RouterModule } from '@angular/router';
 import { CourseComponent } from './course/course.component';
+import { ChaptersComponent } from './chapters/chapters.component';
+import { AssignComponent } from './assign/assign.component';
 
 @NgModule({
 
-  declarations: [CategoryComponent, CourseComponent],
+  declarations: [CategoryComponent, CourseComponent, ChaptersComponent, AssignComponent],
   imports: [
     CommonModule,
     RouterModule,
