@@ -17,7 +17,17 @@ import { CourseComponent } from './course/course.component';
         children: [
           {
             path: '',
-            component: CategoryComponent
+            component: CategoryComponent,
+            pathMatch: 'full'
+          },
+          {
+            path: ':id',
+            children: [
+              {
+                path: '',
+                component: CourseComponent,
+              }
+            ]
           }
         ]
       }

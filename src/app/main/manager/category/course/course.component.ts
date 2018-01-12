@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../category.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-course',
@@ -6,10 +8,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
+  courses: any;
+  categoryData: any;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private categoryService: CategoryService
+  ) { }
 
   ngOnInit() {
+
+    if (this.categoryService.categoriesData == null || this.categoryService.categoriesData == undefined) {
+      this.categoryService.getManagerTasks().
+        subscribe((res: any) => {
+          this.categoryService.storeCategoryData(res);
+          const id = +this.route.snapshot.paramMap.get('id');
+          this.categoryData = this.categoryService.getCategoryDataByID(id);
+          console.log(this.categoryData);
+          this.courses = this.categoryData.courses;
+          console.log(this.courses);
+
+        }, (err: any) => {
+          console.log(err);
+        })
+    } else {
+      const id = +this.route.snapshot.paramMap.get('id');
+      this.categoryData = this.categoryService.getCategoryDataByID(id);
+      console.log(this.categoryData);
+      this.courses = this.categoryData.courses;
+      console.log(this.courses);
+
+    }
   }
 
 }

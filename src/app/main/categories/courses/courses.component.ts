@@ -13,8 +13,6 @@ import { CategoriesService } from '../categories.service';
 export class CoursesComponent implements OnInit {
   courses: any;
   categoryData: any;
-  cartValue: number = 2;
-  cartData: any;
   
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +23,7 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit() {
       
-    if(this.categoriesService.categoriesData == null || undefined) {
+    if(this.categoriesService.categoriesData == null || this.categoriesService.categoriesData == undefined) {
 
       this.categoriesService.getCategories()
       .subscribe((res: any) => {
