@@ -17,9 +17,14 @@ import { SubscriptionsService } from './subscriptions.service';
     RouterModule.forChild([
       {
         path: '',
-        component: SubscriptionsComponent,
+        children: [
+          {
+            path: '',
+            component: SubscriptionsComponent
+          }
+        ]
         
-      },
+      }
       
     ])
   ],
