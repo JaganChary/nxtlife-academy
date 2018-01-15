@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../category.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-course',
@@ -13,6 +13,7 @@ export class CourseComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private categoryService: CategoryService
   ) { }
 
@@ -24,7 +25,7 @@ export class CourseComponent implements OnInit {
           this.categoryService.storeCategoryData(res);
           const id = +this.route.snapshot.paramMap.get('id');
           this.categoryData = this.categoryService.getCategoryDataByID(id);
-          console.log(this.categoryData);
+          // console.log(this.categoryData);
           this.courses = this.categoryData.courses;
           console.log(this.courses);
 
@@ -34,11 +35,10 @@ export class CourseComponent implements OnInit {
     } else {
       const id = +this.route.snapshot.paramMap.get('id');
       this.categoryData = this.categoryService.getCategoryDataByID(id);
-      console.log(this.categoryData);
+      // console.log(this.categoryData);
       this.courses = this.categoryData.courses;
       console.log(this.courses);
 
     }
   }
-
 }

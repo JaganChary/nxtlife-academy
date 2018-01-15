@@ -6,13 +6,16 @@ import { RouterModule } from '@angular/router';
 import { CourseComponent } from './course/course.component';
 import { ChaptersComponent } from './chapters/chapters.component';
 import { AssignComponent } from './assign/assign.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { AssignService } from './assign/assign.service';
 
 @NgModule({
 
   declarations: [CategoryComponent, CourseComponent, ChaptersComponent, AssignComponent],
   imports: [
     CommonModule,
-    RouterModule,
+    // RouterModule,
+    AngularFontAwesomeModule,
     RouterModule.forChild([
       {
         path: '',
@@ -28,9 +31,21 @@ import { AssignComponent } from './assign/assign.component';
               {
                 path: '',
                 component: CourseComponent,
+                pathMatch: 'full'
+              },
+              {
+                path: 'assign',
+                component: AssignComponent
+              },
+              {
+                path: 'chapters',
+                component: ChaptersComponent
               }
             ]
-          }
+
+          },
+
+
         ]
       }
     ])
