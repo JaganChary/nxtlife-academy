@@ -20,7 +20,7 @@ export class ChaptersComponent implements OnInit {
 
   ngOnInit() {
 
-    if(this.categoriesService.categoriesData == null || undefined) {
+    if(this.categoriesService.categoriesData == null || this.categoriesService.categoriesData == undefined) {
       this.categoriesService.getCategories()
       .subscribe((res: any) => {
         this.categoriesService.storeCategoriesData(res);
