@@ -1,3 +1,43 @@
-<p>
-  chapters works!
-</p>
+<!-- <div class="container">
+  <h2>Chapters</h2>
+  <hr style="width: 16em; height: 2px">
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9 bg-color">
+      <div id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="card" *ngFor="let chapter of chapters">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{chapter.chapterId}}" aria-expanded="true" aria-controls="collapseOne">
+            <span class="bold">Chapter {{chapter.chapterId}}
+              <fa name="arrow-down" class="text-muted" style="float: right; margin: 1em 1.2em;" size="2x"></fa>
+            </span>
+            <p class="text-muted" style="font-weight: bold;">{{chapter.chapter}}</p>
+          </a>
+          <div id="collapse{{chapter.chapterId}}" class="collapse hide" role="tabpanel" aria-labelledby="headingOne">
+            <hr style="background-color: lightgray;">
+            <a href="">
+              <div class="card-block" *ngFor="let topic of chapter.topics">
+                <fa name="arrow-right" class="text-muted" style="float: left; padding-right: 0.8em;"></fa>
+                <span class="text-muted" style="font-size: 1.1em; font-weight: light">{{topic.topic}}</span>
+                <span class="text-muted" *ngIf="topic.duration" style="float:right;">{{topic.duration}}</span>
+                <span class="text-muted" *ngIf="!topic.duration" style="float:right;">N/A</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-9" style="margin-top: 5em;">
+      Chapters Work
+    </div>
+  </div>
+</div>
