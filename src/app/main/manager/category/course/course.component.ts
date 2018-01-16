@@ -19,26 +19,38 @@ export class CourseComponent implements OnInit {
 
   ngOnInit() {
 
-    if (this.categoryService.categoriesData == null || this.categoryService.categoriesData == undefined) {
-      this.categoryService.getManagerTasks().
-        subscribe((res: any) => {
-          this.categoryService.storeCategoryData(res.data);
-          const id = +this.route.snapshot.paramMap.get('id');
-          this.categoryData = this.categoryService.getCategoryDataByID(id);
-          console.log(this.categoryData);
-          this.courses = this.categoryData.courses;
-          console.log(this.courses);
+    if (!this.categoryService.categoriesData) {
+      this.fromServer();
 
-        }, (err: any) => {
-          console.log(err);
-        })
     } else {
-      const id = +this.route.snapshot.paramMap.get('id');
-      this.categoryData = this.categoryService.getCategoryDataByID(id);
-      console.log(this.categoryData);
-      this.courses = this.categoryData.courses;
-      console.log(this.courses);
-
+      this.directly();
     }
+  }
+
+  // From Server 
+
+  fromServer(): any {
+    this.categoryService.getManagerTasks().
+      subscribe((res: any) => {
+        this.categoryService.storeCategoryData(res.data);
+        const id = +this.route.snapshot.paramMap.get('id');
+        this.categoryData = this.categoryService.getCategoryDataByID(id);
+        // console.log(this.categoryData);
+        this.courses = this.categoryData.courses;
+        // console.log(this.courses);
+
+      }, (err: any) => {
+        console.log(err);
+      })
+  }
+
+  // Directly
+
+  directly(): any {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.categoryData = this.categoryService.getCategoryDataByID(id);
+    // console.log(this.categoryData);
+    this.courses = this.categoryData.courses;
+    // console.log(this.courses);
   }
 }
