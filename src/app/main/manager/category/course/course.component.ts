@@ -22,10 +22,10 @@ export class CourseComponent implements OnInit {
     if (this.categoryService.categoriesData == null || this.categoryService.categoriesData == undefined) {
       this.categoryService.getManagerTasks().
         subscribe((res: any) => {
-          this.categoryService.storeCategoryData(res);
+          this.categoryService.storeCategoryData(res.data);
           const id = +this.route.snapshot.paramMap.get('id');
           this.categoryData = this.categoryService.getCategoryDataByID(id);
-          // console.log(this.categoryData);
+          console.log(this.categoryData);
           this.courses = this.categoryData.courses;
           console.log(this.courses);
 
@@ -35,7 +35,7 @@ export class CourseComponent implements OnInit {
     } else {
       const id = +this.route.snapshot.paramMap.get('id');
       this.categoryData = this.categoryService.getCategoryDataByID(id);
-      // console.log(this.categoryData);
+      console.log(this.categoryData);
       this.courses = this.categoryData.courses;
       console.log(this.courses);
 
