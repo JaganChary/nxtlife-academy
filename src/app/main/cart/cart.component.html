@@ -37,13 +37,13 @@
             </div>
           </div>
         </div>
-        <button type="button" class="style-btn" *ngIf="cartData.length !== 0" (click)="btnClick()" routerLink="../category">Buy Now</button>
+        <button type="button" class="style-btn" (click)="btnClick()" *ngIf="cartData.length !== 0">Buy Now</button>
       </div>
       <div class="card" *ngIf="cartData && cartData.length == 0">
         <h2 class="card-text">Your Shopping cart is empty</h2>
       </div>
 
-      <button type="button" class="style-btn" *ngIf="cartData.length == 0" routerLink="../category">Go to Categories</button>
+      <button type="button" class="style-btn" *ngIf="cartData.length == 0" routerLink="../../category">Go to Categories</button>
     </div>
 
   </div>

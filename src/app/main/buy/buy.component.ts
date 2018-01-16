@@ -30,10 +30,10 @@ export class BuyComponent implements OnInit {
       this.categoriesService.getCategories()
       .subscribe((res: any) => {
         this.categoriesService.storeCategoriesData(res);
-        console.log(res);
+        // console.log(res);
         const id = +this.route.snapshot.paramMap.get('id');
         this.coursesData = this.categoriesService.getCourseDataById(id);
-        console.log(this.coursesData);
+        // console.log(this.coursesData);
         this.courseId = this.coursesData.courseId;
        
       }, (error: any) => {
@@ -44,7 +44,7 @@ export class BuyComponent implements OnInit {
 
         const id = +this.route.snapshot.paramMap.get('id');
         this.coursesData = this.categoriesService.getCourseDataById(id);
-        console.log(this.coursesData);
+        // console.log(this.coursesData);
         this.courseId = this.coursesData.courseId;
       }
   }

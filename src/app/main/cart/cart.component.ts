@@ -12,7 +12,9 @@ import { BASEURL } from '../shared/app.constant';
 export class CartComponent implements OnInit {
   cartData: any;
   inputNumbers: Array<any> = [];
-  
+  cartValue: Number = 0;
+  cartDatas: any;
+
   constructor(
     private httpClient: HttpClient,
     private cartValueService: CartValueService
@@ -20,36 +22,48 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
 
-    this.cartData = this.cartValueService.getCartData();
-    
-    for(let i = 0; i < this.cartData.length; i++) {
-      
-    let initialCartItems = this.inputNumbers.push(1);
-    
+    if (this.cartData) {
+      this.cartDatas = this.cartValueService.cartObservable
+        .subscribe((cartValue: number) => {
+          
+          this.cartValue = cartValue;
+          console.log('Cart Value: ', this.cartValue);
+        }, (err: any) => {
+
+          console.log(err);
+        })
     }
-      
+
+
+    this.cartData = this.cartValueService.getCartData();
+
+    for (let i = 0; i < this.cartData.length; i++) {
+
+      let initialCartItems = this.inputNumbers.push(1);
+    }
+
     console.log(this.inputNumbers);
   }
 
   // Check used to keep the value 1 when initializing
   modelChanged(i) {
 
-    if((this.inputNumbers[i] < 1) || (this.inputNumbers == null || undefined)) {
+    if ((this.inputNumbers[i] < 1) || (this.inputNumbers == null || undefined)) {
       this.inputNumbers[i] = 1;
-    } 
-    console.log(this.inputNumbers); 
+    }
+    console.log(this.inputNumbers);
   }
 
   // Add button to increase license number
   btnAdd(i) {
     this.inputNumbers[i] = this.inputNumbers[i] + 1;
   }
-  
+
   // Add button to decrease license number
   btnSubstract(i) {
     this.inputNumbers[i] = this.inputNumbers[i] - 1;
-    if(this.inputNumbers[i] < 1) {
-      this.inputNumbers[i] = 1; 
+    if (this.inputNumbers[i] < 1) {
+      this.inputNumbers[i] = 1;
     }
   }
 
@@ -57,9 +71,8 @@ export class CartComponent implements OnInit {
   btnRemove(course: any) {
     this.cartValueService.removeCartData(course);
   }
-  
-  // Button Click
 
+  // Button Click to Add Item to Cart
   btnClick() {
     var arr = [];
 
@@ -67,22 +80,22 @@ export class CartComponent implements OnInit {
       arr.push({
         courseId: this.cartData[i].courseId,
         license: this.inputNumbers[i]
-      });      
+      });
     }
     console.log(arr);
 
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
-  
+
     // Post Request Sent on BtnClick
-  
+
     this.httpClient.post(BASEURL + '/admin/subscription', {
       courseSubscribed: arr
     }, { headers: header })
-    .subscribe((res: any) => {
-      console.log(res);
-    }, (err: any) => {
-      console.log(err);
-    })
+      .subscribe((res: any) => {
+        console.log(res);
+      }, (err: any) => {
+        console.log(err);
+      })
   }
 
 }
