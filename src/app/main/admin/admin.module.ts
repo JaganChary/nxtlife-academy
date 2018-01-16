@@ -30,7 +30,6 @@ import { CartValueService } from '../shared/cart-value.service';
   ],
   imports: [
     CommonModule,
-    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

@@ -15,7 +15,7 @@ export class CartValueService {
   addCartData(course: any) {
 
     this.cartData.push(course);
-    console.log(this.cartData);
+    // console.log(this.cartData);
     
     this.currentCartValue.next(this.cartData.length);
   }
@@ -23,7 +23,7 @@ export class CartValueService {
   // *******  Retrieving CartData ******* //
   getCartData() {
     
-    console.log(this.cartData);
+    // console.log(this.cartData);
     return this.cartData;
   }
 

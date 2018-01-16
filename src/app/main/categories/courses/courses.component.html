@@ -24,7 +24,7 @@
                   </div>
                   <div style="padding: none;">
                       <span><button class="style-btn" style="padding: 0.5em 0.8em" (click)="btnAddCart(course)">Add to Cart</button></span>
-                      <span><button class="style-btn" routerLink="../../../../../buy/{{course.courseId}}" style="float:right">Buy Now</button></span>
+                      <span><button class="style-btn" (click)="buyNow(course)" routerLink="../../../../../../cart" style="float:right">Buy Now</button></span>
                   </div>  
                 </div>
           </div>
@@ -32,4 +32,3 @@
     </div>
   </div>
 </div>
-<router-outlet></router-outlet>

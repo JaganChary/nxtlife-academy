@@ -46,8 +46,6 @@ export class EmployeeFormComponent implements OnInit {
   }
      
   initForm() {
-    // let organizationId = localStorage.getItem('organizationId');
-    // let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
     
     // Get request to retrieve all roles
     this.employeesService.getRoles()

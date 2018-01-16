@@ -52,7 +52,7 @@ export class CommonHttpService {
 
     let headers = this.addHeaders(options);
 
-    return this.httpClient.get(BASEURL + url, { headers: headers, observe: 'response' })
+    return this.httpClient.post(BASEURL + url, body, { headers: headers, observe: 'response' })
       .map(this.extractData)
       .catch(this.handleError);
   }
