@@ -7,21 +7,34 @@
       <h2>Assign Course</h2>
       <hr>
       <div class="card" style="padding: 2em;">
-        <h3>Employees</h3>
+        <h3 class="card-title text-muted">Employees</h3>
         <div class="row">
 
           <!-- Assigned Employees -->
-
           <div class="col-md-6">
             <h5>Assigned</h5>
             <div class="row">
               <div class="col-md-12" style="margin-top: 1em;">
-                <div class="card card-hover">
+                <div class="card card-hover" *ngFor="let assignedEmployees of assigned">
                   <div class="card-text">
                     Name:
+                    <span class="text-muted">{{assignedEmployees.fullName}}</span>
                   </div>
                   <div class="card-text">
                     Employee Id:
+                    <span class="text-muted">{{assignedEmployees.id}}</span>
+                  </div>
+                </div>
+                <div *ngIf="!assigned.length">
+                  <div class="card card-hover">
+                    <div class="card-text">
+                      Name:
+                      <span class="text-muted">N/A</span>
+                    </div>
+                    <div class="card-text">
+                      Employee Id:
+                      <span class="text-muted">N/A</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -33,13 +46,30 @@
           <div class="col-md-6">
             <h5>Unassigned</h5>
             <div class="row">
-              <div class="col-md-12" style="margin-top: 1em;">
-                <div class="card card-hover">
+              <div class="col-md-12" style="margin-top: 1em; float: right">
+                <div class="card card-hover" *ngFor="let unassignedEmployees of unassigned;">
                   <div class="card-text">
                     Name:
+                    <span class="text-muted">{{unassignedEmployees.fullName}}</span>
+                    <span>
+                      <input type="checkbox" [(ngModel)]="unassignedEmployees.checkValue" style="float: right;height: 20px; width: 20px;">
+                    </span>
                   </div>
                   <div class="card-text">
                     Employee Id:
+                    <span class="text-muted">{{unassignedEmployees.id}}</span>
+                  </div>
+                </div>
+                <div *ngIf="!unassigned.length">
+                  <div class="card card-hover">
+                    <div class="card-text">
+                      Name:
+                      <span class="text-muted">N/A</span>
+                    </div>
+                    <div class="card-text">
+                      Employee Id:
+                      <span class="text-muted">N/A</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -47,5 +77,10 @@
           </div>
         </div>
       </div>
+      <br>
+      <!-- Button To Assign Course -->
+      <button *ngIf="unassigned.length" class="style-btn" (click)="btnClick()">Assign</button>
     </div>
+
   </div>
+</div>

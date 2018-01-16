@@ -56,8 +56,8 @@ hr {
 
 .card-title {
     text-align: center;
-    font-size: 1.2em;
-    text-decoration: underline !important;
+    font-size: 1.6em;
+    /* text-decoration: underline !important; */
     color: black !important;
 }
 
@@ -75,13 +75,14 @@ p {
 }
 
 .style-btn {
-    padding: 0.5em 1.6em;
+    padding: 0.8em 2em;
     background-color: darkslategray;
     border-radius: 5px;
     color: gray;
     border: none;
     border-color: none;
-    margin-left: 3em;
+    float: right;
+    /* margin-left: 3em; */
 
 }
 
