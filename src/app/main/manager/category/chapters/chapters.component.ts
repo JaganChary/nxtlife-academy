@@ -17,36 +17,41 @@ export class ChaptersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // if (this.categoryService.categoriesData == null || this.categoryService.categoriesData == undefined) {
-    //   this.getDataFromServer();
+    if (this.categoryService.categoriesData == null || this.categoryService.categoriesData == undefined) {
+      this.getDataFromServer();
 
-    // } else {
-    //   this.getDataDirectly();
-    // }
+    } else {
+      this.getDataDirectly();
+    }
 
   }
 
   // Retreive data from server
 
-  // getDataFromServer(): any {
-  //   this.categoryService.getManagerTasks()
-  //     .subscribe((res: any) => {
-  //       this.categoryService.storeCategoryData(res);
-  //       const id = +this.route.snapshot.paramMap.get('id');
-  //       this.courses = this.categoryService.getCourseDataByID(id);
-  //       this.chapters = this.courses.chapters;
-  //       console.log(this.chapters);
-  //     }, (err: any) => {
-  //       console.log(err);
-  //     });
-  // }
+  getDataFromServer(): any {
+    this.categoryService.getManagerTasks()
+      .subscribe((res: any) => {
+        this.categoryService.storeCategoryData(res.data);
+        const id = +this.route.snapshot.paramMap.get('id');
+        this.courses = this.categoryService.getCourseDataByID(id);
+        console.log(this.courses);
+        this.chapters = this.courses.chapters;
+        console.log(this.chapters);
+        
+      }, (err: any) => {
+        console.log(err);
+      });
+  }
 
   // Retrieve data directly
 
-  // getDataDirectly(): any {
-  //   const id = +this.route.snapshot.paramMap.get('id');
-  //   this.courses = this.categoryService.getCourseDataByID(id);
-  //   this.chapters = this.courses.chapters;
-  // }
+  getDataDirectly(): any {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.courses = this.categoryService.getCourseDataByID(id);
+    console.log(this.courses);
+
+    this.chapters = this.courses.chapters;
+    console.log(this.chapters);
+  }
 
 }
