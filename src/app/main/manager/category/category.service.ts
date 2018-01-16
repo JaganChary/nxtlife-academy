@@ -27,8 +27,8 @@ export class CategoryService {
         this.coursesData[course.courseId] = course;
       })
     })
-    console.log(this.categoriesData[1].courses);
-    console.log(this.coursesData);
+    // console.log(this.categoriesData[1].courses);
+    // console.log(this.coursesData);
   }
 
   // Retrieving categoryData by Id
