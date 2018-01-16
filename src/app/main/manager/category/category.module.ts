@@ -38,11 +38,10 @@ import { AssignService } from './assign/assign.service';
                 component: AssignComponent
               },
               {
-                path: 'chapters',
+                path: 'chapters/:id',
                 component: ChaptersComponent
               }
             ]
-
           },
 
 
@@ -50,6 +49,6 @@ import { AssignService } from './assign/assign.service';
       }
     ])
   ],
-  providers: [CategoryService]
+  providers: [CategoryService, AssignService ]
 })
 export class CategoryModule { }

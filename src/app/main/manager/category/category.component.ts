@@ -17,10 +17,11 @@ export class CategoryComponent implements OnInit {
 
     this.categoryService.getManagerTasks()
     .subscribe((res: any) => {
-      this.categories = res;
-      this.storeData = this.categoryService.storeCategoryData(res);
-
-      console.log(res);
+      this.categories = res.data;
+      console.log(this.categories);
+      this.storeData = this.categoryService.storeCategoryData(res.data);
+      console.log(this.storeData);
+      
 
     }, (err: any) => {
       console.log(err);
