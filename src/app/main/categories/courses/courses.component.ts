@@ -49,11 +49,9 @@ export class CoursesComponent implements OnInit {
 
   btnAddCart(course: any) {
     this.cartValueService.addCartData(course);
-    
   }
 
   buyNow(course: any) {
-    
-    
+    this.cartValueService.addCartData(course);
   }
 }

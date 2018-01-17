@@ -15,6 +15,7 @@ import { LoginService } from '../login/login.service';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from '../auth-guard.service';
 import { CartComponent } from './cart/cart.component';
+import { CartService } from './cart/cart.service';
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import { CartComponent } from './cart/cart.component';
             }
         ])
     ],
-    providers: [CartValueService, CommonHttpService, CategoriesService, MainService, LoginService, AuthGuard]
+    providers: [CartValueService, CommonHttpService, CategoriesService, MainService, LoginService, AuthGuard, CartService]
 })
 
 export class MainModule {

@@ -9,6 +9,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgModule } from '@angular/core';
 
 import { CategoriesService } from './categories.service';
+import { CartService } from '../cart/cart.service';
 
 @NgModule({
     declarations: [

@@ -12,7 +12,6 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { HomeComponent } from '../home/home.component';
 import { ContactComponent } from '../contact/contact.component';
-import { BuyComponent } from '../buy/buy.component';
 
 // Services
 
@@ -25,8 +24,7 @@ import { CartValueService } from '../shared/cart-value.service';
   declarations: [
     AdminComponent,
     HomeComponent,
-    ContactComponent,
-    BuyComponent
+    ContactComponent
   ],
   imports: [
     CommonModule,
@@ -71,12 +69,7 @@ import { CartValueService } from '../shared/cart-value.service';
           {
             path: 'my-courses',
             loadChildren: 'app/main/my-courses/my-courses.module#MyCoursesModule'
-          },
-          {
-            path: 'buy/:id',
-            component: BuyComponent,
-          },
-          
+          }
         ]
       }
     ])
