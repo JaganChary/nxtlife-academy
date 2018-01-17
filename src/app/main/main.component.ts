@@ -4,6 +4,7 @@ import { CartValueService } from './shared/cart-value.service';
 import { MainService } from './main.service';
 import { LoginService } from '../login/login.service';
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -19,14 +20,14 @@ export class MainComponent implements OnInit {
     private mainService: MainService,
     private loginService: LoginService,
     private cartValueService: CartValueService
-  ) { 
+  ) {
 
   }
 
   ngOnInit() {
     this.cartData = this.cartValueService.cartObservable
       .subscribe((cartValue: number) => {
-        
+
         this.cartValue = cartValue;
         console.log('Cart Value: ', this.cartValue);
       }, (err: any) => {
@@ -34,10 +35,10 @@ export class MainComponent implements OnInit {
         console.log(err);
       })
 
-      // Getting the role of the User 
+    // Getting the role of the User 
 
-      this.role = localStorage.getItem('role');
-      
+    this.role = localStorage.getItem('role');
+
   }
 
   // Logout
@@ -48,6 +49,7 @@ export class MainComponent implements OnInit {
         // Clearing Access Token
         localStorage.clear();
         console.log('Access Token cleared and logged Out');
+        window.location.reload();
         this.router.navigate(['login']);
 
       }, (error: any) => {

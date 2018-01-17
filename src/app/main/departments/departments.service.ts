@@ -11,4 +11,8 @@ export class DepartmentsService {
   getDepartments(): any {
     return this.commonHttpService.get('/admin/departments');
   }
+
+  addDepartment(data): any {
+    return this.commonHttpService.post('/admin/departments', data);
+  }
 }

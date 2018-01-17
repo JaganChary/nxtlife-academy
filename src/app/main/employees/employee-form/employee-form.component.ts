@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/observable';
 import {
@@ -37,7 +36,6 @@ export class EmployeeFormComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient,
     private employeesService: EmployeesService
   ) { }
 
@@ -133,16 +131,13 @@ export class EmployeeFormComponent implements OnInit {
     employee.employeeRoles.forEach((e:any)=>{
       e.departmentId = e.departmentId.departmentId; 
     });
-      
-    // Access Token Authorization
-    let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
-
+    
     // Retrieving organizationId
     let organizationId = localStorage.getItem('organizationId');
-    console.log('OrganizationId: ',organizationId);
+    
     // Posting Employee Details
     
-    this.httpClient.post(BASEURL + '/admin/employee',  {
+    this.employeesService.addEmployee({
       fullName: employee.fullName,
       gender: employee.gender,
       email: employee.email,
@@ -150,10 +145,10 @@ export class EmployeeFormComponent implements OnInit {
       joiningDate: employee.joiningDate,
       employeeRoles: employee.employeeRoles,
       organizationId
-    }, {headers: header}).
+    }).
       subscribe((res: any) => {
 
-        // console.log('Response: ' + res);
+        console.log('Request Sent');
         
         // Routing to HomePage
         this.router.navigate(['main/admin/home']);

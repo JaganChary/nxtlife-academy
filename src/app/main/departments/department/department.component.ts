@@ -15,6 +15,7 @@ import {
 } from '@angular/forms';
 
 import { BASEURL } from '../../shared/app.constant';
+import { DepartmentsService } from '../departments.service';
 
 @Component({
   selector: 'app-department',
@@ -27,7 +28,8 @@ export class DepartmentComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private departmentsService: DepartmentsService
   ) { }
 
   ngOnInit() {
@@ -39,53 +41,44 @@ export class DepartmentComponent implements OnInit {
       department: ['', Validators.required]
     });
   }
-  
+
   // Button to Add Department 
 
   btnClick() {
     console.log('Button Clicked');
     var departments = this.departmentForm.value;
     if (this.departmentForm.invalid) {
-      return; 
+      return;
     }
     console.log(departments);
-    // Access Token  Authorization
-    let header = new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem('access_token'));
-    
+
     // Retrieving organization Id
-
     let organizationId = localStorage.getItem('organizationId');
-    
-    
-    // Posting Department Details
-    
-    this.httpClient.post(BASEURL + '/admin/departments', [{
-    department: departments.department,
-    organizationId
-  }], {headers: header}).
-    subscribe((res: any) => {
 
-      // Printing Response 
+    var arr =
+      // Posting Department Details
 
-      console.log('Department Detail: ' + res);
-      // console.log('Stringified response: ' + JSON.stringify(res));
+      this.departmentsService.addDepartment([{
+        department: departments.department,
+        organizationId
+      }]).
+        subscribe((res: any) => {
 
-      // Saving department Details to localStorage
+          console.log('Request Sent');
 
-      localStorage.setItem('departmentDetails', JSON.stringify(res));
+          // Saving department Details to localStorage
+          localStorage.setItem('departmentDetails', JSON.stringify(res));
 
-      // Getting the Array-Object Department Details and printing the departmentId which we obtain from it 
+          // Getting the Array-Object Department Details and printing the departmentId which we obtain from it 
+          let departmentDetails = JSON.parse(localStorage.getItem('departmentDetails'));
+          console.log('DepartmentId: ' + departmentDetails[0].departmentId);
 
-      let departmentDetails = JSON.parse(localStorage.getItem('departmentDetails'));
-      console.log('DepartmentId: ' + departmentDetails[0].departmentId);
-      
-       // Route to home Page
-       this.router.navigate(['main/admin/home']);
+          // Route to home Page
+          this.router.navigate(['main/admin/home']);
 
-     
-    },
-    (error: any) => {
-      console.log(error); 
-    });
+        },
+        (error: any) => {
+          console.log(error);
+        });
   }
 }

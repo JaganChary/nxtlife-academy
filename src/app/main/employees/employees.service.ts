@@ -19,4 +19,8 @@ export class EmployeesService {
   getDepartments(): any {
     return this.commonHttpService.get('/admin/departments');
   }
+
+  addEmployee(data): any {
+    return this.commonHttpService.post('/admin/employee', data);
+  }
 }
