@@ -56,6 +56,7 @@ export class DepartmentComponent implements OnInit {
 
     let organizationId = localStorage.getItem('organizationId');
     
+    
     // Posting Department Details
     
     this.httpClient.post(BASEURL + '/admin/departments', [{
@@ -64,12 +65,9 @@ export class DepartmentComponent implements OnInit {
   }], {headers: header}).
     subscribe((res: any) => {
 
-      // Route to home Page
-      this.router.navigate(['main/home']);
-      
       // Printing Response 
 
-      // console.log('Department Detail: ' + res);
+      console.log('Department Detail: ' + res);
       // console.log('Stringified response: ' + JSON.stringify(res));
 
       // Saving department Details to localStorage
@@ -80,6 +78,11 @@ export class DepartmentComponent implements OnInit {
 
       let departmentDetails = JSON.parse(localStorage.getItem('departmentDetails'));
       console.log('DepartmentId: ' + departmentDetails[0].departmentId);
+      
+       // Route to home Page
+       this.router.navigate(['main/admin/home']);
+
+     
     },
     (error: any) => {
       console.log(error); 

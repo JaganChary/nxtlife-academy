@@ -21,7 +21,10 @@
                 <a class="nav-link" routerLink="category">Categories</a>
             </li>
             <button type="button" class="style-btn text-right" (click)="onLogOut()">Logout</button>
-            <button *ngIf="role !== 'manager'" type="button" class="style-btn style-btn1" routerLink="cart" (ngValue)="cartValue">Cart({{cartValue}})</button>
+
+            <button *ngIf="role == 'admin'" type="button" class="style-btn style-btn1" routerLink="cart" (ngValue)="cartValue">Cart({{cartValue}})</button>
+
+
         </ul>
     </div>
 </nav>

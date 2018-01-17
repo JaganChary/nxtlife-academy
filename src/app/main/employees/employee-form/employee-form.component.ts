@@ -153,10 +153,11 @@ export class EmployeeFormComponent implements OnInit {
     }, {headers: header}).
       subscribe((res: any) => {
 
+        // console.log('Response: ' + res);
+        
         // Routing to HomePage
-
-        this.router.navigate(['home']);
-        console.log('Response: ' + res);
+        this.router.navigate(['main/admin/home']);
+        
       }, (error: any) => {
         console.log(error);
       });

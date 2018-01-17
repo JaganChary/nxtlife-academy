@@ -12,6 +12,7 @@ import { LoginService } from '../login/login.service';
 export class MainComponent implements OnInit {
   cartValue: number = 0;
   cartData: any;
+  role: String;
 
   constructor(
     private router: Router,
@@ -35,7 +36,8 @@ export class MainComponent implements OnInit {
 
       // Getting the role of the User 
 
-      var role = localStorage.getItem('role');
+      this.role = localStorage.getItem('role');
+      
   }
 
   // Logout

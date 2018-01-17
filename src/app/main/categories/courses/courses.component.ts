@@ -48,22 +48,12 @@ export class CoursesComponent implements OnInit {
   // Adding Course
 
   btnAddCart(course: any) {
-    let a = this.cartValueService.addCartData(course);
-    console.log(a);
+    this.cartValueService.addCartData(course);
+    
   }
 
   buyNow(course: any) {
-    var cartData = this.cartValueService.getCartData();
-    console.log('cartData',cartData);
-
-    if(cartData) {
-      
-    }
-    // Checking condition to add Items in Cart
-    if(cartData.length == 0) {
-      this.cartValueService.addCartData(course);
-      console.log(cartData);
-        
-    }
+    
+    
   }
 }
