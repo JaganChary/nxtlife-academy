@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonHttpService } from '../shared/commonHttp.service';
 import { CartValueService } from '../shared/cart-value.service';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { BASEURL } from '../shared/app.constant';
+import { CartService } from './cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,19 +11,18 @@ export class CartComponent implements OnInit {
   cartData: any;
   inputNumbers: Array<any> = [];
   cartValue: Number = 0;
-  cartDatas: any;
 
   constructor(
-    private httpClient: HttpClient,
+    private cartService: CartService,
     private cartValueService: CartValueService
   ) { }
 
   ngOnInit() {
 
     if (this.cartData) {
-      this.cartDatas = this.cartValueService.cartObservable
+      this.cartValueService.cartObservable
         .subscribe((cartValue: number) => {
-          
+
           this.cartValue = cartValue;
           console.log('Cart Value: ', this.cartValue);
         }, (err: any) => {
@@ -84,18 +81,13 @@ export class CartComponent implements OnInit {
     }
     console.log(arr);
 
-    let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
-
     // Post Request Sent on BtnClick
 
-    this.httpClient.post(BASEURL + '/admin/subscription', {
-      courseSubscribed: arr
-    }, { headers: header })
+    this.cartService.postCartItems(arr)
       .subscribe((res: any) => {
         console.log(res);
       }, (err: any) => {
         console.log(err);
       })
   }
-
 }
