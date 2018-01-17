@@ -24,7 +24,8 @@ export class AssignCourseComponent implements OnInit {
   constructor(
     private myCoursesService: MyCoursesService,
     private route: ActivatedRoute,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private router: Router
 
   ) { }
 
@@ -232,9 +233,11 @@ export class AssignCourseComponent implements OnInit {
         headers: header
       })
         .subscribe((res: any) => {
+          console.log('Request Sent');
           console.log(res);
+          this.router.navigate([`main/admin/my-courses`]);
         }, (err: any) => {
-          console.log
+          console.log(err);
         });
 
     } else if (this.empORmanager === 'Managers') {
@@ -259,9 +262,11 @@ export class AssignCourseComponent implements OnInit {
         headers: header
       })
         .subscribe((res: any) => {
+          console.log('Request Sent');
           console.log('Response: ', res);
+          this.router.navigate(['main/admin/my-courses']);
         }, (err: any) => {
-          console.log
+          console.log(err);
         });
 
     }
