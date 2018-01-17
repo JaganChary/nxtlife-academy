@@ -43,7 +43,7 @@
         <h2 class="card-text">Your Shopping cart is empty</h2>
       </div>
 
-      <button type="button" class="style-btn" *ngIf="cartData.length == 0" routerLink="../../category">Go to Categories</button>
+      <button type="button" class="style-btn" *ngIf="cartData.length == 0" (click)="goToCategories()">Go to Categories</button>
     </div>
 
   </div>

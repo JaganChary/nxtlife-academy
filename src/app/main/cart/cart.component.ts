@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartValueService } from '../shared/cart-value.service';
 import { CartService } from './cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -14,6 +15,7 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
+    private router: Router,
     private cartValueService: CartValueService
   ) { }
 
@@ -43,10 +45,11 @@ export class CartComponent implements OnInit {
   }
 
   // Check used to keep the value 1 when initializing
-  modelChanged(i) {
+  modelChanged(i: number) {
 
     if ((this.inputNumbers[i] < 1) || (this.inputNumbers == null || undefined)) {
       this.inputNumbers[i] = 1;
+      // this.cartValueService.addCartData(i);
     }
     console.log(this.inputNumbers);
   }
@@ -89,5 +92,9 @@ export class CartComponent implements OnInit {
       }, (err: any) => {
         console.log(err);
       })
+  }
+
+  goToCategories(): any {
+    this.router.navigate(['main/admin/category']);
   }
 }
