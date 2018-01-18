@@ -28,12 +28,12 @@ export class AuthGuard implements CanActivate, CanLoad {
         console.log('role', role);
         if (role == 'admin') {
             return true;
+
         } else if (role == 'manager') {
             this.router.navigate(['/main/manager']);
             return false;
+
         }
-
     }
-
 }
 

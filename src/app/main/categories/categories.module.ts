@@ -1,5 +1,4 @@
 import { CategoriesComponent } from './categories.component';
-import { CoursesComponent } from './courses/courses.component';
 import { ChaptersComponent } from './chapters/chapters.component';
 
 import { RouterModule } from '@angular/router';
@@ -10,12 +9,13 @@ import { NgModule } from '@angular/core';
 
 import { CategoriesService } from './categories.service';
 import { CartService } from '../cart/cart.service';
+import { CoursesComponent } from './courses/courses.component';
 
 @NgModule({
     declarations: [
         CategoriesComponent,
-        CoursesComponent,
-        ChaptersComponent
+        ChaptersComponent,
+        CoursesComponent
 
     ],
     imports: [
@@ -37,8 +37,7 @@ import { CartService } from '../cart/cart.service';
                         children: [
                             {
                                 path: '',
-                                component: CoursesComponent,
-                                pathMatch: 'full'
+                                component: CoursesComponent
                             },
                             {
                                 path: 'chapters/:id',
@@ -46,7 +45,7 @@ import { CartService } from '../cart/cart.service';
                             }
                         ]
                     }
-                    
+
                 ]
             }
         ])

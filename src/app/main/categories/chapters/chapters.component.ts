@@ -12,7 +12,7 @@ import { CategoriesService } from '../categories.service';
 export class ChaptersComponent implements OnInit {
   courseData: any;
   chapters: any;
-  
+
   constructor(
     private route: ActivatedRoute,
     private categoriesService: CategoriesService
@@ -20,8 +20,16 @@ export class ChaptersComponent implements OnInit {
 
   ngOnInit() {
 
-    if(this.categoriesService.categoriesData == null || this.categoriesService.categoriesData == undefined) {
-      this.categoriesService.getCategories()
+    if (!this.categoriesService.categoriesData) {
+      this.fromServer();
+
+    } else {
+      this.directly();
+    }
+  }
+
+  fromServer(): any {
+    this.categoriesService.getCategories()
       .subscribe((res: any) => {
         this.categoriesService.storeCategoriesData(res);
         const id = +this.route.snapshot.paramMap.get('id');
@@ -32,11 +40,12 @@ export class ChaptersComponent implements OnInit {
         console.log(error);
 
       })
-    } else {
-        const id = +this.route.snapshot.paramMap.get('id');
-        this.courseData = this.categoriesService.getCourseDataById(id);
-        this.chapters = this.courseData.chapters;
-    }
+  }
+
+  directly(): any {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.courseData = this.categoriesService.getCourseDataById(id);
+    this.chapters = this.courseData.chapters;
   }
 }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ParamMap, ActivatedRoute } from '@angular/router';
+import { ParamMap, ActivatedRoute, Router } from '@angular/router';
 import { CommonHttpService } from '../../shared/commonHttp.service';
 import { CartValueService } from '../../shared/cart-value.service';
 import { CategoriesService } from '../categories.service';
@@ -16,6 +16,7 @@ export class CoursesComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private categoriesService: CategoriesService,
     private cartValueService: CartValueService,
     
@@ -40,6 +41,7 @@ export class CoursesComponent implements OnInit {
 
         const id = +this.route.snapshot.paramMap.get('id');
         this.categoryData = this.categoriesService.getCategoryDataById(id);
+        console.log(this.categoryData);
         this.courses = this.categoryData.courses;
         console.log(this.courses);
     }
@@ -53,5 +55,9 @@ export class CoursesComponent implements OnInit {
 
   buyNow(course: any) {
     this.cartValueService.addCartData(course);
+  }
+
+  addCourse(): any {
+    this.router.navigate(['main/admin/category/'])
   }
 }

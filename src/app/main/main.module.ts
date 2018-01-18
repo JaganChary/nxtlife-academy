@@ -50,10 +50,6 @@ import { CartService } from './cart/cart.service';
                     {
                         path: 'cart',
                         component: CartComponent
-                    },
-                    {
-                        path: 'superAdmin',
-                        loadChildren: ''
                     }
                 ]
             }
