@@ -15,9 +15,9 @@
                 </a>
             </li>
             <li class="nav-item nav item-hover">
-                <a class="nav-link" routerLink="main/admin/contact">Contact Us</a>
+                <a class="nav-link" routerLink="contact">Contact Us</a>
             </li>
-            <li *ngIf="role == 'admin'" class="nav-item nav item-hover">
+            <li *ngIf="role == 'admin' || 'sa'" class="nav-item nav item-hover">
                 <a class="nav-link" routerLink="category">Categories</a>
             </li>
             <button type="button" class="style-btn text-right" (click)="onLogOut()">Logout</button>

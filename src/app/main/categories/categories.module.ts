@@ -37,7 +37,8 @@ import { CoursesComponent } from './courses/courses.component';
                         children: [
                             {
                                 path: '',
-                                component: CoursesComponent
+                                component: CoursesComponent,
+                                pathMatch: 'full'
                             },
                             {
                                 path: 'chapters/:id',

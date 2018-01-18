@@ -14,7 +14,7 @@
             <img class="card-img-top" *ngIf="course.image" src="{{course.image}}">
             <img class="card-img-top" *ngIf="!course.image" src="" alt="No Image Found">
             <div class="card-block">
-              <a routerLink="chapters/{{course.courseId}}">
+              <a routerLink="../chapters/{{course.courseId}}">
                 <h4 class="card-title">{{course.course}}</h4>
               </a>
               <p class="card-text text-muted" style="font-size: 0.8em;" *ngIf="course.description">{{course.description}}</p>
@@ -29,7 +29,7 @@
                 <button class="style-btn" style="padding: 0.5em 0.8em" (click)="btnAddCart(course)">Add to Cart</button>
               </span>
               <span>
-                <button class="style-btn" (click)="buyNow(course)" routerLink="../../../../../../cart" style="float:right">Buy Now</button>
+                <button class="style-btn" (click)="buyNow(course)" style="float:right">Buy Now</button>
               </span>
             </div>
           </div>

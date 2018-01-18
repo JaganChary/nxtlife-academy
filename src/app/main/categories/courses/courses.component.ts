@@ -55,9 +55,7 @@ export class CoursesComponent implements OnInit {
 
   buyNow(course: any) {
     this.cartValueService.addCartData(course);
+    this.router.navigate(['main/cart']);
   }
 
-  addCourse(): any {
-    this.router.navigate(['main/admin/category/'])
-  }
 }

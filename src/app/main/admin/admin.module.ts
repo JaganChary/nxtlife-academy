@@ -51,10 +51,6 @@ import { CartValueService } from '../shared/cart-value.service';
             component: ContactComponent,
           },
           {
-            path: 'category',
-            loadChildren: 'app/main/categories/categories.module#CategoriesModule'
-          },
-          {
             path: 'departments',
             loadChildren: 'app/main/departments/departments.module#DepartmentsModule'
           },

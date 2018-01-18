@@ -48,6 +48,10 @@ import { CartService } from './cart/cart.service';
 
                     },
                     {
+                        path: 'category',
+                        loadChildren: 'app/main/categories/categories.module#CategoriesModule'
+                    },
+                    {
                         path: 'cart',
                         component: CartComponent
                     }
