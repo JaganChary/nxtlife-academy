@@ -52,6 +52,10 @@ import { CartService } from './cart/cart.service';
                         loadChildren: 'app/main/categories/categories.module#CategoriesModule'
                     },
                     {
+                        path: 'sa',
+                        loadChildren: 'app/main/super-admin/super-admin.module#SuperAdminModule'
+                    },
+                    {
                         path: 'cart',
                         component: CartComponent
                     }

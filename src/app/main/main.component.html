@@ -29,6 +29,16 @@
     </div>
 </nav>
 
+<!-- Sidebar -->
+<div class="sidenav" style="margin-top: 3.2em;">
+    <a class="sidenav-items" *ngIf="role == 'admin' || 'sa'" routerLink="departments" style="font-size: 20px;">Departments</a>
+    <a class="sidenav-items" *ngIf="role == 'admin' || 'sa'" routerLink="employees" style="font-size: 20px;">Employees</a>
+    <a class="sidenav-items" *ngIf="role == 'admin' || 'sa'" routerLink="subscriptions" style="font-size: 20px;">Subscriptions</a>
+    <a class="sidenav-items" routerLink="category" style="font-size: 20px;">Categories</a>
+    <a class="sidenav-items" *ngIf="role == 'admin' || 'sa'" routerLink="my-courses" style="font-size: 20px;">My Courses</a>
+</div>
+
+
 <!-- Router Outlet -->
 <router-outlet></router-outlet>
 

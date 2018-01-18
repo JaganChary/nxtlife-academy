@@ -16,6 +16,8 @@ export class MainService {
     } else if(user == 'manager') {
       return this.commonHttpService.get('/manager/logout');
 
-    } 
+    } else if(user == 'sa') {
+      return this.commonHttpService.get('/sa/logout');
+    }
   }
 }
