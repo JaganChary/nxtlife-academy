@@ -10,14 +10,14 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav navbar-center navbar-inner">
             <li class="nav-item active nav item-hover">
-                <a class="nav-link" routerLink="home" [routerLinkActive]="['active']">Home
+                <a class="nav-link" routerLink="/main/admin/home" [routerLinkActive]="['active']">Home
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item nav item-hover">
-                <a class="nav-link" routerLink="contact">Contact Us</a>
+                <a class="nav-link" routerLink="/main/admin/contact">Contact Us</a>
             </li>
-            <li *ngIf="role == 'admin' || 'sa'" class="nav-item nav item-hover">
+            <li *ngIf="role == ('admin' || 'sa')" class="nav-item nav item-hover">
                 <a class="nav-link" routerLink="category">Categories</a>
             </li>
             <button type="button" class="style-btn text-right" (click)="onLogOut()">Logout</button>
@@ -29,14 +29,23 @@
     </div>
 </nav>
 
-<!-- Sidebar -->
-<div class="sidenav" style="margin-top: 3.2em;">
-    <a class="sidenav-items" *ngIf="role == 'admin' || 'sa'" routerLink="departments" style="font-size: 20px;">Departments</a>
-    <a class="sidenav-items" *ngIf="role == 'admin' || 'sa'" routerLink="employees" style="font-size: 20px;">Employees</a>
-    <a class="sidenav-items" *ngIf="role == 'admin' || 'sa'" routerLink="subscriptions" style="font-size: 20px;">Subscriptions</a>
+<div class="sidenav" style="margin-top: 3.2em;" *ngIf="role == 'admin'">
+    <a class="sidenav-items" routerLink="/main/admin/departments" style="font-size: 20px;">Departments</a>
+    <a class="sidenav-items" routerLink="/main/admin/employees" style="font-size: 20px;">Employees</a>
+    <a class="sidenav-items" routerLink="/main/admin/subscriptions" style="font-size: 20px;">Subscriptions</a>
     <a class="sidenav-items" routerLink="category" style="font-size: 20px;">Categories</a>
-    <a class="sidenav-items" *ngIf="role == 'admin' || 'sa'" routerLink="my-courses" style="font-size: 20px;">My Courses</a>
+    <a class="sidenav-items" routerLink="/main/admin/my-courses" style="font-size: 20px;">My Courses</a>
 </div>
+
+<div class="sidenav" style="margin-top: 3.2em;" *ngIf="role == 'sa'">
+    <a class="sidenav-items" routerLink="category" style="font-size: 20px;">Categories</a>
+</div>
+
+
+<div class="sidenav" style="margin-top: 3.2em;" *ngIf="role == 'manager'">
+    <a class="sidenav-items" routerLink="/main/manager/categories" style="font-size: 20px;">Categories</a>
+</div>
+
 
 
 <!-- Router Outlet -->
