@@ -10,12 +10,13 @@ import { NgModule } from '@angular/core';
 import { CategoriesService } from './categories.service';
 import { CartService } from '../cart/cart.service';
 import { CoursesComponent } from './courses/courses.component';
+import { AddCategoriesComponent } from './add-categories/add-categories.component';
 
 @NgModule({
     declarations: [
         CategoriesComponent,
         ChaptersComponent,
-        CoursesComponent
+        AddCategoriesComponent
 
     ],
     imports: [
@@ -33,16 +34,19 @@ import { CoursesComponent } from './courses/courses.component';
                         pathMatch: 'full'
                     },
                     {
-                        path: ':id',
+                        path: 'add-category',
+                        component: AddCategoriesComponent
+                    },
+                    {
+                        path: ':id/courses',
                         children: [
                             {
-                                path: '',
-                                component: CoursesComponent,
-                                pathMatch: 'full'
+                                path: ':id/chapters',
+                                component: ChaptersComponent,
                             },
                             {
-                                path: 'chapters/:id',
-                                component: ChaptersComponent,
+                                path: '',
+                                loadChildren: 'app/main/categories/courses/courses.module#CoursesModule',
                             }
                         ]
                     }

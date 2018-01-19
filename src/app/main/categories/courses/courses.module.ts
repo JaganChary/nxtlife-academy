@@ -1,12 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddCoursesComponent } from './add-courses/add-courses.component';
-import { AddCategoriesComponent } from './add-categories/add-categories.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { CoursesComponent } from './courses.component';
+import { ChildrenOutletContexts } from '@angular/router/src/router_outlet_context';
 
 @NgModule({
+
+  declarations: [AddCoursesComponent, CoursesComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    RouterModule.forChild(
+      [ 
+        {
+          path: 'add-courses',
+          component: AddCoursesComponent
+        },
+        {
+          path: '', 
+          component: CoursesComponent,
+          pathMatch:'full'
+        }
+      ]
+    )
   ],
-  declarations: [AddCoursesComponent, AddCategoriesComponent]
 })
 export class CoursesModule { }

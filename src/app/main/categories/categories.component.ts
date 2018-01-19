@@ -9,6 +9,7 @@ import { CategoriesService } from './categories.service';
 export class CategoriesComponent implements OnInit {
   categories: Array<any>;
   storeData: any;
+  role: String
 
   constructor(
     private categoriesService: CategoriesService
@@ -26,5 +27,9 @@ export class CategoriesComponent implements OnInit {
         }, (error: any) => {
           console.log(error);
       }); 
+
+      this.role = localStorage.getItem('role');
   }
+
+  
 }

@@ -40,10 +40,7 @@ export const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes)
   ],
-  declarations: [
-    
-  ],
-  providers: []
+ exports:[RouterModule]
 })
 
 export class AppRoutingModule { }

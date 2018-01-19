@@ -24,7 +24,7 @@ import { CartService } from './cart/cart.service';
         CartComponent
     ],
     imports: [
-        RouterModule,
+        
         CommonModule,
         FormsModule,
         RouterModule.forChild([

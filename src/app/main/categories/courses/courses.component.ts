@@ -13,6 +13,7 @@ import { CategoriesService } from '../categories.service';
 export class CoursesComponent implements OnInit {
   courses: any;
   categoryData: any;
+  role: String
   
   constructor(
     private route: ActivatedRoute,
@@ -45,6 +46,8 @@ export class CoursesComponent implements OnInit {
         this.courses = this.categoryData.courses;
         console.log(this.courses);
     }
+
+    this.role = localStorage.getItem('role');
   }
 
   // Adding Course

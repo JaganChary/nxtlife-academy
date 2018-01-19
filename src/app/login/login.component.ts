@@ -25,16 +25,13 @@ import { LoginService } from './login.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup
-  
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient,
     private loginService: LoginService
   ) {
-    if(!Storage) {
-      this.router.navigate(['login']);
-    }   
+
   }
 
   ngOnInit() {
@@ -59,19 +56,15 @@ export class LoginComponent implements OnInit {
     // console.log(loginDetails);
 
     this.loginService.onLogin(this.loginForm.value)
-    .subscribe((res: any) => {
-        
+      .subscribe((res: any) => {
+
         this.loginService.loginStorage(res);
-        // console.log(res);
-        
         this.router.navigate(['/main']);
       }, (error: any) => {
+        
         console.log(error);
       }
       )
-
-    // Use Route Guard for Validation  
-    // this.router.navigate(['home']);
 
   }
 }

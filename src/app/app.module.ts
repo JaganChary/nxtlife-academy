@@ -25,7 +25,6 @@ import { LoginService } from './login/login.service';
   ],
   imports: [
     BrowserModule,
-    RouterModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
