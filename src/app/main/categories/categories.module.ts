@@ -11,6 +11,7 @@ import { CategoriesService } from './categories.service';
 import { CartService } from '../cart/cart.service';
 import { CoursesComponent } from './courses/courses.component';
 import { AddCategoriesComponent } from './add-categories/add-categories.component';
+import { FormsModule, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { AddCategoriesComponent } from './add-categories/add-categories.componen
     imports: [
         RouterModule,
         CommonModule,
-        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
         AngularFontAwesomeModule,
         RouterModule.forChild([
             {

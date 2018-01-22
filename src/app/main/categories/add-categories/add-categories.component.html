@@ -1,10 +1,65 @@
-<div class="container" style="margin-top: 5em;">
-    <div class="row">
-      <div class="col-md-3">
-  
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8">
+      <div>
+        <h2>
+          Add Category
+        </h2>
+        <hr>
       </div>
-      <div class="col-md-9">
-        <h1>Add Categories Works!!</h1>
-      </div>
+      <br><br>
+
+      <form [formGroup]="addCategoryForm">
+
+        <!-- Category Name -->
+        <div class="form-group">
+          <label for="categoryName">
+            <span class="change">
+              <span class="fat">|</span>Name</span>
+          </label>
+          <input type="text" class="form-control" formControlName="categoryName" placeholder="Enter Name">
+          <div *ngIf="addCategoryForm.controls['categoryName'].hasError('required') && addCategoryForm.controls['categoryName'].touched"
+            class="alert alert-danger">
+            <small>
+              <i>You must include a Category Name.</i>
+            </small>
+          </div>
+        </div>
+
+        <!-- Category Description -->
+        <div class="form-group">
+          <label for="categoryDescription">
+            <span class="change">
+              <span class="fat">|</span>Description</span>
+          </label>
+          <input type="text" class="form-control" formControlName="categoryDescription" placeholder="Enter Description">
+          <div *ngIf="addCategoryForm.controls['categoryDescription'].hasError('required') && addCategoryForm.controls['categoryDescription'].touched"
+            class="alert alert-danger">
+            <small>
+              <i>You must include a Category Description.</i>
+            </small>
+          </div>
+        </div>
+
+        <!-- Upload Category Image -->
+        <div class="form-group">
+          <label for="categoryImage">
+            <span class="change">
+              <span class="fat">|</span>Upload Image</span>
+          </label>
+          <div>
+            <input type="file" accept="image/*" (change)="fileUpload($event)">
+          </div>
+        </div>
+      </form>
+      <button type="button" class="style-btn" (click)="btnClick()">Submit</button>
+    </div>
+    <div class="col-md-2">
+        
     </div>
   </div>
+</div>

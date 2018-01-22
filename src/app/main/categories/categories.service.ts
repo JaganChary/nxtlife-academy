@@ -49,5 +49,16 @@ export class CategoriesService {
     
   }
 
+  // ******* Post request for adding Caegories ******* //
+
+  postCategories(data): any {
+    return this.commonHttpService.post('/sa/category', data);
+  }
+
+  // ******* Post request for adding Courses ******* //
+
+  postCourses(data): any {
+    return this.commonHttpService.post('/sa/course', data);
+  }
 
 }
