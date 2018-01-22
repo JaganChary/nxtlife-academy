@@ -37,7 +37,7 @@ export class CategoriesService {
   }
 
   // *******  Retrieving CourseDataById ******* //
-  
+
   getCourseDataById(id: number) {
     return this.coursesData[id];
   }
@@ -46,7 +46,7 @@ export class CategoriesService {
 
   getCategories(): any {
     return this.commonHttpService.get('/categories');
-    
+
   }
 
   // ******* Post request for adding Caegories ******* //

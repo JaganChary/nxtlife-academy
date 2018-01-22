@@ -23,4 +23,5 @@ export class EmployeesService {
   addEmployee(data): any {
     return this.commonHttpService.post('/admin/employee', data);
   }
+
 }

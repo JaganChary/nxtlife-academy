@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+// import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { MyCoursesComponent } from './my-courses.component';
 import { AssignCourseComponent } from './assign-course/assign-course.component';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +18,7 @@ import { MyCoursesService } from './my-courses.service';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    AngularFontAwesomeModule,
+    // AngularFontAwesomeModule,
     RouterModule.forChild([
       {
         path: '',

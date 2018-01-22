@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+// import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { EmployeesService } from './employees.service';
 
 
@@ -19,7 +19,7 @@ import { EmployeesService } from './employees.service';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    AngularFontAwesomeModule,
+    // AngularFontAwesomeModule,
     RouterModule.forChild([
       {
         path: '',

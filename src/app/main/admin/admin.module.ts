@@ -6,7 +6,7 @@ import { AdminComponent } from '../admin/admin.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+// import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 // Components
 
@@ -31,7 +31,7 @@ import { CartValueService } from '../shared/cart-value.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularFontAwesomeModule,
+    // AngularFontAwesomeModule,
     RouterModule.forChild([
       {
         path: '',
