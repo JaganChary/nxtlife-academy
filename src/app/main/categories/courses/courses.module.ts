@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddCoursesComponent } from './add-courses/add-courses.component';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, ChildrenOutletContexts } from '@angular/router';
 import { CoursesComponent } from './courses.component';
-import { ChildrenOutletContexts } from '@angular/router/src/router_outlet_context';
+import { CategoriesService } from '../categories.service';
 
 @NgModule({
 
@@ -12,6 +12,7 @@ import { ChildrenOutletContexts } from '@angular/router/src/router_outlet_contex
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(
       [ 
         {
@@ -26,5 +27,6 @@ import { ChildrenOutletContexts } from '@angular/router/src/router_outlet_contex
       ]
     )
   ],
+  providers: [CategoriesService]
 })
 export class CoursesModule { }
