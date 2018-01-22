@@ -61,10 +61,10 @@ export class LoginComponent implements OnInit {
         this.loginService.loginStorage(res);
         this.router.navigate(['/main']);
       }, (error: any) => {
-        
+
         console.log(error);
+        alert(error.msg);
       }
       )
-
   }
 }
