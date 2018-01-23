@@ -7,12 +7,12 @@ import { Router } from '@angular/router';
 import { AuthGuard } from './auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser/src/browser';
 
-import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
 import { MainModule } from './main/main.module';
 
 // Components
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
  
 export const routes: Routes = [
   {
@@ -22,7 +22,7 @@ export const routes: Routes = [
   },
   { 
     path: 'login',
-    loadChildren: 'app/login/login.module#LoginModule', 
+    component: LoginComponent, 
   },
   { 
     path: 'register', 

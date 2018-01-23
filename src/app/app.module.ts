@@ -18,10 +18,13 @@ import { AppRoutingModule } from './app-routing.module';
 // Services
 import { AuthGuard } from './auth-guard.service';
 import { LoginService } from './login/login.service';
+import { LoginComponent } from './login/login.component';
+import { CommonHttpService } from './main/shared/commonHttp.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { LoginService } from './login/login.service';
     HttpClientModule,
     // AngularFontAwesomeModule
   ],
-  providers: [HttpClientModule, AuthGuard, LoginService],
+  providers: [ CommonHttpService, AuthGuard, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

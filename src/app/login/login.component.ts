@@ -10,12 +10,9 @@ import {
   NG_VALIDATORS,
   FormControl
 } from '@angular/forms';
-import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
-import { EmailValidator } from '@angular/forms';
-import { BASEURL } from '../main/shared/app.constant';
 import { LoginService } from './login.service';
-
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-login',
@@ -63,7 +60,7 @@ export class LoginComponent implements OnInit {
       }, (error: any) => {
 
         console.log(error);
-        alert(error.msg);
+        alertify.alert(error.msg).setHeader('title');
       }
       )
   }
