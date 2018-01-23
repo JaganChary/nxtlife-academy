@@ -30,6 +30,7 @@ export class CategoriesService {
     });
   }
 
+  
   // *******  Retrieving CategoryDataById ******* //
 
   getCategoryDataById(id: number) {
@@ -55,10 +56,15 @@ export class CategoriesService {
     return this.commonHttpService.post('/sa/category', data);
   }
 
-  // ******* Post request for adding Courses ******* //
+  // ******* Post request for Deleting Caegories ******* //
 
-  postCourses(data): any {
-    return this.commonHttpService.post('/sa/course', data);
+  deleteCategories(id: number): any {
+    console.log(id)
+    return this.commonHttpService.delete("/sa/category/" + id);
+  }
+
+  getSaCategories(): any {
+    return this.commonHttpService.get('/sa/categories');
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from './categories.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -7,29 +8,43 @@ import { CategoriesService } from './categories.service';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
+  categoryId: number;
   categories: Array<any>;
   storeData: any;
   role: String
 
   constructor(
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private route: ActivatedRoute
   ) { }
-  
-    ngOnInit() {
 
-      this.categoriesService.getCategories()
+  ngOnInit() {
+
+    this.categoriesService.getCategories()
       .subscribe((res: any) => {
 
-         this.categories = res;
-         this.storeData = this.categoriesService.storeCategoriesData(res);
-         console.log(res);
-      
-        }, (error: any) => {
-          console.log(error);
-      }); 
+        this.categories = res;
+        this.storeData = this.categoriesService.storeCategoriesData(res);
+        console.log(res);
 
-      this.role = localStorage.getItem('role');
+      }, (error: any) => {
+        console.log(error);
+      });
+
+    this.role = localStorage.getItem('role');
+
+
   }
 
-  
+  btnDelete(id: number): any {
+    console.log(id);
+    this.categoriesService.deleteCategories(id)
+      .subscribe((res: any) => {
+        console.log(res);
+      }, (err: any) => {
+        console.log(err);
+      })
+  }
+
+
 }

@@ -58,7 +58,7 @@ export class AddCategoriesComponent implements OnInit {
     
     formData.append('category', this.addCategoryForm.value.categoryName);
     formData.append('description', this.addCategoryForm.value.categoryDescription);
-    formData.append('imgUrl', this.file);
+    formData.append('imageFIle', this.file);
     console.log(formData);
   
     this.categoriesService.postCategories(formData)
