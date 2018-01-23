@@ -16,6 +16,7 @@ a {
     border: none;
     width: 16rem;
     height: 430px;
+    
 }
 
 .card:hover {
@@ -76,7 +77,7 @@ p {
     color: gray;
     border: none;
     border-color: none;
-
+    margin-left: 2em;
 }
 
 .style-btn:hover {

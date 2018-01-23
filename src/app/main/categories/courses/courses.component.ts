@@ -3,6 +3,7 @@ import { ParamMap, ActivatedRoute, Router } from '@angular/router';
 import { CommonHttpService } from '../../shared/commonHttp.service';
 import { CartValueService } from '../../shared/cart-value.service';
 import { CategoriesService } from '../categories.service';
+import { CoursesService } from './courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -11,40 +12,45 @@ import { CategoriesService } from '../categories.service';
 })
 
 export class CoursesComponent implements OnInit {
+  courseCategoryId: number;
   courses: any;
   categoryData: any;
   role: String
-  
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private categoriesService: CategoriesService,
     private cartValueService: CartValueService,
-    
+    private coursesService: CoursesService
+
   ) { }
 
   ngOnInit() {
-      
-    if(this.categoriesService.categoriesData == null || this.categoriesService.categoriesData == undefined) {
+
+    if (!this.categoriesService.categoriesData) {
 
       this.categoriesService.getCategories()
-      .subscribe((res: any) => {
-        this.categoriesService.storeCategoriesData(res);
-        const id = +this.route.snapshot.paramMap.get('id');
-        this.categoryData = this.categoriesService.getCategoryDataById(id);
-        this.courses = this.categoryData.courses;
-        console.log(this.courses);
-        
-      }, (error: any) => {
-        console.log(error);
-      })
+        .subscribe((res: any) => {
+          this.categoriesService.storeCategoriesData(res);
+          const id = +this.route.snapshot.paramMap.get('id');
+          this.categoryData = this.categoriesService.getCategoryDataById(id);
+          this.courses = this.categoryData.courses;
+          // this.courseCategoryId = id;
+          // console.log(this.courses);
+
+        }, (error: any) => {
+          console.log(error);
+        })
     } else {
 
-        const id = +this.route.snapshot.paramMap.get('id');
-        this.categoryData = this.categoriesService.getCategoryDataById(id);
-        console.log(this.categoryData);
-        this.courses = this.categoryData.courses;
-        console.log(this.courses);
+      const id = +this.route.snapshot.paramMap.get('id');
+      this.categoryData = this.categoriesService.getCategoryDataById(id);
+      console.log(this.categoryData);
+      this.courses = this.categoryData.courses;
+      // console.log(this.courses);
+      // this.courseCategoryId = id;
+
     }
 
     this.role = localStorage.getItem('role');
@@ -59,6 +65,17 @@ export class CoursesComponent implements OnInit {
   buyNow(course: any) {
     this.cartValueService.addCartData(course);
     this.router.navigate(['main/cart']);
+  }
+
+  btnDelete(id: number): any {
+    console.log(id);
+
+    this.coursesService.deleteCourse(id)
+      .subscribe((res: any) => {
+        console.log(res);
+      }, (err: any) => {
+        console.log(err);
+      })
   }
 
 }

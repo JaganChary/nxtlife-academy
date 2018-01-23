@@ -27,6 +27,18 @@
                 <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="!course.duration">N/A</span>
               </div>
             </div>
+            <div>
+              <span>
+                <button type="button" class="style-btn" (click)="btnDelete(course.courseId)">
+                  <fa name="trash-o" size="1.9x"></fa>
+                </button>
+              </span>
+              <span>
+                <button type="button" class="style-btn" (click)="btnEdit()">
+                  <fa name="pencil-square-o" size="1.9x"></fa>
+                </button>
+              </span>
+            </div>
             <div style="padding: none;" *ngIf="role == 'admin'">
               <span>
                 <button class="style-btn" style="padding: 0.5em 0.8em" (click)="btnAddCart(course)">Add to Cart</button>

@@ -1,65 +1,72 @@
 <div class="container">
 
-    <div class="row">
-      <div class="col-md-2">
-  
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8">
+      <div>
+        <h2>
+          Add Course
+        </h2>
+        <hr>
       </div>
-      <div class="col-md-8">
-        <div>
-          <h2>
-            Add Course
-          </h2>
-          <hr>
+      <br>
+      <br>
+      <!-- <div *ngFor="let category of categoryData">
+        <select>
+          <option>
+
+          </option>
+        </select>
+      </div> -->
+
+      <form [formGroup]="addCourseForm">
+
+        <!-- Course Name -->
+        <div class="form-group">
+          <label for="courseName">
+            <span class="change">
+              <span class="fat">|</span>Name</span>
+          </label>
+          <input type="text" class="form-control" formControlName="courseName" placeholder="Enter Name">
+          <div *ngIf="addCourseForm.controls['courseName'].hasError('required') && addCourseForm.controls['courseName'].touched" class="alert alert-danger">
+            <small>
+              <i>You must include a Course Name.</i>
+            </small>
+          </div>
         </div>
-        <br><br>
-  
-        <form [formGroup]="addCourseForm">
-  
-          <!-- Course Name -->
-          <div class="form-group">
-            <label for="courseName">
-              <span class="change">
-                <span class="fat">|</span>Name</span>
-            </label>
-            <input type="text" class="form-control" formControlName="courseName" placeholder="Enter Name">
-            <div *ngIf="addCourseForm.controls['courseName'].hasError('required') && addCourseForm.controls['courseName'].touched"
-              class="alert alert-danger">
-              <small>
-                <i>You must include a Course Name.</i>
-              </small>
-            </div>
+
+        <!-- Course Description -->
+        <div class="form-group">
+          <label for="courseDescription">
+            <span class="change">
+              <span class="fat">|</span>Description</span>
+          </label>
+          <input type="text" class="form-control" formControlName="courseDescription" placeholder="Enter Description">
+          <div *ngIf="addCourseForm.controls['courseDescription'].hasError('required') && addCourseForm.controls['courseDescription'].touched"
+            class="alert alert-danger">
+            <small>
+              <i>You must include a Course Description.</i>
+            </small>
           </div>
-  
-          <!-- Course Description -->
-          <div class="form-group">
-            <label for="courseDescription">
-              <span class="change">
-                <span class="fat">|</span>Description</span>
-            </label>
-            <input type="text" class="form-control" formControlName="courseDescription" placeholder="Enter Description">
-            <div *ngIf="addCourseForm.controls['courseDescription'].hasError('required') && addCourseForm.controls['courseDescription'].touched"
-              class="alert alert-danger">
-              <small>
-                <i>You must include a Course Description.</i>
-              </small>
-            </div>
+        </div>
+
+        <!-- Upload Course Image -->
+        <div class="form-group">
+          <label for="courseImage">
+            <span class="change">
+              <span class="fat">|</span>Upload Image</span>
+          </label>
+          <div>
+            <input type="file" accept="image/*" (change)="fileUpload($event)">
           </div>
-  
-          <!-- Upload Course Image -->
-          <div class="form-group">
-            <label for="courseImage">
-              <span class="change">
-                <span class="fat">|</span>Upload Image</span>
-            </label>
-            <div>
-              <input type="file" accept="image/*" (change)="fileUpload($event)">
-            </div>
-          </div>
-        </form>
-        <button type="button" class="style-btn" (click)="btnClick()">Submit</button>
-      </div>
-      <div class="col-md-2">
-          
-      </div>
+        </div>
+      </form>
+      <button type="button" class="style-btn" (click)="btnClick()">Submit</button>
+    </div>
+    <div class="col-md-2">
+
     </div>
   </div>
+</div>

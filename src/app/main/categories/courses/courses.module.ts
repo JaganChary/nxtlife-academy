@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, ChildrenOutletContexts } from '@angular/router';
 import { CoursesComponent } from './courses.component';
 import { CategoriesService } from '../categories.service';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { CoursesService } from './courses.service';
 
 @NgModule({
 
@@ -13,6 +15,7 @@ import { CategoriesService } from '../categories.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFontAwesomeModule,
     RouterModule.forChild(
       [ 
         {
@@ -27,6 +30,6 @@ import { CategoriesService } from '../categories.service';
       ]
     )
   ],
-  providers: [CategoriesService]
+  providers: [CategoriesService, CoursesService]
 })
 export class CoursesModule { }
