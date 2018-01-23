@@ -57,6 +57,16 @@ export class CommonHttpService {
       .catch(this.handleError);
   }
 
+  // Delete Request
+
+  delete(url: string, options?: HttpHeaders) {
+    let headers = this.addHeaders(options);
+
+    return this.httpClient.delete(BASEURL + url, { headers: headers, observe: 'response' })
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
+
   // Post for Login
 
   postForLogin(url: string, body: any) {
