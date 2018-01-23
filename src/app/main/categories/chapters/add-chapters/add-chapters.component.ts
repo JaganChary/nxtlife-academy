@@ -10,6 +10,7 @@ export class AddChaptersComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

@@ -35,6 +35,7 @@ export class ChaptersComponent implements OnInit {
         const id = +this.route.snapshot.paramMap.get('id');
         this.courseData = this.categoriesService.getCourseDataById(id);
         this.chapters = this.courseData.chapters;
+        console.log(this.chapters);
 
       }, (error: any) => {
         console.log(error);
@@ -46,6 +47,7 @@ export class ChaptersComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.courseData = this.categoriesService.getCourseDataById(id);
     this.chapters = this.courseData.chapters;
+    console.log(this.chapters);
   }
 }
 
