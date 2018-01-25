@@ -36,15 +36,4 @@ export class CategoriesComponent implements OnInit {
 
   }
 
-  btnDelete(id: number): any {
-    console.log(id);
-    this.categoriesService.deleteCategories(id)
-      .subscribe((res: any) => {
-        console.log(res);
-      }, (err: any) => {
-        console.log(err);
-      })
-  }
-
-
 }
