@@ -18,7 +18,6 @@ export class CommonHttpService {
   private getAccessToken() {
 
     return 'Bearer ' + (localStorage.getItem('access_token') || '');
-
   }
 
   // Add Headers
@@ -105,13 +104,5 @@ export class CommonHttpService {
     return Observable.throw(errorInfo);
 
   }
-
-  // Manager Task
-
-  // getManagerTaskList(): any {
-  //   return this.httpClient.get(BASEURL + '/admin/assign/tasks', {
-  //     headers: this.header
-  //   })
-  // }
 
 }
