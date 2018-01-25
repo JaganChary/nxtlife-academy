@@ -17,7 +17,7 @@ export class CoursesService {
   // ******* Post request for adding Courses ******* //
 
   postCourses(data, id): any {
-    console.log(id);
+    // console.log(id);
     return this.commonHttpService.post(`/sa/category/${id}/course`, data);
   }
 

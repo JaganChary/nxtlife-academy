@@ -36,9 +36,7 @@ export class CoursesComponent implements OnInit {
           const id = +this.route.snapshot.paramMap.get('id');
           this.categoryData = this.categoriesService.getCategoryDataById(id);
           this.courses = this.categoryData.courses;
-          // this.courseCategoryId = id;
-          // console.log(this.courses);
-
+          
         }, (error: any) => {
           console.log(error);
         })
@@ -48,9 +46,6 @@ export class CoursesComponent implements OnInit {
       this.categoryData = this.categoriesService.getCategoryDataById(id);
       console.log(this.categoryData);
       this.courses = this.categoryData.courses;
-      // console.log(this.courses);
-      // this.courseCategoryId = id;
-
     }
 
     this.role = localStorage.getItem('role');
@@ -65,17 +60,6 @@ export class CoursesComponent implements OnInit {
   buyNow(course: any) {
     this.cartValueService.addCartData(course);
     this.router.navigate(['main/cart']);
-  }
-
-  btnDelete(id: number): any {
-    console.log(id);
-
-    this.coursesService.deleteCourse(id)
-      .subscribe((res: any) => {
-        console.log(res);
-      }, (err: any) => {
-        console.log(err);
-      })
   }
 
 }

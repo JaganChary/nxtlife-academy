@@ -20,22 +20,17 @@
               <a routerLink="../{{course.courseId}}/chapters">
                 <h4 class="card-title">{{course.course}}</h4>
               </a>
-              <p class="card-text text-muted" style="font-size: 0.8em;" *ngIf="course.description">{{course.description}}</p>
-              <p class="card-text text-muted" style="font-size: 0.8em;" *ngIf="!course.description">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <p class="card-text text-muted description" style="font-size: 0.8em;" *ngIf="course.description">{{course.description}}</p>
+              <p class="card-text text-muted description" style="font-size: 0.8em;" *ngIf="!course.description">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <div class="card-text" style="color: black">Duration:
                 <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="course.duration">{{course.duration}}</span>
                 <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="!course.duration">N/A</span>
               </div>
             </div>
-            <div>
+            <div *ngIf="role == 'sa'">
               <span>
-                <button type="button" class="style-btn" (click)="btnDelete(course.courseId)">
-                  <fa name="trash-o" size="1.9x"></fa>
-                </button>
-              </span>
-              <span>
-                <button type="button" class="style-btn" (click)="btnEdit()">
-                  <fa name="pencil-square-o" size="1.9x"></fa>
+                <button type="button" class="style-btn" (click)="btnEdit()" routerLink="add-courses" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-left: 4.5em">
+                  <fa name="pencil-square-o" size="x"></fa>
                 </button>
               </span>
             </div>
