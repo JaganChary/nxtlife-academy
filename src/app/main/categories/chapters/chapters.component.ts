@@ -10,6 +10,7 @@ import { CategoriesService } from '../categories.service';
   styleUrls: ['./chapters.component.css']
 })
 export class ChaptersComponent implements OnInit {
+  role: string;
   courseData: any;
   chapters: any;
 
@@ -26,6 +27,8 @@ export class ChaptersComponent implements OnInit {
     } else {
       this.directly();
     }
+
+    this.role = localStorage.getItem('role');
   }
 
   fromServer(): any {

@@ -1,11 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { RouterModule } from '@angular/router';
+
+import { CategoriesService } from '../categories.service';
+
+import { ChaptersComponent } from './chapters.component';
 import { AddChaptersComponent } from './add-chapters/add-chapters.component';
+import { ChaptersService } from './chapters.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFontAwesomeModule,
+    RouterModule.forChild([
+      {
+        path: 'add-chapters',
+        component: AddChaptersComponent
+      },
+      {
+        path: '',
+        component: ChaptersComponent
+      }
+    ])
   ],
-  declarations: [AddChaptersComponent]
+  declarations: [AddChaptersComponent, ChaptersComponent],
+  providers: [CategoriesService, ChaptersService]
 })
 export class ChaptersModule { }
