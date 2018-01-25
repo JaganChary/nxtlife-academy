@@ -1,6 +1,5 @@
 * {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
 }
 
 .container {
@@ -66,8 +65,8 @@ p {
     color: gray;
     border: none;
     border-color: none;
+}
 
-  }
 .style-btn:hover {
     background-color: darkcyan;
     color: white;

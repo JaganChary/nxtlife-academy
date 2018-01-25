@@ -1,28 +1,14 @@
 <div class="container">
 
+
   <div class="row">
-    <div class="col-md-2">
-
-    </div>
+    <div class="col-md-2"></div>
     <div class="col-md-8">
-      <div>
-        <h2>
-          Add Course
-        </h2>
-        <hr>
-      </div>
-      <br>
-      <br>
-      <!-- <div *ngFor="let category of categoryData">
-        <select>
-          <option>
-
-          </option>
-        </select>
-      </div> -->
-
+      <h2>
+        Add Course
+      </h2>
+      <hr>
       <form [formGroup]="addCourseForm">
-
         <!-- Course Name -->
         <div class="form-group">
           <label for="courseName">
@@ -62,11 +48,18 @@
             <input type="file" accept="image/*" (change)="fileUpload($event)">
           </div>
         </div>
+        <button type="button" class="style-btn" (click)="btnClick()">Submit</button>
       </form>
-      <button type="button" class="style-btn" (click)="btnClick()">Submit</button>
     </div>
-    <div class="col-md-2">
 
+    <div class="col-md-2">
+      <div class="form-group">
+        <label for="selectCategory" class="text-muted">Select Category</label>
+        <select class="form-control" [(ngModel)]="categoryId">
+          <option *ngFor="let category of categoryData" [ngValue]="category.courseCategoryId">{{category.category}}</option>
+        </select>
+      </div>
     </div>
   </div>
+
 </div>

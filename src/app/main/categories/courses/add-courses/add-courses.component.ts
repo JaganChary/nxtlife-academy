@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,  } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from '../courses.service';
 import { CategoriesService } from '../../categories.service';
@@ -10,6 +10,9 @@ import { CategoriesService } from '../../categories.service';
   styleUrls: ['./add-courses.component.css']
 })
 export class AddCoursesComponent implements OnInit {
+  categoryName: any;
+  id: number;
+  category: any;
   categoryData: any;
   categoryId: number;
   file: any;
@@ -20,7 +23,7 @@ export class AddCoursesComponent implements OnInit {
     private coursesService: CoursesService,
     private route: ActivatedRoute,
     private categoriesService: CategoriesService
-    
+
   ) { }
 
   ngOnInit() {
@@ -30,28 +33,44 @@ export class AddCoursesComponent implements OnInit {
     this.initForm();
 
     this.fromServer();
+
+
   }
+
+  // Array of categories and their information received via sa/categories url
 
   fromServer(): any {
     this.categoriesService.getSaCategories()
-    .subscribe((res: any) => {
-      console.log(res.data);
-      this.categoryData = res.data;
-    }, (err: any) => {
-      console.log(err);
-    })
+      .subscribe((res: any) => {
+        this.categoryData = res.data;
+        console.log(res.data);
+
+        // Object of CategoryData received according to the category the superAdmin Selected
+
+        this.categoriesService.storeCategoriesData(res.data);
+        this.id = +this.route.snapshot.paramMap.get('id');
+        this.category = this.categoriesService.getCategoryDataById(this.id);
+        
+      }, (err: any) => {
+        console.log(err);
+      })
   }
+
+  // Retrieving Category Id from Route Snapshot
 
   getCategoryId(): any {
     this.categoryId = +this.route.snapshot.paramMap.get('id');
   }
 
+  // Validations for input boxes
+
   initForm(): any {
     this.addCourseForm = this.formBuilder.group({
-      
+
       courseName: ['', Validators.required],
 
-      courseDescription: ['', Validators.required]
+      courseDescription: ['', Validators.required],
+
     })
   }
 
@@ -69,10 +88,12 @@ export class AddCoursesComponent implements OnInit {
 
 
     this.coursesService.postCourses(formData, this.categoryId)
-    .subscribe((res: any) => {
-      console.log(res);
-    }, (err: any) => {
-      console.log(err);
-    })
+      .subscribe((res: any) => {
+        console.log(res);
+
+        // Find and add a reload button that shows the new list of categories
+      }, (err: any) => {
+        console.log(err);
+      })
   }
 }
