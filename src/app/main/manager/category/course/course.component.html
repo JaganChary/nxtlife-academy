@@ -1,41 +1,101 @@
 <div class="container">
-  
+
 
   <div class="row">
     <div class="col-md-3">
 
     </div>
     <div class="col-md-9" *ngIf="categoryData">
-        <h2>Courses</h2>
-        <hr>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let course of courses">
-              <div class="card">
-                  <img class="card-img-top" *ngIf="course.image" src="{{course.image}}">
-                  <img class="card-img-top" *ngIf="!course.image" src="" alt="No Image Found">
-                  <div class="card-block">
-                    <a routerLink="../chapters/{{course.courseId}}"><h4 class="card-title">{{course.course}}</h4></a>
-                    <p class="card-text text-muted" style="font-size: 0.8em;" *ngIf="course.description">{{course.description}}</p>
-                    <p class="card-text text-muted" style="font-size: 0.8em;" *ngIf="!course.description">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <div class="card-text" style="color: black">Duration:
-                      <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="course.duration">{{course.duration}}</span>
-                      <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="!course.duration">N/A</span>
-                    </div>
-                    <div class="card-text" style="color: black">Expires On:
-                      <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="course.expireOn">{{course.expireOn}}</span>
-                      <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="!course.expireOn">N/A</span>
-                    </div>
-                    <div class="card-text" style="color: black">Topics Viewed:
-                      <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="course.topicsViewed">{{course.topicsViewed}}</span>
-                      <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="!course.topicsViewed">N/A</span>
-                    </div>
-                  </div>
-                  <div style="padding: none;">
-                      <span><button class="style-btn" style="padding: 0.5em 0.8em;" routerLink="../assign/{{course.courseId}}">Assign Course</button></span>
-                  </div>  
-                </div>
+      <h2>Courses</h2>
+      <hr>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let course of courses;">
+          <div class="card">
+            <img class="card-img-top" *ngIf="course.image" src="{{course.image}}">
+            <img class="card-img-top" *ngIf="!course.image" src="" alt="No Image Found">
+            <div class="card-block">
+              <a routerLink="../chapters/{{course.courseId}}">
+                <h4 class="card-title">{{course.course}}</h4>
+              </a>
+              <p class="card-text text-muted description" style="font-size: 0.8em;" *ngIf="course.description">{{course.description}}</p>
+              <p class="card-text text-muted description" style="font-size: 0.8em;" *ngIf="!course.description">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <div class="card-text" style="color: black">Duration:
+                <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="course.duration">{{course.duration}}</span>
+                <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="!course.duration">N/A</span>
+              </div>
+              <div class="card-text" style="color: black">Expires On:
+                <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="course.expireOn">{{course.expireOn}}</span>
+                <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="!course.expireOn">N/A</span>
+              </div>
+              <div class="card-text" style="color: black">Topics Viewed:
+                <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="course.topicsViewed">{{course.topicsViewed}}</span>
+                <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="!course.topicsViewed">N/A</span>
+              </div>
+            </div>
+
+            <div style="padding: none;">
+              <span>
+                <button class="style-btn" style="padding: 0.5em 0.8em;margin-left: 0.2em;" routerLink="../assign/{{course.courseId}}" data-toggle="tooltip"
+                  data-placement="bottom" title="Assign a course to employee">Assign Course
+                </button>
+
+                <!-- Button that triggers Modal -->
+                <button class="style-btn" style="float: right; padding: 0.5em 0.6em; margin-right: 0.2em" (click)="btnRenounce(course)" data-toggle="tooltip"
+                  data-placement="bottom" title="Give Up Unassigned License" data-toggle="modal" data-target="#exampleModal">Renounce
+                </button>
+              </span>
+            </div>
           </div>
         </div>
+
+        <div *ngIf="renounceCourseObject">
+          <!-- Modal to show when no. of unassigned license is greater han zero -->
+          <div *ngIf="renounceCourseObject.unassigned > 0" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Renounce License</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modalBody">
+                  <div class="card-text" style="color: black; margin-bottom: 0.5em">Remaining License:
+                    <span class="card-text text-muted" style="font-size: 0.9em;" *ngIf="renounceCourseObject.unassigned">{{renounceCourseObject.unassigned}}</span>
+                  </div>
+                  <div class="formGroup">
+                    <label for="license" class="card-text">
+                      Number of Licenses
+                      <input type="number" class="form-control" placeholder="Enter license" (ngModelChange)="onLicenseChange($event)" ngModel>
+                    </label>
+                  </div>
+                </div>
+                <div class="modalFooter">
+                  <button type="button" style="float:right;" (click)="btnSubmit(renounceCourseObject.taskId)" class="style-btn">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End of Modal -->
+
+          <!-- Modal to show when no. of unassigned license is less than equal to zero -->
+          <div *ngIf="renounceCourseObject.unassigned <= 0" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">You currently have no Licenses to renounce. Please purchase new license.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- End of Modal -->
+
+        </div>
+      </div>
     </div>
   </div>
 </div>

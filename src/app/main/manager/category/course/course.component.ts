@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../category.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -8,12 +9,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
+  license: any;
   courses: any;
   categoryData: any;
+  renounceForm: FormGroup;
+  renounceCourseObject: object;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private formBuilder: FormBuilder,
     private categoryService: CategoryService
   ) { }
 
@@ -37,7 +42,7 @@ export class CourseComponent implements OnInit {
         this.categoryData = this.categoryService.getCategoryDataByID(id);
         // console.log(this.categoryData);
         this.courses = this.categoryData.courses;
-        // console.log(this.courses);
+        console.log(this.courses);
 
       }, (err: any) => {
         console.log(err);
@@ -51,6 +56,33 @@ export class CourseComponent implements OnInit {
     this.categoryData = this.categoryService.getCategoryDataByID(id);
     // console.log(this.categoryData);
     this.courses = this.categoryData.courses;
-    // console.log(this.courses);
+    console.log(this.courses);
   }
+
+  onLicenseChange(event): any {
+    this.license = event;
+    if(this.license < 1) {
+      this.license = 1;
+    } else if(this.license > this.courses) {
+
+    }
+    console.log(this.license);
+  }
+
+  btnRenounce(course): any {
+    this.renounceCourseObject = course;
+    console.log(course);
+  }
+
+  btnSubmit(id: number) {
+    console.log(id);
+    
+    this.categoryService.renounceLicense(this.license, id)
+    .subscribe((res: any) => {
+      console.log(res);
+    }, (err: any) => {
+      console.log(err);
+    })
+  }
+
 }
