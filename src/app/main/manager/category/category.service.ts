@@ -10,8 +10,14 @@ export class CategoryService {
     private commonHttpService: CommonHttpService
   ) { }
 
+  // Get Manager Tasks
   getManagerTasks(): any {
     return this.commonHttpService.get('/manager/my-tasks');
+  }
+
+  // Renounce License
+  renounceLicense(license, id): any {
+    return this.commonHttpService.put(`/manager/task/${id}/license/${license}`, {});
   }
 
   // Store Categories
@@ -40,6 +46,7 @@ export class CategoryService {
   getCourseDataByID(id: number) {
     return this.coursesData[id];
   }
+
 
   
 }

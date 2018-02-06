@@ -6,9 +6,9 @@ import { RouterModule } from '@angular/router';
 import { CourseComponent } from './course/course.component';
 import { ChaptersComponent } from './chapters/chapters.component';
 import { AssignComponent } from './assign/assign.component';
-// import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AssignService } from './assign/assign.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 
@@ -16,8 +16,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    // RouterModule,
-    // AngularFontAwesomeModule,
+    ReactiveFormsModule,
+    AngularFontAwesomeModule,
     RouterModule.forChild([
       {
         path: '',
