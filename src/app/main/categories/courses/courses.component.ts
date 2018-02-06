@@ -36,6 +36,7 @@ export class CoursesComponent implements OnInit {
           const id = +this.route.snapshot.paramMap.get('id');
           this.categoryData = this.categoriesService.getCategoryDataById(id);
           this.courses = this.categoryData.courses;
+          console.log(this.courses);
           
         }, (error: any) => {
           console.log(error);
@@ -60,6 +61,23 @@ export class CoursesComponent implements OnInit {
   buyNow(course: any) {
     this.cartValueService.addCartData(course);
     this.router.navigate(['main/cart']);
+  }
+
+  btnDelete(id: any, i) {
+    this.coursesService.deleteCourse(id)
+    .subscribe((res: any) =>{
+     console.log(i);
+     let obj = this.courses.splice(i,1);
+     console.log(obj);
+     
+       console.log(res);
+    }, (err: any) => {
+      console.log(err);
+    })
+  }
+
+  btnEdit(): any {
+    
   }
 
 }

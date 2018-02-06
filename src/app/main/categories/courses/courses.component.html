@@ -12,7 +12,7 @@
         <button *ngIf="role == 'sa'" class="style-btn" style="padding: 1em 2em" routerLink="add-courses">Add Courses</button>
       </div>
       <div class="row" style="margin-top: 1em">
-        <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let course of courses">
+        <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let course of courses; let i = index;">
           <div class="card">
             <img class="card-img-top" *ngIf="course.image" src="{{course.image}}">
             <img class="card-img-top" *ngIf="!course.image" src="" alt="No Image Found">
@@ -29,9 +29,15 @@
             </div>
             <div *ngIf="role == 'sa'">
               <span>
-                <button type="button" class="style-btn" (click)="btnEdit()" routerLink="add-courses" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-left: 4.5em">
+                <button type="button" class="style-btn" (click)="btnEdit()" routerLink="add-courses" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-left: 1.5em">
                   <fa name="pencil-square-o" size="x"></fa>
                 </button>
+                <button type="button" class="style-btn" (click)="btnDelete(course.courseId,i)" data-toggle="tooltip" data-placement="bottom" title="Delete" style="float:right; margin-right: 1.5em">
+                  <fa name="trash-o" size="x"></fa>
+                </button>
+              </span>
+              <span>
+                
               </span>
             </div>
             <div style="padding: none;" *ngIf="role == 'admin'">

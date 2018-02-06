@@ -20,6 +20,5 @@ export class CoursesService {
     // console.log(id);
     return this.commonHttpService.post(`/sa/category/${id}/course`, data);
   }
-
 }
   
