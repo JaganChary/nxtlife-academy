@@ -33,8 +33,6 @@ export class AddCoursesComponent implements OnInit {
     this.initForm();
 
     this.fromServer();
-
-
   }
 
   // Array of categories and their information received via sa/categories url

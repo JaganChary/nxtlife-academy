@@ -7,12 +7,13 @@
     <div class="col-md-8">
       <div>
         <h2>
-          Add Category
+          {{addORedit}} Category
         </h2>
         <hr>
       </div>
       <br><br>
 
+      <!-- Form -->
       <form [formGroup]="addCategoryForm">
 
         <!-- Category Name -->
@@ -55,7 +56,10 @@
             <input type="file" accept="image/*" (change)="fileUpload($event)">
           </div>
         </div>
+
       </form>
+      <!-- End of Form -->
+
       <button type="button" class="style-btn" (click)="btnClick()">Submit</button>
     </div>
     <div class="col-md-2">

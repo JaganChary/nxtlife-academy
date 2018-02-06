@@ -3,6 +3,8 @@ import { CommonHttpService } from '../shared/commonHttp.service';
 
 @Injectable()
 export class CategoriesService {
+  addORedit: String;
+  categoryData: any;
   categoriesData: object;
   coursesData: Object;
 
@@ -26,11 +28,23 @@ export class CategoriesService {
       catg.courses.forEach((course: any) => {
         this.coursesData[course.courseId] = course;
       });
-
+      
     });
   }
 
+  storeCategoryData(category: Object, action: String): any {
+    this.categoryData = category;
+    this.addORedit = action;
+  }
   
+  getCategoryData(): any {
+    return this.categoryData;
+  }
+
+  getAction(): any {
+    return this.addORedit;
+  }
+
   // *******  Retrieving CategoryDataById ******* //
 
   getCategoryDataById(id: number) {
@@ -47,7 +61,6 @@ export class CategoriesService {
 
   getCategories(): any {
     return this.commonHttpService.get('/categories');
-
   }
 
   // ******* Post request for adding Caegories ******* //
@@ -56,9 +69,9 @@ export class CategoriesService {
     return this.commonHttpService.post('/sa/category', data);
   }
 
-  // ******* Post request for Deleting Caegories ******* //
+  // ******* Put request for Editing Caegories ******* //
 
-  deleteCategories(id: number): any {
+  editCategories(id: number): any {
     console.log(id)
     return this.commonHttpService.delete("/sa/category/" + id);
   }

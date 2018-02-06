@@ -29,7 +29,7 @@ export class CoursesComponent implements OnInit {
   ngOnInit() {
 
     if (!this.categoriesService.categoriesData) {
-
+      
       this.categoriesService.getCategories()
         .subscribe((res: any) => {
           this.categoriesService.storeCategoriesData(res);

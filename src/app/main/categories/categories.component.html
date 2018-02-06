@@ -7,7 +7,7 @@
       <div>
         <h2>Categories</h2>
         <hr>
-        <button class="style-btn" *ngIf="role == 'sa'" routerLink="add-category">Add Categories</button>
+        <button class="style-btn" *ngIf="role == 'sa'" (click)="addCategory()" routerLink="add-category">Add Categories</button>
       </div>
       <span *ngFor="let category of categories; let i = index">
         <div class="card">
@@ -29,23 +29,19 @@
               </p>
               <div class="pull-right">
                 <span>
-                  <button type="button" class="style-btn " routerLink="{{category.courseCategoryId}}/courses">Go to Courses</button>
+                  <button type="button" class="style-btn" routerLink="{{category.courseCategoryId}}/courses">Go to Courses</button>
                 </span>
+                <!-- Button to edit category -->
                 <span *ngIf="role == 'sa'">
-                  <button type="button" class="style-btn " style="padding-left: 1.3em; padding-right: 1.3em" routerLink="add-category">
+                  <button type="button" (click)="editCategory(category)" class="style-btn" style="padding-left: 1.3em; padding-right: 1.3em" routerLink="add-category">
                     <fa name="pencil-square-o" size="1.9x"></fa>
                   </button>
                 </span>
               </div>
-
             </div>
           </div>
         </div>
-
       </span>
     </div>
-
-
   </div>
 </div>
-<!-- <router-outlet></router-outlet> -->

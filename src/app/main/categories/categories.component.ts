@@ -10,8 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 export class CategoriesComponent implements OnInit {
   categories: Array<any>;
   storeData: any;
-  role: String
-
+  role: String;
+  addORedit: String;
+ 
   constructor(
     private categoriesService: CategoriesService,
     private route: ActivatedRoute
@@ -31,8 +32,18 @@ export class CategoriesComponent implements OnInit {
       });
 
     this.role = localStorage.getItem('role');
+  }
 
+  // Button to edit category
 
+  addCategory(): any {
+    this.addORedit = 'Add';
+    this.categoriesService.storeCategoryData({},this.addORedit);
+  }
+
+  editCategory(category: any): any {
+    this.addORedit = 'Edit';
+    this.categoriesService.storeCategoryData(category, this.addORedit);
   }
 
 }
