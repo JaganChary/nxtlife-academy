@@ -56,6 +56,17 @@ export class CommonHttpService {
       .catch(this.handleError);
   }
 
+  // Put Request
+
+  put(url: string, body: any, options?: HttpHeaders) {
+    
+    let headers = this.addHeaders(options);
+
+    return this.httpClient.put(BASEURL + url, body, { headers: headers, observe: 'response' })
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   // Delete Request
 
   delete(url: string, options?: HttpHeaders) {
