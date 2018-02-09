@@ -12,7 +12,13 @@
       </div>
       <div class="bg-color" >
         <div id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="card" *ngFor="let chapter of chapters" style="margin-top: 2em">
+          <div class="card" *ngFor="let chapter of chapters; let i = index" style="margin-top: 2em">
+              <div>
+                  <button type="button" class="style-btn" data-toggle="tooltip" data-placement="bottom" title="Delete Chapter" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -1.2em; top: -1em"
+                    (click)="deleteChapter(chapter.chapterId, i)">
+                    <fa name="close" style="color: white"></fa>
+                  </button>
+                </div>
             <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{chapter.chapterId}}" aria-expanded="true" aria-controls="collapseOne">
               <span class="bold">Chapter {{chapter.chapterId}}
                 <fa name="arrow-down" class="text-muted" style="float: right; margin: 1em 1.2em;" size="2x"></fa>
@@ -21,10 +27,15 @@
             </a>
             <div id="collapse{{chapter.chapterId}}" class="collapse hide" role="tabpanel" aria-labelledby="headingOne">
               <hr style="background-color: lightgray;">
-              <a href="">
-                <div class="card-block" *ngFor="let topic of chapter.topics">
+              <a>
+                <div class="card-block" *ngFor="let topic of chapter.topics; let j = index">
                   <fa name="arrow-right" class="text-muted" style="float: left; padding-right: 0.8em;"></fa>
                   <span class="text-muted" style="font-size: 1.1em; font-weight: light">{{topic.topic}}</span>
+                  <span>
+                    <button type="button" (click)="deleteTopic(topic.topicId, i, j)" data-toggle="tooltip" data-placement="bottom" title="Delete Topic" style="float:right; margin-left:1.5em;">
+                      <fa name="trash-o" size="2x"></fa>
+                    </button>
+                  </span>
                   <span class="text-muted" *ngIf="topic.duration" style="float:right;">{{topic.duration}}</span>
                   <span class="text-muted" *ngIf="!topic.duration" style="float:right;">N/A</span>
                 </div>

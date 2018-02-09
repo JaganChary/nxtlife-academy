@@ -111,7 +111,7 @@ export class AddChaptersComponent implements OnInit {
 
   btnSubmit(): any {  
     this.formData = new FormData();
-    // this.formData.append('chapters', this.datas);
+    this.formData.append('chapters', this.datas);
 
     console.log(this.datas);
     this.chaptersService.postChaptersandTopics(this.formData, this.courseId)

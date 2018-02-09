@@ -49,8 +49,6 @@
                     </div>
                     <!-- End of Upload Chapter Image -->
 
-                    <!-- Collapsible div which shows the fields topic and duration -->
-
                     <div formArrayName="topics">
                       <div class="card" style="background-color: white; margin-top :1em" *ngFor="let topics of addChapterForm.controls.chapters.controls[i].controls.topics.controls;let j = index">
                         <div class="row" [formGroupName]="j">
@@ -123,8 +121,6 @@
         </div>
 
         <!-- Submit Button -->
-
-
         <button type="button" class="style-btn" (click)="btnSubmit()">Submit</button>
       </form>
 
