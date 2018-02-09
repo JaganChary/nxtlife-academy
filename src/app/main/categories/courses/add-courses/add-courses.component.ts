@@ -10,12 +10,14 @@ import { CategoriesService } from '../../categories.service';
   styleUrls: ['./add-courses.component.css']
 })
 export class AddCoursesComponent implements OnInit {
-  categoryName: any;
+  courseId: any;
   id: number;
   category: any;
   categoryData: any;
   categoryId: number;
   file: any;
+  addORedit: String;
+  courseData: any;
   addCourseForm: FormGroup;
 
   constructor(
@@ -48,7 +50,7 @@ export class AddCoursesComponent implements OnInit {
         this.categoriesService.storeCategoriesData(res.data);
         this.id = +this.route.snapshot.paramMap.get('id');
         this.category = this.categoriesService.getCategoryDataById(this.id);
-        
+
       }, (err: any) => {
         console.log(err);
       })
@@ -63,13 +65,37 @@ export class AddCoursesComponent implements OnInit {
   // Validations for input boxes
 
   initForm(): any {
-    this.addCourseForm = this.formBuilder.group({
 
-      courseName: ['', Validators.required],
+    this.courseData = this.coursesService.getCourseData();
+    console.log('courseData', this.courseData);
+    this.courseId = this.courseData.courseId;
+    this.addORedit = this.coursesService.getAction();
 
-      courseDescription: ['', Validators.required],
+    if (this.addORedit === 'Add') {
 
-    })
+      this.addCourseForm = this.formBuilder.group({
+
+        courseName: ['', Validators.required],
+
+        courseDescription: ['', Validators.required],
+
+        courseCost: ['', Validators.required],
+
+      })
+    } else if (this.addORedit === 'Edit') {
+
+      this.addCourseForm = this.formBuilder.group({
+
+        courseName: [this.courseData.course, Validators.required],
+
+        courseDescription: [this.courseData.description, Validators.required],
+
+        courseCost: [this.courseData.cost, Validators.required],
+
+        courseImage: [this.courseData.courseImage]
+
+      })
+    }
   }
 
   fileUpload(imageFile: any): any {
@@ -82,16 +108,27 @@ export class AddCoursesComponent implements OnInit {
 
     formData.append('course', this.addCourseForm.value.courseName);
     formData.append('description', this.addCourseForm.value.courseDescription);
+    formData.append('cost', this.addCourseForm.value.courseCost)
     formData.append('imageFile', this.file);
 
+    if (this.addORedit === 'Add') {
 
-    this.coursesService.postCourses(formData, this.categoryId)
-      .subscribe((res: any) => {
-        console.log(res);
+      this.coursesService.postCourses(formData, this.categoryId)
+        .subscribe((res: any) => {
+          console.log(res);
+          // Find and add a reload button that shows the new list of categories
+        }, (err: any) => {
+          console.log(err);
+        })
+    } else if (this.addORedit === 'Edit') {
 
-        // Find and add a reload button that shows the new list of categories
-      }, (err: any) => {
-        console.log(err);
-      })
+      this.coursesService.editCourses(formData, this.courseId)
+        .subscribe((res: any) => {
+          console.log(res);
+          // Find and add a reload button that shows the new list of categories
+        }, (err: any) => {
+          console.log(err);
+        })
+    }
   }
 }

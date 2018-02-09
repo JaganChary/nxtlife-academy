@@ -5,10 +5,11 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <h2>
-        Add Course
+        {{addORedit}} Course
       </h2>
       <hr>
       <form [formGroup]="addCourseForm">
+
         <!-- Course Name -->
         <div class="form-group">
           <label for="courseName">
@@ -38,6 +39,21 @@
           </div>
         </div>
 
+        <!-- Course Cost -->
+        <div class="form-group">
+            <label for="courseCost">
+              <span class="change">
+                <span class="fat">|</span>Cost</span>
+            </label>
+            <input type="number" class="form-control" formControlName="courseCost" placeholder="Enter Cost">
+            <div *ngIf="addCourseForm.controls['courseCost'].hasError('required') && addCourseForm.controls['courseCost'].touched"
+              class="alert alert-danger">
+              <small>
+                <i>You must include a Course Cost.</i>
+              </small>
+            </div>
+          </div>
+
         <!-- Upload Course Image -->
         <div class="form-group">
           <label for="courseImage">
@@ -52,7 +68,7 @@
       </form>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-2" *ngIf="addORedit === 'Add'">
       <div class="form-group">
         <label for="selectCategory" class="text-muted">Select Category</label>
         <select class="form-control" [(ngModel)]="categoryId">
