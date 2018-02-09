@@ -9,7 +9,7 @@
       <div>
         <h2>Courses</h2>
         <hr>
-        <button *ngIf="role == 'sa'" class="style-btn" style="padding: 1em 2em" routerLink="add-courses">Add Courses</button>
+        <button *ngIf="role == 'sa'" class="style-btn" (click)="addCourse()" style="padding: 1em 2em" routerLink="add-courses">Add Courses</button>
       </div>
       <div class="row" style="margin-top: 1em">
         <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let course of courses; let i = index;">
@@ -29,7 +29,7 @@
             </div>
             <div *ngIf="role == 'sa'">
               <span>
-                <button type="button" class="style-btn" (click)="btnEdit()" routerLink="add-courses" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-left: 1.5em">
+                <button type="button" class="style-btn" (click)="editCourse(course)" routerLink="add-courses" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-left: 1.5em">
                   <fa name="pencil-square-o" size="x"></fa>
                 </button>
                 <button type="button" class="style-btn" (click)="btnDelete(course.courseId,i)" data-toggle="tooltip" data-placement="bottom" title="Delete" style="float:right; margin-right: 1.5em">

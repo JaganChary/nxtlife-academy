@@ -76,8 +76,12 @@ export class CoursesComponent implements OnInit {
     })
   }
 
-  btnEdit(): any {
-    
+  addCourse(): any {
+    this.coursesService.storeCourseData({}, 'Add');
+  }
+
+  editCourse(course:any): any {
+    this.coursesService.storeCourseData(course, 'Edit');
   }
 
 }
