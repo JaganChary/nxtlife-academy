@@ -15,6 +15,7 @@ import { CategoriesService } from '../categories.service';
   styleUrls: ['./add-categories.component.css']
 })
 export class AddCategoriesComponent implements OnInit {
+  id: any;
   addORedit: any;
   categoryData: any;
   file: any;
@@ -28,7 +29,7 @@ export class AddCategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    
     this.initForm();
 
   }
@@ -36,6 +37,8 @@ export class AddCategoriesComponent implements OnInit {
   initForm() {
 
     this.categoryData = this.categoriesService.getCategoryData();
+    console.log(this.categoryData,'category data');
+    this.id = this.categoryData.courseCategoryId;
     this.addORedit = this.categoriesService.getAction();
 
     if (this.addORedit === 'Add') {
@@ -74,14 +77,26 @@ export class AddCategoriesComponent implements OnInit {
 
     formData.append('category', this.addCategoryForm.value.categoryName);
     formData.append('description', this.addCategoryForm.value.categoryDescription);
-    formData.append('imageFIle', this.file);
+    formData.append('imageFile', this.file);
     console.log(formData);
 
-    this.categoriesService.postCategories(formData)
-      .subscribe((res: any) => {
-        console.log(res);
-      }, (err: any) => {
-        console.log(err);
-      })
+    if (this.addORedit === 'Add') {
+
+      this.categoriesService.postCategories(formData)
+        .subscribe((res: any) => {
+          console.log(res);
+        }, (err: any) => {
+          console.log(err);
+        })
+    } else if(this.addORedit === 'Edit') {
+
+      this.categoriesService.editCategories(this.id,formData)
+        .subscribe((res: any) => {
+          console.log(res);
+        }, (err: any) => {
+          console.log(err);
+        })
+    }
+
   }
 }
