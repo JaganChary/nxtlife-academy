@@ -23,7 +23,7 @@ export class CategoriesService {
     categories.forEach((catg: any) => {
       this.categoriesData[catg.courseCategoryId] = catg;
 
-      // *********** Storing course Data *********** //
+      // *********** Storing Courses Data *********** //
 
       catg.courses.forEach((course: any) => {
         this.coursesData[course.courseId] = course;
@@ -32,14 +32,20 @@ export class CategoriesService {
     });
   }
 
+  // *********** Storing Category Data *********** //
+
   storeCategoryData(category: Object, action: String): any {
     this.categoryData = category;
     this.addORedit = action;
   }
-  
+
+  // *********** Retrieve Category Data *********** //
+
   getCategoryData(): any {
     return this.categoryData;
   }
+
+  // *******  Receive String Add or Edit ******* //
 
   getAction(): any {
     return this.addORedit;
@@ -71,9 +77,9 @@ export class CategoriesService {
 
   // ******* Put request for Editing Caegories ******* //
 
-  editCategories(id: number): any {
+  editCategories(id: number, data): any {
     console.log(id)
-    return this.commonHttpService.delete("/sa/category/" + id);
+    return this.commonHttpService.put(`/sa/category/${id}`, data);
   }
 
   getSaCategories(): any {

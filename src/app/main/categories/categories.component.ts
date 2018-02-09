@@ -11,8 +11,7 @@ export class CategoriesComponent implements OnInit {
   categories: Array<any>;
   storeData: any;
   role: String;
-  addORedit: String;
- 
+  
   constructor(
     private categoriesService: CategoriesService,
     private route: ActivatedRoute
@@ -37,13 +36,11 @@ export class CategoriesComponent implements OnInit {
   // Button to edit category
 
   addCategory(): any {
-    this.addORedit = 'Add';
-    this.categoriesService.storeCategoryData({},this.addORedit);
+    this.categoriesService.storeCategoryData({}, 'Add');
   }
 
   editCategory(category: any): any {
-    this.addORedit = 'Edit';
-    this.categoriesService.storeCategoryData(category, this.addORedit);
+    this.categoriesService.storeCategoryData(category, 'Edit');
   }
 
 }
