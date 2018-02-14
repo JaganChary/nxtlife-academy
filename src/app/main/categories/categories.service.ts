@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CommonHttpService } from '../shared/commonHttp.service';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+
 
 @Injectable()
 export class CategoriesService {
@@ -28,8 +31,39 @@ export class CategoriesService {
       catg.courses.forEach((course: any) => {
         this.coursesData[course.courseId] = course;
       });
-      
+
     });
+    console.log(this.categoriesData);
+  }
+
+  // *******  Retrieving CategoryDataById ******* //
+
+  getCategoryDataById(id: number): Observable<any> {
+    if (this.categoriesData && this.categoriesData[id]) {
+      return of(this.categoriesData[id]);
+    } else {
+      return this.getCategories()
+        .map(cat => cat.find(cat => cat.courseCategoryId === id));
+    }
+  }
+
+  // *******  Retrieving CourseDataById ******* //
+
+  getCourseDataById(id: number): Observable<any> {
+
+    if (this.coursesData && this.coursesData[id]) {
+      return of(this.coursesData[id]);
+    } else {
+      return this.getCategories().map(cats => {
+        for (let i = 0; i < cats.length; i++) {
+          let c = cats[i].courses.find(course => course.courseId === id);
+          if (c) {
+            return c;
+          }
+        }
+      }
+      )
+    }
   }
 
   // *********** Storing Category Data *********** //
@@ -45,22 +79,10 @@ export class CategoriesService {
     return this.categoryData;
   }
 
-  // *******  Receive String Add or Edit ******* //
+  // *******  Receive String 'Add' or 'Edit' ******* //
 
   getAction(): any {
     return this.addORedit;
-  }
-
-  // *******  Retrieving CategoryDataById ******* //
-
-  getCategoryDataById(id: number) {
-    return this.categoriesData[id];
-  }
-
-  // *******  Retrieving CourseDataById ******* //
-
-  getCourseDataById(id: number) {
-    return this.coursesData[id];
   }
 
   // All Catgeories
@@ -69,7 +91,7 @@ export class CategoriesService {
     return this.commonHttpService.get('/categories');
   }
 
-  // ******* Post request for adding Caegories ******* //
+  // ******* Post request for adding Categories ******* //
 
   postCategories(data): any {
     return this.commonHttpService.post('/sa/category', data);
