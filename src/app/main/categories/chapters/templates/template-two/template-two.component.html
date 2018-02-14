@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Template Two</h3>
+      <hr>
+      <form [formGroup]="templateTwoForm">
+        <div class="card">
+
+          <!-- ***************** Heading ***************** -->
+          <div class="form-group">
+            <label for="heading">
+              <span class="change">
+                <span class="fat">|</span>Heading
+              </span>
+            </label>
+            <input type="text" class="form-control" formControlName="heading" placeholder="Type Here ...">
+          </div>
+          <!-- End of Heading -->
+
+          <!-- Type -->
+          <div class="form-group">
+            <label for="type">
+              <span class="change">
+                <span class="fat">|</span>Type
+              </span>
+            </label>
+            <div>
+
+              <input type="radio" formControlName="type" value="button">Button
+
+              <input type="radio" formControlName="type" value="image">Image
+
+            </div>
+          </div>
+          <!-- End of Type -->
+
+          <!-- ***************** Buttons ***************** -->
+          <div formArrayName="buttons">
+            <h5>Buttons</h5>
+            <div class="card" style="background-color: lightgray" *ngFor="let buttons of templateTwoForm.controls.buttons.controls; let i = index;"
+              [formGroupName]="i">
+              <button type="button" (click)="deleteButton()" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.9em; top: -1.4em">
+                <fa name="close" style="color: white"></fa>
+              </button>
+              <!-- Upload Image -->
+              <div class="form-group">
+                <label for="uploadImage">
+                  <span class="change">
+                    <span class="fat">|</span>Upload Image</span>
+                </label>
+                <div>
+                  <input type="file" accept="image/*" (change)="fileUpload($event)">
+                </div>
+              </div>
+              <!-- End of Upload Image -->
+
+              <!-- Title -->
+              <div class="form-group">
+                <label for="title">
+                  <span class="change">
+                    <span class="fat">|</span>Title
+                  </span>
+                </label>
+                <input type="text" class="form-control" formControlName="title" placeholder="Type Here ...">
+              </div>
+              <!-- End of Title -->
+
+              <!-- Description -->
+              <div class="form-group">
+                <label for="description">
+                  <span class="change">
+                    <span class="fat">|</span>Description
+                  </span>
+                </label>
+                <input type="text" class="form-control" formControlName="description" placeholder="Type Here ...">
+              </div>
+              <!-- End of Description -->
+            </div>
+            <!-- End of Buttons -->
+            <br>
+            <button type="button" class="style-btn" (click)="addButton()" style="width: 25%;">Add More</button>
+          </div>
+
+
+        </div>
+        <br>
+        <button type="button" class="style-btn" (click)="btnSubmit()">Submit</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
