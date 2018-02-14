@@ -22,6 +22,10 @@ import { ChaptersService } from './chapters.service';
         component: AddChaptersComponent
       },
       {
+        path: ':id/add-page',
+        loadChildren: 'app/main/categories/chapters/templates/templates.module#TemplatesModule' 
+      },
+      {
         path: '',
         component: ChaptersComponent
       }

@@ -10,9 +10,8 @@ import { ChaptersService } from './chapters.service';
   styleUrls: ['./chapters.component.css']
 })
 export class ChaptersComponent implements OnInit {
-  topics: any;
+  course: any;
   role: string;
-  courseData: any;
   chapters: any;
 
   constructor(
@@ -24,39 +23,13 @@ export class ChaptersComponent implements OnInit {
 
   ngOnInit() {
 
-    if (!this.categoriesService.categoriesData) {
-      this.fromServer();
-
-    } else {
-      this.directly();
-    }
+    this.route.data
+    .subscribe((res: {cats: any}) => {
+      this.course = res.cats;
+      this.chapters = this.course.chapters;  
+    })
 
     this.role = localStorage.getItem('role');
-  }
-
-  fromServer(): any {
-
-    this.categoriesService.getCategories()
-      .subscribe((res: any) => {
-        this.categoriesService.storeCategoriesData(res);
-        const id = +this.route.snapshot.paramMap.get('id');
-        this.courseData = this.categoriesService.getCourseDataById(id);
-        this.chapters = this.courseData.chapters;
-        console.log(this.chapters);
-        
-      }, (error: any) => {
-        console.log(error);
-
-      })
-  }
-
-  directly(): any {
-
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.courseData = this.categoriesService.getCourseDataById(id);
-    this.chapters = this.courseData.chapters;
-    console.log(this.chapters);
-
   }
   
   deleteChapter(chapterId, i): any {
@@ -73,7 +46,7 @@ export class ChaptersComponent implements OnInit {
       })
   }
 
-// not done yet complete it later
+// not done yet complete later
   deleteTopic(topicId, i, j): any {
 
     this.chaptersService.deleteTopic(topicId)

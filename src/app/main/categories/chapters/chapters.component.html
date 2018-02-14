@@ -13,7 +13,7 @@
       <div class="bg-color" >
         <div id="accordion" role="tablist" aria-multiselectable="true">
           <div class="card" *ngFor="let chapter of chapters; let i = index" style="margin-top: 2em">
-              <div>
+              <div *ngIf="role == 'sa'">
                   <button type="button" class="style-btn" data-toggle="tooltip" data-placement="bottom" title="Delete Chapter" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -1.2em; top: -1em"
                     (click)="deleteChapter(chapter.chapterId, i)">
                     <fa name="close" style="color: white"></fa>
@@ -30,8 +30,8 @@
               <a>
                 <div class="card-block" *ngFor="let topic of chapter.topics; let j = index">
                   <fa name="arrow-right" class="text-muted" style="float: left; padding-right: 0.8em;"></fa>
-                  <span class="text-muted" style="font-size: 1.1em; font-weight: light">{{topic.topic}}</span>
-                  <span>
+                  <span class="text-muted" style="font-size: 1.1em; font-weight: light" data-toggle="tooltip" data-placement="bottom" title="Add Page" routerLink="{{topic.topicId}}/add-page">{{topic.topic}}</span>
+                  <span *ngIf="role == 'sa'">
                     <button type="button" (click)="deleteTopic(topic.topicId, i, j)" data-toggle="tooltip" data-placement="bottom" title="Delete Topic" style="float:right; margin-left:1.5em;">
                       <fa name="trash-o" size="2x"></fa>
                     </button>
