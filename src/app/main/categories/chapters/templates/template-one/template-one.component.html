@@ -1,0 +1,247 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Template One</h3>
+      <hr>
+
+      <form [formGroup]="templateOneForm">
+        <div class="card">
+
+          <!-- ***************** Heading ***************** -->
+          <div class="form-group">
+            <label for="heading">
+              <span class="change">
+                <span class="fat">|</span>Heading
+              </span>
+            </label>
+            <input type="text" class="form-control" formControlName="heading" placeholder="Type Here ...">
+          </div>
+          <!-- End of Heading -->
+
+          <div class="card" formArrayName="images">
+
+            <!-- ***************** Images ***************** -->
+            <h5>Images</h5>
+            <div class="card" style="background-color: lightgray" *ngFor="let images of templateOneForm.controls.images.controls; let i = index">
+              <div [formGroupName]="i">
+                <button type="button" (click)="deleteImage()" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.8em; top: -1.4em">
+                  <fa name="close" style="color: white"></fa>
+                </button>
+
+                <!-- Title -->
+                <div class="form-group">
+                  <label for="title">
+                    <span class="change">
+                      <span class="fat">|</span>Image Title
+                    </span>
+                  </label>
+                  <input type="text" class="form-control" formControlName="title" placeholder="Type Here ...">
+                </div>
+                <!-- End of Title -->
+
+                <!-- Upload Image -->
+                <div class="form-group">
+                  <label for="uploadImage">
+                    <span class="change">
+                      <span class="fat">|</span>Upload Image</span>
+                  </label>
+                  <div>
+                    <input type="file" accept="image/*" (change)="fileUpload($event)">
+                  </div>
+                </div>
+                <!-- End of Upload Image -->
+
+                <!-- Sort Order -->
+                <div class="form-group">
+                  <label for="sortOrder">
+                    <span class="change">
+                      <span class="fat">|</span>SortOrder
+                    </span>
+                  </label>
+                  <input type="number" class="form-control" formControlName="sortOrder" placeholder="Type Here ...">
+                </div>
+                <!-- End of Sort Order -->
+              </div>
+              <br>
+              <button type="button" (click)="addImages()" class="style-btn" style="width: 25%;">
+                Add More
+              </button>
+            </div>
+          </div>
+          <!-- ***************** End of Images ***************** -->
+
+
+
+
+          <div class="card" formArrayName="paragraphs">
+            <!-- ***************** Paragraphs ***************** -->
+
+            <h5>Paragraphs</h5>
+            <div class="card" style="background-color: lightgray" *ngFor="let paragraphs of templateOneForm.controls.paragraphs.controls; let j = index">
+              <div [formGroupName]="j">
+                <button type="button" (click)="deleteParagraph()" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.9em; top: -1.4em">
+                  <fa name="close" style="color: white"></fa>
+                </button>
+                <!-- Title -->
+                <div class="form-group">
+                  <label for="title">
+                    <span class="change">
+                      <span class="fat">|</span>Paragraph Title
+                    </span>
+                  </label>
+                  <input type="text" class="form-control" formControlName="title" placeholder="Type Here ...">
+                </div>
+                <!-- End of Title -->
+
+                <!-- Description -->
+                <div class="form-group">
+                  <label for="description">
+                    <span class="change">
+                      <span class="fat">|</span>Paragraph Description
+                    </span>
+                  </label>
+                  <input type="text" class="form-control" formControlName="description" placeholder="Type Here ...">
+                </div>
+                <!-- End of Description -->
+
+                <!-- Upload Image -->
+                <div class="form-group">
+                  <label for="uploadImage">
+                    <span class="change">
+                      <span class="fat">|</span>Upload Image</span>
+                  </label>
+                  <div>
+                    <input type="file" accept="image/*" (change)="fileUpload($event)">
+                  </div>
+                </div>
+                <!-- End of Upload Image -->
+
+                <!-- Image Position -->
+                <div class="form-group">
+                  <label for="imagePosition">
+                    <span class="change">
+                      <span class="fat">|</span>Image Position</span>
+                  </label>
+                  <div>
+
+                    <input type="radio" formControlName="imagePosition" value="left">Left
+
+                    <input type="radio" formControlName="imagePosition" value="right">Right
+
+                  </div>
+                </div>
+                <!-- End of Image Position -->
+
+                <!-- Sort Order -->
+                <div class="form-group">
+                  <label for="sortOrder">
+                    <span class="change">
+                      <span class="fat">|</span>Sort Order
+                    </span>
+                  </label>
+                  <input type="number" class="form-control" formControlName="sortOrder" placeholder="Type Here ...">
+                </div>
+                <!-- End of Sort Order -->
+
+                <!-- ********** Paragraph Bullets ********** -->
+                <div formArrayName="bullets">
+                  <h6>Paragraph Bullets</h6>
+                  <div class="card" *ngFor="let bullets of templateOneForm.controls.paragraphs.controls[j].controls.bullets.controls; let k = index">
+                    <div [formGroupName]="k">
+                      <button type="button" (click)="deleteParagraphBullet()" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute;right: -0.9em; top: -1.4em">
+                        <fa name="close" style="color: white"></fa>
+                      </button>
+                      <!-- Bullet -->
+                      <div class="form-group">
+                        <label for="bullet">
+                          <span class="change">
+                            <span class="fat">|</span>Bullet
+                          </span>
+                        </label>
+                        <input type="text" class="form-control" formControlName="bullet" placeholder="Type Here ...">
+                      </div>
+                      <!-- End of Bullet -->
+
+                      <!-- Sort Order -->
+                      <div class="form-group">
+                        <label for="sortOrder">
+                          <span class="change">
+                            <span class="fat">|</span>Sort Order
+                          </span>
+                        </label>
+                        <input type="number" class="form-control" formControlName="sortOrder" placeholder="Type Here ...">
+                      </div>
+                    </div>
+                    <!-- End of Sort Order -->
+                  </div>
+                  <!-- ********** Paragraph Bullets ********** -->
+                </div>
+
+
+                <br>
+                <button type="button" (click)="addParagraphBullets(j)" class="style-btn" style="width: 25%;">
+                  Add More
+                </button>
+
+
+              </div>
+            </div>
+
+            <br>
+            <button type="button" (click)="addParagraphs()" class="style-btn" style="width: 25%;">
+              Add More
+            </button>
+            <!-- ***************** End of Paragraphs ***************** -->
+
+          </div>
+
+
+          <div class="card" formArrayName="bullets">
+            <!-- ***************** Bullets ***************** -->
+
+            <h5>Bullets</h5>
+            <div class="card" style="background-color: lightgray" *ngFor="let bullets of templateOneForm.controls.bullets.controls; let l = index">
+              <div [formGroupName]="l">
+                <button type="button" (click)="deleteBullet()" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.9em; top: -1.4em">
+                  <fa name="close" style="color: white"></fa>
+                </button>
+                <!-- Bullet -->
+                <div class="form-group">
+                  <label for="bullet">
+                    <span class="change">
+                      <span class="fat">|</span>Bullet
+                    </span>
+                  </label>
+                  <input type="text" class="form-control" formControlName="bullet" placeholder="Type Here ...">
+                </div>
+                <!-- End of Bullet -->
+
+                <!-- Sort Order -->
+                <div class="form-group">
+                  <label for="sortOrder">
+                    <span class="change">
+                      <span class="fat">|</span>Sort Order
+                    </span>
+                  </label>
+                  <input type="number" class="form-control" formControlName="sortOrder" placeholder="Type Here ...">
+                </div>
+                <!-- End of Sort Order -->
+              </div>
+            </div>
+            <br>
+            <button type="button" (click)="addBullets()" class="style-btn" style="width: 25%;">
+              Add More
+            </button>
+            <!-- ***************** End of Bullets ***************** -->
+          </div>
+
+        </div>
+        <br>
+        <button type="button" (click)="btnSubmit()" class="style-btn" style="padding: 0.8em 2.3em">
+          Submit
+        </button>
+      </form>
+
+    </div>
+  </div>
+</div>
