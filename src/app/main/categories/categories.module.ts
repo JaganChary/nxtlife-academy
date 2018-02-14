@@ -9,6 +9,8 @@ import { NgModule } from '@angular/core';
 import { CategoriesService } from './categories.service';
 import { CartService } from '../cart/cart.service';
 import { FormsModule, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ResolveDataService } from '../shared/resolve-category.service';
+import { ResolveCourseService } from '../shared/resolve-course.service';
 
 @NgModule({
     declarations: [
@@ -41,10 +43,16 @@ import { FormsModule, FormGroup, ReactiveFormsModule } from '@angular/forms';
                             {
                                 path: ':id/chapters',
                                 loadChildren: 'app/main/categories/chapters/chapters.module#ChaptersModule',
+                                resolve: {
+                                    cats: ResolveCourseService
+                                }
                             },
                             {
                                 path: '',
                                 loadChildren: 'app/main/categories/courses/courses.module#CoursesModule',
+                                resolve: {
+                                    cat: ResolveDataService
+                                }
                             }
                         ]
                     }
@@ -53,7 +61,7 @@ import { FormsModule, FormGroup, ReactiveFormsModule } from '@angular/forms';
             }
         ])
     ],
-    providers: [CategoriesService]
+    providers: [CategoriesService, ResolveDataService, ResolveCourseService]
 })
 
 export class CategoriesModule {
