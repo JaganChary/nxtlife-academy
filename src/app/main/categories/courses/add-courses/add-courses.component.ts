@@ -67,7 +67,6 @@ export class AddCoursesComponent implements OnInit {
   initForm(): any {
 
     this.courseData = this.coursesService.getCourseData();
-    console.log('courseData', this.courseData);
     this.courseId = this.courseData.courseId;
     this.addORedit = this.coursesService.getAction();
 

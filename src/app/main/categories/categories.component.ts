@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from './categories.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -14,7 +13,6 @@ export class CategoriesComponent implements OnInit {
   
   constructor(
     private categoriesService: CategoriesService,
-    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -23,9 +21,8 @@ export class CategoriesComponent implements OnInit {
       .subscribe((res: any) => {
 
         this.categories = res;
-        this.storeData = this.categoriesService.storeCategoriesData(res);
-        console.log(res);
-
+        this.categoriesService.storeCategoriesData(res);
+        
       }, (error: any) => {
         console.log(error);
       });

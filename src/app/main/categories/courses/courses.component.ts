@@ -15,7 +15,7 @@ export class CoursesComponent implements OnInit {
   courseCategoryId: number;
   courses: any;
   categoryData: any;
-  role: String
+  role: String;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,29 +27,15 @@ export class CoursesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.route.data
+      .subscribe((res: {cat: any}) => {
+        this.categoryData = res.cat;
+        
+        this.courses = this.categoryData.courses;
+        console.log(this.categoryData);
+      })
 
-    if (!this.categoriesService.categoriesData) {
-      
-      this.categoriesService.getCategories()
-        .subscribe((res: any) => {
-          this.categoriesService.storeCategoriesData(res);
-          const id = +this.route.snapshot.paramMap.get('id');
-          this.categoryData = this.categoriesService.getCategoryDataById(id);
-          this.courses = this.categoryData.courses;
-          console.log(this.courses);
-          
-        }, (error: any) => {
-          console.log(error);
-        })
-    } else {
-
-      const id = +this.route.snapshot.paramMap.get('id');
-      this.categoryData = this.categoriesService.getCategoryDataById(id);
-      console.log(this.categoryData);
-      this.courses = this.categoryData.courses;
-    }
-
-    this.role = localStorage.getItem('role');
+      this.role = localStorage.getItem('role');
   }
 
   // Adding Course
@@ -65,22 +51,22 @@ export class CoursesComponent implements OnInit {
 
   btnDelete(id: any, i) {
     this.coursesService.deleteCourse(id)
-    .subscribe((res: any) =>{
-     console.log(i);
-     let obj = this.courses.splice(i,1);
-     console.log(obj);
-     
-       console.log(res);
-    }, (err: any) => {
-      console.log(err);
-    })
+      .subscribe((res: any) => {
+        console.log(i);
+        let obj = this.courses.splice(i, 1);
+        console.log(obj);
+
+        console.log(res);
+      }, (err: any) => {
+        console.log(err);
+      })
   }
 
   addCourse(): any {
     this.coursesService.storeCourseData({}, 'Add');
   }
 
-  editCourse(course:any): any {
+  editCourse(course: any): any {
     this.coursesService.storeCourseData(course, 'Edit');
   }
 
