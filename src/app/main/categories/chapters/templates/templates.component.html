@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-10">
+      <div>
+        <h2>Templates</h2>
+        <hr>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <!-- Router Outlet -->
+          <router-outlet></router-outlet>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="selectTemplate" class="text-muted">Select Template</label>
+            <select class="form-control" [(ngModel)]="selectedTemplate" (change)="onChange()">
+              <option *ngFor="let template of templateArray" [ngValue]="template" >{{template.template}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
