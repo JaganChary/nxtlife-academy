@@ -39,7 +39,7 @@
             <h5>Buttons</h5>
             <div class="card" style="background-color: lightgray" *ngFor="let buttons of templateTwoForm.controls.buttons.controls; let i = index;"
               [formGroupName]="i">
-              <button type="button" (click)="deleteButton()" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.9em; top: -1.4em">
+              <button type="button" (click)="deleteButton(i)" [disabled] = "templateTwoForm.controls.buttons.controls.length === 1" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.9em; top: -1.4em">
                 <fa name="close" style="color: white"></fa>
               </button>
               <!-- Upload Image -->
@@ -49,7 +49,7 @@
                     <span class="fat">|</span>Upload Image</span>
                 </label>
                 <div>
-                  <input type="file" accept="image/*" (change)="fileUpload($event)">
+                  <input type="file" accept="image/*" (change)="fileUpload($event, i)">
                 </div>
               </div>
               <!-- End of Upload Image -->

@@ -8,7 +8,11 @@ import { TemplatesService } from '../templates.service';
   styleUrls: ['./template-two.component.css']
 })
 export class TemplateTwoComponent implements OnInit {
-  templateTwoForm: FormGroup
+  templateTwoForm: FormGroup;
+  formData: FormData;
+  file: Array<any> = [];
+  imagesData: any;
+
   constructor(
     private formBuilder: FormBuilder,
     private templatesService: TemplatesService
@@ -33,8 +37,12 @@ export class TemplateTwoComponent implements OnInit {
     })
   }
 
-  fileUpload(e: any): any {
-
+  fileUpload(imageFile: any, i: number): any {
+    this.file[i] = imageFile.target.files[0];
+    this.imagesData = this.templateTwoForm.value.buttons;
+    this.imagesData.forEach((e: any) => {
+      e['imageFile'] = this.file[i];
+    })
   }
 
   getButtons(): any {
@@ -52,12 +60,17 @@ export class TemplateTwoComponent implements OnInit {
     buttons.push(this.getButtons());
   }
 
-  deleteButton(): any {
-    
+  deleteButton(i: number): any {
+    const buttons = <FormArray>this.templateTwoForm.controls['buttons'];
+    buttons.removeAt(i);
   }
 
   btnSubmit(): any {
-    
+    this.formData = new FormData;
+    this.templateTwoForm.value['template'] = "SECOND";
+    this.formData.append('secondTemplate', this.templateTwoForm.value);
+
+    console.log(this.templateTwoForm.value);
   }
 
 }
