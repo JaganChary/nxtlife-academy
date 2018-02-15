@@ -11,9 +11,8 @@ export class TemplateOneComponent implements OnInit {
   imagesData: any;
   topicId: number;
   templateOneForm: FormGroup;
-  file: Array<any> = [];
+  file: any;
   formData: FormData;
-  imageData: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,6 +50,7 @@ export class TemplateOneComponent implements OnInit {
   getImages(): any {
     return this.formBuilder.group({
       title: ['', Validators.required],
+      imageFile: [Validators.required],
       sortOrder: ['', Validators.required]
     })
   }
@@ -59,6 +59,7 @@ export class TemplateOneComponent implements OnInit {
     return this.formBuilder.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
+      imageFile: [Validators.required],
       imagePosition: ['', Validators.required],
       sortOrder: ['', Validators.required],
       bullets: this.formBuilder.array([
@@ -74,17 +75,14 @@ export class TemplateOneComponent implements OnInit {
     })
   }
 
-  fileUploadImage(imageFile: any, i: number): any {
-    this.file[i] = imageFile.target.files[0];
-    this.imagesData = this.templateOneForm.value.images;
-    this.imagesData.forEach((e: any) => {
-      e['imageFile'] = this.file[i]
-    })
-    
+  fileUploadImage(e: any, image: FormGroup): any {
+    let file = e.target.files[0];
+    image.controls['imageFile'].patchValue(file);
   }
 
-  fileUploadParaImage(imageFile: any, j: number) {
-    this.templateOneForm.value.paragraphs[j]['imageFile'] = imageFile.target.files[0];
+  fileUploadParaImage(e: any, paragraph: FormGroup): any {
+    let file = e.target.files[0];
+    paragraph.controls['imageFile'].patchValue(file);
   }
 
   addImages(): any {
@@ -133,7 +131,7 @@ export class TemplateOneComponent implements OnInit {
 
   btnSubmit(): any {
     this.formData = new FormData;
-    this.templateOneForm.value['template'] = "FIRST";
+    this.formData.append('template',"FIRST");
     this.formData.append('firstTemplate', this.templateOneForm.value);
     console.log(this.templateOneForm.value);
   }

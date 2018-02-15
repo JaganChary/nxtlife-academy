@@ -46,7 +46,7 @@
                       <span class="fat">|</span>Upload Image</span>
                   </label>
                   <div>
-                    <input type="file" accept="image/*" (change)="fileUploadImage($event, i)">
+                    <input type="file" accept="image/*" (change)="fileUploadImage($event, images)">
                   </div>
                 </div>
                 <!-- End of Upload Image -->
@@ -109,7 +109,7 @@
                       <span class="fat">|</span>Upload Image</span>
                   </label>
                   <div>
-                    <input type="file" accept="image/*" (change)="fileUploadParaImage($event, j)">
+                    <input type="file" accept="image/*" (change)="fileUploadParaImage($event, paragraphs)">
                   </div>
                 </div>
                 <!-- End of Upload Image -->
@@ -122,9 +122,9 @@
                   </label>
                   <div>
 
-                    <input type="radio" formControlName="imagePosition" value="LEFT">Left
+                    <input type="radio" formControlName="imagePosition" value="LEFT"><span class="radioInline" >Left</span>
 
-                    <input type="radio" formControlName="imagePosition" value="RIGHT">Right
+                    <input type="radio" formControlName="imagePosition" value="RIGHT" style="margin-left: 2em;"><span class="radioInline" >Right</span>
 
                   </div>
                 </div>

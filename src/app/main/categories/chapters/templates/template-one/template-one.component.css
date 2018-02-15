@@ -103,7 +103,6 @@ p {
     border: none;
     float: right;
     border-color: none;
-
   }
 
 .style-btn:hover {
@@ -115,3 +114,7 @@ p {
     height: 160px;
     width: 233px;
 }  
+
+.radioInline {
+    margin-left: 0.5em;
+}
