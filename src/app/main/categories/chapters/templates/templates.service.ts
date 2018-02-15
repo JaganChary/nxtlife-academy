@@ -9,8 +9,8 @@ export class TemplatesService {
 
   ) { }
 
-  postTemplate(): any {
-    
+  postTemplateOne(topicId, data): any {
+    this.commonHttpService.post('/sa/topic/{topicId}/pages', data);
   }
 
 }
