@@ -1,3 +1,120 @@
-<p>
-  template-four works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Template 4</h3>
+      <hr>
+      <form>
+        <div class="card">
+          <!-- ***************** Heading ***************** -->
+          <div class="form-group">
+            <label for="heading">
+              <span class="change">
+                <span class="fat">|</span>Heading
+              </span>
+            </label>
+            <input type="text" class="form-control" placeholder="Type Here ...">
+          </div>
+          <!-- ***************** End of Heading ***************** -->
+
+          <!-- ***************** Questions ***************** -->
+
+          <h5>Questions</h5>
+          <div class="card" style="background-color: lightgray">
+            <button type="button" (click)="deleteQuestion()" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
+              <fa name="close" style="color: white"></fa>
+            </button>
+
+            <!-- Question -->
+            <div class="form-group">
+              <label for="question">
+                <span class="change">
+                  <span class="fat">|</span>Question
+                </span>
+              </label>
+              <input type="text" class="form-control" placeholder="Type Here ...">
+            </div>
+
+            <!-- End of Question -->
+
+            <!-- Type -->
+            <div class="form-group">
+              <label for="type">
+                <span class="change">
+                  <span class="fat">|</span>Type
+                </span>
+              </label>
+              <div>
+                <input type="radio" value="SINGLECHOICE">
+                <span class="radioInline">Single-Choice</span>
+                <input type="radio" value="MULTIPLECHOICE" style="margin-left: 2em">
+                <span class="radioInline">Multiple-Choice</span>
+              </div>
+            </div>
+            <!-- End of Type -->
+
+            <!-- ***************** Options ***************** -->
+
+            <div class="card">
+              <button type="button" (click)="deleteOption()" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
+                <fa name="close" style="color: white"></fa>
+              </button>
+              <!-- Answer -->
+              <div class="form-group">
+                <label for="answer">
+                  <span class="change">
+                    <span class="fat">|</span>Answer
+                  </span>
+                </label>
+                <input type="text" class="form-control" placeholder="Type Here ...">
+              </div>
+              <!-- End of Answer -->
+
+              <!-- Correct -->
+              <div class="form-group">
+                <label for="correct">
+                  <span class="change">
+                    <span class="fat">|</span>Type
+                  </span>
+                </label>
+                <div>
+                  <input type="radio" value="true">
+                  <span class="radioInline">True</span>
+                  <input type="radio" value="false" style="margin-left: 2em">
+                  <span class="radioInline">False</span>
+                </div>
+              </div>
+              <!-- End of Correct -->
+
+              <!-- Description -->
+              <div class="form-group">
+                <label for="description">
+                  <span class="change">
+                    <span class="fat">|</span>Description
+                  </span>
+                </label>
+                <input type="text" class="form-control" placeholder="Type Here ...">
+              </div>
+              <!-- End of Description -->
+
+            </div>
+            <br>
+            <div ng-style="float: right">
+                <button type="button" class="style-btn" style="width: 25%">Add More</button>
+            </div>
+            
+            <!-- ***************** End of Options ***************** -->
+
+          </div>
+          <!-- ***************** End of Questions ***************** -->
+          <br>
+          <button type="button" class="style-btn" style="width: 25%" (click)="addQuestions()">Add More</button>
+        </div>
+        <br>
+        <button type="button" (click)="btnSubmit()" class="style-btn" style="padding: 0.8em 2.3em">
+          Submit
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>
