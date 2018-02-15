@@ -26,9 +26,9 @@
             </label>
             <div>
 
-              <input type="radio" formControlName="type" value="BUTTON">Button
+              <input type="radio" formControlName="type" value="BUTTON"><span class="radioInline">Button</span>
 
-              <input type="radio" formControlName="type" value="IMAGE">Image
+              <input type="radio" formControlName="type" value="IMAGE" style="margin-left: 2em;"><span class="radioInline">Image</span>
 
             </div>
           </div>
@@ -49,7 +49,7 @@
                     <span class="fat">|</span>Upload Image</span>
                 </label>
                 <div>
-                  <input type="file" accept="image/*" (change)="fileUpload($event, i)">
+                  <input type="file" accept="image/*" (change)="fileUpload($event, buttons)">
                 </div>
               </div>
               <!-- End of Upload Image -->
@@ -80,14 +80,11 @@
             <br>
             <button type="button" class="style-btn" (click)="addButton()" style="width: 25%;">Add More</button>
           </div>
-
-
         </div>
         <br>
         <button type="button" class="style-btn" (click)="btnSubmit()">Submit</button>
 
       </form>
-
     </div>
   </div>
 </div>

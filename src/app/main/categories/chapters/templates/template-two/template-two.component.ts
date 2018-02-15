@@ -37,22 +37,21 @@ export class TemplateTwoComponent implements OnInit {
     })
   }
 
-  fileUpload(imageFile: any, i: number): any {
-    this.file[i] = imageFile.target.files[0];
-    this.imagesData = this.templateTwoForm.value.buttons;
-    this.imagesData.forEach((e: any) => {
-      e['imageFile'] = this.file[i];
-    })
-  }
-
   getButtons(): any {
     return this.formBuilder.group({
       
       title: ['', Validators.required],
 
+      imageFile: [Validators.required],
+
       description: ['', Validators.required],
 
     });
+  }
+
+  fileUpload(e: any, button: FormGroup): any {
+    let file = e.target.files[0];
+    button.controls['imageFile'].patchValue(file);
   }
 
   addButton(): any {
@@ -67,10 +66,8 @@ export class TemplateTwoComponent implements OnInit {
 
   btnSubmit(): any {
     this.formData = new FormData;
-    this.templateTwoForm.value['template'] = "SECOND";
+    this.formData.append('template',"SECOND");
     this.formData.append('secondTemplate', this.templateTwoForm.value);
-
     console.log(this.templateTwoForm.value);
   }
-
 }
