@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { TemplatesService } from '../templates.service';
+import { ChaptersService } from '../../chapters.service';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-template-two',
@@ -8,6 +10,7 @@ import { TemplatesService } from '../templates.service';
   styleUrls: ['./template-two.component.css']
 })
 export class TemplateTwoComponent implements OnInit {
+  id: any;
   templateTwoForm: FormGroup;
   formData: FormData;
   file: Array<any> = [];
@@ -15,7 +18,9 @@ export class TemplateTwoComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private templatesService: TemplatesService
+    private templatesService: TemplatesService,
+    private chaptersService: ChaptersService
+
   ) { }
 
   ngOnInit() {
@@ -25,6 +30,10 @@ export class TemplateTwoComponent implements OnInit {
   }
 
   initForm(): any {
+
+    this.id = this.chaptersService.getTopicId();
+    console.log(this.id);
+
     this.templateTwoForm = this.formBuilder.group({
 
       heading: ['', Validators.required],
@@ -39,7 +48,7 @@ export class TemplateTwoComponent implements OnInit {
 
   getButtons(): any {
     return this.formBuilder.group({
-      
+
       title: ['', Validators.required],
 
       imageFile: [Validators.required],
@@ -65,9 +74,24 @@ export class TemplateTwoComponent implements OnInit {
   }
 
   btnSubmit(): any {
-    this.formData = new FormData;
-    this.formData.append('template',"SECOND");
-    this.formData.append('secondTemplate', this.templateTwoForm.value);
-    console.log(this.templateTwoForm.value);
+    let obj = {
+      template: 'SECOND',
+      secondTemplate: this.templateTwoForm.value
+    };
+
+    console.log(obj);
+    var eee = this.templatesService.createFormData(obj);
+
+    console.log(eee);
+
+    this.chaptersService.postTemplate(this.id, eee)
+      .subscribe((res: any) => {
+        alertify.success('Success message');
+        console.log(res);
+
+      }, (err: any) => {
+        alertify.alert(err.msg).setHeader('Message');
+        console.log(err);
+      });
   }
 }
