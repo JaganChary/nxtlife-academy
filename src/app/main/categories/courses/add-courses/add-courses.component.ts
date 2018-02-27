@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CoursesService } from '../courses.service';
 import { CategoriesService } from '../../categories.service';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-add-courses',
@@ -24,7 +25,8 @@ export class AddCoursesComponent implements OnInit {
     private formBuilder: FormBuilder,
     private coursesService: CoursesService,
     private route: ActivatedRoute,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private router: Router
 
   ) { }
 
@@ -103,6 +105,7 @@ export class AddCoursesComponent implements OnInit {
   }
 
   btnClick(): any {
+
     let formData = new FormData();
 
     formData.append('course', this.addCourseForm.value.courseName);
@@ -115,8 +118,10 @@ export class AddCoursesComponent implements OnInit {
       this.coursesService.postCourses(formData, this.categoryId)
         .subscribe((res: any) => {
           console.log(res);
-          // Find and add a reload button that shows the new list of categories
+          alertify.success('Course Added');
+          this.router.navigate(['/main/category']);
         }, (err: any) => {
+          alertify.alert(err.msg).setHeader('Message');
           console.log(err);
         })
     } else if (this.addORedit === 'Edit') {
@@ -124,8 +129,10 @@ export class AddCoursesComponent implements OnInit {
       this.coursesService.editCourses(formData, this.courseId)
         .subscribe((res: any) => {
           console.log(res);
-          // Find and add a reload button that shows the new list of categories
+          alertify.success('Course Added');
+          this.router.navigate(['/main/category']);
         }, (err: any) => {
+          alertify.alert(err.msg).setHeader('Message');
           console.log(err);
         })
     }
