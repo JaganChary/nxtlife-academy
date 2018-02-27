@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { TemplatesService } from '../templates.service';
+import { ChaptersService } from '../../chapters.service';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-template-one',
@@ -8,31 +11,38 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./template-one.component.css']
 })
 export class TemplateOneComponent implements OnInit {
+  paraFile: any;
+  id: any;
   imagesData: any;
   topicId: number;
   templateOneForm: FormGroup;
   file: any;
   formData: FormData;
-
+  
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private templatesService: TemplatesService,
+    private chaptersService: ChaptersService,
+
   ) { }
 
   ngOnInit() {
-
-    this.topicId = +this.route.snapshot.paramMap.get('id');
-    console.log(this.topicId);
 
     this.initForm();
 
   }
 
   initForm() {
+
+    this.id = this.chaptersService.getTopicId();
+    console.log(this.id);
+
+
     this.templateOneForm = this.formBuilder.group({
 
       heading: ['', Validators.required],
-      
+
       images: this.formBuilder.array([
         this.getImages()
       ]),
@@ -81,8 +91,8 @@ export class TemplateOneComponent implements OnInit {
   }
 
   fileUploadParaImage(e: any, paragraph: FormGroup): any {
-    let file = e.target.files[0];
-    paragraph.controls['imageFile'].patchValue(file);
+    this.paraFile = e.target.files[0];
+    paragraph.controls['imageFile'].patchValue(this.paraFile);
   }
 
   addImages(): any {
@@ -106,20 +116,20 @@ export class TemplateOneComponent implements OnInit {
     const paraBulletArray = <FormArray>paragraphGroup.controls.bullets;
     paraBulletArray.push(this.getBullets());
   }
-  
+
   deleteBullet(l: number): any {
     const bullets = <FormArray>this.templateOneForm.controls['bullets'];
-      bullets.removeAt(l);
+    bullets.removeAt(l);
   }
 
   deleteParagraph(j): any {
     const paragraphs = <FormArray>this.templateOneForm.controls['paragraphs'];
-      paragraphs.removeAt(j);
+    paragraphs.removeAt(j);
   }
 
   deleteImage(i): any {
     const images = <FormArray>this.templateOneForm.controls['images'];
-      images.removeAt(i);
+    images.removeAt(i);
   }
 
   deleteParagraphBullet(paraIndex: number, paraBulletIndex: number): any {
@@ -130,9 +140,25 @@ export class TemplateOneComponent implements OnInit {
   }
 
   btnSubmit(): any {
-    this.formData = new FormData;
-    this.formData.append('template',"FIRST");
-    this.formData.append('firstTemplate', this.templateOneForm.value);
-    console.log(this.templateOneForm.value);
+    let obj = {
+      template: 'FIRST',
+      firstTemplate: this.templateOneForm.value
+    };
+
+    console.log(obj);
+    var eee = this.templatesService.createFormData(obj);
+
+    console.log(eee);
+
+    this.chaptersService.postTemplate(this.id, eee)
+      .subscribe((res: any) => {
+        alertify.success('Success message');
+        console.log(res);
+
+      }, (err: any) => {
+        alertify.alert(err.msg).setHeader('Message');
+        console.log(err);
+      });
   }
+
 }

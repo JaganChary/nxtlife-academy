@@ -115,7 +115,7 @@
                 <!-- End of Upload Image -->
 
                 <!-- Image Position -->
-                <div class="form-group">
+                <div *ngIf="paraFile" class="form-group">
                   <label for="imagePosition">
                     <span class="change">
                       <span class="fat">|</span>Image Position</span>
@@ -232,7 +232,7 @@
           <!-- ***************** End of Bullets ***************** -->
         </div>
         <br>
-        <button type="button" (click)="btnSubmit()" class="style-btn" style="padding: 0.8em 2.3em">
+        <button type="button" (click)="btnSubmit()" [disabled] = "!templateOneForm.controls.images && !templateOneForm.controls.paragraphs && !templateOneForm.controls.bullets " class="style-btn" style="padding: 0.8em 2.3em">
           Submit
         </button>
       </form>
