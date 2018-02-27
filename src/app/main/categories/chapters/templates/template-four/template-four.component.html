@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <h3>Template 4</h3>
       <hr>
-      <form>
+      <form [formGroup]="templateFourForm">
         <div class="card">
           <!-- ***************** Heading ***************** -->
           <div class="form-group">
@@ -12,104 +12,115 @@
                 <span class="fat">|</span>Heading
               </span>
             </label>
-            <input type="text" class="form-control" placeholder="Type Here ...">
+            <input type="text" class="form-control" formControlName="heading" placeholder="Type Here ...">
           </div>
           <!-- ***************** End of Heading ***************** -->
 
-          <!-- ***************** Questions ***************** -->
+          <div formArrayName="questions">
 
-          <h5>Questions</h5>
-          <div class="card" style="background-color: lightgray">
-            <button type="button" (click)="deleteQuestion()" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
-              <fa name="close" style="color: white"></fa>
-            </button>
-
-            <!-- Question -->
-            <div class="form-group">
-              <label for="question">
-                <span class="change">
-                  <span class="fat">|</span>Question
-                </span>
-              </label>
-              <input type="text" class="form-control" placeholder="Type Here ...">
-            </div>
-
-            <!-- End of Question -->
-
-            <!-- Type -->
-            <div class="form-group">
-              <label for="type">
-                <span class="change">
-                  <span class="fat">|</span>Type
-                </span>
-              </label>
-              <div>
-                <input type="radio" value="SINGLECHOICE">
-                <span class="radioInline">Single-Choice</span>
-                <input type="radio" value="MULTIPLECHOICE" style="margin-left: 2em">
-                <span class="radioInline">Multiple-Choice</span>
-              </div>
-            </div>
-            <!-- End of Type -->
-
-            <!-- ***************** Options ***************** -->
-
-            <div class="card">
-              <button type="button" (click)="deleteOption()" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
+            <!-- ***************** Questions ***************** -->
+            <h5>Questions</h5>
+            <div class="card" style="background-color: lightgray" *ngFor="let questions of templateFourForm.controls.questions.controls; let i = index;"
+              [formGroupName]="i">
+              <button type="button" (click)="deleteQuestions(i)" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
                 <fa name="close" style="color: white"></fa>
               </button>
-              <!-- Answer -->
+
+              <!-- Question -->
               <div class="form-group">
-                <label for="answer">
+                <label for="question">
                   <span class="change">
-                    <span class="fat">|</span>Answer
+                    <span class="fat">|</span>Question
                   </span>
                 </label>
-                <input type="text" class="form-control" placeholder="Type Here ...">
+                <input type="text" class="form-control" formControlName="question" placeholder="Type Here ...">
               </div>
-              <!-- End of Answer -->
 
-              <!-- Correct -->
+              <!-- End of Question -->
+
+              <!-- Type -->
               <div class="form-group">
-                <label for="correct">
+                <label for="type">
                   <span class="change">
                     <span class="fat">|</span>Type
                   </span>
                 </label>
                 <div>
-                  <input type="radio" value="true">
-                  <span class="radioInline">True</span>
-                  <input type="radio" value="false" style="margin-left: 2em">
-                  <span class="radioInline">False</span>
+                  <input type="radio" formControlName="type" value="SINGLECHOICE">
+                  <span class="radioInline">Single-Choice</span>
+                  <input type="radio" formControlName="type" value="MULTIPLECHOICE" style="margin-left: 2em">
+                  <span class="radioInline">Multiple-Choice</span>
                 </div>
               </div>
-              <!-- End of Correct -->
+              <!-- End of Type -->
 
-              <!-- Description -->
-              <div class="form-group">
-                <label for="description">
-                  <span class="change">
-                    <span class="fat">|</span>Description
-                  </span>
-                </label>
-                <input type="text" class="form-control" placeholder="Type Here ...">
+              <div formArrayName="options">
+                <!-- ***************** Options ***************** -->
+                <div class="card" *ngFor="let options of templateFourForm.controls.questions.controls[i].controls.options.controls; let j = index"
+                  [formGroupName]="j">
+                  <button type="button" (click)="deleteOptions(i, j)" *ngIf="templateFourForm.controls.questions.controls[i].controls.options.controls.length > 2"
+                    class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
+                    <fa name="close" style="color: white"></fa>
+                  </button>
+                  <h6 style="text-align: center">Option {{j + 1}}</h6>
+                  <!-- Answer -->
+                  <div class="form-group">
+                    <label for="answer">
+                      <span class="change">
+                        <span class="fat">|</span>Answer
+                      </span>
+                    </label>
+                    <input type="text" class="form-control" formControlName="answer" placeholder="Type Here ...">
+                  </div>
+                  <!-- End of Answer -->
+
+                  <!-- Correct -->
+                  <div class="form-group">
+                    <label for="correct">
+                      <span class="change">
+                        <span class="fat">|</span>Type
+                      </span>
+                    </label>
+                    <div>
+                      <input type="radio" formControlName="correct" value="true">
+                      <span class="radioInline">True</span>
+                      <input type="radio" formControlName="correct" value="false" style="margin-left: 2em">
+                      <span class="radioInline">False</span>
+                    </div>
+                  </div>
+                  <!-- End of Correct -->
+
+                  <!-- Description -->
+                  <div class="form-group">
+                    <label for="description">
+                      <span class="change">
+                        <span class="fat">|</span>Description
+                      </span>
+                    </label>
+                    <input type="text" class="form-control" formControlName="description" placeholder="Type Here ...">
+                  </div>
+                  <!-- End of Description -->
+                </div>
+                <br>
+                <div ng-style="float: right">
+                  <button type="button" class="style-btn" style="width: 25%" (click)="addOptions(i)">Add More</button>
+                </div>
+
+                <!-- ***************** End of Options ***************** -->
               </div>
-              <!-- End of Description -->
-
             </div>
-            <br>
-            <div ng-style="float: right">
-                <button type="button" class="style-btn" style="width: 25%">Add More</button>
-            </div>
-            
-            <!-- ***************** End of Options ***************** -->
-
+            <!-- ***************** End of Questions ***************** -->
           </div>
-          <!-- ***************** End of Questions ***************** -->
+
           <br>
           <button type="button" class="style-btn" style="width: 25%" (click)="addQuestions()">Add More</button>
         </div>
         <br>
+        <!-- <div *ngIf="!booleanValue == undefined" class="alert alert-danger">
+          <small>
+            <i>You must select atleast one answer as true</i>
+          </small>
+        </div> -->
         <button type="button" (click)="btnSubmit()" class="style-btn" style="padding: 0.8em 2.3em">
           Submit
         </button>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { ChaptersService } from '../../chapters.service';
+import { TemplatesService } from '../templates.service';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-template-four',
@@ -7,10 +10,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./template-four.component.css']
 })
 export class TemplateFourComponent implements OnInit {
+  a: any;
+  booleanValue: any;
+  id: number;
   templateFourForm: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private chaptersService: ChaptersService,
+    private templatesService: TemplatesService
+
   ) { }
 
   ngOnInit() {
@@ -19,6 +28,8 @@ export class TemplateFourComponent implements OnInit {
   }
 
   initForm(): any {
+
+    this.id = this.chaptersService.getTopicId();
 
     this.templateFourForm = this.formBuilder.group({
 
@@ -39,6 +50,7 @@ export class TemplateFourComponent implements OnInit {
       type: ['', Validators.required],
 
       options: this.formBuilder.array([
+        this.getOptions(),
         this.getOptions()
       ])
     })
@@ -56,21 +68,86 @@ export class TemplateFourComponent implements OnInit {
     })
   }
 
+  onChange(e: any): any {
+    console.log(e);
+  }
+
   addQuestions(): any {
-    
-  } 
-  
-  addOptions(): any {
-
+    const questions = <FormArray>this.templateFourForm.controls['questions'];
+    questions.push(this.getQuestions());
   }
 
-  deleteQuestions(): any {
-
+  addOptions(questionIndex: number): any {
+    const questiontionsArray = <FormArray>this.templateFourForm.controls['questions'];
+    const questionsGroup = <FormGroup>questiontionsArray.controls[questionIndex];
+    const optionsArray = <FormArray>questionsGroup.controls['options'];
+    optionsArray.push(this.getOptions());
   }
 
-  deleteOptions(): any {
-    
+  deleteQuestions(i: number): any {
+    const questions = <FormArray>this.templateFourForm.controls['questions'];
+    questions.removeAt(i);
   }
 
-  
+  deleteOptions(questionIndex: number, optionIndex: number): any {
+    const questiontionsArray = <FormArray>this.templateFourForm.controls['questions'];
+    const questionsGroup = <FormGroup>questiontionsArray.controls[questionIndex];
+    const optionsArray = <FormArray>questionsGroup.controls['options'];
+    optionsArray.removeAt(optionIndex);
+  }
+
+  sendFormData(): any {
+    let obj = {
+      template: 'FOURTH',
+      fourthTemplate: this.templateFourForm.value
+    };
+    var formInfo = this.templatesService.createFormData(obj);
+
+    this.chaptersService.postTemplate(this.id, formInfo)
+      .subscribe((res: any) => {
+        alertify.success('Success message');
+        console.log(res);
+
+      }, (err: any) => {
+        console.log(err);
+        alertify.alert(err.msg).setHeader('Message');
+      });
+  }
+
+  btnSubmit(): any {
+
+    this.templateFourForm.value.questions.forEach((elem) => {
+
+      let b = elem.type;
+      elem = elem.options;
+
+        // Single choice
+      if (b === 'SINGLECHOICE') {
+        
+        let x = elem.filter((elem2) => {
+          return elem2.correct == "true";
+        })
+      
+        if (x.length === 1) {
+          this.sendFormData();
+          
+        } else {
+           console.log(x);
+          alertify.alert('Please select only one answer as true').setHeader('Message');
+        }
+
+        // Multiple choice
+      } else if (b === 'MULTIPLECHOICE') {
+        this.a = elem.find((elem1) => {
+          return elem1.correct == "true";
+        })
+
+        if (this.a == undefined) {
+          alertify.alert('Please select atleast one answer as true').setHeader('Message');
+        } else {
+          this.sendFormData();
+        }
+      }
+    });
+  }
 }
