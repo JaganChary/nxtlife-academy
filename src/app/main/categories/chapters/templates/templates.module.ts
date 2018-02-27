@@ -20,33 +20,33 @@ import { TemplatesService } from './templates.service';
       {
         path: '',
         component: TemplatesComponent,
-      children: [
-      {
-        path: '1/template',
-        component: TemplateOneComponent
-      },
-        {
-          path: '2/template',
-          component: TemplateTwoComponent
-        },
-        {
-          path: '3/template',
-          component: TemplateThreeComponent
-        },
-        {
-          path: '4/template',
-          component: TemplateFourComponent
-        },
-        {
-          path: '',
-          redirectTo: '1/template',
-          pathMatch:'full'
-        }
-      ]
-        }
-      
+        children: [
+          {
+            path: '1/template',
+            component: TemplateOneComponent
+          },
+          {
+            path: '2/template',
+            component: TemplateTwoComponent
+          },
+          {
+            path: '3/template',
+            component: TemplateThreeComponent
+          },
+          {
+            path: '4/template',
+            component: TemplateFourComponent
+          },
+          {
+            path: '',
+            redirectTo: '1/template',
+            pathMatch: 'full'
+          }
+        ]
+      }
+
     ])
-    
+
   ],
   declarations: [TemplatesComponent, TemplateOneComponent, TemplateTwoComponent, TemplateThreeComponent, TemplateFourComponent],
   providers: [ TemplatesService ]
