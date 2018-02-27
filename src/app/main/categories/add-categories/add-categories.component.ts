@@ -8,6 +8,7 @@ import {
   NG_VALIDATORS,
 } from '@angular/forms';
 import { CategoriesService } from '../categories.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-categories',
@@ -24,7 +25,8 @@ export class AddCategoriesComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private router: Router
 
   ) { }
 
@@ -84,6 +86,7 @@ export class AddCategoriesComponent implements OnInit {
 
       this.categoriesService.postCategories(formData)
         .subscribe((res: any) => {
+          this.router.navigate(['/main/category']);
           console.log(res);
         }, (err: any) => {
           console.log(err);
@@ -92,6 +95,7 @@ export class AddCategoriesComponent implements OnInit {
 
       this.categoriesService.editCategories(this.id,formData)
         .subscribe((res: any) => {
+          this.router.navigate(['/main/category']);
           console.log(res);
         }, (err: any) => {
           console.log(err);
