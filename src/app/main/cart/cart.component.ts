@@ -86,7 +86,7 @@ export class CartComponent implements OnInit {
 
     // Post Request Sent on BtnClick
 
-    this.cartService.postCartItems({arr})
+    this.cartService.postCartItems({courseSubscribed: arr})
       .subscribe((res: any) => {
         console.log(res);
       }, (err: any) => {

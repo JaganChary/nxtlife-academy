@@ -4,6 +4,7 @@ import { CommonHttpService } from '../../shared/commonHttp.service';
 import { CartValueService } from '../../shared/cart-value.service';
 import { CategoriesService } from '../categories.service';
 import { CoursesService } from './courses.service';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-courses',
@@ -28,14 +29,14 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit() {
     this.route.data
-      .subscribe((res: {cat: any}) => {
+      .subscribe((res: { cat: any }) => {
         this.categoryData = res.cat;
-        
+
         this.courses = this.categoryData.courses;
         console.log(this.categoryData);
       })
 
-      this.role = localStorage.getItem('role');
+    this.role = localStorage.getItem('role');
   }
 
   // Adding Course
@@ -50,16 +51,21 @@ export class CoursesComponent implements OnInit {
   }
 
   btnDelete(id: any, i) {
-    this.coursesService.deleteCourse(id)
-      .subscribe((res: any) => {
-        console.log(i);
-        let obj = this.courses.splice(i, 1);
-        console.log(obj);
+    alertify.confirm("Do you wish to delete this course",
+      () => {
+        this.coursesService.deleteCourse(id)
+          .subscribe((res: any) => {
+            let obj = this.courses.splice(i, 1);
+            alertify.success('Course Deleted');
 
-        console.log(res);
-      }, (err: any) => {
-        console.log(err);
-      })
+          }, (err: any) => {
+            alertify.alert(err.msg).setHeader('Message');
+            console.log(err);
+          })
+      },
+      () => {
+        alertify.error('Cancel');
+      }).setHeader('Confirmation');
   }
 
   addCourse(): any {
