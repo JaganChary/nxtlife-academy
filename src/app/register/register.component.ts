@@ -15,6 +15,7 @@ import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/htt
 import { Observable } from 'rxjs/Observable';
 import { EmailValidator } from '@angular/forms';
 import { BASEURL } from '../main/shared/app.constant';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-register',
@@ -71,14 +72,15 @@ export class RegisterComponent implements OnInit {
       contactNo: user.contact
 
     }).subscribe( (res: any) => {
-
+      alertify.success(res.message);
         console.log(res.id);
         if (res) {
           this.router.navigate(['login']);
         }
       },
-      (error: any) => {
-        console.log(error);
+      (err: any) => {
+        alertify.alert(err.msg).setHeader('Error Message');
+        console.log(err);
       }
       )
 

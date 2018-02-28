@@ -54,13 +54,13 @@ export class LoginComponent implements OnInit {
 
     this.loginService.onLogin(this.loginForm.value)
       .subscribe((res: any) => {
-
+        alertify.success('Logged In successfully');
         this.loginService.loginStorage(res);
         this.router.navigate(['/main']);
       }, (error: any) => {
 
         console.log(error);
-        alertify.alert(error.msg).setHeader('title');
+        alertify.alert(error.msg).setHeader('Error Message');
       }
       )
   }
