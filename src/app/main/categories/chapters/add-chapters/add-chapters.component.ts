@@ -53,10 +53,16 @@ export class AddChaptersComponent implements OnInit {
     this.addChapterForm.controls['imageFile'].patchValue(file);
   }
 
+  fileUploadTopicImage(e: any, topic): any {
+    let file = e.target.files[0];
+    topic.controls['imageFile'].patchValue(file);
+  }
+
   getTopic(): any {
     return this.formBuilder.group({
       topic: ['', Validators.required],
-      duration: ['00:00:00', Validators.required]
+      durationString: ['00:00:00', Validators.required],
+      imageFile: []
     })
   }
 
@@ -75,12 +81,11 @@ export class AddChaptersComponent implements OnInit {
   // Post Request  
   btnSubmit(): any {  
 
-    let obj =
-      {
-        chapters: this.addChapterForm.value
-      }
+    
+        
+    
 
-    var formInfo = this.chaptersService.createFormData(obj);
+    var formInfo = this.chaptersService.createFormData(this.addChapterForm.value);
     console.log(formInfo);
     
     // this.formData = new FormData();

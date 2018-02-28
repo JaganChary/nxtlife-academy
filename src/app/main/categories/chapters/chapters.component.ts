@@ -59,6 +59,8 @@ export class ChaptersComponent implements OnInit {
 
   }
 
+  // Delete Topic 
+
   deleteTopic(topicId, i, j): any {
 
     alertify.confirm("Do you wish to delete this topic",
@@ -77,6 +79,11 @@ export class ChaptersComponent implements OnInit {
       () => {
         alertify.error('Cancel');
       }).setHeader('Confirmation');
+  }
+
+  // Edit Topic
+  editTopic(topic: Object): any {
+    console.log(topic);
   }
 
   getTopicData(topicId: number): any {

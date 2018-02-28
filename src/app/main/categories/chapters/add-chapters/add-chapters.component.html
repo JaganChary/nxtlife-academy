@@ -6,108 +6,123 @@
     <div class="col-md-10">
       <form [formGroup]="addChapterForm">
         <!-- <div class="row"> -->
-          <!-- <div class="col-md-10"> -->
-            <h2>Add Chapters</h2>
-            <hr>
-            <!-- <div> -->
-              <div class="card" style="margin-top: 2em;width: 95%;">
-                <!-- <div>
+        <!-- <div class="col-md-10"> -->
+        <h2>Add Chapters</h2>
+        <hr>
+        <!-- <div> -->
+        <div class="card" style="margin-top: 2em;width: 95%;">
+          <!-- <div>
                   <div> -->
 
-                    <!-- Chapter Name -->
-                    <div class="form-group">
-                      <label for="chapter">
-                        <span class="change">
-                          <span class="fat">|</span>Chapter Name
-                        </span>
-                      </label>
-                      <input type="text" class="form-control" formControlName="chapter" placeholder="Type Here ...">
-                      <div *ngIf="addChapterForm.controls['chapter'].hasError('required') && addChapterForm.controls['chapter'].touched"
-                        class="alert alert-danger">
-                        <small>
-                          <i>You must include a Chapter Name.</i>
-                        </small>
-                      </div>
+          <!-- Chapter Name -->
+          <div class="form-group">
+            <label for="chapter">
+              <span class="change">
+                <span class="fat">|</span>Chapter Name
+              </span>
+            </label>
+            <input type="text" class="form-control" formControlName="chapter" placeholder="Type Here ...">
+            <div *ngIf="addChapterForm.controls['chapter'].hasError('required') && addChapterForm.controls['chapter'].touched" class="alert alert-danger">
+              <small>
+                <i>You must include a Chapter Name.</i>
+              </small>
+            </div>
+          </div>
+          <!-- End of Chapter Name -->
+
+          <!-- Upload Chapter Image -->
+          <div class="form-group">
+            <label for="chapterImage">
+              <span class="change">
+                <span class="fat">|</span>Upload Image</span>
+            </label>
+            <div>
+              <input type="file" accept="image/*" (change)="fileUpload($event, i)">
+            </div>
+          </div>
+          <!-- End of Upload Chapter Image -->
+
+          <div formArrayName="topics">
+            <div class="card" style="background-color: white; margin-top :1em" *ngFor="let topic of addChapterForm.controls.topics.controls; let i = index">
+              <div class="row" [formGroupName]="i">
+                <div class="col-md-4">
+
+                  <!-- Topic Name -->
+                  <div class="form-group">
+                    <label for="topic">
+                      <span class="change">
+                        <span class="fat">|</span>Topic Name {{ i + 1 }}</span>
+                    </label>
+                    <input type="text" class="form-control" formControlName="topic" placeholder="Type Here ...">
+                    <div *ngIf="addChapterForm.controls.topics.controls[i].controls['topic'].hasError('required') && addChapterForm.controls.topics.controls[i].controls['topic'].touched"
+                      class="alert alert-danger">
+                      <small>
+                        <i>You must include a Topic Name.</i>
+                      </small>
                     </div>
-                    <!-- End of Chapter Name -->
-
-                    <!-- Upload Chapter Image -->
-                    <div class="form-group">
-                      <label for="chapterImage">
-                        <span class="change">
-                          <span class="fat">|</span>Upload Image</span>
-                      </label>
-                      <div>
-                        <input type="file" accept="image/*" (change)="fileUpload($event, i)">
-                      </div>
-                    </div>
-                    <!-- End of Upload Chapter Image -->
-
-                    <div formArrayName="topics">
-                      <div class="card" style="background-color: white; margin-top :1em" *ngFor="let topic of addChapterForm.controls.topics.controls; let i = index">
-                        <div class="row" [formGroupName]="i">
-                          <div class="col-md-5">
-
-                            <!-- Topic Name -->
-                            <div class="form-group">
-                              <label for="topic">
-                                <span class="change">
-                                  <span class="fat">|</span>Topic Name {{ i + 1 }}</span>
-                              </label>
-                              <input type="text" class="form-control" formControlName="topic" placeholder="Type Here ...">
-                              <div *ngIf="addChapterForm.controls.topics.controls[i].controls['topic'].hasError('required') && addChapterForm.controls.topics.controls[i].controls['topic'].touched"
-                                class="alert alert-danger">
-                                <small>
-                                  <i>You must include a Topic Name.</i>
-                                </small>
-                              </div>
-                            </div>
-                            <!-- End of Topic Name -->
-                          </div>
-
-                          <div class="col-md-5">
-
-                            <!-- Topic Duration -->
-                            <div class="form-group">
-                              <label for="duration">
-                                <span class="change">
-                                  <span class="fat">|</span>Duration</span>
-                              </label>
-                              <input type="time" step="2" class="form-control" formControlName="duration">
-                              <div *ngIf="addChapterForm.controls.topics.controls[i].controls.duration.hasError('required') && addChapterForm.controls.topics.controls[i].controls.duration.touched"
-                                class="alert alert-danger">
-                                <small>
-                                  <i>You must include a Topic Duration.</i>
-                                </small>
-                              </div>
-                            </div>
-                            <!-- End of Topic Duration -->
-                          </div>
-                          <div class="col-md-2">
-                            <button type="button" class="style-btn" style="padding: 0.6em 1em; border-radius: 50%; margin: 1.8em 0  0 2em;" (click)="deleteTopic(i, j)">
-                              <fa name="trash-o" style="color: white"></fa>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Button to Add Topic -->
-                  <div style="float: right">
-                    <button type="button" class="style-btn" style="padding-left: 1.7em; padding-right: 1.7em; margin-right: 1em; float: right" (click)="addTopic(i)">
-                      <fa name="plus"></fa> Topic
-                    </button>
                   </div>
+                  <!-- End of Topic Name -->
+                </div>
+
+                <div class="col-md-3">
+
+                  <!-- Topic Duration -->
+                  <div class="form-group">
+                    <label for="duration">
+                      <span class="change">
+                        <span class="fat">|</span>Duration</span>
+                    </label>
+                    <input type="time" step="2" class="form-control" formControlName="durationString">
+                    <div *ngIf="addChapterForm.controls.topics.controls[i].controls.durationString.hasError('required') && addChapterForm.controls.topics.controls[i].controls.durationString.touched"
+                      class="alert alert-danger">
+                      <small>
+                        <i>You must include a Topic Duration.</i>
+                      </small>
+                    </div>
                   </div>
+                  <!-- End of Topic Duration -->
+                </div>
 
-                  
-                <!-- </div> -->
-              <!-- </div> -->
-            <!-- </div> -->
-          <!-- </div> -->
-          <!-- <div class="col-md-2" style="position: relative"> -->
+                <div class="col-md-3">
+                  <!-- Upload Image -->
+                  <div class="form-group">
+                    <label for="uploadImage">
+                      <span class="change">
+                        <span class="fat">|</span>Upload Image</span>
+                    </label>
+                    <div>
+                      <input type="file" accept="image/*" (change)="fileUploadTopicImage($event, topic)">
+                    </div>
+                  </div>
+                  <!-- End of Upload Image -->
+                </div>
 
-            <!-- Button to Add Chapter -->
-            <!-- <button type="button" class="style-btn" style="padding-left: 1.3em; padding-right: 1.3em; position: absolute; bottom: 6em"
+                <div class="col-md-2">
+                  <button type="button" class="style-btn" style="padding: 0.6em 1em; border-radius: 50%; margin: 1.8em 0  0 2em;" (click)="deleteTopic(i, j)">
+                    <fa name="trash-o" style="color: white"></fa>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Button to Add Topic -->
+          <div style="float: right">
+            <button type="button" class="style-btn" style="padding-left: 1.7em; padding-right: 1.7em; margin-right: 1em; float: right"
+              (click)="addTopic(i)">
+              <fa name="plus"></fa> Topic
+            </button>
+          </div>
+        </div>
+
+
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- <div class="col-md-2" style="position: relative"> -->
+
+        <!-- Button to Add Chapter -->
+        <!-- <button type="button" class="style-btn" style="padding-left: 1.3em; padding-right: 1.3em; position: absolute; bottom: 6em"
               (click)="addChapter(i)">
               <fa name="plus"></fa> Chapter
             </button>
