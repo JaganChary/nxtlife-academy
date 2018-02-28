@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ChaptersService } from '../chapters.service';
 import { CategoriesService } from '../../categories.service';
 import { ActivatedRoute } from '@angular/router';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-add-chapters',
@@ -36,35 +37,20 @@ export class AddChaptersComponent implements OnInit {
     this.courseId = +this.route.snapshot.paramMap.get('id');
   }
 
-
   initForm(): any {
 
     this.addChapterForm = this.formBuilder.group({
-
-      chapters: this.formBuilder.array([
-        this.getChapter()
-      ]),
-
-    })
-  }
-
-  fileUpload(imageFile: any, i: number): any {
-    this.file[i] = imageFile.target.files[0];
-    
-    this.datas = this.addChapterForm.value.chapters;
-    this.datas.forEach((e: any) => {
-      e['imageFile'] = this.file[i]
-    })
-    
-  }
-
-  getChapter(): any {
-    return this.formBuilder.group({
       chapter: ['', Validators.required],
+      imageFile: [Validators.required],
       topics: this.formBuilder.array([
         this.getTopic()
       ])
     })
+  }
+
+  fileUpload(e: any): any {
+    let file = e.target.files[0];
+    this.addChapterForm.controls['imageFile'].patchValue(file);
   }
 
   getTopic(): any {
@@ -73,50 +59,42 @@ export class AddChaptersComponent implements OnInit {
       duration: ['00:00:00', Validators.required]
     })
   }
-  // *********** Chapters *********** //
-
-  // Add Chapter
-  addChapter(): any {
-    const chapters = <FormArray>this.addChapterForm.controls['chapters'];
-    chapters.push(this.getChapter());
-
-  }
-
-  // Delete Chapter  
-  deleteChapter(i: number): any {
-    const chapters = <FormArray>this.addChapterForm.controls['chapters'];
-    var x = chapters.removeAt(i);
-    console.log(x);
-  }
-
-  // *********** Topics *********** //
 
   // Add Topic
-  addTopic(chapterIndex: number): any {
-    const chaptersArray = <FormArray>this.addChapterForm.controls['chapters'];
-    const chapterGroup = <FormGroup>chaptersArray.controls[chapterIndex];
-    const topicsArray = <FormArray>chapterGroup.controls.topics;
-    topicsArray.push(this.getTopic());
+  addTopic(): any {
+    const topics = <FormArray>this.addChapterForm.controls['topics'];
+    topics.push(this.getTopic());
   }
 
-  // Delete Topic
-  deleteTopic(chapterIndex: number, topicIndex: number): any {
-    const chaptersArray = <FormArray>this.addChapterForm.controls['chapters'];
-    const chapterGroup = <FormGroup>chaptersArray.controls[chapterIndex];
-    const topicsArray = <FormArray>chapterGroup.controls.topics;
-    topicsArray.removeAt(topicIndex);
+  // Delete Topic  
+  deleteTopic(i: number): any {
+    const topics = <FormArray>this.addChapterForm.controls['topics'];
+    topics.removeAt(i);
   }
 
   // Post Request  
   btnSubmit(): any {  
-    this.formData = new FormData();
-    this.formData.append('chapters', this.datas);
 
-    console.log(this.datas);
-    this.chaptersService.postChaptersandTopics(this.formData, this.courseId)
+    let obj =
+      {
+        chapters: this.addChapterForm.value
+      }
+
+    var formInfo = this.chaptersService.createFormData(obj);
+    console.log(formInfo);
+    
+    // this.formData = new FormData();
+    // this.formData.append('chapters', this.addChapterForm.value);
+    console.log(this.addChapterForm.value);
+    
+    this.chaptersService.postChaptersandTopics(formInfo, this.courseId)
       .subscribe((res: any) => {
+
+        alertify.success(res.message);
         console.log(res);
       }, (err: any) => {
+        
+        alertify.alert(err.msg).setHeader('Message');
         console.log(err);
       })
   }
