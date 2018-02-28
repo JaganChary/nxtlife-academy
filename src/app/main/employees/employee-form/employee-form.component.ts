@@ -14,6 +14,7 @@ import {
   NG_VALIDATORS,
   EmailValidator
 } from '@angular/forms';
+import alertify from 'alertifyjs';
 
 import { employee, EmployeeRole } from '../employeeRole.interface';
 import { BASEURL } from '../../shared/app.constant';
@@ -146,13 +147,15 @@ export class EmployeeFormComponent implements OnInit {
       organizationId
     }).
       subscribe((res: any) => {
-
+        alertify.success(res.message);
         console.log('Request Sent');
         
         // Routing to HomePage
-        this.router.navigate(['main/admin/home']);
+        this.router.navigate(['main/admin/employees']);
         
       }, (error: any) => {
+        alertify.alert(error.msg).setHeader('Error Message');
+        
         console.log(error);
       });
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../category.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-course',
@@ -79,8 +80,10 @@ export class CourseComponent implements OnInit {
     
     this.categoryService.renounceLicense(this.license, id)
     .subscribe((res: any) => {
+      alertify.success(res.message);
       console.log(res);
     }, (err: any) => {
+      alertify.alert(err.message).setHeader('Error Message');
       console.log(err);
     })
   }

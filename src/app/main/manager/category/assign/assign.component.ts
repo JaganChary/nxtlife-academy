@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AssignService } from './assign.service';
 import { CategoryService } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-assign',
@@ -127,8 +128,10 @@ export class AssignComponent implements OnInit {
 
     this.assignService.postEmployeeDetail(arr)
       .subscribe((res: any) => {
+        alertify.success(res.message);
         console.log(res);
       }, (err: any) => {
+        alertify.alert(err.msg).setHeader('Error Message');
         console.log(err);
       })
   }

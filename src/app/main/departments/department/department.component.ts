@@ -13,6 +13,7 @@ import {
   NG_VALIDATORS
 
 } from '@angular/forms';
+import alertify from 'alertifyjs';
 
 import { BASEURL } from '../../shared/app.constant';
 import { DepartmentsService } from '../departments.service';
@@ -63,9 +64,8 @@ export class DepartmentComponent implements OnInit {
         organizationId
       }]).
         subscribe((res: any) => {
-
-          console.log('Request Sent');
-
+          alertify.success('Department Added Successfuly');
+          
           // Saving department Details to localStorage
           localStorage.setItem('departmentDetails', JSON.stringify(res));
 
@@ -74,10 +74,11 @@ export class DepartmentComponent implements OnInit {
           console.log('DepartmentId: ' + departmentDetails[0].departmentId);
 
           // Route to home Page
-          this.router.navigate(['main/admin/home']);
+          this.router.navigate(['main/admin/departments']);
 
         },
         (error: any) => {
+          alertify.alert(error.msg).setHeader('Message');
           console.log(error);
         });
   }

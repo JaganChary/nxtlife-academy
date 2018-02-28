@@ -63,17 +63,21 @@
                 </div>
                 <h3 style="text-align:center;margin-top: 1em;">Subscriptions</h3>
                 <hr>
-                <div class="card" *ngFor="let subscriptions of course.subscriptions; let i = index" style="margin-bottom: 1.2em">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let subscriptions of course.subscriptions; let i = index">
+                        <div class="card" style="margin-bottom: 1.2em">
 
-                    <div class="card1">
-                        <h4>Subscription {{i + 1}}</h4>
-                        <div class="card-text">
-                            LicenseId:
-                            <span class="card-text text-muted">{{subscriptions.licenseId}}</span>
-                        </div>
-                        <div class="card-text">
-                            Subscription Date:
-                            <span class="card-text text-muted">{{subscriptions.subscriptionDate}}</span>
+                            <div class="card1">
+                                <h4>Subscription {{i + 1}}</h4>
+                                <div class="card-text">
+                                    LicenseId:
+                                    <span class="card-text text-muted">{{subscriptions.licenseId}}</span>
+                                </div>
+                                <div class="card-text">
+                                    Subscription Date:
+                                    <span class="card-text text-muted">{{subscriptions.subscriptionDate}}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -19,7 +19,7 @@ export class SubscriptionsComponent {
     // *********** Making call to subscription api  to get data *********** //
     this.subscriptionsService.getSubscriptions()
     .subscribe((res: any) => {
-     this.subscriptions = res;
+     this.subscriptions = res.data;
      console.log(this.subscriptions);
 
     }, (error: any) => {

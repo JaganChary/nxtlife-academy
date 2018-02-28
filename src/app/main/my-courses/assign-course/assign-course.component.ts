@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASEURL } from '../../shared/app.constant';
 import { MyCoursesService } from '../my-courses.service';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-assign-course',
@@ -233,10 +234,11 @@ export class AssignCourseComponent implements OnInit {
         headers: header
       })
         .subscribe((res: any) => {
-          console.log('Request Sent');
+          alertify.success('Successful');
           console.log(res);
           this.router.navigate([`main/admin/my-courses`]);
         }, (err: any) => {
+          alertify.alert(err.message).setHeader('Error Message');
           console.log(err);
         });
 
@@ -262,10 +264,11 @@ export class AssignCourseComponent implements OnInit {
         headers: header
       })
         .subscribe((res: any) => {
-          console.log('Request Sent');
+          alertify.success('Successful')
           console.log('Response: ', res);
           this.router.navigate(['main/admin/my-courses']);
         }, (err: any) => {
+          alertify.alert(err.message).setHeader('Error Message');
           console.log(err);
         });
 

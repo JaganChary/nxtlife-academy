@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { CategoriesService } from '../categories.service';
 import { Router } from '@angular/router';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-add-categories',
@@ -86,18 +87,23 @@ export class AddCategoriesComponent implements OnInit {
 
       this.categoriesService.postCategories(formData)
         .subscribe((res: any) => {
+
           this.router.navigate(['/main/category']);
+          alertify.success(res.message);
           console.log(res);
         }, (err: any) => {
+          alertify.alert(err.msg).setHeader('Message');
           console.log(err);
         })
     } else if(this.addORedit === 'Edit') {
 
       this.categoriesService.editCategories(this.id,formData)
         .subscribe((res: any) => {
+          alertify.success(res.message);
           this.router.navigate(['/main/category']);
           console.log(res);
         }, (err: any) => {
+          alertify.alert(err.msg).setHeader('Message');
           console.log(err);
         })
     }

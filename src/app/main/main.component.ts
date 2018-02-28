@@ -30,6 +30,7 @@ export class MainComponent implements OnInit {
 
         this.cartValue = cartValue;
         console.log('Cart Value: ', this.cartValue);
+        
       }, (err: any) => {
 
         console.log(err);
