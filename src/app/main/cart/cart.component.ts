@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartValueService } from '../shared/cart-value.service';
 import { CartService } from './cart.service';
 import { Router } from '@angular/router';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-cart',
@@ -88,13 +89,17 @@ export class CartComponent implements OnInit {
 
     this.cartService.postCartItems({courseSubscribed: arr})
       .subscribe((res: any) => {
+        alertify.success(res.message);
+        this.cartValueService.emptyCartData();
+        this.router.navigate(['/main/category']);
         console.log(res);
       }, (err: any) => {
+        alertify.alert(err.message).setHeader('Error Message')
         console.log(err);
       })
   }
 
   goToCategories(): any {
-    this.router.navigate(['main/admin/category']);
+    this.router.navigate(['/main/category']);
   }
 }
