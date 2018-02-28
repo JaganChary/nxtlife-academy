@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ChaptersService } from '../../chapters.service';
 import { TemplatesService } from '../templates.service';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-template-three',
@@ -161,9 +162,11 @@ export class TemplateThreeComponent implements OnInit {
 
     this.chaptersService.postTemplate(this.id, formInfo)
       .subscribe((res: any) => {
+        alertify.success(res.message);
         console.log(res);
 
       }, (err: any) => {
+        alertify.alert(err.msg).setHeader('Message');
         console.log(err);
       });
   }

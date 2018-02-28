@@ -152,7 +152,7 @@ export class TemplateOneComponent implements OnInit {
 
     this.chaptersService.postTemplate(this.id, eee)
       .subscribe((res: any) => {
-        alertify.success('Success message');
+        alertify.success(res.message);
         console.log(res);
 
       }, (err: any) => {

@@ -105,7 +105,7 @@ export class TemplateFourComponent implements OnInit {
 
     this.chaptersService.postTemplate(this.id, formInfo)
       .subscribe((res: any) => {
-        alertify.success('Success message');
+        alertify.success(res.message);
         console.log(res);
 
       }, (err: any) => {
