@@ -93,8 +93,8 @@ export class AddChaptersComponent implements OnInit {
         alertify.success(res.message);
         console.log(res);
       }, (err: any) => {
-        
-        alertify.alert(err.msg).setHeader('Message');
+
+        alertify.alert(err.msg).setHeader('Error Message');
         console.log(err);
       })
   }

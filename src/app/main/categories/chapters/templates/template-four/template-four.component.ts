@@ -110,7 +110,7 @@ export class TemplateFourComponent implements OnInit {
 
       }, (err: any) => {
         console.log(err);
-        alertify.alert(err.msg).setHeader('Message');
+        alertify.alert(err.msg).setHeader('Error Message');
       });
   }
 

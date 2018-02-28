@@ -156,7 +156,7 @@ export class TemplateOneComponent implements OnInit {
         console.log(res);
 
       }, (err: any) => {
-        alertify.alert(err.msg).setHeader('Message');
+        alertify.alert(err.msg).setHeader('Error Message');
         console.log(err);
       });
   }
