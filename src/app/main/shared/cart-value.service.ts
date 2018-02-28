@@ -46,5 +46,10 @@ export class CartValueService {
     this.currentCartValue.next(this.cartData.length);
   }
 
+  emptyCartData(): any {
+    this.cartData = [];
+    this.currentCartValue.next(this.cartData.length);
+  }
+
 
 }
