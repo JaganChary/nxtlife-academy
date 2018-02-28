@@ -108,7 +108,6 @@ export class AddChaptersComponent implements OnInit {
   }
 
   // Post Request  
-
   btnSubmit(): any {  
     this.formData = new FormData();
     this.formData.append('chapters', this.datas);
@@ -120,7 +119,5 @@ export class AddChaptersComponent implements OnInit {
       }, (err: any) => {
         console.log(err);
       })
-
-
   }
 }

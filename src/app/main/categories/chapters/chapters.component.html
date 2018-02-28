@@ -30,7 +30,7 @@
               <a>
                 <div class="card-block" *ngFor="let topic of chapter.topics; let j = index">
                   <fa name="arrow-right" class="text-muted" style="float: left; padding-right: 0.8em;"></fa>
-                  <span class="text-muted" style="font-size: 1.1em; font-weight: light" data-toggle="tooltip" data-placement="bottom" title="Add Page" routerLink="{{topic.topicId}}/add-page">{{topic.topic}}</span>
+                  <span class="text-muted" style="font-size: 1.1em; font-weight: light" data-toggle="tooltip" (click)="getTopicData(topic.topicId)" data-placement="bottom" title="Add Page" routerLink="{{topic.topicId}}/add-page">{{topic.topic}}</span>
                   <span *ngIf="role == 'sa'">
                     <button type="button" (click)="deleteTopic(topic.topicId, i, j)" data-toggle="tooltip" data-placement="bottom" title="Delete Topic" style="float:right; margin-left:1.5em;">
                       <fa name="trash-o" size="2x"></fa>

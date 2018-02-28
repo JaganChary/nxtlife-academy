@@ -9,6 +9,7 @@ import { CategoriesService } from '../categories.service';
 import { ChaptersComponent } from './chapters.component';
 import { AddChaptersComponent } from './add-chapters/add-chapters.component';
 import { ChaptersService } from './chapters.service';
+import { TemplatesService } from './templates/templates.service';
 
 @NgModule({
   imports: [
@@ -32,6 +33,6 @@ import { ChaptersService } from './chapters.service';
     ])
   ],
   declarations: [AddChaptersComponent, ChaptersComponent],
-  providers: [CategoriesService, ChaptersService]
+  providers: [ CategoriesService, ChaptersService, TemplatesService ]
 })
 export class ChaptersModule { }
