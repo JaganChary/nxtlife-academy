@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ParamMap, ActivatedRoute } from '@angular/router';
+import { ParamMap, ActivatedRoute, Router } from '@angular/router';
 import { CommonHttpService } from '../../shared/commonHttp.service';
 import { CategoriesService } from '../categories.service';
 import { ChaptersService } from './chapters.service';
@@ -20,7 +20,8 @@ export class ChaptersComponent implements OnInit {
     private route: ActivatedRoute,
     private categoriesService: CategoriesService,
     private chaptersService: ChaptersService,
-    private templatesService: TemplatesService
+    private templatesService: TemplatesService,
+    private router: Router
 
   ) { }
 
@@ -80,6 +81,12 @@ export class ChaptersComponent implements OnInit {
 
   getTopicData(topicId: number): any {
     this.chaptersService.storeTopicId(topicId);
+    let role = localStorage.getItem('role');
+    if(role == 'admin') {
+      this.router.navigate([`/${topicId}/add-page`]);
+    } else {
+      return;
+    }
   }
 }
 

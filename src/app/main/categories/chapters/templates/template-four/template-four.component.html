@@ -22,7 +22,7 @@
             <h5>Questions</h5>
             <div class="card" style="background-color: lightgray" *ngFor="let questions of templateFourForm.controls.questions.controls; let i = index;"
               [formGroupName]="i">
-              <button type="button" (click)="deleteQuestions(i)" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
+              <button type="button" (click)="deleteQuestions(i)" [disabled]="templateFourForm.controls.questions.controls.length == 1" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
                 <fa name="close" style="color: white"></fa>
               </button>
 

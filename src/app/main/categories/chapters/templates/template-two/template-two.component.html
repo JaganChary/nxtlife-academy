@@ -14,6 +14,11 @@
               </span>
             </label>
             <input type="text" class="form-control" formControlName="heading" placeholder="Type Here ...">
+            <div *ngIf="templateTwoForm.controls['heading'].hasError('required') && templateTwoForm.controls['heading'].touched" class="alert alert-danger">
+              <small>
+                <i>You must include a Heading</i>
+              </small>
+            </div>
           </div>
           <!-- End of Heading -->
 
@@ -26,9 +31,11 @@
             </label>
             <div>
 
-              <input type="radio" formControlName="type" value="BUTTON"><span class="radioInline">Button</span>
+              <input type="radio" formControlName="type" value="BUTTON">
+              <span class="radioInline">Button</span>
 
-              <input type="radio" formControlName="type" value="IMAGE" style="margin-left: 2em;"><span class="radioInline">Image</span>
+              <input type="radio" formControlName="type" value="IMAGE" style="margin-left: 2em;">
+              <span class="radioInline">Image</span>
 
             </div>
           </div>
@@ -39,7 +46,8 @@
             <h5>Buttons</h5>
             <div class="card" style="background-color: lightgray" *ngFor="let buttons of templateTwoForm.controls.buttons.controls; let i = index;"
               [formGroupName]="i">
-              <button type="button" (click)="deleteButton(i)" [disabled] = "templateTwoForm.controls.buttons.controls.length === 1" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.9em; top: -1.4em">
+              <button type="button" (click)="deleteButton(i)" [disabled]="templateTwoForm.controls.buttons.controls.length === 1" class="style-btn"
+                style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.9em; top: -1.4em">
                 <fa name="close" style="color: white"></fa>
               </button>
               <!-- Upload Image -->
@@ -62,6 +70,12 @@
                   </span>
                 </label>
                 <input type="text" class="form-control" formControlName="title" placeholder="Type Here ...">
+                <div *ngIf="templateTwoForm.controls.buttons.controls[i].controls['title'].hasError('required') && templateTwoForm.controls.buttons.controls[i].controls['title'].touched"
+                  class="alert alert-danger">
+                  <small>
+                    <i>You must include a title</i>
+                  </small>
+                </div>
               </div>
               <!-- End of Title -->
 
@@ -73,6 +87,12 @@
                   </span>
                 </label>
                 <input type="text" class="form-control" formControlName="description" placeholder="Type Here ...">
+                <div *ngIf="templateTwoForm.controls.buttons.controls[i].controls['description'].hasError('required') && templateTwoForm.controls.buttons.controls[i].controls['description'].touched"
+                  class="alert alert-danger">
+                  <small>
+                    <i>You must include a description</i>
+                  </small>
+                </div>
               </div>
               <!-- End of Description -->
             </div>
