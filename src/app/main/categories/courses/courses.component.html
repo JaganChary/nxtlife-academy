@@ -29,11 +29,11 @@
             </div>
             <div *ngIf="role == 'sa'">
               <span>
-                <button type="button" class="style-btn" (click)="editCourse(course)" routerLink="add-courses" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-left: 1.5em">
-                  <fa name="pencil-square-o" size="x"></fa>
+                <button type="button" class="style-btn btn btn-cyan" (click)="editCourse(course)" routerLink="add-courses" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-left: 1.5em">
+                  <fa name="pencil-square-o" class="trash-border" size="x"></fa>
                 </button>
-                <button type="button" class="style-btn" (click)="btnDelete(course.courseId,i)" data-toggle="tooltip" data-placement="bottom" title="Delete" style="float:right; margin-right: 1.5em">
-                  <fa name="trash-o" size="x"></fa>
+                <button type="button" class="style-btn btn  btn-red" (click)="btnDelete(course.courseId,i)" data-toggle="tooltip" data-placement="bottom" title="Delete" style="float:right; margin-right: 1.5em">
+                  <fa name="trash-o" class="trash-border" size="x"></fa>
                 </button>
               </span>
               <span>

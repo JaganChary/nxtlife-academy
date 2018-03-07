@@ -17,6 +17,7 @@ import alertify from 'alertifyjs';
   styleUrls: ['./add-categories.component.css']
 })
 export class AddCategoriesComponent implements OnInit {
+  image: any;
   id: any;
   addORedit: any;
   categoryData: any;
@@ -72,15 +73,27 @@ export class AddCategoriesComponent implements OnInit {
 
           categoryImage: [this.categoryData.imageUrl, Validators.required]
         });
+
+        this.image = this.addCategoryForm.controls.categoryImage.value;
       }
     }
   }
+// Change Event shows the details about the file
 
-  // Change Event shows the details about the file
+  fileUpload(e: any): any {
 
-  fileUpload(imageFile: any): any {
-    console.log(imageFile.target.files[0]);
-    this.file = imageFile.target.files[0];
+    this.file = e.target.files[0];
+    console.log(this.file);
+
+    if (e.target.files || e.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(e.target.files[0]);
+
+      reader.onload = (e: any) => {
+        this.image = e.target.result;
+      }
+    }
   }
 
   btnClick(): any {

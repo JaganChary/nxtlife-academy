@@ -65,14 +65,13 @@ p {
     float: right;
     color: white;
     border: none;
-    border: 4px solid darkcyan;
     border-color: none;
 
-  }
-.style-btn:hover {
+}
+/* .style-btn:hover {
     background-color: darkcyan;
     color: white;
-}  
+}   */
 
 @media screen and (max-width: 768px) {
     .style-btn {

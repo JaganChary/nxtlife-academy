@@ -1,16 +1,17 @@
 <div class="container" style="margin-top: 6em;">
     <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-2">
 
         </div>
+       
         <div class="col-md-7">
 
             <h2 class="text-muted">Departments</h2>
             <hr>
 
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-hover">
                     <thead style="color: darkslategray; font-size: 1.5em;">
                         <th>Department Name</th>
                         <th>Department Id</th>
@@ -65,16 +66,15 @@
                         </div>
                     </div>
                 </form>
-
                 <!-- *************** End of Modal *************** -->
-
             </div>
-
         </div>
-        <div class="col-md-2">
+        
+        <div class="col-md-3">
+            <!-- <button class="btn btn-secondary style-btn" type="button" routerLink="department">Add</button> -->
             <!-- Add -->
             <button type="button" class="style-btn" data-toggle="modal" data-target="#exampleModal" (click)="addDepartment()"
-                style="float:right; margin-left:1em;">
+                style="float:right; padding: 0.7em 2.4em; margin-left:1em;">
                 Add <fa name="plus-square-o" size="x"></fa>
             </button>
         </div>

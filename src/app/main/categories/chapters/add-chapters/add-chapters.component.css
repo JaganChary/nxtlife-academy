@@ -69,13 +69,10 @@ p {
     border-radius: 5px;
     color: white;
     margin-top: 1em;
+    border: none;
+    border-color: none;
 }
 
-.style-btn:hover {
-    background-color: lightgray;
-    color: white;
-    
-}  
 
 @media screen and (max-width: 768px) {
     .style-btn {
