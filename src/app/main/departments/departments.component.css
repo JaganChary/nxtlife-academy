@@ -15,15 +15,15 @@ h2 {
 
 .style-btn {
     text-align: right;
-    padding: 0.9em 2em;
-    background-color: darkslategray;
+    padding: 0.4em 1.3em;
+    background-color: white;
     border-radius: 5px;
     margin-left: 25px;
-    border: none;
-    color: gray;
+    border: 2px solid darkcyan;
+    color: darkcyan;
   }
   
   .style-btn:hover {
-    background-color: gray;
+    background-color: darkcyan;
     color: white;
   }

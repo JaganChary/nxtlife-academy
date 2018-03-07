@@ -5,17 +5,78 @@
 
         </div>
         <div class="col-md-7">
-            
+
             <h2 class="text-muted">Departments</h2>
             <hr>
-            <div class="card" *ngFor="let department of departments" style=" padding: 0.5em 2em; margin-bottom: 1em;">
-                <span style="color: darkslategray; font-size: 1.5em;">{{department.department}}
-                    <span style="float: right;">{{department.departmentId}}</span>
-                </span>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead style="color: darkslategray; font-size: 1.5em;">
+                        <th>Department Name</th>
+                        <th>Department Id</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let department of departments">
+                            <td>{{department.department}}</td>
+                            <td>{{department.departmentId}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+
+            <!-- *************** Modal *************** -->
+            <div *ngIf="x">
+                <form [formGroup]="departmentForm">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document" style="width: 400px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <!-- Department Name -->
+                                    <div class="form-group">
+                                        <label for="topic">
+                                            <span class="change">
+                                                <span class="fat">|</span>Department Name</span>
+                                        </label>
+                                        <input type="text" formControlName="department" class="form-control" placeholder="Type Here ...">
+                                        <div *ngIf="departmentForm.controls['department'].hasError('required') && departmentForm.controls['department'].touched"
+                                            class="alert alert-danger">
+                                            <small>
+                                                <i>You must include a Department Name.</i>
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <!-- End of Department Name -->
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                    <!-- Submit Button -->
+                                    <button type="button" class="btn style-btn" data-dismiss="modal" (click)="btnSubmit()">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- *************** End of Modal *************** -->
+
+            </div>
+
         </div>
         <div class="col-md-2">
-            <button class="btn btn-secondary style-btn" type="button" routerLink="department">Add +</button>
+            <!-- Add -->
+            <button type="button" class="style-btn" data-toggle="modal" data-target="#exampleModal" (click)="addDepartment()"
+                style="float:right; margin-left:1em;">
+                Add <fa name="plus-square-o" size="x"></fa>
+            </button>
         </div>
     </div>
 </div>
