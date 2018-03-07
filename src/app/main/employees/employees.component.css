@@ -21,11 +21,11 @@ h5 {
 .style-btn {
   text-align: right;
   padding: 0.9em 2em;
-  background-color: darkslategray;
+  background-color: darkcyan;
   border-radius: 5px;
   margin-left: 25px;
   border: none;
-  color: gray;
+  color: white;
 }
 
 .style-btn:hover {

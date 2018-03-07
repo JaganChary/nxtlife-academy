@@ -75,12 +75,11 @@ p {
 
 .style-btn {
     padding: 0.8em 4em;
-    background-color: darkslategray;
+    background-color: white;
     border-radius: 5px;
-    color: gray;
-    border: none;
+    color: darkcyan;
+    border: 4px solid darkcyan;
     border-color: none;
-    
 }
 
 .style-btn:hover {

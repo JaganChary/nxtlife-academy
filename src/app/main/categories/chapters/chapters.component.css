@@ -92,17 +92,40 @@ p {
 
 .style-btn {
     padding: 0.5em 1.9em;
-    background-color: darkslategray;
+    background-color: darkcyan;
     border-radius: 5px;
-    color: gray;
+    color: white;
     border: none;
     border-color: none;
 
   }
+
 .style-btn:hover {
     background-color: darkcyan;
     color: white;
 }  
+
+.btn {
+    color: black;
+}
+
+.btn-green:hover {
+    background-color: seagreen;
+    color: white;
+    
+} 
+
+.btn-red:hover {
+    background-color: red;
+    color: white;
+    
+}
+
+.btn-blue:hover {
+    background-color: darkviolet;
+    color: white;
+    
+}
 
 .card-img-top {
     height: 160px;

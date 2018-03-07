@@ -88,20 +88,6 @@ p {
     background-color: lightgray;
 }
 
-.style-btn {
-    padding: 0.5em 1.9em;
-    background-color: darkslategray;
-    border-radius: 5px;
-    color: gray;
-    border: none;
-    border-color: none;
-
-  }
-.style-btn:hover {
-    background-color: darkcyan;
-    color: white;
-}  
-
 .card-img-top {
     height: 160px;
     width: 233px;

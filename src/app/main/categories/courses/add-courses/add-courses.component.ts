@@ -69,33 +69,39 @@ export class AddCoursesComponent implements OnInit {
   initForm(): any {
 
     this.courseData = this.coursesService.getCourseData();
-    this.courseId = this.courseData.courseId;
-    this.addORedit = this.coursesService.getAction();
 
-    if (this.addORedit === 'Add') {
+    if (this.courseData === undefined) {
 
-      this.addCourseForm = this.formBuilder.group({
+      this.router.navigate(['/main/category']);
+    } else {
+      this.courseId = this.courseData.courseId;
+      this.addORedit = this.coursesService.getAction();
 
-        courseName: ['', Validators.required],
+      if (this.addORedit === 'Add') {
 
-        courseDescription: ['', Validators.required],
+        this.addCourseForm = this.formBuilder.group({
 
-        courseCost: ['', Validators.required],
+          courseName: ['', Validators.required],
 
-      })
-    } else if (this.addORedit === 'Edit') {
+          courseDescription: ['', Validators.required],
 
-      this.addCourseForm = this.formBuilder.group({
+          courseCost: ['', Validators.required],
 
-        courseName: [this.courseData.course, Validators.required],
+        })
+      } else if (this.addORedit === 'Edit') {
 
-        courseDescription: [this.courseData.description, Validators.required],
+        this.addCourseForm = this.formBuilder.group({
 
-        courseCost: [this.courseData.cost, Validators.required],
+          courseName: [this.courseData.course, Validators.required],
 
-        courseImage: [this.courseData.courseImage]
+          courseDescription: [this.courseData.description, Validators.required],
 
-      })
+          courseCost: [this.courseData.cost, Validators.required],
+
+          courseImage: [this.courseData.courseImage]
+
+        })
+      }
     }
   }
 

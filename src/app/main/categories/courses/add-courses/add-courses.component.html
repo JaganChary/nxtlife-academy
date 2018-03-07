@@ -8,7 +8,7 @@
         {{addORedit}} Course
       </h2>
       <hr>
-      <form [formGroup]="addCourseForm">
+      <form [formGroup]="addCourseForm" *ngIf="this.courseData">
 
         <!-- Course Name -->
         <div class="form-group">

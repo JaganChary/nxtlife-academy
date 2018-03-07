@@ -65,17 +65,16 @@ p {
 
 .style-btn {
     padding: 0.9em 3em;
-    background-color: darkslategray;
+    background-color: darkcyan;
     border-radius: 5px;
-    color: gray;
-    border: none;
-    border-color: none;
+    color: white;
     margin-top: 1em;
 }
 
 .style-btn:hover {
-    background-color: darkcyan;
+    background-color: lightgray;
     color: white;
+    
 }  
 
 @media screen and (max-width: 768px) {

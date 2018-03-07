@@ -21,15 +21,17 @@
   .style-btn {
     text-align: right;
     padding: 0.08em 1.8em;
-    background-color: darkslategray;
+    background-color: white;
     border-radius: 5px;
+    border: solid darkcyan;
+    border-width: 2px;
     margin-left: 25px;
     border: none;
-    color: gray;
+    color: darkcyan;
   }
   
   .style-btn:hover {
-    background-color: gray;
+    background-color: darkcyan;
     color: white;
   }
   

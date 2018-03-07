@@ -32,7 +32,7 @@ export class AddCategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+
     this.initForm();
 
   }
@@ -40,31 +40,39 @@ export class AddCategoriesComponent implements OnInit {
   initForm() {
 
     this.categoryData = this.categoriesService.getCategoryData();
-    console.log(this.categoryData,'category data');
-    this.id = this.categoryData.courseCategoryId;
-    this.addORedit = this.categoriesService.getAction();
+    console.log(this.categoryData, 'category data');
 
-    if (this.addORedit === 'Add') {
 
-      this.addCategoryForm = this.formBuilder.group({
+    if (this.categoryData === undefined) {
+      console.log('jhgfhfh');
+      this.router.navigate(['/main/category']);
 
-        categoryName: ['', Validators.required],
+    } else {
 
-        categoryDescription: ['', Validators.required],
+      this.id = this.categoryData.courseCategoryId;
+      this.addORedit = this.categoriesService.getAction();
+      if (this.addORedit === 'Add') {
 
-        categoryImage: ['', Validators.required]
-      });
+        this.addCategoryForm = this.formBuilder.group({
 
-    } else if (this.addORedit === 'Edit') {
+          categoryName: ['', Validators.required],
 
-      this.addCategoryForm = this.formBuilder.group({
+          categoryDescription: ['', Validators.required],
 
-        categoryName: [this.categoryData.category, Validators.required],
+          categoryImage: ['', Validators.required]
+        });
 
-        categoryDescription: [this.categoryData.description, Validators.required],
+      } else if (this.addORedit === 'Edit') {
 
-        categoryImage: [this.categoryData.imageUrl, Validators.required]
-      });
+        this.addCategoryForm = this.formBuilder.group({
+
+          categoryName: [this.categoryData.category, Validators.required],
+
+          categoryDescription: [this.categoryData.description, Validators.required],
+
+          categoryImage: [this.categoryData.imageUrl, Validators.required]
+        });
+      }
     }
   }
 
@@ -95,9 +103,9 @@ export class AddCategoriesComponent implements OnInit {
           alertify.alert(err.msg).setHeader('Message');
           console.log(err);
         })
-    } else if(this.addORedit === 'Edit') {
+    } else if (this.addORedit === 'Edit') {
 
-      this.categoriesService.editCategories(this.id,formData)
+      this.categoriesService.editCategories(this.id, formData)
         .subscribe((res: any) => {
           alertify.success(res.message);
           this.router.navigate(['/main/category']);

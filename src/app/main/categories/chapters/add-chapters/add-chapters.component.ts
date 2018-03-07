@@ -80,17 +80,7 @@ export class AddChaptersComponent implements OnInit {
 
   // Post Request  
   btnSubmit(): any {  
-
-    
-        
-    
-
     var formInfo = this.chaptersService.createFormData(this.addChapterForm.value);
-    console.log(formInfo);
-    
-    // this.formData = new FormData();
-    // this.formData.append('chapters', this.addChapterForm.value);
-    console.log(this.addChapterForm.value);
     
     this.chaptersService.postChaptersandTopics(formInfo, this.courseId)
       .subscribe((res: any) => {

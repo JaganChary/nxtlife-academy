@@ -34,6 +34,14 @@ export class ChaptersService {
     return this.commonHttpService.post(`/sa/topic/${topicId}/pages`, data);
   }
 
+  addTopic(data, chapterId: number): any {
+    return this.commonHttpService.post(`/sa/chapter/${chapterId}/topic`, data);
+  }
+
+  updateTopic(topicId: number, data): any {
+    return this.commonHttpService.put(`/sa/topic/${topicId}`, data);
+  }
+
   createFormData(object: Object, form?: FormData, namespace?: string): FormData {
     const formData = form || new FormData();
     for (let property in object) {

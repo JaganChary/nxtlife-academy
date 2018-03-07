@@ -22,10 +22,9 @@ hr {
 
 .style-btn {
     padding: 0.8em 4em;
-    background-color: darkslategray;
+    background-color: darkcyan;
     border-radius: 5px;
-    color: gray;
-    border: none;
+    color: white;
     border-color: none;
     float: right;
 }
@@ -33,6 +32,8 @@ hr {
 .style-btn:hover {
     background-color: darkcyan;
     color: white;
+    border: 2px solid white;
+    
 }  
 
 @media screen and (max-width: 768px) {

@@ -31,28 +31,109 @@
               <hr style="background-color: lightgray;">
               <a>
                 <div class="card-block" *ngFor="let topic of chapter.topics; let j = index">
-                  <fa name="arrow-right" class="text-muted" style="float: left; padding-right: 0.8em;"></fa>
+                  <fa *ngIf="!topic.imageUrl" name="arrow-right" class="text-muted" style="float: left;  padding-right: 0.8em;"></fa>
+                  <img *ngIf="topic.imageUrl" src="{{topic.imageUrl}}" alt="" style="width: 4em; height: 3em; float: left; padding-right: 0.8em;">
                   <span class="text-muted" style="font-size: 1.1em; font-weight: light" data-toggle="tooltip" (click)="getTopicData(topic.topicId)"
                     data-placement="bottom" title="Add Page" routerLink="{{topic.topicId}}/add-page">{{topic.topic}}</span>
-                  <span  *ngIf="role == 'sa'">
-                    
-                      <button type="button" (click)="editTopic(topic)" data-toggle="tooltip" data-placement="bottom" title="Edit Topic" style="float:right; margin-left:1em;">
-                        <fa name="pencil-square-o" size="2x"></fa>
-                      </button>
-                    
-                      <button type="button" (click)="deleteTopic(topic.topicId, i, j)" data-toggle="tooltip" data-placement="bottom" title="Delete Topic"
-                        style="float:right; margin-left:1em;">
-                        <fa name="trash-o" size="2x"></fa>
-                      </button>
-                    
+
+
+                  <!-- Button trigger to Edit Topic -->
+                  <span *ngIf="role == 'sa'">
+                    <!-- Add -->
+                    <button type="button" class=" btn btn-green" data-toggle="modal" data-target="#exampleModal" (click)="addTopic('Add', chapter.chapterId)" style="float:right; margin-left:1em;">
+                      <fa name="plus-square-o" size="x"></fa>
+                    </button>
+                    <!-- Edit -->
+                    <button type="button" class="btn btn-blue" data-toggle="modal" data-target="#exampleModal" (click)="editTopic(topic, 'Edit')" style="float:right; margin-left:1em;">
+                      <fa name="pencil-square-o" size="x"></fa>
+                    </button>
+                    <!-- Delete -->
+                    <button type="button" class="btn btn-red" (click)="deleteTopic(topic.topicId, i, j)" data-toggle="tooltip" data-placement="bottom" title="Delete Topic"
+                      style="float:right; margin-left:1em;">
+                      <fa name="trash-o" size="x"></fa>
+                    </button>
                   </span>
 
                   <span class="text-muted" *ngIf="topic.duration" style="float:right;">{{topic.duration}}</span>
                   <span class="text-muted" *ngIf="!topic.duration" style="float:right;">N/A</span>
-
                 </div>
               </a>
             </div>
+          </div>
+
+          <div class="modal-start"  *ngIf="addORedit">
+            
+            <!-- *************** Modal *************** -->
+
+            <form [formGroup]="topicForm">
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="width: 400px;">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">{{addORedit}} Topic</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <!-- Topic Name -->
+                      <div class="form-group">
+                        <label for="topic">
+                          <span class="change">
+                            <span class="fat">|</span>Topic Name</span>
+                        </label>
+                        <input type="text" formControlName="topic" class="form-control" placeholder="Type Here ...">
+                        <div *ngIf="topicForm.controls['topic'].hasError('required') && topicForm.controls['topic'].touched" class="alert alert-danger">
+                          <small>
+                            <i>You must include a Topic Name.</i>
+                          </small>
+                        </div>
+                      </div>
+                      <!-- End of Topic Name -->
+
+                      <!-- Topic Duration -->
+                      <div class="form-group">
+                        <label for="duration">
+                          <span class="change">
+                            <span class="fat">|</span>Duration</span>
+                        </label>
+                        <input type="time" step="2" formControlName="durationString" class="form-control">
+                        <div *ngIf="topicForm.controls.durationString.hasError('required') && topicForm.controls.durationString.touched" class="alert alert-danger">
+                          <small>
+                            <i>You must include a Topic Duration.</i>
+                          </small>
+                        </div>
+                      </div>
+                      <!-- End of Topic Duration -->
+
+                      <!-- Upload Image -->
+                      <div class="form-group">
+                        <label for="uploadImage">
+                          <span class="change">
+                            <span class="fat">|</span>Upload Image</span>
+                        </label>
+                        <div>
+                          <span><input type="file" accept="image/*" (change)="fileUpload($event)"></span>
+                          <span><img src="{{image}}" alt="No Image to Display" style="width: 4em; height: 4em"></span>
+                        </div>
+                      </div>
+                      <!-- End of Upload Image -->
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      
+                      <!-- Submit Button -->
+                      <button type="button" class="style-btn" (click)="onSubmit()">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <!-- *************** End of Modal *************** -->
+          
           </div>
         </div>
       </div>
