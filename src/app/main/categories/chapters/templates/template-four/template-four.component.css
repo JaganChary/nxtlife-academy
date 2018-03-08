@@ -97,12 +97,12 @@ p {
 
 .style-btn {
     padding: 0.5em 1.9em;
-    background-color: darkslategray;
+    background-color: white;
     border-radius: 5px;
-    color: gray;
-    border: none;
+    color: darkcyan;
+    border: 2px solid darkcyan;
     float: right;
-    border-color: none;
+    /* border-color: none; */
 
   }
 

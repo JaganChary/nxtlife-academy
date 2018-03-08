@@ -92,17 +92,17 @@ p {
 
 .style-btn {
     padding: 0.5em 1.9em;
-    background-color: darkcyan;
+    background-color: white;
     border-radius: 5px;
-    color: white;
-    border: none;
-    border-color: none;
+    color: darkcyan;
+    border: 2px solid darkcyan;
+    /* border-color: none; */
   }
-/* 
+
 .style-btn:hover {
     background-color: darkcyan;
     color: white;
-}   */
+}  
 
 .btn {
     color: black;

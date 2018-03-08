@@ -104,14 +104,14 @@ export class ChaptersComponent implements OnInit {
     })
 
     this.image = this.topicForm.controls.imageFile.value;
-   
+
   }
 
   // Add Topic
   addTopic(addORedit: String, chapterId: number): any {
     this.addORedit = addORedit;
     this.chapterId = chapterId;
-    
+
     this.topicForm = this.formBuilder.group({
 
       topic: ['', Validators.required],
@@ -125,20 +125,27 @@ export class ChaptersComponent implements OnInit {
 
   fileUpload(e: any): any {
 
-    this.fileT = e.target.files[0];
-    console.log(this.fileT);
+    if (!e.target.files[0]) {
 
-    // this.topicForm.controls['imageFile'].patchValue(this.fileT);
+      return;
+    } else {
 
-    if (e.target.files || e.target.files[0]) {
-      var reader = new FileReader();
+      this.fileT = e.target.files[0];
+      console.log(this.fileT);
 
-      reader.readAsDataURL(e.target.files[0]);
+      // this.topicForm.controls['imageFile'].patchValue(this.fileT);
 
-      reader.onload = (e: any) => {
-        this.image = e.target.result;
+      if (e.target.files || e.target.files[0]) {
+        var reader = new FileReader();
+
+        reader.readAsDataURL(e.target.files[0]);
+
+        reader.onload = (e: any) => {
+          this.image = e.target.result;
+        }
       }
     }
+
   }
 
   getTopicData(topicId: number): any {

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h3>Template 3</h3>
+      <h3>Template Three</h3>
       <hr>
       <form [formGroup]="templateThreeForm">
         <div class="card" style="background-color: lightgray;">
@@ -174,7 +174,7 @@
               <div class="card" *ngFor="let questionnare of templateThreeForm.controls.questionnareSet.controls; let i = index" [formGroupName]="i">
                 <button type="button" (click)="deleteQuestionnareSet(i)" [disabled]="templateThreeForm.controls.questionnareSet.controls.length == 1"
                   class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
-                  <fa name="close" style="color: white"></fa>
+                  <fa name="close"></fa>
                 </button>
                 <!-- ***************** Heading ***************** -->
                 <div class="form-group">
@@ -195,7 +195,7 @@
                     [formGroupName]="j">
                     <button type="button" (click)="deleteQuestions(i, j)" [disabled]="templateThreeForm.controls.questionnareSet.controls[i].controls.questions.controls.length == 1"
                       class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
-                      <fa name="close" style="color: white"></fa>
+                      <fa name="close"></fa>
                     </button>
 
                     <!-- Question -->
@@ -232,7 +232,7 @@
                         [formGroupName]="k">
                         <button type="button" (click)="deleteOptions(i, j, k)" *ngIf="templateThreeForm.controls.questionnareSet.controls[i].controls.questions.controls[j].controls.options.controls.length > 2"
                           class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
-                          <fa name="close" style="color: white"></fa>
+                          <fa name="close"></fa>
                         </button>
                         <h6 style="text-align: center">Option {{k + 1}}</h6>
                         <!-- Answer -->

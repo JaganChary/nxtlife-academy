@@ -113,8 +113,8 @@ export class AddCoursesComponent implements OnInit {
   fileUpload(e: any): any {
 
     if (!e.target.files[0]) {
-
-      alertify.alert('You must select an Image').setHeader('Alert Message');
+      
+      return;
     } else {
 
       this.file = e.target.files[0];

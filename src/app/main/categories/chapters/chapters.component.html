@@ -9,7 +9,7 @@
         <h2>Chapters</h2>
         <hr style="width: 16em; height: 2px">
         <span *ngIf="role == 'sa'">
-          <button class="style-btn" style="padding: 1em 2em; color: white" routerLink="add-chapters">Add Chapters</button>
+          <button class="style-btn" style="padding: 1em 2em;" routerLink="add-chapters">Add Chapters</button>
         </span>
       </div>
       <div class="bg-color">
@@ -18,7 +18,7 @@
             <div *ngIf="role == 'sa'">
               <button type="button" class="style-btn" data-toggle="tooltip" data-placement="bottom" title="Delete Chapter" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -1.2em; top: -1em"
                 (click)="deleteChapter(chapter.chapterId, i)">
-                <fa name="close" style="color: white"></fa>
+                <fa name="close"></fa>
               </button>
             </div>
             <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{chapter.chapterId}}" aria-expanded="true" aria-controls="collapseOne">

@@ -84,7 +84,7 @@ export class AddCategoriesComponent implements OnInit {
 
     if (e.target.files[0] === undefined) {
       
-      alertify.alert('You must select an Image').setHeader('Alert Message');
+      return;
     } else {
       
       this.file = e.target.files[0];

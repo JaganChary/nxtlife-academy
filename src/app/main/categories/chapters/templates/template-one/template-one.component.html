@@ -25,7 +25,7 @@
             <div class="card" style="background-color: lightgray" *ngFor="let images of templateOneForm.controls.images.controls; let i = index">
               <div [formGroupName]="i">
                 <button type="button" (click)="deleteImage(i)" [disabled] = "templateOneForm.controls.images.controls.length === 1" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.8em; top: -1.4em">
-                  <fa name="close" style="color: white"></fa>
+                  <fa name="close"></fa>
                 </button>
 
                 <!-- Title -->
@@ -78,7 +78,7 @@
             <div class="card" style="background-color: lightgray" *ngFor="let paragraphs of templateOneForm.controls.paragraphs.controls; let j = index">
               <div [formGroupName]="j">
                 <button type="button" (click)="deleteParagraph(j)" [disabled] = "templateOneForm.controls.paragraphs.controls.length === 1" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.9em; top: -1.4em">
-                  <fa name="close" style="color: white"></fa>
+                  <fa name="close"></fa>
                 </button>
                 <!-- Title -->
                 <div class="form-group">
@@ -147,7 +147,7 @@
                   <div class="card" *ngFor="let bullets of templateOneForm.controls.paragraphs.controls[j].controls.bullets.controls; let k = index">
                     <div [formGroupName]="k">
                       <button type="button" (click)="deleteParagraphBullet(j, k)" [disabled] = "templateOneForm.controls.paragraphs.controls[j].controls.bullets.controls.length === 1" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute;right: -0.9em; top: -1.4em">
-                        <fa name="close" style="color: white"></fa>
+                        <fa name="close"></fa>
                       </button>
                       <!-- Bullet -->
                       <div class="form-group">
@@ -199,7 +199,7 @@
             <div class="card" style="background-color: lightgray" *ngFor="let bullets of templateOneForm.controls.bullets.controls; let l = index">
               <div [formGroupName]="l">
                 <button type="button" (click)="deleteBullet(l)" [disabled] = "templateOneForm.controls.bullets.controls.length === 1" class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.9em; top: -1.4em">
-                  <fa name="close" style="color: white"></fa>
+                  <fa name="close"></fa>
                 </button>
                 <!-- Bullet -->
                 <div class="form-group">
