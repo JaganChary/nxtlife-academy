@@ -78,20 +78,26 @@ export class AddCategoriesComponent implements OnInit {
       }
     }
   }
-// Change Event shows the details about the file
+  // Change Event shows the details about the file
 
   fileUpload(e: any): any {
 
-    this.file = e.target.files[0];
-    console.log(this.file);
+    if (e.target.files[0] === undefined) {
+      
+      alertify.alert('You must select an Image').setHeader('Alert Message');
+    } else {
+      
+      this.file = e.target.files[0];
+      console.log(this.file);
 
-    if (e.target.files || e.target.files[0]) {
-      var reader = new FileReader();
+      if (e.target.files || e.target.files[0]) {
+        var reader = new FileReader();
 
-      reader.readAsDataURL(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
 
-      reader.onload = (e: any) => {
-        this.image = e.target.result;
+        reader.onload = (e: any) => {
+          this.image = e.target.result;
+        }
       }
     }
   }
