@@ -39,10 +39,7 @@ hr {
 }
 
 
-.card-header {
-    background-color: lightgrey;
-    box-shadow: 2px 2px 2px darkgray;
-    border-radius: 5px;
+.style-header {
     font-size: 1.5em;
     color: darkslategray;
     text-align: center;

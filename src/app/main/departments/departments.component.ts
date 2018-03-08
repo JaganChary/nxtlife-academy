@@ -34,8 +34,7 @@ export class DepartmentsComponent implements OnInit {
 
   addDepartment(): any {
 
-    // Retrieving organization Id
-    this.x = 'Variable to make sure that the form does not load before button is clicked';
+    this.x = 'Variable to make sure that the form does not load before the button is clicked';
 
     this.departmentForm = this.formBuilder.group({
 
