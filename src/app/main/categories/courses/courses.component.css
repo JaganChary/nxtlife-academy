@@ -71,11 +71,11 @@ p {
 }
 
 .style-btn {
-    padding: 0.5em 1.6em;
-    background-color: darkcyan;
+    padding: 0.5em 1.4em;
+    background-color: white;
     border-radius: 5px;
-    border: none;
-    border-color: none;
+    border: 2px solid darkcyan;
+    color: darkcyan;
     /* margin-left: 2em; */
 }
 
@@ -84,10 +84,11 @@ p {
     color: white;
 }  
 
+
 .btn {
     background-color: white;
     color: black;
-    border: 1px solid black
+    border: 1px solid black;
 }
 
 .btn-cyan:hover {

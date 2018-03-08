@@ -59,12 +59,11 @@ p {
 
 .style-btn {
     padding: 1em 3em;
-    background-color: darkslategray;
+    background-color: white;
     border-radius: 5px;
     float: right;
-    color: gray;
-    border: none;
-    border-color: none;
+    color: darkcyan;
+    border: 2px solid darkcyan;
 }
 
 .style-btn:hover {

@@ -11,6 +11,7 @@ import alertify from 'alertifyjs';
   styleUrls: ['./add-courses.component.css']
 })
 export class AddCoursesComponent implements OnInit {
+  image: any;
   courseId: any;
   id: number;
   category: any;
@@ -98,18 +99,40 @@ export class AddCoursesComponent implements OnInit {
 
           courseCost: [this.courseData.cost, Validators.required],
 
-          courseImage: [this.courseData.courseImage]
+          courseImage: [this.courseData.image]
 
         })
+
+        this.image = this.addCourseForm.controls.courseImage.value;
       }
     }
   }
 
-  fileUpload(imageFile: any): any {
-    this.file = imageFile.target.files[0];
-    console.log(this.file);
+  // Uploading File
+
+  fileUpload(e: any): any {
+
+    if (!e.target.files[0]) {
+
+      alertify.alert('You must select an Image').setHeader('Alert Message');
+    } else {
+
+      this.file = e.target.files[0];
+      console.log(this.file);
+      if (e.target.files || e.target.files[0]) {
+
+        var reader = new FileReader();
+
+        reader.readAsDataURL(this.file);
+
+        reader.onload = (e: any) => {
+          this.image = e.target.result;
+        }
+      }
+    }
   }
 
+  // Submitting Form
   btnClick(): any {
 
     let formData = new FormData();
@@ -135,7 +158,7 @@ export class AddCoursesComponent implements OnInit {
       this.coursesService.editCourses(formData, this.courseId)
         .subscribe((res: any) => {
           console.log(res);
-          alertify.success('Course Added');
+          alertify.success('Course Updated');
           this.router.navigate(['/main/category']);
         }, (err: any) => {
           alertify.alert(err.msg).setHeader('Message');
