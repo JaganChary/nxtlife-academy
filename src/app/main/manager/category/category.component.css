@@ -57,13 +57,16 @@ p {
 
 .style-btn {
     padding: 1em 5em;
-    background-color: darkcyan;
+    background-color: white;
     border-radius: 5px;
-    color: white;
-    border: none;
-    border-color: none;
+    color: darkcyan;
+    border: 2px solid darkcyan;
+}
 
-  }
+.style-btn:hover {
+    background-color: darkcyan;
+    color: white;
+}
 
 @media screen and (max-width: 768px) {
     .style-btn {

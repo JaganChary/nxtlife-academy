@@ -75,15 +75,30 @@ p {
     padding: 0.6em 1em 0.7em 1em ;
 }
 
-.style-btn {
+.btn-darkCyan {
     padding: 0.5em 1.6em;
-    background-color: darkcyan;
+    background-color: white;
+    color: darkcyan;
     border-radius: 5px;
-    color: white;
-    border: none;
-    border-color: none;
-    
+    border: 2px solid darkcyan;
+}
 
+.btn-purple {
+    padding: 0.5em 1.6em;
+    background-color: white;
+    color: darkorchid;
+    border-radius: 5px;
+    border: 2px solid darkorchid;
+}
+
+.btn-darkCyan:hover {
+    background-color: darkcyan;
+    color: white;
+}
+
+.btn-purple:hover {
+    background-color: darkorchid;
+    color: white;
 }
 
 .card-img-top {
@@ -98,3 +113,5 @@ p {
 .modalFooter {
     padding: 0 2em 1em 0;
 }
+
+
