@@ -13,6 +13,7 @@ import {
 import { Observable } from 'rxjs/observable';
 import { LoginService } from './login.service';
 import alertify from 'alertifyjs';
+import { ProgressBarService } from '../main/shared/progress-bar.service';
 
 @Component({
   selector: 'app-login',
@@ -27,10 +28,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    
-  ) {
-
-  }
+    private progressBarService: ProgressBarService
+  ) { }
 
   ngOnInit() {
     this.initForm();
@@ -46,7 +45,7 @@ export class LoginComponent implements OnInit {
   // Logging In
 
   btnClick() {
-
+    this.progressBarService.startProgressBar();
     let loginDetails = this.loginForm.value;
     if (this.loginForm.invalid) {
       return;
@@ -56,6 +55,7 @@ export class LoginComponent implements OnInit {
     this.loginService.onLogin(this.loginForm.value)
       .subscribe((res: any) => {
         alertify.success('Logged In successfully');
+        this.progressBarService.endProgressBar();
         this.loginService.loginStorage(res);
         
         this.router.navigate(['/main']);

@@ -16,6 +16,7 @@ import { Observable } from 'rxjs/Observable';
 import { EmailValidator } from '@angular/forms';
 import { BASEURL } from '../main/shared/app.constant';
 import alertify from 'alertifyjs';
+import { ProgressBarService } from '../main/shared/progress-bar.service';
 
 @Component({
   selector: 'app-register',
@@ -30,7 +31,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private progressBarService: ProgressBarService  
   ) { }
 
   ngOnInit() {
@@ -57,6 +59,8 @@ export class RegisterComponent implements OnInit {
   // The function here fetches form data and routes to the home page
 
   btnClick = () => {
+
+    this.progressBarService.startProgressBar();
     var user = this.addForm.value;
     if (this.addForm.invalid) {
       return;
@@ -73,6 +77,7 @@ export class RegisterComponent implements OnInit {
 
     }).subscribe( (res: any) => {
       alertify.success(res.message);
+      this.progressBarService.endProgressBar();
         console.log(res.id);
         if (res) {
           this.router.navigate(['login']);

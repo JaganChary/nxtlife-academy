@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASEURL } from '../../shared/app.constant';
 import { MyCoursesService } from '../my-courses.service';
 import alertify from 'alertifyjs';
+import { ProgressBarService } from '../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-assign-course',
@@ -26,7 +27,8 @@ export class AssignCourseComponent implements OnInit {
     private myCoursesService: MyCoursesService,
     private route: ActivatedRoute,
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private progressBarService: ProgressBarService
 
   ) { }
 
@@ -63,9 +65,11 @@ export class AssignCourseComponent implements OnInit {
   // Getting CourseID and respective courseData
 
   getMyCoursesFromServer(): any {
+    this.progressBarService.startProgressBar();
     this.myCoursesService.getMyCourses()
       .subscribe((res: any) => {
         this.myCoursesService.storeCoursesData(res);
+        this.progressBarService.endProgressBar();
         const id = +this.route.snapshot.paramMap.get('id');
         this.coursesData = this.myCoursesService.getCoursesDataById(id);
         // console.log(this.coursesData);
@@ -195,13 +199,14 @@ export class AssignCourseComponent implements OnInit {
   btnClickManager(): any {
 
     // All Managers List
-
+    this.progressBarService.startProgressBar();
     this.myCoursesService.getManagersList()
       .subscribe((res: any) => {
         this.managers = res.data;
         this.allStaff = this.managers;
         // console.log('Managers: ', this.allStaff);
         this.empORmanager = 'Managers';
+        this.progressBarService.endProgressBar();
         this.managerArray();
 
       }, (err: any) => {
@@ -213,6 +218,7 @@ export class AssignCourseComponent implements OnInit {
 
   btnClick(): any {
     var arr = [];
+    this.progressBarService.startProgressBar();
     let header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
 
     if (this.empORmanager === 'Employees') {
@@ -236,6 +242,7 @@ export class AssignCourseComponent implements OnInit {
         .subscribe((res: any) => {
           alertify.success('Successful');
           console.log(res);
+          this.progressBarService.endProgressBar();
           this.router.navigate([`main/admin/my-courses`]);
         }, (err: any) => {
           alertify.alert(err.message).setHeader('Error Message');
@@ -266,6 +273,7 @@ export class AssignCourseComponent implements OnInit {
         .subscribe((res: any) => {
           alertify.success('Successful')
           console.log('Response: ', res);
+          this.progressBarService.endProgressBar();
           this.router.navigate(['main/admin/my-courses']);
         }, (err: any) => {
           alertify.alert(err.message).setHeader('Error Message');

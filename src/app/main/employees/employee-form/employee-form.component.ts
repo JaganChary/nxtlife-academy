@@ -19,6 +19,7 @@ import alertify from 'alertifyjs';
 import { employee, EmployeeRole } from '../employeeRole.interface';
 import { BASEURL } from '../../shared/app.constant';
 import { EmployeesService } from '../employees.service';
+import { ProgressBarService } from '../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -36,7 +37,8 @@ export class EmployeeFormComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private employeesService: EmployeesService
+    private employeesService: EmployeesService,
+    private progressBarService: ProgressBarService
   ) { }
 
   ngOnInit() {
@@ -116,6 +118,8 @@ export class EmployeeFormComponent implements OnInit {
   // Button to Add Employee 
 
   btnClick() {
+    this.progressBarService.startProgressBar();
+    
     console.log('Button Clicked');
     var employee = this.registerForm.value;
     if (this.registerForm.invalid) {
@@ -147,6 +151,7 @@ export class EmployeeFormComponent implements OnInit {
       organizationId
     }).
       subscribe((res: any) => {
+        this.progressBarService.endProgressBar();
         alertify.success(res.message);
         console.log('Request Sent');
         

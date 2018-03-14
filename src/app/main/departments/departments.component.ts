@@ -3,6 +3,7 @@ import { DepartmentsService } from './departments.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import alertify from 'alertifyjs';
+import { ProgressBarService } from '../shared/progress-bar.service';
 
 @Component({
   selector: 'app-departments',
@@ -17,7 +18,8 @@ export class DepartmentsComponent implements OnInit {
   constructor(
     private departmentsService: DepartmentsService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private progressBarService: ProgressBarService
   ) { }
 
   ngOnInit() {
@@ -44,6 +46,7 @@ export class DepartmentsComponent implements OnInit {
   }
 
   btnSubmit(): any {
+    this.progressBarService.startProgressBar();
     let organizationId = localStorage.getItem('organizationId');
     var departments = this.departmentForm.value;
 
@@ -57,6 +60,7 @@ export class DepartmentsComponent implements OnInit {
       organizationId
     }]).
       subscribe((res: any) => {
+        this.progressBarService.endProgressBar();
         alertify.success('Department Added Successfuly');
 
         // Saving department Details to localStorage

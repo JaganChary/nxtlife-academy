@@ -62,7 +62,7 @@ import { CartService } from './cart/cart.service';
             }
         ])
     ],
-    providers: [CartValueService, CommonHttpService, CategoriesService, MainService, LoginService, AuthGuard]
+    providers: [CartValueService, CommonHttpService, CategoriesService, MainService, LoginService, AuthGuard, CartService]
 })
 
 export class MainModule {

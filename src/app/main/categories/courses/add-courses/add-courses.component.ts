@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { CoursesService } from '../courses.service';
 import { CategoriesService } from '../../categories.service';
 import alertify from 'alertifyjs';
 import { NgProgress } from 'ngx-progressbar';
 import { ProgressBarService } from '../../../shared/progress-bar.service';
+import 'rxjs/add/operator/pairwise';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-add-courses',
@@ -13,6 +15,7 @@ import { ProgressBarService } from '../../../shared/progress-bar.service';
   styleUrls: ['./add-courses.component.css']
 })
 export class AddCoursesComponent implements OnInit {
+  previousUrl: string;
   image: any;
   courseId: any;
   id: number;
@@ -35,6 +38,22 @@ export class AddCoursesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    // Testing Prevoius route Url 
+
+
+    // this.router.events
+    // .filter(e => e instanceof NavigationStart)
+    // .pairwise()
+    // .subscribe((value: [NavigationStart, NavigationStart]) => {
+      
+    //   this.previousUrl = value[0].url;
+    //   let presentUrl = value[1].url;
+
+      // console.log(previousUrl);
+
+    // }
+    // );
 
     this.getCategoryId();
 
@@ -116,7 +135,7 @@ export class AddCoursesComponent implements OnInit {
   fileUpload(e: any): any {
 
     if (!e.target.files[0]) {
-      
+
       return;
     } else {
 
@@ -135,6 +154,11 @@ export class AddCoursesComponent implements OnInit {
     }
   }
 
+  // routeNow(): any {
+
+  //   this.router.navigate([this.previousUrl]);
+  // }
+
   // Submitting Form
   btnClick(): any {
     this.progressBarService.startProgressBar();
@@ -147,20 +171,27 @@ export class AddCoursesComponent implements OnInit {
 
     if (this.addORedit === 'Add') {
 
-      this.coursesService.postCourses(formData, this.categoryId)
-        .subscribe((res: any) => {
-          console.log(res);
-          alertify.success('Course Added');
-          this.progressBarService.endProgressBar();
-          this.router.navigate(['/main/category']);
-        }, (err: any) => {
-          alertify.alert(err.msg).setHeader('Message');
-          console.log(err);
-        })
+      // this.coursesService.postCourses(formData, this.categoryId)
+      //   .subscribe((res: any) => {
+      //     console.log(res);
+      //     alertify.success('Course Added');
+      this.progressBarService.endProgressBar();
+      //     console.log(this.router.events.pairwise().subscribe((e: any) => {
+      //       console.log(e);
+      //   }
+      // ));
+
+      //   this.router.navigate(['/main/category']);
+      // }, (err: any) => {
+      //   alertify.alert(err.msg).setHeader('Message');
+      //   console.log(err);
+      // })
     } else if (this.addORedit === 'Edit') {
 
       this.coursesService.editCourses(formData, this.courseId)
         .subscribe((res: any) => {
+          this.progressBarService.endProgressBar();
+
           console.log(res);
           alertify.success('Course Updated');
           this.router.navigate(['/main/category']);

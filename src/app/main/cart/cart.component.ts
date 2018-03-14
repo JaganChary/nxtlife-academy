@@ -3,6 +3,7 @@ import { CartValueService } from '../shared/cart-value.service';
 import { CartService } from './cart.service';
 import { Router } from '@angular/router';
 import alertify from 'alertifyjs';
+import { ProgressBarService } from '../shared/progress-bar.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +18,8 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private router: Router,
-    private cartValueService: CartValueService
+    private cartValueService: CartValueService,
+    private progressBarService: ProgressBarService
   ) { }
 
   ngOnInit() {
@@ -76,7 +78,7 @@ export class CartComponent implements OnInit {
   // Button Click to Add Item to Cart
   btnClick() {
     var arr = [];
-
+    this.progressBarService.startProgressBar();
     for (let i = 0; i < this.cartData.length; i++) {
       arr.push({
         courseId: this.cartData[i].courseId,
@@ -89,6 +91,7 @@ export class CartComponent implements OnInit {
 
     this.cartService.postCartItems({courseSubscribed: arr})
       .subscribe((res: any) => {
+        this.progressBarService.endProgressBar();
         alertify.success(res.message);
         this.cartValueService.emptyCartData();
         this.router.navigate(['/main/category']);
