@@ -10,6 +10,7 @@ import {
 import { CategoriesService } from '../categories.service';
 import { Router } from '@angular/router';
 import alertify from 'alertifyjs';
+import { NgProgress } from 'ngx-progressbar';
 
 @Component({
   selector: 'app-add-categories',
@@ -28,7 +29,8 @@ export class AddCategoriesComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private categoriesService: CategoriesService,
-    private router: Router
+    private router: Router,
+    private ngProgress: NgProgress
 
   ) { }
 
@@ -103,6 +105,8 @@ export class AddCategoriesComponent implements OnInit {
   }
 
   btnClick(): any {
+    this.ngProgress.start();
+    
     let formData = new FormData();
 
     formData.append('category', this.addCategoryForm.value.categoryName);
@@ -111,13 +115,14 @@ export class AddCategoriesComponent implements OnInit {
     console.log(formData);
 
     if (this.addORedit === 'Add') {
-
+      
       this.categoriesService.postCategories(formData)
         .subscribe((res: any) => {
 
           this.router.navigate(['/main/category']);
           alertify.success(res.message);
           console.log(res);
+          // this.ngProgress.done();
         }, (err: any) => {
           alertify.alert(err.msg).setHeader('Message');
           console.log(err);
