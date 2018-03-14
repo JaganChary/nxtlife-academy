@@ -7,6 +7,7 @@ import { CoursesComponent } from './courses.component';
 import { CategoriesService } from '../categories.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CoursesService } from './courses.service';
+import { ProgressBarService } from '../../shared/progress-bar.service';
 
 @NgModule({
 

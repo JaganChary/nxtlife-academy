@@ -33,7 +33,8 @@ export class CoursesComponent implements OnInit {
         this.categoryData = res.cat;
 
         this.courses = this.categoryData.courses;
-        console.log(this.categoryData);
+        // console.log(this.courses);
+        // console.log(this.categoryData);
       })
 
     this.role = localStorage.getItem('role');
