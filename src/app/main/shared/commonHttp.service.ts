@@ -26,6 +26,7 @@ export class CommonHttpService {
 
     let requestHeaders = new HttpHeaders()
       .set('Authorization', this.getAccessToken())
+      // .set('Content-Type', 'application/json');
     if (optionalHeaders) {
       for (const header of optionalHeaders.keys()) {
         requestHeaders = requestHeaders.append(header, optionalHeaders.get(header));

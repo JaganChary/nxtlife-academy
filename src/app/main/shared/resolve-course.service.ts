@@ -13,10 +13,8 @@ export class ResolveCourseService {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
     const id = +route.paramMap.get('id');
-    console.log(id);
     return this.categoriesService.getCourseDataById(id).map(course => {
       if(course) {
-        console.log(course);
         return course;
       } else {
         this.router.navigate(['/main/category']);

@@ -14,10 +14,10 @@ export class ResolveDataService {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const id = +route.paramMap.get('id');
-    return this.categoriesService.getCategoryDataById(id).map(cat => {
+    return this.categoriesService.getCategoryDataById(id)
+    .map(cat => {
       if (cat) {
         return cat;
-
       } else { 
         this.router.navigate(['/main/category']);
         return null;
