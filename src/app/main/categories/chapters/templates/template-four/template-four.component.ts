@@ -116,6 +116,10 @@ export class TemplateFourComponent implements OnInit {
 
   btnSubmit(): any {
 
+    if(this.templateFourForm.invalid) {
+      return;
+    }
+
     this.templateFourForm.value.questions.forEach((elem) => {
 
       let b = elem.type;

@@ -74,6 +74,10 @@ export class TemplateTwoComponent implements OnInit {
   }
 
   btnSubmit(): any {
+    if(this.templateTwoForm.invalid) {
+      return;
+    }
+
     let obj = {
       template: 'SECOND',
       secondTemplate: this.templateTwoForm.value

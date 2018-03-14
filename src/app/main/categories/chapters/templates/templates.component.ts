@@ -20,7 +20,7 @@ export class TemplatesComponent implements OnInit {
 
   ngOnInit() {
 
-    this.id = this.chaptersService.getTopicId();
+    this.id = this.chaptersService.getTopic();
     console.log(this.id);
 
     if(this.id === undefined) {

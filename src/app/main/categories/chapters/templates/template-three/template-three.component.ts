@@ -154,6 +154,9 @@ export class TemplateThreeComponent implements OnInit {
   }
 
   btnSubmit(): any {
+    if(this.templateThreeForm.invalid) {
+      return;
+    }
     let obj = {
       template: 'THIRD',
       caseStudies: this.templateThreeForm.value

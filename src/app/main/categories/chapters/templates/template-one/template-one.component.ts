@@ -140,6 +140,10 @@ export class TemplateOneComponent implements OnInit {
   }
 
   btnSubmit(): any {
+    if(this.templateOneForm.invalid) {
+      return;
+    }
+
     let obj = {
       template: 'FIRST',
       firstTemplate: this.templateOneForm.value
