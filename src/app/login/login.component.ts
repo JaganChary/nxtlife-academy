@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    
   ) {
 
   }
@@ -51,11 +52,12 @@ export class LoginComponent implements OnInit {
       return;
     }
     // console.log(loginDetails);
-
+    
     this.loginService.onLogin(this.loginForm.value)
       .subscribe((res: any) => {
         alertify.success('Logged In successfully');
         this.loginService.loginStorage(res);
+        
         this.router.navigate(['/main']);
       }, (error: any) => {
 

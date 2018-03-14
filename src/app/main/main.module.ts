@@ -17,7 +17,6 @@ import { AuthGuard } from '../auth-guard.service';
 import { CartComponent } from './cart/cart.component';
 import { CartService } from './cart/cart.service';
 
-
 @NgModule({
     declarations: [
         MainComponent,
@@ -63,7 +62,7 @@ import { CartService } from './cart/cart.service';
             }
         ])
     ],
-    providers: [CartValueService, CommonHttpService, CategoriesService, MainService, LoginService, AuthGuard, CartService]
+    providers: [CartValueService, CommonHttpService, CategoriesService, MainService, LoginService, AuthGuard]
 })
 
 export class MainModule {

@@ -20,6 +20,8 @@ import { AuthGuard } from './auth-guard.service';
 import { LoginService } from './login/login.service';
 import { LoginComponent } from './login/login.component';
 import { CommonHttpService } from './main/shared/commonHttp.service';
+import { NgProgressModule } from 'ngx-progressbar';
+import { ProgressBarService } from './main/shared/progress-bar.service';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,11 @@ import { CommonHttpService } from './main/shared/commonHttp.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgProgressModule
+    
     // AngularFontAwesomeModule
   ],
-  providers: [ CommonHttpService, AuthGuard, LoginService],
+  providers: [ CommonHttpService, AuthGuard, LoginService, ProgressBarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

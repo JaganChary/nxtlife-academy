@@ -4,7 +4,6 @@ import { CartValueService } from './shared/cart-value.service';
 import { MainService } from './main.service';
 import { LoginService } from '../login/login.service';
 
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -19,18 +18,18 @@ export class MainComponent implements OnInit {
     private router: Router,
     private mainService: MainService,
     private loginService: LoginService,
-    private cartValueService: CartValueService
+    private cartValueService: CartValueService,
   ) {
-
   }
 
   ngOnInit() {
+    
     this.cartData = this.cartValueService.cartObservable
       .subscribe((cartValue: number) => {
 
         this.cartValue = cartValue;
         console.log('Cart Value: ', this.cartValue);
-        
+
       }, (err: any) => {
 
         console.log(err);
