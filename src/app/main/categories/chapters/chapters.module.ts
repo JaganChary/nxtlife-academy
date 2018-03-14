@@ -10,6 +10,7 @@ import { ChaptersComponent } from './chapters.component';
 import { AddChaptersComponent } from './add-chapters/add-chapters.component';
 import { ChaptersService } from './chapters.service';
 import { TemplatesService } from './templates/templates.service';
+import { PageComponent } from './page/page.component';
 
 @NgModule({
   imports: [
@@ -23,8 +24,12 @@ import { TemplatesService } from './templates/templates.service';
         component: AddChaptersComponent
       },
       {
-        path: ':id/add-page',
-        loadChildren: 'app/main/categories/chapters/templates/templates.module#TemplatesModule' 
+        path: 'page',
+        component: PageComponent,
+      },
+      {
+        path: 'add-page',
+        loadChildren: 'app/main/categories/chapters/templates/templates.module#TemplatesModule'
       },
       {
         path: '',
@@ -32,7 +37,7 @@ import { TemplatesService } from './templates/templates.service';
       }
     ])
   ],
-  declarations: [AddChaptersComponent, ChaptersComponent],
-  providers: [ CategoriesService, ChaptersService, TemplatesService ]
+  declarations: [AddChaptersComponent, ChaptersComponent, PageComponent],
+  providers: [CategoriesService, ChaptersService, TemplatesService]
 })
 export class ChaptersModule { }

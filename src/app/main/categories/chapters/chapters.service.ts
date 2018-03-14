@@ -5,12 +5,17 @@ import { CommonHttpService } from '../../shared/commonHttp.service';
 export class ChaptersService {
 
   topicId: number;
+  topic: any;
   constructor(
     private commonHttpService: CommonHttpService
   ) { }
 
   deleteChapter(id: number): any {
     return this.commonHttpService.delete(`/sa/chapter/${id}`);
+  }
+
+  editChapter(id: number, data: any) {
+    return this.commonHttpService.put(`/sa/chapter/${id}`, data);
   }
 
   deleteTopic(id: number): any {
@@ -24,6 +29,15 @@ export class ChaptersService {
   storeTopicId(id: number): any {
     this.topicId = id;
     console.log(id);
+  }
+
+  storeTopic(topic: any): any {
+    this.topic = topic;
+    console.log(this.topic);
+  }
+
+  getTopic(): any {
+    return this.topic;
   }
 
   getTopicId(): any {
@@ -40,6 +54,10 @@ export class ChaptersService {
 
   updateTopic(topicId: number, data): any {
     return this.commonHttpService.put(`/sa/topic/${topicId}`, data);
+  }
+
+  getRecord(topicId: Number, template: any, recordId: Number): any {
+    return this.commonHttpService.get(`/sa/topic/${topicId}/template/${template}/record/${recordId}`);
   }
 
   createFormData(object: Object, form?: FormData, namespace?: string): FormData {

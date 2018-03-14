@@ -107,6 +107,11 @@ p {
 .btn {
     color: black;
 }
+/* 
+.loop {
+    flex-wrap: nowrap;
+    flex-direction: row;
+} */
 
 .btn-green:hover {
     background-color: seagreen;
