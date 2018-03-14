@@ -22,7 +22,9 @@ export class ChaptersComponent implements OnInit {
   role: string;
   chapters: any;
   topicForm: FormGroup;
-
+  chapterForm: FormGroup;
+  editStr: String;
+  chapterImage: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,6 +42,7 @@ export class ChaptersComponent implements OnInit {
       .subscribe((res: { cats: any }) => {
         this.course = res.cats;
         this.chapters = this.course.chapters;
+        console.log(this.course);
       });
 
     this.role = localStorage.getItem('role');
@@ -65,6 +68,22 @@ export class ChaptersComponent implements OnInit {
       () => {
         alertify.error('Cancel');
       }).setHeader('Confirmation');
+  }
+
+  editChapter(editStr: String, chapterId: number): any {
+
+    this.editStr = editStr;
+    this.chapterId = chapterId;
+    console.log(this.chapterId, this.editStr);
+
+    this.chapterForm = this.formBuilder.group({
+
+      chapter: ['', Validators.required],
+
+      imageFile: []
+    })
+
+    this.chapterImage = this.chapterForm.controls.imageFile.value;
   }
 
   // Delete Topic 
@@ -145,7 +164,6 @@ export class ChaptersComponent implements OnInit {
         }
       }
     }
-
   }
 
   getTopicData(topicId: number): any {
@@ -158,7 +176,27 @@ export class ChaptersComponent implements OnInit {
     }
   }
 
+  getTopic(topic: any): any {
+    this.chaptersService.storeTopic(topic);
+  }
+
+  btnSubmit(): any {
+    let formData = new FormData();
+
+    formData.append('chapter', this.chapterForm.value.chapter);
+    formData.append('imageFile', this.fileT);
+
+    this.chaptersService.editChapter(this.chapterId, formData)
+    .subscribe((res: any) => {
+      console.log(res);
+    }, (err: any) => {
+      console.log(err);
+    })
+  }
+
+
   onSubmit(): any {
+
     let formData = new FormData();
 
     formData.append('topic', this.topicForm.value.topic);
@@ -168,17 +206,33 @@ export class ChaptersComponent implements OnInit {
     console.log(this.topicForm.value.imageFile);
 
     if (this.addORedit == 'Edit') {
-      this.chaptersService.updateTopic(this.topicData.topicId, formData)
-        .subscribe((res: any) => {
-          console.log(res);
-        }, (err: any) => {
-          console.log(err);
-        })
+      // this.chaptersService.updateTopic(this.topicData.topicId, formData)
+      //   .subscribe((res: any) => {
+      //     console.log(res);
+      //     alertify.success(res.message);
+          let element = this.chapters.forEach((elem: any) => {
+            elem = elem.topics
+          let topic = elem.find(a => a.topicId == this.topicData.topicId)
+          console.log(topic);
+          }
+        
+        );
+          
+        // }, (err: any) => {
+        //   alertify.alert(err.msg).setHeader('Message');
+        //   console.log(err);
+        // })
     } else {
       this.chaptersService.addTopic(formData, this.chapterId)
         .subscribe((res: any) => {
           console.log(res);
+          alertify.success(res.message);
+          
+          let element = this.chapters.find(elem => elem.chapterId == this.chapterId);
+          element.topics.push(res.data);
+
         }, (err: any) => {
+          alertify.alert(err.msg).setHeader('Message');
           console.log(err);
         })
     }
