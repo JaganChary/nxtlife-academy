@@ -1,0 +1,37 @@
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+
+h3 {
+    margin-top: 1.7em;
+    font-size: 2.5em;
+    color: darkgray;
+    text-align: center;
+}
+
+hr {
+    height: 2px;
+    background-color: lightslategrey;
+    border: none;
+    width: 16em;
+}
+
+
+p {
+    font-size: 1.2em;
+}
+
+.style-btn {
+    padding: 0.5em 1.9em;
+    background-color: white;
+    border-radius: 5px;
+    color: darkcyan;
+    border: 2px solid darkcyan;
+    /* border-color: none; */
+  }
+
+.style-btn:hover {
+    background-color: darkcyan;
+    color: white;
+}  
