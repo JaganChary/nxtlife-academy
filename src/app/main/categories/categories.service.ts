@@ -25,7 +25,6 @@ export class CategoriesService {
 
     categories.forEach((catg: any) => {
       this.categoriesData[catg.courseCategoryId] = catg;
-
       // *********** Storing Courses Data *********** //
 
       catg.courses.forEach((course: any) => {
@@ -33,7 +32,7 @@ export class CategoriesService {
       });
 
     });
-    console.log(this.categoriesData);
+    console.log(this.coursesData);
   }
 
   // *******  Retrieving CategoryDataById ******* //
@@ -42,8 +41,11 @@ export class CategoriesService {
     if (this.categoriesData && this.categoriesData[id]) {
       return of(this.categoriesData[id]);
     } else {
-      return this.getCategories()
-        .map(cat => cat.find(cat => cat.courseCategoryId === id));
+      return this.getSaCategories()
+        .map(cat =>
+          cat.data.find((cat) => cat.courseCategoryId === id)
+
+        )
     }
   }
 
@@ -52,11 +54,12 @@ export class CategoriesService {
   getCourseDataById(id: number): Observable<any> {
 
     if (this.coursesData && this.coursesData[id]) {
+      console.log(this.coursesData);
       return of(this.coursesData[id]);
     } else {
-      return this.getCategories().map(cats => {
-        for (let i = 0; i < cats.length; i++) {
-          let c = cats[i].courses.find(course => course.courseId === id);
+      return this.getSaCategories().map(cats => {
+        for (let i = 0; i < cats.data.length; i++) {
+          let c = cats.data[i].courses.find(course => course.courseId === id);
           if (c) {
             return c;
           }
@@ -97,7 +100,7 @@ export class CategoriesService {
     return this.commonHttpService.post('/sa/category', data);
   }
 
-  // ******* Put request for Editing Caegories ******* //
+  // ******* Put request for Editing Categories ******* //
 
   editCategories(id: number, data): any {
     console.log(id)

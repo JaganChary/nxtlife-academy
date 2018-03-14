@@ -17,11 +17,12 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
 
-    this.categoriesService.getCategories()
+    this.categoriesService.getSaCategories()
       .subscribe((res: any) => {
 
-        this.categories = res;
-        this.categoriesService.storeCategoriesData(res);
+        this.categories = res.data;
+        this.categoriesService.storeCategoriesData(this.categories);
+        console.log(this.categories);
         
       }, (error: any) => {
         console.log(error);

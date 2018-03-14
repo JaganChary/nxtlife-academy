@@ -11,6 +11,7 @@ import { CartService } from '../cart/cart.service';
 import { FormsModule, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ResolveDataService } from '../shared/resolve-category.service';
 import { ResolveCourseService } from '../shared/resolve-course.service';
+import { NgProgress, NgProgressModule } from 'ngx-progressbar';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { ResolveCourseService } from '../shared/resolve-course.service';
         ReactiveFormsModule,
         FormsModule,
         AngularFontAwesomeModule,
+        NgProgressModule,
         RouterModule.forChild([
             {
                 path: '',
@@ -61,7 +63,7 @@ import { ResolveCourseService } from '../shared/resolve-course.service';
             }
         ])
     ],
-    providers: [CategoriesService, ResolveDataService, ResolveCourseService]
+    providers: [CategoriesService, ResolveDataService, ResolveCourseService, NgProgress]
 })
 
 export class CategoriesModule {
