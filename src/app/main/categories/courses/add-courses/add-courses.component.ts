@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CoursesService } from '../courses.service';
 import { CategoriesService } from '../../categories.service';
 import alertify from 'alertifyjs';
+import { NgProgress } from 'ngx-progressbar';
+import { ProgressBarService } from '../../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-add-courses',
@@ -27,7 +29,8 @@ export class AddCoursesComponent implements OnInit {
     private coursesService: CoursesService,
     private route: ActivatedRoute,
     private categoriesService: CategoriesService,
-    private router: Router
+    private router: Router,
+    public progressBarService: ProgressBarService
 
   ) { }
 
@@ -134,7 +137,7 @@ export class AddCoursesComponent implements OnInit {
 
   // Submitting Form
   btnClick(): any {
-
+    this.progressBarService.startProgressBar();
     let formData = new FormData();
 
     formData.append('course', this.addCourseForm.value.courseName);
@@ -148,6 +151,7 @@ export class AddCoursesComponent implements OnInit {
         .subscribe((res: any) => {
           console.log(res);
           alertify.success('Course Added');
+          this.progressBarService.endProgressBar();
           this.router.navigate(['/main/category']);
         }, (err: any) => {
           alertify.alert(err.msg).setHeader('Message');
