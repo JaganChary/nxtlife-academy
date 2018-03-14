@@ -79,18 +79,25 @@ export class AddChaptersComponent implements OnInit {
   }
 
   // Post Request  
-  btnSubmit(): any {  
-    var formInfo = this.chaptersService.createFormData(this.addChapterForm.value);
-    
-    this.chaptersService.postChaptersandTopics(formInfo, this.courseId)
-      .subscribe((res: any) => {
+  btnSubmit(): any {
 
-        alertify.success(res.message);
-        console.log(res);
-      }, (err: any) => {
+    if (this.addChapterForm.invalid) {
 
-        alertify.alert(err.msg).setHeader('Error Message');
-        console.log(err);
-      })
+      return;
+    } else {
+      
+      var formInfo = this.chaptersService.createFormData(this.addChapterForm.value);
+
+      this.chaptersService.postChaptersandTopics(formInfo, this.courseId)
+        .subscribe((res: any) => {
+
+          alertify.success(res.message);
+          console.log(res);
+        }, (err: any) => {
+
+          alertify.alert(err.msg).setHeader('Error Message');
+          console.log(err);
+        })
+    }
   }
 }

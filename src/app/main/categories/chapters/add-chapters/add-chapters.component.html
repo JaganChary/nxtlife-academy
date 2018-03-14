@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="col-md-2">
-                  <button type="button" class="style-btn btn-red" style="padding: 0.6em 1em; border-radius: 50%; margin: 1.8em 0  0 2em;" (click)="deleteTopic(i, j)">
+                  <button type="button" [disabled]="addChapterForm.controls.topics.controls.length === 1" class="style-btn btn-red" style="padding: 0.6em 1em; border-radius: 50%; margin: 1.8em 0  0 2em;" (click)="deleteTopic(i, j)">
                     <fa name="trash-o" style="color: white"></fa>
                   </button>
                 </div>
