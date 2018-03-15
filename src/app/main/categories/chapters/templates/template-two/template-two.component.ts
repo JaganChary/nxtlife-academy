@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { TemplatesService } from '../templates.service';
 import { ChaptersService } from '../../chapters.service';
 import alertify from 'alertifyjs';
+import { ProgressBarService } from '../../../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-template-two',
@@ -19,7 +20,8 @@ export class TemplateTwoComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private templatesService: TemplatesService,
-    private chaptersService: ChaptersService
+    private chaptersService: ChaptersService,
+    private progressBarService: ProgressBarService
 
   ) { }
 
@@ -78,18 +80,22 @@ export class TemplateTwoComponent implements OnInit {
       return;
     }
 
+    this.progressBarService.startProgressBar();
+        
     let obj = {
       template: 'SECOND',
       secondTemplate: this.templateTwoForm.value
     };
 
-    console.log(obj);
+    // console.log(obj);
     var eee = this.templatesService.createFormData(obj);
 
-    console.log(eee);
+    // console.log(eee);
 
     this.chaptersService.postTemplate(this.id, eee)
       .subscribe((res: any) => {
+
+        this.progressBarService.startProgressBar();
         alertify.success(res.message);
         console.log(res);
 

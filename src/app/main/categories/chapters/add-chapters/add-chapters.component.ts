@@ -4,6 +4,7 @@ import { ChaptersService } from '../chapters.service';
 import { CategoriesService } from '../../categories.service';
 import { ActivatedRoute } from '@angular/router';
 import alertify from 'alertifyjs';
+import { ProgressBarService } from '../../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-add-chapters',
@@ -21,7 +22,9 @@ export class AddChaptersComponent implements OnInit {
     private formBuilder: FormBuilder,
     private chaptersService: ChaptersService,
     private categoriesService: CategoriesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private progressBarService: ProgressBarService
+
   ) { }
 
   ngOnInit() {
@@ -85,12 +88,13 @@ export class AddChaptersComponent implements OnInit {
 
       return;
     } else {
-      
+      this.progressBarService.startProgressBar();
       var formInfo = this.chaptersService.createFormData(this.addChapterForm.value);
 
       this.chaptersService.postChaptersandTopics(formInfo, this.courseId)
         .subscribe((res: any) => {
 
+          this.progressBarService.endProgressBar();
           alertify.success(res.message);
           console.log(res);
         }, (err: any) => {

@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
 })
 export class PageComponent implements OnInit {
 
+  role: string;
   topicId: number;
   template: String;
   recordId: number;
   topic: any;
+  
   constructor(
     private chaptersService: ChaptersService,
     private router: Router
@@ -22,6 +24,7 @@ export class PageComponent implements OnInit {
 
     this.topic = this.chaptersService.getTopic();
     console.log(this.topic);
+
     if (this.topic) {
       this.topicId = this.topic.topicId;
       this.recordId = this.topic.pages[0].record;
@@ -31,7 +34,9 @@ export class PageComponent implements OnInit {
 
     }
 
-    this.getRecordData()
+    this.getRecordData();
+
+    this.role = localStorage.getItem('role');
 
   }
 

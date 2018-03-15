@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from './categories.service';
+import { ProgressBarService } from '../shared/progress-bar.service';
 
 @Component({
   selector: 'app-categories',
@@ -10,25 +11,42 @@ export class CategoriesComponent implements OnInit {
   categories: Array<any>;
   storeData: any;
   role: String;
-  
+
   constructor(
     private categoriesService: CategoriesService,
+    private progressBarService: ProgressBarService
   ) { }
 
   ngOnInit() {
-
-    this.categoriesService.getSaCategories()
-      .subscribe((res: any) => {
-
-        this.categories = res.data;
-        this.categoriesService.storeCategoriesData(this.categories);
-        console.log(this.categories);
-        
-      }, (error: any) => {
-        console.log(error);
-      });
-
     this.role = localStorage.getItem('role');
+    this.progressBarService.startProgressBar();
+    if (this.role == 'admin') {
+
+      this.categoriesService.getCategories()
+        .subscribe((res: any) => {
+
+          this.progressBarService.endProgressBar();
+          this.categories = res;
+          console.log(res);
+        }, (err: any) => {
+          console.log(err);
+        })
+    } else if (this.role == 'sa') {
+
+
+      this.categoriesService.getSaCategories()
+        .subscribe((res: any) => {
+
+          this.progressBarService.endProgressBar();
+          this.categories = res.data;
+          this.categoriesService.storeCategoriesData(this.categories);
+          console.log(this.categories);
+
+        }, (error: any) => {
+          console.log(error);
+        });
+    }
+
   }
 
   // Button to edit category

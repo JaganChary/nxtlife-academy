@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ChaptersService } from '../../chapters.service';
 import { TemplatesService } from '../templates.service';
 import alertify from 'alertifyjs';
+import { ProgressBarService } from '../../../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-template-three',
@@ -17,7 +18,8 @@ export class TemplateThreeComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private chaptersService: ChaptersService,
-    private templatesService: TemplatesService
+    private templatesService: TemplatesService,
+    private progressBarService: ProgressBarService
   ) { }
 
   ngOnInit() {
@@ -157,6 +159,9 @@ export class TemplateThreeComponent implements OnInit {
     if(this.templateThreeForm.invalid) {
       return;
     }
+
+    this.progressBarService.startProgressBar();
+        
     let obj = {
       template: 'THIRD',
       caseStudies: this.templateThreeForm.value
@@ -165,6 +170,8 @@ export class TemplateThreeComponent implements OnInit {
 
     this.chaptersService.postTemplate(this.id, formInfo)
       .subscribe((res: any) => {
+
+        this.progressBarService.endProgressBar();
         alertify.success(res.message);
         console.log(res);
 

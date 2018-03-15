@@ -5,6 +5,7 @@ import { CartValueService } from '../../shared/cart-value.service';
 import { CategoriesService } from '../categories.service';
 import { CoursesService } from './courses.service';
 import alertify from 'alertifyjs';
+import { ProgressBarService } from '../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-courses',
@@ -23,13 +24,18 @@ export class CoursesComponent implements OnInit {
     private router: Router,
     private categoriesService: CategoriesService,
     private cartValueService: CartValueService,
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
+    private progressBarService: ProgressBarService
 
   ) { }
 
   ngOnInit() {
+    this.progressBarService.startProgressBar();
+
     this.route.data
       .subscribe((res: { cat: any }) => {
+
+        this.progressBarService.endProgressBar();
         this.categoryData = res.cat;
 
         this.courses = this.categoryData.courses;
@@ -47,6 +53,7 @@ export class CoursesComponent implements OnInit {
   }
 
   buyNow(course: any) {
+    this.progressBarService.startProgressBar();
     this.cartValueService.addCartData(course);
     this.router.navigate(['main/cart']);
   }
@@ -54,8 +61,12 @@ export class CoursesComponent implements OnInit {
   btnDelete(id: any, i) {
     alertify.confirm("Do you wish to delete this course",
       () => {
+
+        this.progressBarService.startProgressBar();
         this.coursesService.deleteCourse(id)
           .subscribe((res: any) => {
+
+            this.progressBarService.endProgressBar();
             let obj = this.courses.splice(i, 1);
             alertify.success('Course Deleted');
 

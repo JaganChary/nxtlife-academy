@@ -3,6 +3,7 @@ import { CategoryService } from '../category.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import alertify from 'alertifyjs';
+import { ProgressBarService } from '../../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-course',
@@ -20,7 +21,8 @@ export class CourseComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private progressBarService: ProgressBarService
   ) { }
 
   ngOnInit() {
@@ -36,8 +38,12 @@ export class CourseComponent implements OnInit {
   // From Server 
 
   fromServer(): any {
+    this.progressBarService.startProgressBar();
+
     this.categoryService.getManagerTasks().
       subscribe((res: any) => {
+
+        this.progressBarService.endProgressBar();
         this.categoryService.storeCategoryData(res.data);
         const id = +this.route.snapshot.paramMap.get('id');
         this.categoryData = this.categoryService.getCategoryDataByID(id);
@@ -77,9 +83,12 @@ export class CourseComponent implements OnInit {
 
   btnSubmit(id: number) {
     console.log(id);
+    this.progressBarService.startProgressBar();
     
     this.categoryService.renounceLicense(this.license, id)
     .subscribe((res: any) => {
+
+      this.progressBarService.endProgressBar();
       alertify.success(res.message);
       console.log(res);
     }, (err: any) => {

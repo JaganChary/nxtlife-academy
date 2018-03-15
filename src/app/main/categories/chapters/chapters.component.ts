@@ -6,6 +6,7 @@ import { ChaptersService } from './chapters.service';
 import { TemplatesService } from './templates/templates.service';
 import alertify from 'alertifyjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ProgressBarService } from '../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-chapters',
@@ -32,14 +33,19 @@ export class ChaptersComponent implements OnInit {
     private chaptersService: ChaptersService,
     private templatesService: TemplatesService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private progressBarService: ProgressBarService
 
   ) { }
 
   ngOnInit() {
 
+    this.progressBarService.startProgressBar();
+
     this.route.data
       .subscribe((res: { cats: any }) => {
+
+        this.progressBarService.endProgressBar();
         this.course = res.cats;
         this.chapters = this.course.chapters;
         console.log(this.course);
@@ -53,9 +59,12 @@ export class ChaptersComponent implements OnInit {
 
     alertify.confirm("Do you wish to delete this chapter",
       () => {
+
+        this.progressBarService.startProgressBar();
         this.chaptersService.deleteChapter(chapterId)
           .subscribe((res: any) => {
 
+            this.progressBarService.endProgressBar();
             console.log(res);
             let obj = this.chapters.splice(i, 1);
             alertify.success('Chapter Deleted');
@@ -91,8 +100,12 @@ export class ChaptersComponent implements OnInit {
 
     alertify.confirm("Do you wish to delete this topic",
       () => {
+
+        this.progressBarService.endProgressBar();
         this.chaptersService.deleteTopic(topicId)
           .subscribe((res: any) => {
+
+            this.progressBarService.startProgressBar();
 
             console.log(res);
             let obj = this.chapters[i].topics.splice(j, 1);
@@ -181,22 +194,27 @@ export class ChaptersComponent implements OnInit {
   }
 
   btnSubmit(): any {
+    this.progressBarService.startProgressBar();
+
     let formData = new FormData();
 
     formData.append('chapter', this.chapterForm.value.chapter);
     formData.append('imageFile', this.fileT);
 
     this.chaptersService.editChapter(this.chapterId, formData)
-    .subscribe((res: any) => {
-      console.log(res);
-    }, (err: any) => {
-      console.log(err);
-    })
+      .subscribe((res: any) => {
+
+        this.progressBarService.endProgressBar();
+        console.log(res);
+      }, (err: any) => {
+        console.log(err);
+      })
   }
 
 
   onSubmit(): any {
 
+    this.progressBarService.startProgressBar();
     let formData = new FormData();
 
     formData.append('topic', this.topicForm.value.topic);
@@ -208,26 +226,30 @@ export class ChaptersComponent implements OnInit {
     if (this.addORedit == 'Edit') {
       // this.chaptersService.updateTopic(this.topicData.topicId, formData)
       //   .subscribe((res: any) => {
+      // this.progressBarService.endProgressBar();
+
       //     console.log(res);
       //     alertify.success(res.message);
-          let element = this.chapters.forEach((elem: any) => {
-            elem = elem.topics
-          let topic = elem.find(a => a.topicId == this.topicData.topicId)
-          console.log(topic);
-          }
-        
-        );
-          
-        // }, (err: any) => {
-        //   alertify.alert(err.msg).setHeader('Message');
-        //   console.log(err);
-        // })
+      let element = this.chapters.forEach((elem: any) => {
+        elem = elem.topics
+        let topic = elem.find(a => a.topicId == this.topicData.topicId)
+        console.log(topic);
+      }
+
+      );
+
+      // }, (err: any) => {
+      //   alertify.alert(err.msg).setHeader('Message');
+      //   console.log(err);
+      // })
     } else {
       this.chaptersService.addTopic(formData, this.chapterId)
         .subscribe((res: any) => {
+
+          this.progressBarService.endProgressBar();
           console.log(res);
           alertify.success(res.message);
-          
+
           let element = this.chapters.find(elem => elem.chapterId == this.chapterId);
           element.topics.push(res.data);
 

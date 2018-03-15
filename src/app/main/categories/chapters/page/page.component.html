@@ -8,7 +8,7 @@
       <h3>Pages</h3>
       <hr>
 
-     <button class="style-btn" routerLink="../add-page">Add Page</button>
+     <button *ngIf="role == 'sa'" class="style-btn" routerLink="../add-page">Add Page</button>
     </div>
   </div>
 </div>

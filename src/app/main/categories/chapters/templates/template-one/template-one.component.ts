@@ -4,6 +4,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { TemplatesService } from '../templates.service';
 import { ChaptersService } from '../../chapters.service';
 import alertify from 'alertifyjs';
+import { ProgressBarService } from '../../../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-template-one',
@@ -24,6 +25,7 @@ export class TemplateOneComponent implements OnInit {
     private route: ActivatedRoute,
     private templatesService: TemplatesService,
     private chaptersService: ChaptersService,
+    private progressBarService :ProgressBarService
 
   ) { }
 
@@ -143,7 +145,9 @@ export class TemplateOneComponent implements OnInit {
     if(this.templateOneForm.invalid) {
       return;
     }
-
+    
+    this.progressBarService.startProgressBar();
+        
     let obj = {
       template: 'FIRST',
       firstTemplate: this.templateOneForm.value
@@ -156,6 +160,9 @@ export class TemplateOneComponent implements OnInit {
 
     this.chaptersService.postTemplate(this.id, eee)
       .subscribe((res: any) => {
+
+        this.progressBarService.endProgressBar();
+        
         alertify.success(res.message);
         console.log(res);
 

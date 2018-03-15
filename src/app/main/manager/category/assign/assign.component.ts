@@ -3,6 +3,7 @@ import { AssignService } from './assign.service';
 import { CategoryService } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
 import alertify from 'alertifyjs';
+import { ProgressBarService } from '../../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-assign',
@@ -20,7 +21,9 @@ export class AssignComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private assignService: AssignService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private progressBarService: ProgressBarService
+
   ) { }
 
   ngOnInit() {
@@ -62,8 +65,12 @@ export class AssignComponent implements OnInit {
   // All Employee List
 
   getList(): any {
+    this.progressBarService.startProgressBar();
+
     this.assignService.getAllEmployeeList()
       .subscribe((res: any) => {
+
+        this.progressBarService.endProgressBar();
         this.allEmployees = res.data;
         this.allEmployeeArray();
 
@@ -113,6 +120,7 @@ export class AssignComponent implements OnInit {
   // Button to assign course to employee  
 
   btnClick(): any {
+    this.progressBarService.startProgressBar();
     var arr = [];
 
     for (let i = 0; i < this.allEmployees.length; i++) {
@@ -128,6 +136,8 @@ export class AssignComponent implements OnInit {
 
     this.assignService.postEmployeeDetail(arr)
       .subscribe((res: any) => {
+
+        this.progressBarService.endProgressBar();
         alertify.success(res.message);
         console.log(res);
       }, (err: any) => {

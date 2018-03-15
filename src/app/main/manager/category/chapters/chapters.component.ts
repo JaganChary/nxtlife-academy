@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../category.service';
+import { ProgressBarService } from '../../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-chapters',
@@ -13,7 +14,8 @@ export class ChaptersComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private progressBarService: ProgressBarService
   ) { }
 
   ngOnInit() {
@@ -29,8 +31,12 @@ export class ChaptersComponent implements OnInit {
   // Retreive data from server
 
   getDataFromServer(): any {
+    this.progressBarService.startProgressBar();
+
     this.categoryService.getManagerTasks()
       .subscribe((res: any) => {
+
+        this.progressBarService.endProgressBar();
         this.categoryService.storeCategoryData(res.data);
         const id = +this.route.snapshot.paramMap.get('id');
         this.courses = this.categoryService.getCourseDataByID(id);
@@ -55,3 +61,4 @@ export class ChaptersComponent implements OnInit {
   }
 
 }
+  

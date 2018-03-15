@@ -15,20 +15,19 @@ hr {
 
 }
 .btn-self {
-    padding: 0.6em 1.8em;
-    background-color: darkslategray;
+    padding: 0.7em 3em;
+    background-color: white;
     border-radius: 5px;
-     
+    color: darkcyan;
+    border: 2px solid darkcyan;
+    border-color: none;
 }
-  
-.btn-self {
+    
+.btn-self:hover {
+    background-color: darkcyan;
     color: white;
-    text-decoration: none;
 }
-  
-  .btn-self:hover {
-    background-color: grey;
-}
+
 .move {
     padding: 2em;
 }
