@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChaptersService } from '../chapters.service';
 import { Router } from '@angular/router';
+import { ProgressBarService } from '../../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-page',
@@ -17,11 +18,14 @@ export class PageComponent implements OnInit {
   
   constructor(
     private chaptersService: ChaptersService,
-    private router: Router
+    private router: Router,
+    private progressBarService: ProgressBarService
+
   ) { }
 
   ngOnInit() {
 
+    
     this.topic = this.chaptersService.getTopic();
     console.log(this.topic);
 
@@ -42,8 +46,13 @@ export class PageComponent implements OnInit {
 
   getRecordData(): any {
     if (this.topic) {
+
+      // this.progressBarService.startProgressBar();
+
       this.chaptersService.getRecord(this.topicId, this.template, this.recordId)
         .subscribe((res: any) => {
+
+          // this.progressBarService.endProgressBar();
           console.log(res);
         }, (err: any) => {
           console.log(err);

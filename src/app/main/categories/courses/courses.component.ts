@@ -30,20 +30,36 @@ export class CoursesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.role = localStorage.getItem('role');
+    
     this.progressBarService.startProgressBar();
 
-    this.route.data
-      .subscribe((res: { cat: any }) => {
+    // if (this.role === 'admin') {
 
-        this.progressBarService.endProgressBar();
-        this.categoryData = res.cat;
+      // this.categoriesService.getCategories()
+      //   .subscribe((res: any) => {
 
-        this.courses = this.categoryData.courses;
-        // console.log(this.courses);
-        // console.log(this.categoryData);
-      })
+      //     this.progressBarService.endProgressBar();
+      //     this.categoryData = res;
+      //     this.courses = this.categoryData.courses;
+      //     console.log(res);
+      //   }, (err: any) => {
+      //     console.log(err);
+      //   })
+    // }
 
-    this.role = localStorage.getItem('role');
+    if (this.role === 'sa') {
+      this.route.data
+        .subscribe((res: { cat: any }) => {
+
+          this.progressBarService.endProgressBar();
+          this.categoryData = res.cat;
+
+          this.courses = this.categoryData.courses;
+          // console.log(this.courses);
+          // console.log(this.categoryData);
+        })
+    }
   }
 
   // Adding Course

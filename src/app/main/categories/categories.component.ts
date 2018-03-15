@@ -19,7 +19,9 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.role = localStorage.getItem('role');
+    console.log(this.role);
     this.progressBarService.startProgressBar();
+
     if (this.role == 'admin') {
 
       this.categoriesService.getCategories()
@@ -27,12 +29,13 @@ export class CategoriesComponent implements OnInit {
 
           this.progressBarService.endProgressBar();
           this.categories = res;
+          this.categoriesService.storeCategoriesData(this.categories);
           console.log(res);
         }, (err: any) => {
           console.log(err);
         })
-    } else if (this.role == 'sa') {
-
+    } 
+    if (this.role == 'sa') {
 
       this.categoriesService.getSaCategories()
         .subscribe((res: any) => {

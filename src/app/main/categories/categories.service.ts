@@ -38,12 +38,14 @@ export class CategoriesService {
   // *******  Retrieving CategoryDataById ******* //
 
   getCategoryDataById(id: number): Observable<any> {
+    console.log('fffffffffffffffffffffffffff');
+
     if (this.categoriesData && this.categoriesData[id]) {
       return of(this.categoriesData[id]);
     } else {
       return this.getSaCategories()
         .map(cat =>
-          cat.data.find((cat) => cat.courseCategoryId === id)
+          cat.find((cat) => cat.courseCategoryId === id)
 
         )
     }
@@ -52,7 +54,8 @@ export class CategoriesService {
   // *******  Retrieving CourseDataById ******* //
 
   getCourseDataById(id: number): Observable<any> {
-
+    console.log('ssssssssssssssssssssssssssssssssssssss');
+    
     if (this.coursesData && this.coursesData[id]) {
       console.log(this.coursesData);
       return of(this.coursesData[id]);
