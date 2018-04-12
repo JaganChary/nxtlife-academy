@@ -13,7 +13,7 @@ export class CommonHttpService {
     private httpClient: HttpClient
   ) { }
 
-  // Getting Access Token 
+  // Getting Access Token
 
   private getAccessToken() {
 
@@ -25,7 +25,7 @@ export class CommonHttpService {
   private addHeaders(optionalHeaders?: HttpHeaders) {
 
     let requestHeaders = new HttpHeaders()
-      .set('Authorization', this.getAccessToken())
+      .set('Authorization', this.getAccessToken());
       // .set('Content-Type', 'application/json');
     if (optionalHeaders) {
       for (const header of optionalHeaders.keys()) {
@@ -39,7 +39,7 @@ export class CommonHttpService {
 
   get(url: string, options?: HttpHeaders) {
 
-    let headers = this.addHeaders(options);
+    const headers = this.addHeaders(options);
 
     return this.httpClient.get(BASEURL + url, { headers: headers, observe: 'response' })
       .map(this.extractData)
@@ -50,7 +50,7 @@ export class CommonHttpService {
 
   post(url: string, body: any, options?: HttpHeaders) {
 
-    let headers = this.addHeaders(options);
+    const headers = this.addHeaders(options);
 
     return this.httpClient.post(BASEURL + url, body, { headers: headers, observe: 'response' })
       .map(this.extractData)
@@ -60,8 +60,8 @@ export class CommonHttpService {
   // Put Request
 
   put(url: string, body: any, options?: HttpHeaders) {
-    
-    let headers = this.addHeaders(options);
+
+    const headers = this.addHeaders(options);
 
     return this.httpClient.put(BASEURL + url, body, { headers: headers, observe: 'response' })
       .map(this.extractData)
@@ -71,7 +71,7 @@ export class CommonHttpService {
   // Delete Request
 
   delete(url: string, options?: HttpHeaders) {
-    let headers = this.addHeaders(options);
+    const headers = this.addHeaders(options);
 
     return this.httpClient.delete(BASEURL + url, { headers: headers, observe: 'response' })
     .map(this.extractData)

@@ -18,13 +18,11 @@ export class ResolveDataService {
     .map(cat => {
       if (cat) {
         return cat;
-      } else { 
+      } else {
         this.router.navigate(['/main/category']);
         return null;
       }
     });
   }
-
-  
 }
 

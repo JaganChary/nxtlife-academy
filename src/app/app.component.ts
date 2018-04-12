@@ -8,7 +8,7 @@ import { NgProgress } from 'ngx-progressbar';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
+
   constructor(
     public progressBarService: ProgressBarService,
     public ngProgress: NgProgress
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
         }
       }, (err: any) => {
         console.log(err);
-      })
+      });
   }
 
 }
