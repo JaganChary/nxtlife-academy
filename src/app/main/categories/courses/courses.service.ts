@@ -9,10 +9,9 @@ export class CoursesService {
   constructor(
     private commonHttpService: CommonHttpService
   ) { }
-  
   storeCourseData(course: Object, action: String): any {
     this.courseData = course;
-    this.addORedit = action; 
+    this.addORedit = action;
   }
 
   getCourseData(): any {
@@ -22,7 +21,6 @@ export class CoursesService {
   getAction(): any {
     return this.addORedit;
   }
-  
   // ******* Request for deleting course ******** //
 
   deleteCourse(id: number): any {
@@ -42,4 +40,3 @@ export class CoursesService {
   }
 
 }
-  

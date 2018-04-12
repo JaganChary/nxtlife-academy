@@ -4,7 +4,7 @@ import { CommonHttpService } from '../../shared/commonHttp.service';
 import { CartValueService } from '../../shared/cart-value.service';
 import { CategoriesService } from '../categories.service';
 import { CoursesService } from './courses.service';
-import alertify from 'alertifyjs';
+import * as alertify from 'alertifyjs';
 import { ProgressBarService } from '../../shared/progress-bar.service';
 
 @Component({
@@ -39,9 +39,9 @@ export class CoursesComponent implements OnInit {
         this.categoryData = res.cat;
 
         this.courses = this.categoryData.courses;
-        // console.log(this.courses);
+        console.log(this.courses);
         // console.log(this.categoryData);
-      })
+      });
 
     this.role = localStorage.getItem('role');
   }
@@ -59,7 +59,7 @@ export class CoursesComponent implements OnInit {
   }
 
   btnDelete(id: any, i) {
-    alertify.confirm("Do you wish to delete this course",
+    alertify.confirm('Do you wish to delete this course',
       () => {
 
         this.progressBarService.startProgressBar();
@@ -67,13 +67,13 @@ export class CoursesComponent implements OnInit {
           .subscribe((res: any) => {
 
             this.progressBarService.endProgressBar();
-            let obj = this.courses.splice(i, 1);
+            const obj = this.courses.splice(i, 1);
             alertify.success('Course Deleted');
 
           }, (err: any) => {
             alertify.alert(err.msg).setHeader('Message');
             console.log(err);
-          })
+          });
       },
       () => {
         alertify.error('Cancel');

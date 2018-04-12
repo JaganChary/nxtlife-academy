@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { CoursesService } from '../courses.service';
 import { CategoriesService } from '../../categories.service';
-import alertify from 'alertifyjs';
+import * as alertify from 'alertifyjs';
 import { NgProgress } from 'ngx-progressbar';
 import { ProgressBarService } from '../../../shared/progress-bar.service';
 import 'rxjs/add/operator/pairwise';
@@ -23,7 +23,7 @@ export class AddCoursesComponent implements OnInit {
   categoryData: any;
   categoryId: number;
   file: any;
-  addORedit: String;
+  addORedit: string;
   courseData: any;
   addCourseForm: FormGroup;
 
@@ -78,7 +78,7 @@ export class AddCoursesComponent implements OnInit {
 
       }, (err: any) => {
         console.log(err);
-      })
+      });
   }
 
   // Retrieving Category Id from Route Snapshot
