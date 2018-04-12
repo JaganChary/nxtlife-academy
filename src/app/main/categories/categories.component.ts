@@ -10,7 +10,7 @@ import { ProgressBarService } from '../shared/progress-bar.service';
 export class CategoriesComponent implements OnInit {
   categories: Array<any>;
   storeData: any;
-  role: String;
+  role: string;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -20,7 +20,7 @@ export class CategoriesComponent implements OnInit {
   ngOnInit() {
     this.role = localStorage.getItem('role');
     this.progressBarService.startProgressBar();
-    if (this.role == 'admin') {
+    if (this.role === 'admin') {
 
       this.categoriesService.getCategories()
         .subscribe((res: any) => {
@@ -30,10 +30,9 @@ export class CategoriesComponent implements OnInit {
           console.log(res);
         }, (err: any) => {
           console.log(err);
-        })
-    } else if (this.role == 'sa') {
+        });
 
-
+    } else if (this.role === 'sa') {
       this.categoriesService.getSaCategories()
         .subscribe((res: any) => {
 

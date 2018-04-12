@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ChaptersService } from '../chapters.service';
 import { CategoriesService } from '../../categories.service';
 import { ActivatedRoute } from '@angular/router';
-import alertify from 'alertifyjs';
+import * as alertify from 'alertifyjs';
 import { ProgressBarService } from '../../../shared/progress-bar.service';
 
 @Component({
