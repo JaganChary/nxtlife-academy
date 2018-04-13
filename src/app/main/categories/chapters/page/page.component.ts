@@ -45,14 +45,7 @@ export class PageComponent implements OnInit {
   }
 
   getRecordData(): any {
-<<<<<<< HEAD
-    if (this.topic) {
-
-      // this.progressBarService.startProgressBar();
-
-=======
     if (this.recordId) {
->>>>>>> 8a7f99c83f287f97ad8c519d7714fc8340eb79a3
       this.chaptersService.getRecord(this.topicId, this.template, this.recordId)
         .subscribe((res: any) => {
 
