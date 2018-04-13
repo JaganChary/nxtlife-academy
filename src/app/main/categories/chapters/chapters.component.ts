@@ -178,11 +178,10 @@ export class ChaptersComponent implements OnInit {
 
   getTopicData(topicId: number): any {
     this.chaptersService.storeTopicId(topicId);
+    console.log(topicId);
     const role = localStorage.getItem('role');
     if (role === 'admin') {
       this.router.navigate([`/${topicId}/add-page`]);
-    } else {
-      return;
     }
   }
 

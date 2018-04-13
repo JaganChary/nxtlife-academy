@@ -25,8 +25,8 @@ export class CommonHttpService {
   private addHeaders(optionalHeaders?: HttpHeaders) {
 
     let requestHeaders = new HttpHeaders()
-      .set('Authorization', this.getAccessToken());
-      // .set('Content-Type', 'application/json');
+      .set('Authorization', this.getAccessToken())
+    // .set('Content-Type', 'application/json');
     if (optionalHeaders) {
       for (const header of optionalHeaders.keys()) {
         requestHeaders = requestHeaders.append(header, optionalHeaders.get(header));
@@ -38,8 +38,14 @@ export class CommonHttpService {
   // Get Request
 
   get(url: string, options?: HttpHeaders) {
+    let headers, x;
+    if (options) {
+      x = options.append('Content-type', 'application/json');
+    } else {
+      x = new HttpHeaders().set('Content-Type', 'application/json');
+    }
+    headers = this.addHeaders(x);
 
-    const headers = this.addHeaders(options);
 
     return this.httpClient.get(BASEURL + url, { headers: headers, observe: 'response' })
       .map(this.extractData)
@@ -74,8 +80,8 @@ export class CommonHttpService {
     const headers = this.addHeaders(options);
 
     return this.httpClient.delete(BASEURL + url, { headers: headers, observe: 'response' })
-    .map(this.extractData)
-    .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   // Post for Login

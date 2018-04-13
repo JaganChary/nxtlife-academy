@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AssignService } from './assign.service';
 import { CategoryService } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
-import alertify from 'alertifyjs';
+import * as alertify from 'alertifyjs';
 import { ProgressBarService } from '../../../shared/progress-bar.service';
 
 @Component({

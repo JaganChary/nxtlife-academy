@@ -25,17 +25,22 @@ export class PageComponent implements OnInit {
 
   ngOnInit() {
 
-    
+
     this.topic = this.chaptersService.getTopic();
     console.log(this.topic);
-    console.log('dffffffffff');
+    // console.log('dffffffffff');
 
-    if (this.topic.pages.length !== 0) {
+    if (this.topic) {
       this.topicId = this.topic.topicId;
-      this.recordId = this.topic.pages[0].record;
-      this.template = this.topic.pages[0].template;
+      if (this.topic.pages.length > 0) {
+        this.recordId = this.topic.pages[0].record;
+        this.template = this.topic.pages[0].template;
+        console.log(`TopicId: ${this.topicId}  RecordId: ${this.recordId} Template: ${this.template}`);
+      }
+      
+    } else {
+      this.router.navigate(['/main/category']);
 
-      console.log(`TopicId: ${this.topicId}  RecordId: ${this.recordId} Template: ${this.template}`);
     }
 
     this.getRecordData();
@@ -60,7 +65,7 @@ export class PageComponent implements OnInit {
   }
 
   addPage(): any {
-    if (this.topic) {
+    if (this.topicId) {
       this.chaptersService.storeTopicId(this.topicId);
     }
   }

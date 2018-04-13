@@ -23,7 +23,7 @@ export class TemplatesComponent implements OnInit {
     this.id = this.chaptersService.getTopic();
     console.log(this.id);
 
-    if(this.id === undefined) {
+    if(!this.id) {
       this.router.navigate(['/main/category']);
     } else {
 

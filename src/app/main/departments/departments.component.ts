@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DepartmentsService } from './departments.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import alertify from 'alertifyjs';
+import * as alertify from 'alertifyjs';
 import { ProgressBarService } from '../shared/progress-bar.service';
 
 @Component({

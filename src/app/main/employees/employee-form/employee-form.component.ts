@@ -14,7 +14,7 @@ import {
   NG_VALIDATORS,
   EmailValidator
 } from '@angular/forms';
-import alertify from 'alertifyjs';
+import * as alertify from 'alertifyjs';
 
 import { employee, EmployeeRole } from '../employeeRole.interface';
 import { BASEURL } from '../../shared/app.constant';

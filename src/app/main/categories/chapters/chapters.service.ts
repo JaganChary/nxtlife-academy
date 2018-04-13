@@ -33,7 +33,8 @@ export class ChaptersService {
 
   storeTopic(topic: any): any {
     this.topic = topic;
-    console.log(this.topic);
+    this.topicId = this.topic.topicId;
+    console.log(this.topic, this.topicId);
   }
 
   getTopic(): any {

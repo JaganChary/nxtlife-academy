@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { CategoriesService } from '../categories.service';
 import { Router } from '@angular/router';
-import alertify from 'alertifyjs';
+import * as alertify from 'alertifyjs';
 import { NgProgress } from 'ngx-progressbar';
 
 @Component({

@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASEURL } from '../../shared/app.constant';
 import { MyCoursesService } from '../my-courses.service';
-import alertify from 'alertifyjs';
+import * as alertify from 'alertifyjs';
 import { ProgressBarService } from '../../shared/progress-bar.service';
 
 @Component({
