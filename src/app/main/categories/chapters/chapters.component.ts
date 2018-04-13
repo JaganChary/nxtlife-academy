@@ -4,7 +4,7 @@ import { CommonHttpService } from '../../shared/commonHttp.service';
 import { CategoriesService } from '../categories.service';
 import { ChaptersService } from './chapters.service';
 import { TemplatesService } from './templates/templates.service';
-import alertify from 'alertifyjs';
+import * as alertify from 'alertifyjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProgressBarService } from '../../shared/progress-bar.service';
 
@@ -90,30 +90,27 @@ export class ChaptersComponent implements OnInit {
       chapter: ['', Validators.required],
 
       imageFile: []
-    })
+    });
 
     this.chapterImage = this.chapterForm.controls.imageFile.value;
   }
 
-  // Delete Topic 
+  // Delete Topic
   deleteTopic(topicId, i, j): any {
 
-    alertify.confirm("Do you wish to delete this topic",
+    alertify.confirm('Do you wish to delete this topic',
       () => {
 
         this.progressBarService.endProgressBar();
         this.chaptersService.deleteTopic(topicId)
           .subscribe((res: any) => {
-
-            this.progressBarService.startProgressBar();
-
             console.log(res);
-            let obj = this.chapters[i].topics.splice(j, 1);
+            const obj = this.chapters[i].topics.splice(j, 1);
             alertify.success('Topic Deleted');
           }, (err: any) => {
             alertify.alert(err.msg).setHeader('Message');
             console.log(err);
-          })
+          });
       },
       () => {
         alertify.error('Cancel');
@@ -133,7 +130,7 @@ export class ChaptersComponent implements OnInit {
 
       imageFile: [this.topicData.imageUrl]
 
-    })
+    });
 
     this.image = this.topicForm.controls.imageFile.value;
 
@@ -152,7 +149,7 @@ export class ChaptersComponent implements OnInit {
 
       imageFile: ['']
 
-    })
+    });
   }
 
   fileUpload(e: any): any {
@@ -168,21 +165,21 @@ export class ChaptersComponent implements OnInit {
       // this.topicForm.controls['imageFile'].patchValue(this.fileT);
 
       if (e.target.files || e.target.files[0]) {
-        var reader = new FileReader();
+        const reader = new FileReader();
 
         reader.readAsDataURL(e.target.files[0]);
 
         reader.onload = (e: any) => {
           this.image = e.target.result;
-        }
+        };
       }
     }
   }
 
   getTopicData(topicId: number): any {
     this.chaptersService.storeTopicId(topicId);
-    let role = localStorage.getItem('role');
-    if (role == 'admin') {
+    const role = localStorage.getItem('role');
+    if (role === 'admin') {
       this.router.navigate([`/${topicId}/add-page`]);
     } else {
       return;
@@ -191,12 +188,13 @@ export class ChaptersComponent implements OnInit {
 
   getTopic(topic: any): any {
     this.chaptersService.storeTopic(topic);
+    console.log(topic);
   }
 
   btnSubmit(): any {
     this.progressBarService.startProgressBar();
 
-    let formData = new FormData();
+    const formData = new FormData();
 
     formData.append('chapter', this.chapterForm.value.chapter);
     formData.append('imageFile', this.fileT);

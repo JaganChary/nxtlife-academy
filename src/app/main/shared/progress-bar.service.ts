@@ -7,8 +7,8 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 @Injectable()
 export class ProgressBarService {
 
-  currentLoaderStatus : ReplaySubject<boolean> = new ReplaySubject<boolean>();
-  
+  currentLoaderStatus: ReplaySubject<boolean> = new ReplaySubject<boolean>();
+
   constructor() { }
 
   public startProgressBar(): any {

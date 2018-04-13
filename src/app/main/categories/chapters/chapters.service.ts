@@ -62,7 +62,7 @@ export class ChaptersService {
 
   createFormData(object: Object, form?: FormData, namespace?: string): FormData {
     const formData = form || new FormData();
-    for (let property in object) {
+    for (const property in object) {
       if (!object.hasOwnProperty(property) || !object[property]) {
         continue;
       }

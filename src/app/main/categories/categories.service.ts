@@ -10,6 +10,7 @@ export class CategoriesService {
   categoryData: any;
   categoriesData: object;
   coursesData: Object;
+  role: string = localStorage.getItem('role');
 
   constructor(
     private commonHttpService: CommonHttpService
@@ -43,32 +44,50 @@ export class CategoriesService {
     if (this.categoriesData && this.categoriesData[id]) {
       return of(this.categoriesData[id]);
     } else {
-      return this.getSaCategories()
-        .map(cat =>
-          cat.find((cat) => cat.courseCategoryId === id)
+      if (this.role === 'sa') {
+        return this.getSaCategories()
+          .map(cat =>
+            cat.data.find((cat) => cat.courseCategoryId === id)
+          );
+      } else if (this.role === 'admin') {
+        return this.getCategories()
+          .map(cat =>
+            cat.find((cat) => cat.courseCategoryId === id)
+          );
+      }
 
-        )
     }
   }
 
   // *******  Retrieving CourseDataById ******* //
 
   getCourseDataById(id: number): Observable<any> {
-    console.log('ssssssssssssssssssssssssssssssssssssss');
-    
     if (this.coursesData && this.coursesData[id]) {
       console.log(this.coursesData);
       return of(this.coursesData[id]);
     } else {
+      console.log(this.role);
+      if (this.role === 'sa') {
       return this.getSaCategories().map(cats => {
         for (let i = 0; i < cats.data.length; i++) {
-          let c = cats.data[i].courses.find(course => course.courseId === id);
+          const c = cats.data[i].courses.find(course => course.courseId === id);
           if (c) {
             return c;
           }
         }
       }
-      )
+      );
+      } else if (this.role === 'admin') {
+        return this.getCategories().map(cats => {
+          for (let j = 0; j < cats.length; j++) {
+            const d = cats[j].courses.find(course => course.courseId === id);
+            console.log(d);
+            if (d) {
+              return d;
+            }
+          }
+        });
+      }
     }
   }
 
@@ -106,7 +125,7 @@ export class CategoriesService {
   // ******* Put request for Editing Categories ******* //
 
   editCategories(id: number, data): any {
-    console.log(id)
+    console.log(id);
     return this.commonHttpService.put(`/sa/category/${id}`, data);
   }
 

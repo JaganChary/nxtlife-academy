@@ -12,8 +12,9 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs/observable';
 import { LoginService } from './login.service';
-import alertify from 'alertifyjs';
+import * as alertify from 'alertifyjs';
 import { ProgressBarService } from '../main/shared/progress-bar.service';
+
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ import { ProgressBarService } from '../main/shared/progress-bar.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup
+  loginForm: FormGroup;
 
   constructor(
     private router: Router,
@@ -39,31 +40,31 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       username: ['waddle.jacob@gmail.com', [Validators.required, Validators.email]],
       password: ['123456', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])]
-    })
+    });
   }
 
   // Logging In
 
   btnClick() {
     this.progressBarService.startProgressBar();
-    let loginDetails = this.loginForm.value;
+    const loginDetails = this.loginForm.value;
     if (this.loginForm.invalid) {
       return;
     }
     // console.log(loginDetails);
-    
+
     this.loginService.onLogin(this.loginForm.value)
       .subscribe((res: any) => {
-        alertify.success('Logged In successfully');
+        // alertify.success('Logged In successfully');
         this.progressBarService.endProgressBar();
         this.loginService.loginStorage(res);
-        
+
         this.router.navigate(['/main']);
       }, (error: any) => {
 
         console.log(error);
         alertify.alert(error.msg).setHeader('Error Message');
       }
-      )
+      );
   }
 }

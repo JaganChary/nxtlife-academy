@@ -15,7 +15,7 @@ export class PageComponent implements OnInit {
   template: String;
   recordId: number;
   topic: any;
-  
+
   constructor(
     private chaptersService: ChaptersService,
     private router: Router,
@@ -28,14 +28,14 @@ export class PageComponent implements OnInit {
     
     this.topic = this.chaptersService.getTopic();
     console.log(this.topic);
+    console.log('dffffffffff');
 
-    if (this.topic) {
+    if (this.topic.pages.length !== 0) {
       this.topicId = this.topic.topicId;
       this.recordId = this.topic.pages[0].record;
       this.template = this.topic.pages[0].template;
 
       console.log(`TopicId: ${this.topicId}  RecordId: ${this.recordId} Template: ${this.template}`);
-
     }
 
     this.getRecordData();
@@ -45,10 +45,14 @@ export class PageComponent implements OnInit {
   }
 
   getRecordData(): any {
+<<<<<<< HEAD
     if (this.topic) {
 
       // this.progressBarService.startProgressBar();
 
+=======
+    if (this.recordId) {
+>>>>>>> 8a7f99c83f287f97ad8c519d7714fc8340eb79a3
       this.chaptersService.getRecord(this.topicId, this.template, this.recordId)
         .subscribe((res: any) => {
 
@@ -56,14 +60,16 @@ export class PageComponent implements OnInit {
           console.log(res);
         }, (err: any) => {
           console.log(err);
-        })
+        });
+    } else {
+      console.log('No pages to display');
     }
   }
 
   addPage(): any {
     if (this.topic) {
       this.chaptersService.storeTopicId(this.topicId);
-    } 
+    }
   }
 
 }
