@@ -70,6 +70,7 @@ export class ChaptersComponent implements OnInit {
             alertify.success('Chapter Deleted');
             console.log(obj);
           }, (err: any) => {
+            this.progressBarService.endProgressBar();
             alertify.alert(err.msg).setHeader('Message');
             console.log(err);
           })
@@ -108,6 +109,7 @@ export class ChaptersComponent implements OnInit {
             const obj = this.chapters[i].topics.splice(j, 1);
             alertify.success('Topic Deleted');
           }, (err: any) => {
+            this.progressBarService.endProgressBar();
             alertify.alert(err.msg).setHeader('Message');
             console.log(err);
           });
@@ -200,10 +202,13 @@ export class ChaptersComponent implements OnInit {
 
     this.chaptersService.editChapter(this.chapterId, formData)
       .subscribe((res: any) => {
-
+        alertify.success(res.message);
         this.progressBarService.endProgressBar();
         console.log(res);
+        this.chapters.push(res);
       }, (err: any) => {
+        this.progressBarService.endProgressBar();
+        alertify.alert(err.msg).setHeader('Message');
         console.log(err);
       })
   }
@@ -221,24 +226,24 @@ export class ChaptersComponent implements OnInit {
     console.log(this.topicForm.value.imageFile);
 
     if (this.addORedit == 'Edit') {
-      // this.chaptersService.updateTopic(this.topicData.topicId, formData)
-      //   .subscribe((res: any) => {
-      // this.progressBarService.endProgressBar();
+      this.chaptersService.updateTopic(this.topicData.topicId, formData)
+        .subscribe((res: any) => {
+      this.progressBarService.endProgressBar();
 
-      //     console.log(res);
-      //     alertify.success(res.message);
+          console.log(res);
+          alertify.success(res.message);
       let element = this.chapters.forEach((elem: any) => {
         elem = elem.topics
         let topic = elem.find(a => a.topicId == this.topicData.topicId)
         console.log(topic);
       }
-
       );
 
-      // }, (err: any) => {
-      //   alertify.alert(err.msg).setHeader('Message');
-      //   console.log(err);
-      // })
+      }, (err: any) => {
+        this.progressBarService.endProgressBar();
+        alertify.alert(err.msg).setHeader('Message');
+        console.log(err);
+      })
     } else {
       this.chaptersService.addTopic(formData, this.chapterId)
         .subscribe((res: any) => {
@@ -251,6 +256,7 @@ export class ChaptersComponent implements OnInit {
           element.topics.push(res.data);
 
         }, (err: any) => {
+          this.progressBarService.endProgressBar();
           alertify.alert(err.msg).setHeader('Message');
           console.log(err);
         })

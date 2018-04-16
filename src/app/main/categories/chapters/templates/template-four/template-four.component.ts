@@ -113,6 +113,7 @@ export class TemplateFourComponent implements OnInit {
         console.log(res);
 
       }, (err: any) => {
+        this.progressBarService.endProgressBar();
         console.log(err);
         alertify.alert(err.msg).setHeader('Error Message');
       });
@@ -142,6 +143,7 @@ export class TemplateFourComponent implements OnInit {
           
         } else {
            console.log(x);
+           this.progressBarService.endProgressBar();
           alertify.alert('Please select only one answer as true').setHeader('Message');
         }
 
@@ -152,6 +154,7 @@ export class TemplateFourComponent implements OnInit {
         })
 
         if (this.a == undefined) {
+          this.progressBarService.endProgressBar();   
           alertify.alert('Please select atleast one answer as true').setHeader('Message');
         } else {
           this.sendFormData();

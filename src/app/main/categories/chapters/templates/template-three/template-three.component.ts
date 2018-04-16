@@ -176,6 +176,8 @@ export class TemplateThreeComponent implements OnInit {
         console.log(res);
 
       }, (err: any) => {
+        
+        this.progressBarService.endProgressBar();
         alertify.alert(err.msg).setHeader('Message');
         console.log(err);
       });
