@@ -80,8 +80,8 @@ export class TemplateFourComponent implements OnInit {
   }
 
   addOptions(questionIndex: number): any {
-    const questiontionsArray = <FormArray>this.templateFourForm.controls['questions'];
-    const questionsGroup = <FormGroup>questiontionsArray.controls[questionIndex];
+    const questionsArray = <FormArray>this.templateFourForm.controls['questions'];
+    const questionsGroup = <FormGroup>questionsArray.controls[questionIndex];
     const optionsArray = <FormArray>questionsGroup.controls['options'];
     optionsArray.push(this.getOptions());
   }
@@ -92,8 +92,8 @@ export class TemplateFourComponent implements OnInit {
   }
 
   deleteOptions(questionIndex: number, optionIndex: number): any {
-    const questiontionsArray = <FormArray>this.templateFourForm.controls['questions'];
-    const questionsGroup = <FormGroup>questiontionsArray.controls[questionIndex];
+    const questionsArray = <FormArray>this.templateFourForm.controls['questions'];
+    const questionsGroup = <FormGroup>questionsArray.controls[questionIndex];
     const optionsArray = <FormArray>questionsGroup.controls['options'];
     optionsArray.removeAt(optionIndex);
   }

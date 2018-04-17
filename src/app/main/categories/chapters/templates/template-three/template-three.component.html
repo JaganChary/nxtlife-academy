@@ -166,13 +166,13 @@
           </div>
           <p>
             <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-              <h5 data-toggle="tooltip" data-placement="bottom" title="Click to show Questionarre Set">QUESTIONNARE SET</h5>
+              <h5 data-toggle="tooltip" data-placement="bottom" title="Click to show Questionarre Set">questionnaire SET</h5>
             </a>
           </p>
           <div class="collapse" id="collapseExample">
-            <div formArrayName="questionnareSet">
-              <div class="card" *ngFor="let questionnare of templateThreeForm.controls.questionnareSet.controls; let i = index" [formGroupName]="i">
-                <button type="button" (click)="deleteQuestionnareSet(i)" [disabled]="templateThreeForm.controls.questionnareSet.controls.length == 1"
+            <div formArrayName="questionnaireSet">
+              <div class="card" *ngFor="let questionnaire of templateThreeForm.controls.questionnaireSet.controls; let i = index" [formGroupName]="i">
+                <button type="button" (click)="deletequestionnaireSet(i)" [disabled]="templateThreeForm.controls.questionnaireSet.controls.length == 1"
                   class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
                   <fa name="close"></fa>
                 </button>
@@ -191,9 +191,9 @@
 
                 <div formArrayName="questions">
                   <h5>Questions</h5>
-                  <div class="card" style="background-color: lightgray" *ngFor="let question of templateThreeForm.controls.questionnareSet.controls[i].controls.questions.controls; let j = index"
+                  <div class="card" style="background-color: lightgray" *ngFor="let question of templateThreeForm.controls.questionnaireSet.controls[i].controls.questions.controls; let j = index"
                     [formGroupName]="j">
-                    <button type="button" (click)="deleteQuestions(i, j)" [disabled]="templateThreeForm.controls.questionnareSet.controls[i].controls.questions.controls.length == 1"
+                    <button type="button" (click)="deleteQuestions(i, j)" [disabled]="templateThreeForm.controls.questionnaireSet.controls[i].controls.questions.controls.length == 1"
                       class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
                       <fa name="close"></fa>
                     </button>
@@ -228,9 +228,9 @@
 
                     <!-- ***************** Options ***************** -->
                     <div formArrayName="options">
-                      <div class="card" *ngFor="let option of templateThreeForm.controls.questionnareSet.controls[i].controls.questions.controls[j].controls.options.controls; let k = index"
+                      <div class="card" *ngFor="let option of templateThreeForm.controls.questionnaireSet.controls[i].controls.questions.controls[j].controls.options.controls; let k = index"
                         [formGroupName]="k">
-                        <button type="button" (click)="deleteOptions(i, j, k)" *ngIf="templateThreeForm.controls.questionnareSet.controls[i].controls.questions.controls[j].controls.options.controls.length > 2"
+                        <button type="button" (click)="deleteOptions(i, j, k)" *ngIf="templateThreeForm.controls.questionnaireSet.controls[i].controls.questions.controls[j].controls.options.controls.length > 2"
                           class="style-btn" style="padding: 0.5em 0.8em; border-radius: 50%; position: absolute; right: -0.7em; top: -1.4em">
                           <fa name="close"></fa>
                         </button>
@@ -291,7 +291,7 @@
               </div>
             </div>
             <br>
-            <button type="button" class="style-btn" style="width: 25%" (click)="addQuestionnareSet()">Add More</button>
+            <button type="button" class="style-btn" style="width: 25%" (click)="addquestionnaireSet()">Add More</button>
           </div>
         </div>
         <br>

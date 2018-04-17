@@ -77,8 +77,14 @@ export class CommonHttpService {
   // Delete Request
 
   delete(url: string, options?: HttpHeaders) {
-    const headers = this.addHeaders(options);
-
+    
+    let headers, x;
+    if (options) {
+      x = options.append('Content-type', 'application/json');
+    } else {
+      x = new HttpHeaders().set('Content-Type', 'application/json');
+    }
+    headers = this.addHeaders(x);
     return this.httpClient.delete(BASEURL + url, { headers: headers, observe: 'response' })
       .map(this.extractData)
       .catch(this.handleError);

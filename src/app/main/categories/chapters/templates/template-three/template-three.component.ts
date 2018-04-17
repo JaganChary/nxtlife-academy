@@ -56,8 +56,8 @@ export class TemplateThreeComponent implements OnInit {
 
       conclusionImageFile: [],
 
-      questionnareSet: this.formBuilder.array([
-        this.getQuestionnareSet()
+      questionnaireSet: this.formBuilder.array([
+        this.getquestionnaireSet()
       ])
     })
   }
@@ -68,7 +68,7 @@ export class TemplateThreeComponent implements OnInit {
     this.templateThreeForm.controls[imageName].patchValue(file);
   }
 
-  getQuestionnareSet(): any {
+  getquestionnaireSet(): any {
     return this.formBuilder.group({
 
       heading: [''],
@@ -107,44 +107,44 @@ export class TemplateThreeComponent implements OnInit {
   }
 
 
-  addQuestionnareSet(): any {
-    const questionnareSet = <FormArray>this.templateThreeForm.controls['questionnareSet'];
-    questionnareSet.push(this.getQuestionnareSet());
+  addquestionnaireSet(): any {
+    const questionnaireSet = <FormArray>this.templateThreeForm.controls['questionnaireSet'];
+    questionnaireSet.push(this.getquestionnaireSet());
   }
 
-  addQuestions(questionnareIndex: number): any {
-    const questionnareSetArray = <FormArray>this.templateThreeForm.controls['questionnareSet'];
-    const questionnareSetGroup = <FormGroup>questionnareSetArray.controls[questionnareIndex];
-    const questionsArray = <FormArray>questionnareSetGroup.controls['questions'];
+  addQuestions(questionnaireIndex: number): any {
+    const questionnaireSetArray = <FormArray>this.templateThreeForm.controls['questionnaireSet'];
+    const questionnaireSetGroup = <FormGroup>questionnaireSetArray.controls[questionnaireIndex];
+    const questionsArray = <FormArray>questionnaireSetGroup.controls['questions'];
     console.log(questionsArray.controls[0]);
     questionsArray.push(this.getQuestions());
   }
 
-  addOptions(questionIndex: number, questionnareIndex: number): any {
-    const questionnareSetArray = <FormArray>this.templateThreeForm.controls['questionnareSet'];
-    const questionnareSetGroup = <FormGroup>questionnareSetArray.controls[questionnareIndex];
-    const questionsArray = <FormArray>questionnareSetGroup.controls['questions'];
+  addOptions(questionIndex: number, questionnaireIndex: number): any {
+    const questionnaireSetArray = <FormArray>this.templateThreeForm.controls['questionnaireSet'];
+    const questionnaireSetGroup = <FormGroup>questionnaireSetArray.controls[questionnaireIndex];
+    const questionsArray = <FormArray>questionnaireSetGroup.controls['questions'];
     const questionsGroup = <FormGroup>questionsArray.controls[questionIndex];
     const optionsArray = <FormArray>questionsGroup.controls['options'];
     optionsArray.push(this.getOptions());
   }
 
-  deleteQuestionnareSet(i): any {
-    const questionnareSet = <FormArray>this.templateThreeForm.controls['questionnareSet'];
-    questionnareSet.removeAt(i);
+  deletequestionnaireSet(i): any {
+    const questionnaireSet = <FormArray>this.templateThreeForm.controls['questionnaireSet'];
+    questionnaireSet.removeAt(i);
   }
 
-  deleteQuestions(questionnareIndex: number, j: number): any {
-    const questionnareSetArray = <FormArray>this.templateThreeForm.controls['questionnareSet'];
-    const questionnareSetGroup = <FormGroup>questionnareSetArray.controls[questionnareIndex];
-    const questionsArray = <FormArray>questionnareSetGroup.controls['questions'];
+  deleteQuestions(questionnaireIndex: number, j: number): any {
+    const questionnaireSetArray = <FormArray>this.templateThreeForm.controls['questionnaireSet'];
+    const questionnaireSetGroup = <FormGroup>questionnaireSetArray.controls[questionnaireIndex];
+    const questionsArray = <FormArray>questionnaireSetGroup.controls['questions'];
     questionsArray.removeAt(j);
   }
 
-  deleteOptions(questionIndex: number, questionnareIndex: number, k): any {
-    const questionnareSetArray = <FormArray>this.templateThreeForm.controls['questionnareSet'];
-    const questionnareSetGroup = <FormGroup>questionnareSetArray.controls[questionnareIndex];
-    const questionsArray = <FormArray>questionnareSetGroup.controls['questions'];
+  deleteOptions(questionIndex: number, questionnaireIndex: number, k): any {
+    const questionnaireSetArray = <FormArray>this.templateThreeForm.controls['questionnaireSet'];
+    const questionnaireSetGroup = <FormGroup>questionnaireSetArray.controls[questionnaireIndex];
+    const questionsArray = <FormArray>questionnaireSetGroup.controls['questions'];
     const questionsGroup = <FormGroup>questionsArray.controls[questionIndex];
     const optionsArray = <FormArray>questionsGroup.controls['options'];
     optionsArray.removeAt(k);
