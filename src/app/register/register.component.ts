@@ -84,6 +84,8 @@ export class RegisterComponent implements OnInit {
         }
       },
       (err: any) => {
+
+        this.progressBarService.endProgressBar();
         alertify.alert(err.msg).setHeader('Error Message');
         console.log(err);
       }

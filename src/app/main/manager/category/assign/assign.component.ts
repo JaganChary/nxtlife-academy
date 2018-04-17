@@ -141,6 +141,8 @@ export class AssignComponent implements OnInit {
         alertify.success(res.message);
         console.log(res);
       }, (err: any) => {
+
+        this.progressBarService.endProgressBar();
         alertify.alert(err.msg).setHeader('Error Message');
         console.log(err);
       })

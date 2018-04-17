@@ -11,6 +11,7 @@ import { CategoriesService } from '../categories.service';
 import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
 import { NgProgress } from 'ngx-progressbar';
+import { ProgressBarService } from '../../shared/progress-bar.service';
 
 @Component({
   selector: 'app-add-categories',
@@ -30,7 +31,7 @@ export class AddCategoriesComponent implements OnInit {
     private formBuilder: FormBuilder,
     private categoriesService: CategoriesService,
     private router: Router,
-    private ngProgress: NgProgress
+    private progressBarService: ProgressBarService
 
   ) { }
 
@@ -105,8 +106,7 @@ export class AddCategoriesComponent implements OnInit {
   }
 
   btnClick(): any {
-    this.ngProgress.start();
-    
+    this.progressBarService.startProgressBar();
     let formData = new FormData();
 
     formData.append('category', this.addCategoryForm.value.categoryName);
@@ -118,12 +118,13 @@ export class AddCategoriesComponent implements OnInit {
       
       this.categoriesService.postCategories(formData)
         .subscribe((res: any) => {
-
+          this.progressBarService.endProgressBar();
           this.router.navigate(['/main/category']);
           alertify.success(res.message);
           console.log(res);
           // this.ngProgress.done();
         }, (err: any) => {
+          this.progressBarService.endProgressBar();
           alertify.alert(err.msg).setHeader('Message');
           console.log(err);
         })
@@ -131,10 +132,12 @@ export class AddCategoriesComponent implements OnInit {
 
       this.categoriesService.editCategories(this.id, formData)
         .subscribe((res: any) => {
+          this.progressBarService.endProgressBar();
           alertify.success(res.message);
           this.router.navigate(['/main/category']);
           console.log(res);
         }, (err: any) => {
+          this.progressBarService.endProgressBar();
           alertify.alert(err.msg).setHeader('Message');
           console.log(err);
         })

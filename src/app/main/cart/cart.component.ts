@@ -97,6 +97,7 @@ export class CartComponent implements OnInit {
         this.router.navigate(['/main/category']);
         console.log(res);
       }, (err: any) => {
+        this.progressBarService.endProgressBar();
         alertify.alert(err.message).setHeader('Error Message')
         console.log(err);
       })

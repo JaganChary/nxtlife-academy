@@ -25,11 +25,12 @@ export class DepartmentsComponent implements OnInit {
   ngOnInit() {
     this.departmentsService.getDepartments()
       .subscribe((res: any) => {
-
+        this.progressBarService.startProgressBar();
         this.departments = res.data;
         console.log('All Departments: ', res);
       }, (error: any) => {
 
+        this.progressBarService.endProgressBar();
         console.log(error);
       })
   }
@@ -70,6 +71,8 @@ export class DepartmentsComponent implements OnInit {
         this.departments.push(res[0]);
       },
         (error: any) => {
+
+          this.progressBarService.endProgressBar();
           alertify.alert(error.msg).setHeader('Message');
           console.log(error);
         });

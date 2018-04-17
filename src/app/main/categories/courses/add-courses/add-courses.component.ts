@@ -46,11 +46,11 @@ export class AddCoursesComponent implements OnInit {
     // .filter(e => e instanceof NavigationStart)
     // .pairwise()
     // .subscribe((value: [NavigationStart, NavigationStart]) => {
-      
+
     //   this.previousUrl = value[0].url;
     //   let presentUrl = value[1].url;
 
-      // console.log(previousUrl);
+    // console.log(previousUrl);
 
     // }
     // );
@@ -171,21 +171,23 @@ export class AddCoursesComponent implements OnInit {
 
     if (this.addORedit === 'Add') {
 
-      // this.coursesService.postCourses(formData, this.categoryId)
-      //   .subscribe((res: any) => {
-      //     console.log(res);
-      //     alertify.success('Course Added');
-      this.progressBarService.endProgressBar();
-      //     console.log(this.router.events.pairwise().subscribe((e: any) => {
-      //       console.log(e);
-      //   }
-      // ));
+      this.coursesService.postCourses(formData, this.categoryId)
+        .subscribe((res: any) => {
+          console.log(res);
+          alertify.success('Course Added');
+          this.progressBarService.endProgressBar();
+          // console.log(this.router.events.pairwise().subscribe((e: any) => {
+          //   console.log(e);
+          // }
+          // )
+          // );
+          this.router.navigate(['/main/category']);
+        }, (err: any) => {
 
-      //   this.router.navigate(['/main/category']);
-      // }, (err: any) => {
-      //   alertify.alert(err.msg).setHeader('Message');
-      //   console.log(err);
-      // })
+          this.progressBarService.endProgressBar();
+          alertify.alert(err.msg).setHeader('Message');
+          console.log(err);
+        })
     } else if (this.addORedit === 'Edit') {
 
       this.coursesService.editCourses(formData, this.courseId)
@@ -196,6 +198,8 @@ export class AddCoursesComponent implements OnInit {
           alertify.success('Course Updated');
           this.router.navigate(['/main/category']);
         }, (err: any) => {
+          
+          this.progressBarService.endProgressBar();
           alertify.alert(err.msg).setHeader('Message');
           console.log(err);
         })

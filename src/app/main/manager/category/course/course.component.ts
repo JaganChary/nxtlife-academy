@@ -92,6 +92,8 @@ export class CourseComponent implements OnInit {
       alertify.success(res.message);
       console.log(res);
     }, (err: any) => {
+
+      this.progressBarService.endProgressBar();
       alertify.alert(err.message).setHeader('Error Message');
       console.log(err);
     })

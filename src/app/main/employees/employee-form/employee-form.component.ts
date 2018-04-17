@@ -159,8 +159,9 @@ export class EmployeeFormComponent implements OnInit {
         this.router.navigate(['main/admin/employees']);
         
       }, (error: any) => {
+
+        this.progressBarService.endProgressBar();
         alertify.alert(error.msg).setHeader('Error Message');
-        
         console.log(error);
       });
   }

@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
 
         this.router.navigate(['/main']);
       }, (error: any) => {
-
+        this.progressBarService.endProgressBar();
         console.log(error);
         alertify.alert(error.msg).setHeader('Error Message');
       }

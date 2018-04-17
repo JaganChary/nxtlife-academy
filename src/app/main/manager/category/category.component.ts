@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from './category.service';
 import { ProgressBarService } from '../../shared/progress-bar.service';
+import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-category',
@@ -29,6 +30,9 @@ export class CategoryComponent implements OnInit {
 
 
       }, (err: any) => {
+
+        this.progressBarService.endProgressBar();
+        alertify.alert(err.msg).setHeader('Error Message');
         console.log(err);
       })
   }

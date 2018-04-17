@@ -83,6 +83,8 @@ export class CoursesComponent implements OnInit {
               alertify.success('Course Deleted');
 
             }, (err: any) => {
+
+              this.progressBarService.endProgressBar();
               alertify.alert(err.msg).setHeader('Message');
               console.log(err);
             });

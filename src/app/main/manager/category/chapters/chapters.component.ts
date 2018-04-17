@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../category.service';
 import { ProgressBarService } from '../../../shared/progress-bar.service';
+import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-chapters',
@@ -45,6 +46,9 @@ export class ChaptersComponent implements OnInit {
         console.log(this.chapters);
         
       }, (err: any) => {
+
+        this.progressBarService.endProgressBar();
+        alertify.alert(err.msg).setHeader('Error Message');
         console.log(err);
       });
   }
